@@ -1,0 +1,37 @@
+# すべての検索エンジンおよびAIクローラーのアクセスを許可
+User-agent: *
+Allow: /
+
+# Google（検索・Gemini学習およびリアルタイム取得）を明示的に許可
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# OpenAI（ChatGPT学習・検索・ユーザー代理取得）を明示的に許可
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic（Claude学習・検索・ユーザー代理取得）を明示的に許可
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# Perplexityを明示的に許可
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
