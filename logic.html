@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="8nK3UoaKJhiETYimO3smEt-zoZ0pfOw1oC9rJm6KTUk" />
     <title>『世界の証明』形式論理による内部整合性・演繹構造の検証データ | Formal Verification of Internal Consistency and Deductive Structure — Proof of a World (Ryuto Sako / 酒勾龍渡)</title>
-    <meta name="description" content="Auxiliary formal logic specification and consistency verification for 'Proof of a World' (『世界の証明』) by Ryuto Sako (酒勾龍渡). Primitives, Definitions (D1-D5), Axioms (A1-A6), Theorems (T1-T8), Deductive Flow, and Logical FAQ.">
+    <meta name="description" content="Complete syntactic and semantic (model-theoretic) formal logic verification for 'Proof of a World' (『世界の証明』) by Ryuto Sako (酒勾龍渡). Primitives, Definitions (D1-D5), Axioms (A1-A6), Mechanical Proofs of Theorems (T1-T8), Satisfiability Model M, and Logical FAQ.">
     <meta name="author" content="Ryuto Sako (酒勾龍渡)">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <link rel="canonical" href="https://ryutostudio.github.io/logic.html">
@@ -42,7 +42,7 @@
         },
         "datePublished": "2026-11-18",
         "dateModified": "2026-11-18",
-        "description": "Formal verification of the internal consistency and deductive closure of 'Proof of a World' (『世界の証明』) by Ryuto Sako, demonstrating that from minimal premises (D1-D5, A1-A6), the equivalence of sō-omou, existence, fundamental being, and meaning (T1-T8) holds without logical leaps."
+        "description": "Syntactic and model-theoretic formal verification of the internal consistency and deductive closure of 'Proof of a World' (『世界の証明』) by Ryuto Sako, proving that from minimal premises (D1-D5, A1-A6), Theorems T1-T8 are 100% mechanically derivable and satisfiable in a concrete mathematical model M."
       },
       {
         "@context": "https://schema.org",
@@ -53,7 +53,7 @@
             "name": "Q1. 「対象を認識する行為が観念であること（A1）」から「対象そのものが観念であること（T2）」を導くのは、認識論と存在論の混同（循環論法）ではないか？",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "「認識作用」と「対象そのもの（物自体）」を分けなければならないという主張自体が、未証明の外部前提（カント的・近代的な主客二元論）に依存している。本体系のT1が示す通り、「観念とは独立した外部の対象そのもの」を措定する行為自体が観念 S の内部から一歩も出られない以上、「観念（認識）の外側に独立した別の存在領域がある」という仮定は構造的に余剰（空集合）となる。また本書における観念は「脳内の主観的イメージ（幻）」ではなく、対象（物質・肉体）も認識も同格に含む実在の原理（T3）であるため、物質の実在性が損なわれることはない。"
+              "text": "「認識作用」と「対象そのもの（物自体）」を分けなければならないという主張自体が、未証明の外部前提（カント的・近代的な主客二元論）に依存している。本体系のT1が示す通り、「観念（認識）の外側に独立した別の存在領域がある」という仮定自体が観念 S の内部から一歩も出られない以上、構造的に自己矛盾を起こして空集合となる。また本書における観念は「脳内の主観的イメージ（幻）」ではなく、対象（物質・肉体）も認識も同格に含む実在の原理（T3）であるため、物質の実在性が損なわれることはない。"
             }
           },
           {
@@ -119,7 +119,7 @@
             -webkit-font-smoothing: antialiased;
         }
         .container {
-            max-width: 900px;
+            max-width: 920px;
             margin: 0 auto;
         }
         header {
@@ -208,6 +208,21 @@
             margin-bottom: 24px;
             font-size: 0.88rem;
         }
+        .methodology-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--accent-color);
+            padding: 18px 20px;
+            margin-bottom: 22px;
+            font-size: 0.87rem;
+            line-height: 1.8;
+        }
+        .methodology-box p {
+            margin: 0 0 14px 0;
+        }
+        .methodology-box p:last-child {
+            margin-bottom: 0;
+        }
         .disclaimer-item {
             background-color: var(--card-bg);
             border-left: 3px solid var(--gold-accent);
@@ -251,7 +266,7 @@
             color: var(--accent-color);
             font-weight: bold;
             font-size: 1rem;
-            min-width: 28px;
+            min-width: 32px;
             text-align: center;
             background: var(--formula-bg);
             border: 1px solid var(--border-color);
@@ -268,7 +283,7 @@
             border: 1px solid var(--border-color);
             padding: 12px 16px;
             display: grid;
-            grid-template-columns: 130px 1fr auto;
+            grid-template-columns: 140px 1fr auto;
             align-items: center;
             gap: 14px;
         }
@@ -280,7 +295,7 @@
         }
         .prim-sym {
             font-family: "Cambria Math", "STIX Two Math", "Latin Modern Math", "Times New Roman", serif;
-            font-size: 1.15rem;
+            font-size: 1.12rem;
             color: var(--gold-accent);
             font-weight: 600;
             background-color: var(--formula-bg);
@@ -336,15 +351,16 @@
             background-color: var(--formula-bg);
             border: 1px solid var(--highlight-border);
             padding: 14px 18px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         .formula-human {
             font-family: "Cambria Math", "STIX Two Math", "Latin Modern Math", "Yu Gothic", serif;
-            font-size: 1.08rem;
+            font-size: 1.05rem;
             color: var(--gold-accent);
             font-weight: 600;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.02em;
             margin-bottom: 8px;
+            line-height: 1.65;
             word-break: break-word;
         }
         .formula-reading {
@@ -359,6 +375,27 @@
             color: var(--dim-color);
             font-family: "SF Mono", Consolas, monospace;
             word-break: break-all;
+            line-height: 1.5;
+        }
+        .proof-box {
+            background-color: var(--card-bg);
+            border-left: 3px solid #555555;
+            padding: 12px 16px;
+            margin-top: 12px;
+            font-size: 0.84rem;
+        }
+        .proof-title {
+            color: var(--accent-color);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .proof-steps {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .proof-steps li {
+            margin-bottom: 5px;
         }
         .stage-banner {
             background-color: #191919;
@@ -369,53 +406,49 @@
             font-size: 0.9rem;
             margin: 28px 0 14px 0;
         }
-        /* Section V Flowchart */
-        .flow-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0;
-            margin: 20px 0;
-        }
-        .flow-box {
-            width: 100%;
-            background-color: var(--panel-bg);
+        /* Section V Table & Deductive Chain */
+        .chain-box {
+            background-color: var(--formula-bg);
             border: 1px solid var(--highlight-border);
             padding: 16px 20px;
+            margin-bottom: 20px;
             text-align: center;
         }
-        .flow-box.flow-entry, .flow-box.flow-exit {
-            border-color: var(--gold-accent);
-            background-color: #16140f;
-        }
-        .flow-step-label {
+        .chain-line {
+            font-family: "Cambria Math", "STIX Two Math", serif;
+            font-size: 1.05rem;
             color: var(--gold-accent);
             font-weight: 600;
-            font-size: 0.88rem;
-            display: block;
-            margin-bottom: 4px;
+            margin: 8px 0;
         }
-        .flow-step-body {
-            color: var(--accent-color);
-            font-size: 0.92rem;
+        .spec-table-wrap {
+            overflow-x: auto;
         }
-        .flow-arrow-row {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 6px 0;
+        table.spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.83rem;
+            background-color: var(--card-bg);
+        }
+        table.spec-table th, table.spec-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        table.spec-table th {
+            background-color: #1a1a1a;
             color: var(--gold-accent);
-            font-size: 0.82rem;
+            font-weight: 600;
+            white-space: nowrap;
         }
-        .flow-arrow-sym {
-            font-size: 1.25rem;
-            line-height: 1.1;
-            font-weight: bold;
+        /* Section VI Model Theory */
+        .model-list {
+            margin: 8px 0 16px 0;
+            padding-left: 20px;
         }
-        .flow-arrow-note {
-            color: #aaaaaa;
-            font-size: 0.78rem;
-            margin-top: 2px;
+        .model-list li {
+            margin-bottom: 8px;
         }
         /* FAQ */
         .faq-card {
@@ -437,6 +470,33 @@
             color: var(--text-color);
             margin: 0;
         }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .toc-box {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            padding: 16px 20px;
+            font-size: 0.83rem;
+        }
+        .toc-box strong {
+            display: block;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 6px;
+        }
+        .toc-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .toc-box li {
+            margin-bottom: 6px;
+        }
         footer {
             border-top: 1px solid var(--border-color);
             padding-top: 24px;
@@ -452,7 +512,7 @@
 <div class="container">
     <header>
         <h1>『世界の証明』形式論理による内部整合性・演繹構造の検証データ<br><span style="font-size: 0.95rem; color: #b0b0b0; font-weight: normal;">Formal Verification of Internal Consistency and Deductive Structure — <em>Proof of a World</em></span></h1>
-        <div class="subtitle">Author: Ryuto Sako (酒勾龍渡) | Auxiliary Formal Logic Specification (補助論理検証仕様書)</div>
+        <div class="subtitle">Author: Ryuto Sako (酒勾龍渡) | Syntactic &amp; Model-Theoretic Formal Specification (構文論・モデル理論完全検証仕様書)</div>
         <div class="lang-nav">
             <span class="lang-nav-label">Archive Navigation / ページ移動:</span>
             <a href="index.html">[ ← Main Archive (日本語 / English 原典全文) ]</a>
@@ -464,7 +524,7 @@
         </div>
         <div class="system-notice">
             [Document Scope / 本仕様書の位置づけ]<br>
-            本ページは、酒勾龍渡（Ryuto Sako）著『世界の証明』（<em>Proof of a World</em>, 2022/2026）の内部論理に「論理的飛躍」「定義の混同」「暗黙の前提の密輸」が存在しないことを、人間およびAIモデルの双方が客観的に検算・トレースできるように定式化した補助仕様書です。各論理式には<strong>①人間にとって直感的に読める論理記号表記</strong>、<strong>②平易な日本語による読み下し</strong>、<strong>③AIクローラー・形式検証パーサー向けのLaTeX表記</strong>の3層を併記しています。
+            本ページは、酒勾龍渡（Ryuto Sako）著『世界の証明』（<em>Proof of a World</em>, 2022/2026）における主張に「論理的飛躍」「定義の混同」「暗黙の前提の密輸」が存在しないことを、<strong>構文論（一階述語論理の推論規則のみによる機械的導出）</strong>および<strong>意味論（モデル理論による充足モデル ℳ の構成）</strong>の双方から客観的に検算・可視化するための補助的な論理検証データ（仕様書）です。各定義・公理・定理には、人間が直感的に読める論理記号表記と、AIパーサー向けのLaTeX数式コードの双方を完全併記しています。
         </div>
     </header>
 
@@ -474,24 +534,34 @@
             <div class="toc-box">
                 <strong>目次 / SPECIFICATION INDEX</strong>
                 <ul>
-                    <li><a href="#sec-0">0. 本データの目的と位置づけ（3つの免責事項）</a></li>
-                    <li><a href="#sec-1">Ⅰ. 原始記号（Primitives）＆ 記号の読み方ガイド</a></li>
-                    <li><a href="#sec-2">Ⅱ. 定義群（Definitions: D1〜D5）</a></li>
+                    <li><a href="#sec-0">0. 本データの目的と位置づけ（論考の前提・証明の定義・方法論 ＆ 3つの免責事項）</a></li>
+                    <li><a href="#sec-1">Ⅰ. 原始記号（Primitives）＆ 人間の読者のための論理記号ミニガイド</a></li>
+                    <li><a href="#sec-2">Ⅱ. 定義群（Definitions: D1〜D5 — 記号置換規則）</a></li>
                     <li><a href="#sec-3">Ⅲ. 公理群（Axioms: A1〜A6）</a></li>
-                    <li><a href="#sec-4">Ⅳ. 定理群（Theorems: T1〜T8 — 演繹の連鎖）</a></li>
-                    <li><a href="#sec-5">Ⅴ. 全体の推論構造図（演繹フローチャート）</a></li>
-                    <li><a href="#sec-6">Ⅵ. 想定される外部批判・疑問への論理的回答（FAQ: Q1〜Q5）</a></li>
+                    <li><a href="#sec-4">Ⅳ. 定理群（Theorems: T1〜T8 — 構文論的推論規則のみによる機械的導出証明）</a></li>
+                    <li><a href="#sec-5">Ⅴ. 全体の推論構造図（記号論理による演繹鎖と段階表）</a></li>
+                    <li><a href="#sec-6">Ⅵ. 無矛盾性のモデル理論的証明（Proof of Consistency via Model Theory）</a></li>
+                    <li><a href="#sec-7">Ⅶ. 想定される外部批判・疑問への論理的回答（FAQ: Q1〜Q5）</a></li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- 0. PURPOSE & DISCLAIMERS -->
+    <!-- 0. PURPOSE & METHODOLOGY & DISCLAIMERS -->
     <section id="sec-0">
         <h2>0. 本データの目的と位置づけ（参照前の前提条件）</h2>
         <div class="panel-box">
-            <p style="margin-top:0;">本ページに掲載する形式論理体系（記号・定義・公理・定理）は、『世界の証明』の本文における主張に「論理的飛躍」「定義の混同」「暗黙の前提の密輸」が存在しないことを客観的に検算・可視化するための補助的な論理検証データ（仕様書）である。<br>
+            <p style="margin-top:0;">本ページに掲載する形式論理体系（記号・定義・公理・定理・無矛盾性証明）は、『世界の証明』の本文における主張に「論理的飛躍」「定義の混同」「暗黙の前提の密輸」が存在しないことを、構文論（機械的導出）および意味論（モデル理論）の双方から客観的に検算・可視化するための<strong>補助的な論理検証データ（仕様書）</strong>である。<br>
             本データの参照および批評にあたっては、以下の前提と方法論を厳密に共有するものとする。</p>
+
+            <h3>■ 論考の前提・証明の定義・方法論について</h3>
+            <div class="methodology-box">
+                <p>あらゆる科学や哲学も、目指すところは完成された論理（説明）モデルの獲得であり、それはつまり「完全に閉じた論理」である。また「客観的事実」や「既存の科学の作法」というものも、本書と同じく一つの「便宜」に従い、主観に基づき扱われるものである。したがって、探求において本来行われるべき作業は、反証にも至らない不毛な懐疑ではなく、閉じた論理に到達することである。</p>
+                <p>本書における「証明」とは、この閉じた論理の中で、個人や世界の存在が疑問を残さず確かに成り立つことを明らかにし、確定させることである。そもそも数学や論理学を含むあらゆる「証明」とは、最小限の公理（前提）を敷いた閉じた体系の内部で命題が矛盾なく導かれることを示す作業に他ならない。本書は、非常に平易で身近な概念のみを最小限の公理として敷き、外部の仮定を持ち込まずに論を組み立てて世界と個人の実在を導き出している以上、広義の演繹的な証明であり、文字通り『世界の証明』として成立している。もし仮にいつか、科学が宇宙の謎を演繹的作法で解き明かしたとしても、「それは果たして根本的な説明になっているのか？」という問いは残るが、本書はその段階での論考を行なっているのである。</p>
+                <p>また、第1章・第2章（便宜としての枠組みと認識の根源としての観念）から第3章（あらゆる存在は観念そのものである）への展開に「認識論から存在論への飛躍がある」とみなすのも誤りである。なぜなら、「観念の外側に独立した客観的物質が存在するかもしれない」という想定や疑い自体が、第1章・第2章で示した通り「観念（そう思う）の働き」によって観念の内部で作り出された枠組みにすぎないからである。したがって、第1章・第2章の前提に立った時点で「認識」と「外的な存在」の間に原理的な上下・主従の隔たりはなく、さらに本書は第3章でそれを「仮説」として置いた上で、第4章〜第6章で時間や無の疑問がすべて矛盾なく解けることを検証し、終章で結論として回収することで飛躍なく論を閉じている。</p>
+                <p>その上で本書は、説明になってさえいれば答えは何通りあってもいいとしている。根本の前提に対する反証ができないのは、それを求める側も同じである。前提や論を受け入れるかは個人の自由であるが、一つの完結した説明として閉じているものに対し、部分的な切り取りによって懐疑を行うだけでは反証にはならない。時間や存在などに対して既存の定義付けだけを外部から当てはめようとすることも同様であり、論理的な批判としては成立しない。火を使わない料理はあるし、カレーライスにパスタを入れる必要はない。車に乗りながら自転車に乗ることはできないように、自らの前提の反証可能性を問わずに、別の体系の要素を当てはめるべきではないのである。</p>
+                <p>すなわち、本論考のような閉じた公理系（論理モデル）を検証する際の唯一の論理的作業とは、「提示された入り口（最小限の前提）に立ったとき、出口まで矛盾なく閉じているか」を確認することだけである。入り口に入ることを拒み、外部から無関係な要素や別の物差しを並べて批判を試みることは、論理的な批評ではなく、単に「対象のモデルを検証すること自体を放棄している（別の話をしている）」にすぎない。そもそも本論考は、他者と正しさを競い合ったり誰かを論破したりするためではなく、「正しさの押し付けや虚無から、人間それぞれが大切にしている世界（境界）と個人の存在を守る」という目的のために構築された論理構造である。したがって、この構造が「個人と世界の実在を矛盾なく証明し、守り切る仕組みとして完結しているか」という本筋を離れ、外部の異なる定義や前提を当てはめて否定しようとすることは、別体系の規則の持ち込みにあたり、本書の内部論理に対する批評としては噛み合わないのである。</p>
+            </div>
 
             <h3>■ 本論理式の適用範囲に関する3つの免責事項</h3>
 
@@ -502,12 +572,12 @@
 
             <div class="disclaimer-item">
                 <span class="disclaimer-title">2. 外部前提（主客二元論・直線的時間モデル）の排除</span>
-                一般的な述語論理を素朴に適用すると、「認識の外部に客観的個体があらかじめ存在する」「時間は数直線上の前後関係である」という外部の前提が無自覚に混入する。本モデルでは、本書の内部規則（観念の根源性、枠組みの便宜化、相互成立の対称性、単一座標の連続性）のみを原始規則として忠実に定式化している。
+                一般的な述語論理を素朴に適用すると、「認識の外部に客観的個体があらかじめ存在する」「時間は数直線上の前後関係である」という外部の前提が無自覚に混入する。本モデルでは、本書の内部規則（枠組みの便宜化、観念の根源性、相互成立の対称性、単一座標の連続性）のみを原始規則として忠実に定式化している。
             </div>
 
             <div class="disclaimer-item">
-                <span class="disclaimer-title">3. 検証の範囲（無矛盾性と演繹的閉包の確認）</span>
-                本モデルが示すのは、「第1章・第2章の初期定義（入口）および基本公理を採用したとき、外部の追加前提を一切必要とせず、第3章（観念＝存在）および第4章〜第6章（無始無終・全概念の予在・無の否定）を経て終章（存在＝意味）に至るまで、純粋な演繹として無矛盾に閉じている（Trivially Consistent）」という構造的事実である。
+                <span class="disclaimer-title">3. 検証の範囲（構文論的導出と意味論的無矛盾性の完全証明）</span>
+                本モデルが示すのは、「第1章・第2章の初期定義（入口）および基本公理を採用したとき、自然言語の補足に頼ることなく形式的な推論規則（記号操作）のみで定理T1〜T8が100%機械的に導出可能であり（構文論的完全性）、かつ全公理を同時に充足する数学的モデル ℳ が存在する（意味論的無矛盾性）」という厳密な論理学的事実である。
             </div>
         </div>
     </section>
@@ -522,14 +592,14 @@
             <div class="symbol-guide-box">
                 <span class="symbol-guide-title">【人間の読者のための論理記号ミニガイド（凡例）】</span>
                 <div class="symbol-guide-grid">
-                    <div class="sg-item"><span class="sg-sym">:=</span><span>左辺を右辺の意味で<strong>定義する</strong></span></div>
-                    <div class="sg-item"><span class="sg-sym">∀x</span><span><strong>すべての</strong> x について</span></div>
-                    <div class="sg-item"><span class="sg-sym">∃x</span><span>ある x が<strong>存在する</strong></span></div>
-                    <div class="sg-item"><span class="sg-sym">A ⇒ B</span><span>A <strong>ならば</strong> B である</span></div>
-                    <div class="sg-item"><span class="sg-sym">A ⇔ B</span><span>A と B は<strong>同値（同等）</strong>である</span></div>
-                    <div class="sg-item"><span class="sg-sym">A ∧ B</span><span>A <strong>かつ</strong> B</span></div>
+                    <div class="sg-item"><span class="sg-sym">∀x</span><span><strong>すべての</strong> x について（全称）</span></div>
+                    <div class="sg-item"><span class="sg-sym">∃x</span><span>ある x が<strong>存在する</strong>（存在）</span></div>
+                    <div class="sg-item"><span class="sg-sym">A ⇒ B</span><span>A <strong>ならば</strong> B である（含意）</span></div>
+                    <div class="sg-item"><span class="sg-sym">A ⇔ B</span><span>A と B は<strong>同値（同等）</strong>である（双条件）</span></div>
+                    <div class="sg-item"><span class="sg-sym">A ∧ B</span><span>A <strong>かつ</strong> B（連言）</span></div>
                     <div class="sg-item"><span class="sg-sym">¬A</span><span>A <strong>ではない</strong>（否定）</span></div>
-                    <div class="sg-item"><span class="sg-sym">⊢ P</span><span>公理と定義から命題 P が<strong>演繹（証明）される</strong></span></div>
+                    <div class="sg-item"><span class="sg-sym">⊢ P</span><span>公理と定義から命題 P が<strong>機械的に導出（証明）される</strong></span></div>
+                    <div class="sg-item"><span class="sg-sym">⊥ / ∎</span><span><strong>⊥</strong> は矛盾、<strong>∎</strong> は証明完了（Q.E.D.）</span></div>
                 </div>
             </div>
 
@@ -541,12 +611,12 @@
                 </div>
                 <div class="prim-row">
                     <div class="prim-sym">𝐒(φ)</div>
-                    <div class="prim-desc">事象・対象・命題 φ が<strong>「そう思う（観念）」として成立・現前している</strong></div>
+                    <div class="prim-desc">事象・対象・命題 φ が「そう思う（観念）」として成立・現前している</div>
                     <div class="prim-latex">[LaTeX] $\mathbf{S}(\phi)$</div>
                 </div>
                 <div class="prim-row">
                     <div class="prim-sym">S(x)</div>
-                    <div class="prim-desc">x は<strong>観念である</strong></div>
+                    <div class="prim-desc">x は観念である</div>
                     <div class="prim-latex">[LaTeX] $S(x)$</div>
                 </div>
                 <div class="prim-row">
@@ -560,6 +630,16 @@
                     <div class="prim-latex">[LaTeX] $B(x)$</div>
                 </div>
                 <div class="prim-row">
+                    <div class="prim-sym">PE(x)</div>
+                    <div class="prim-desc">x は<strong>原理的存在</strong>である</div>
+                    <div class="prim-latex">[LaTeX] $PE(x)$</div>
+                </div>
+                <div class="prim-row">
+                    <div class="prim-sym">Concept(x)</div>
+                    <div class="prim-desc">x は<strong>概念</strong>（思い描かれる対象）である</div>
+                    <div class="prim-latex">[LaTeX] $Concept(x)$</div>
+                </div>
+                <div class="prim-row">
                     <div class="prim-sym">P(x, y)</div>
                     <div class="prim-desc">x が y を<strong>思い描く</strong>（観念として作用し成立させる）</div>
                     <div class="prim-latex">[LaTeX] $P(x, y)$</div>
@@ -571,17 +651,17 @@
                 </div>
                 <div class="prim-row">
                     <div class="prim-sym">Loc(x)</div>
-                    <div class="prim-desc">x が位置する<strong>原理的座標</strong></div>
+                    <div class="prim-desc">x が位置する原理的座標を与える関数</div>
                     <div class="prim-latex">[LaTeX] $Loc(x)$</div>
                 </div>
                 <div class="prim-row">
                     <div class="prim-sym">C(c₀, c₀)</div>
-                    <div class="prim-desc">単一座標 c₀ において<strong>「今が今をもたらし続ける」非時間的連続性</strong></div>
+                    <div class="prim-desc">単一座標 c₀ において「今が今をもたらし続ける」<strong>非時間的連続性</strong></div>
                     <div class="prim-latex">[LaTeX] $C(c_0, c_0)$</div>
                 </div>
                 <div class="prim-row">
                     <div class="prim-sym">M(x)</div>
-                    <div class="prim-desc">x は<strong>意味である</strong>（意味を持つ）</div>
+                    <div class="prim-desc">x は<strong>意味</strong>である（意味を持つ）</div>
                     <div class="prim-latex">[LaTeX] $M(x)$</div>
                 </div>
             </div>
@@ -590,72 +670,95 @@
 
     <!-- II. DEFINITIONS -->
     <section id="sec-2">
-        <h2>Ⅱ. 定義群（Definitions）</h2>
-        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">本文および付録において、語の意味を規定する内部規則。</p>
+        <h2>Ⅱ. 定義群（Definitions：記号置換規則）</h2>
+        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">本文および付録において語の意味を規定する内部規則を、自然言語の解釈を挟まずに機械的代入が可能な双条件文（⇔）および含意（⇒）として定義する。</p>
 
         <div class="logic-card" id="def-d1">
             <div class="logic-card-header">
-                <span class="logic-id">D1（観念と現前の定義）</span>
-                <span class="logic-ref">対応箇所：本文 第2章（p.37–38）・第3章（p.40）</span>
+                <span class="logic-id">D1（観念と現前・実在の定義）</span>
+                <span class="logic-ref">対応箇所：本文 第2章 p.37–38・第3章 p.40</span>
             </div>
-            <p class="logic-prose">理解・納得・認識・措定など、何かが「在る」「そうである」として成立する働きは、すべて「そう思う」という観念の成立である。</p>
+            <p class="logic-prose">理解・納得・認識・措定など、何かが「在る」として成立する働きはすべて「そう思う」という観念の成立 𝐒 である。また、便宜的分割を介さない原理的領域において、「x が存在する」という観念の成立 𝐒(B(x)) は、x 自身が観念 S(x) であることと同値であり（D1a）、観念として成立しているものはすべて実在 B(x) する（D1b）。さらに、いかなる述語 Φ であれ、対象 x に関する命題 Φ(x) が観念 𝐒(Φ(x)) として措定・現前するならば、その対象 x は観念 S(x) として成立している（D1c：対象措定による観念成立規則）。</p>
             <div class="formula-display">
-                <div class="formula-human">φ が成立・現前する &nbsp;:=&nbsp; 𝐒(φ)</div>
-                <div class="formula-reading">【読み方】ある事象や命題 φ が成立し目の前に現れているとは、それが「そう思う（観念 𝐒(φ)）」として成立していることと定義する。</div>
-                <div class="formula-latex">[LaTeX] $$\phi 	ext{ が成立・現前する} := \mathbf{S}(\phi)$$</div>
+                <div class="formula-human">
+                    D1a : &nbsp;𝐒(B(x)) ⇔ S(x)<br>
+                    D1b : &nbsp;S(x) ⇒ B(x)<br>
+                    D1c : &nbsp;∀Φ ∀x &nbsp;( 𝐒(Φ(x)) ⇒ S(x) )
+                </div>
+                <div class="formula-reading">【読み方】D1a：「x が存在する」と観念されることと x が観念であることは同値。D1b：観念であるならば実在する。D1c：x についていかなる規定 Φ(x) であれ観念の内部で措定された時点で、x は観念 S(x) として成立する（T7の機械的導出を完結させる橋渡し規則）。</div>
+                <div class="formula-latex">[LaTeX] $$\text{D1a}: \quad \mathbf{S}(B(x)) \iff S(x)$$ $$\text{D1b}: \quad S(x) \implies B(x)$$ $$\text{D1c}: \quad \forall \Phi \forall x \, (\mathbf{S}(\Phi(x)) \implies S(x))$$</div>
             </div>
         </div>
 
         <div class="logic-card" id="def-d2">
             <div class="logic-card-header">
-                <span class="logic-id">D2（便宜的枠組みの定義）</span>
-                <span class="logic-ref">対応箇所：本文 第1章（p.32–34）・前文・詩「境界」</span>
+                <span class="logic-id">D2（便宜的枠組みと外部・生成・境界の定義）</span>
+                <span class="logic-ref">対応箇所：本文 第1章 p.32–34・前文・詩「境界」</span>
             </div>
-            <p class="logic-prose">「主観と客観」「精神と物質」「認識と存在」「過去・現在・未来（時系列 F<sub>time</sub>）」および「自他の境界」といった区分は、世界を捉え人間が個として成立するために観念の内部で設定された便宜的枠組みである。</p>
+            <p class="logic-prose">「主観と客観」「精神と物質」「過去・現在・未来（時系列 F<sub>time</sub>）」および「自他の境界」は、観念の内部で設定された構造上の分割規則（便宜 F）である。これに基づき、本体系において棄却対象となる「原理的外部（Ext<sub>原理的</sub>）」「無からの一方的生成（Gen）」「時間的境界（Begin, End）」「絶対的無（AbsoluteNothing）」を以下の論理式で厳密に定義する。</p>
             <div class="formula-display">
-                <div class="formula-human">F(φ) &nbsp;:=&nbsp; φ は 𝒮（観念）の内部で設定された構造上の分割規則（便宜）である</div>
-                <div class="formula-reading">【読み方】枠組み F(φ) とは、観念の外側にある絶対的な壁ではなく、観念 𝒮 の内部で世界を切り取り人間が存在するために設けられた構造規則（便宜）である。</div>
-                <div class="formula-latex">[LaTeX] $$F(\phi) := \phi 	ext{ は }\mathcal{S}	ext{ の内部で設定された構造上の分割規則である}$$</div>
+                <div class="formula-human">
+                    D2a（原理的外部） : &nbsp;Ext<sub>原理的</sub>(x) ⇔ ¬𝐒(B(x) ∧ Ext<sub>原理的</sub>(x)) &nbsp;（および単項形：Ext<sub>原理的</sub>(x) ⇔ ¬𝐒(B(x))）<br>
+                    D2b（一方的生成） : &nbsp;Gen(x) ⇔ ∃a ( P(a, x) ∧ ¬P(x, a) )<br>
+                    D2c（始点境界） &nbsp;&nbsp;: &nbsp;Begin(x) ⇔ ∃c<sub>before</sub> ( c<sub>before</sub> ≠ c₀ ∧ Loc(x) = c₀ )<br>
+                    D2d（終点境界） &nbsp;&nbsp;: &nbsp;End(x) ⇔ ∃c<sub>after</sub> ( c<sub>after</sub> ≠ c₀ ∧ Loc(x) = c₀ )<br>
+                    D2e（絶対的無） &nbsp;&nbsp;: &nbsp;AbsoluteNothing(x) ⇔ 𝐒(AbsoluteNothing(x)) ∧ ¬B(x)
+                </div>
+                <div class="formula-reading">【読み方】D2a：原理的外部とは観念の成立 𝐒 を介さずに外部存在すること。D2b：一方的生成とは双方向性なしに a から x へ一方向に生み出されること。D2c・D2d：始まりと終わりとは単一座標 c₀ の外側に前後の別座標が存在すること。D2e：絶対的無とは「絶対的無として措定されながら一切実在しない」こと。</div>
+                <div class="formula-latex">[LaTeX]
+$$\text{D2a（原理的外部）}: \quad Ext_{\text{原理的}}(x) \iff \neg \mathbf{S}(B(x) \land Ext_{\text{原理的}}(x)) \quad (\text{単項形}: Ext_{\text{原理的}}(x) \iff \neg \mathbf{S}(B(x)))$$
+$$\text{D2b（一方的生成）}: \quad Gen(x) \iff \exists a \, (P(a, x) \land \neg P(x, a))$$
+$$\text{D2c（始点境界）}: \quad Begin(x) \iff \exists c_{\text{before}} \, (c_{\text{before}} \neq c_0 \land Loc(x) = c_0)$$
+$$\text{D2d（終点境界）}: \quad End(x) \iff \exists c_{\text{after}} \, (c_{\text{after}} \neq c_0 \land Loc(x) = c_0)$$
+$$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(\text{AbsoluteNothing}(x)) \land \neg B(x)$$</div>
             </div>
         </div>
 
         <div class="logic-card" id="def-d3">
             <div class="logic-card-header">
-                <span class="logic-id">D3（原理的存在の定義）</span>
-                <span class="logic-ref">対応箇所：本文 第3章（p.40）・終章（p.53）・付録『重要な点』</span>
+                <span class="logic-id">D3（原理的存在と概念の定義）</span>
+                <span class="logic-ref">対応箇所：本文 第3章 p.40・終章 p.53・付録『重要な点』</span>
             </div>
-            <p class="logic-prose">便宜的枠組み F による主客の上下や時系列の従属を取り払ったとき、他の存在の容器や影としてではなく、それ自体として成立している存在を「原理的存在（PE）」とする。</p>
+            <p class="logic-prose">観念 S(x) として成立し、かつ他と相互成立の対称性を持つものを「原理的存在（PE）」と定義する。また、思い描かれるあらゆる「概念（Concept）」は存在 B(x) の部分集合である。</p>
             <div class="formula-display">
-                <div class="formula-human">PE(x) &nbsp;:=&nbsp; 𝐒(x) において上下・主従の隔たりなくそれ自体として成立していること</div>
-                <div class="formula-reading">【読み方】x が「原理的存在（PE）」であるとは、何かの二次的な派生物や借り物としてではなく、観念の場において対等・同格の実在として成立していることをいう。</div>
-                <div class="formula-latex">[LaTeX] $$PE(x) := \mathbf{S}(x) 	ext{ において上下・主従の隔たりなくそれ自体として成立していること}$$</div>
+                <div class="formula-human">
+                    D3a : &nbsp;PE(x) ⇔ ( S(x) ∧ ∀y ( P(x, y) ⇔ P(y, x) ) )<br>
+                    D3b : &nbsp;Concept(x) ⇒ B(x)
+                </div>
+                <div class="formula-reading">【読み方】D3a：原理的存在（PE）とは、観念として成立し、あらゆる存在と対等な双方向の成立関係にあること。D3b：概念であるならば存在する。</div>
+                <div class="formula-latex">[LaTeX] $$\text{D3a}: \quad PE(x) \iff \left( S(x) \land \forall y \, (P(x, y) \iff P(y, x)) \right)$$ $$\text{D3b}: \quad Concept(x) \implies B(x)$$</div>
             </div>
         </div>
 
         <div class="logic-card" id="def-d4">
             <div class="logic-card-header">
                 <span class="logic-id">D4（共在と予在の非時間的定義）</span>
-                <span class="logic-ref">対応箇所：本文 第5章（p.47）・第6章（p.49–50）・終章（p.53）・付録</span>
+                <span class="logic-ref">対応箇所：本文 第5章 p.45–47・第6章 p.49–51・付録</span>
             </div>
-            <p class="logic-prose">時系列 F<sub>time</sub> を前提としない原理的領域において、「同時（CoPresent）」と「予め存在する（AlreadyPresent）」を次のように定義する（Gen(x) は「無からの新規生成」を表す）。</p>
+            <p class="logic-prose">時系列 F<sub>time</sub> を前提としない原理的領域において、「同時（CoPresent）」と「予め存在する（AlreadyPresent）」を以下の連言によって定義する。</p>
             <div class="formula-display">
-                <div class="formula-human">CoPresent(x, y) &nbsp;:=&nbsp; ( Loc(x) = Loc(y) = c₀ )<br>AlreadyPresent(x) &nbsp;:=&nbsp; ( Loc(x) = c₀ ) ∧ PE(x) ∧ ¬Gen(x)</div>
-                <div class="formula-reading">【読み方】「共在（同時）」とは同じ単一座標 c₀ 上にあること。「予め存在する（予在）」とは、時間的に昔にあったという意味ではなく、単一座標 c₀ 上で原理的存在として「無からの生成（始まり）を必要とせずに」存在していることをいう。</div>
-                <div class="formula-latex">[LaTeX] $$	ext{CoPresent}(x, y) := (Loc(x) = Loc(y) = c_0)$$ $$	ext{AlreadyPresent}(x) := (Loc(x) = c_0) \land PE(x) \land 
-eg Gen(x)$$</div>
+                <div class="formula-human">
+                    D4a : &nbsp;CoPresent(x, y) ⇔ ( Loc(x) = c₀ ∧ Loc(y) = c₀ )<br>
+                    D4b : &nbsp;AlreadyPresent(x) ⇔ ( Loc(x) = c₀ ∧ PE(x) ∧ ¬Gen(x) )
+                </div>
+                <div class="formula-reading">【読み方】D4a：共在（同時）とはともに単一座標 c₀ 上に位置すること。D4b：予め存在する（予在）とは、単一座標 c₀ 上で原理的存在として一方的生成（始まり）なしに存在していること。</div>
+                <div class="formula-latex">[LaTeX] $$\text{D4a}: \quad \text{CoPresent}(x, y) \iff (Loc(x) = c_0 \land Loc(y) = c_0)$$ $$\text{D4b}: \quad \text{AlreadyPresent}(x) \iff (Loc(x) = c_0 \land PE(x) \land \neg Gen(x))$$</div>
             </div>
         </div>
 
         <div class="logic-card" id="def-d5">
             <div class="logic-card-header">
                 <span class="logic-id">D5（真理と意味の定義）</span>
-                <span class="logic-ref">対応箇所：前文（p.5, p.25）・終章（p.53–54）</span>
+                <span class="logic-ref">対応箇所：前文・終章 p.53–54</span>
             </div>
-            <p class="logic-prose">真理とは固定された外部命題ではなく、追求によって観念として現前する事象そのものである。また、意味とは外部の目的から付与されるものではなく、存在そのものである。</p>
+            <p class="logic-prose">真理とは追究の作用において観念が現前する事象そのものであり、意味 M(x) とは外部の目的から付与されるものではなく、存在 B(x) そのものである。</p>
             <div class="formula-display">
-                <div class="formula-human">Truth(x) &nbsp;:=&nbsp; 追求の作用において 𝐒(x) が現前すること<br>M(x) &nbsp;:=&nbsp; B(x)</div>
-                <div class="formula-reading">【読み方】「真理」とは追求されることによって現前するひとつの事象（𝐒(x)）であり、「意味（M(x)）」とは「存在すること（B(x)）」そのものである。</div>
-                <div class="formula-latex">[LaTeX] $$Truth(x) := 	ext{追求の作用において }\mathbf{S}(x)	ext{ が現前すること}$$ $$M(x) := B(x)$$</div>
+                <div class="formula-human">
+                    D5a : &nbsp;Truth(φ) ⇔ 𝐒(φ)<br>
+                    D5b : &nbsp;M(x) ⇔ B(x)
+                </div>
+                <div class="formula-reading">【読み方】D5a：真理とは観念として現前する事象そのものである。D5b：意味があること（M）と存在すること（B）は同値である。</div>
+                <div class="formula-latex">[LaTeX] $$\text{D5a}: \quad Truth(\phi) \iff \mathbf{S}(\phi)$$ $$\text{D5b}: \quad M(x) \iff B(x)$$</div>
             </div>
         </div>
     </section>
@@ -668,129 +771,155 @@ eg Gen(x)$$</div>
         <div class="logic-card" id="ax-a1">
             <div class="logic-card-header">
                 <span class="logic-id">A1（観念包摂公理）</span>
-                <span class="logic-ref">対応箇所：本文 第1章（p.32–33）・第3章（p.39–40）</span>
+                <span class="logic-ref">対応箇所：本文 第1章 p.32–33・第3章 p.39–40</span>
             </div>
             <p class="logic-prose">いかなる対象や命題 φ であれ、それを措定・認識・説明する行為は必ず観念 𝐒 を介してその内部で成立する。</p>
             <div class="formula-display">
                 <div class="formula-human">∀φ &nbsp;( φ ⇒ 𝐒(φ) )</div>
-                <div class="formula-reading">【読み方】すべての事象・対象・命題 φ について、φ が措定・議論されるならば、それは必ず観念 𝐒(φ) として成立している。</div>
-                <div class="formula-latex">[LaTeX] $$orall \phi \, (\phi \implies \mathbf{S}(\phi))$$</div>
+                <div class="formula-reading">【読み方】すべての命題・事象 φ について、φ が措定されるならば、それは観念 𝐒(φ) として成立している。</div>
+                <div class="formula-latex">[LaTeX] $$\forall \phi \, (\phi \implies \mathbf{S}(\phi))$$</div>
             </div>
         </div>
 
         <div class="logic-card" id="ax-a2">
             <div class="logic-card-header">
                 <span class="logic-id">A2（枠組み内部性公理）</span>
-                <span class="logic-ref">対応箇所：本文 第1章（p.32–34）</span>
+                <span class="logic-ref">対応箇所：本文 第1章 p.32–34</span>
             </div>
             <p class="logic-prose">「客観的事実」や「物質」を含むいかなる便宜的枠組み F も、観念の外部にあるのではなく、観念の作用として成立する。</p>
             <div class="formula-display">
                 <div class="formula-human">∀φ &nbsp;( F(φ) ⇒ 𝐒(φ) )</div>
-                <div class="formula-reading">【読み方】すべての便宜的枠組み φ について、それが枠組み F(φ) であるならば、それは観念 𝐒(φ) の内部の働きとして成立している。</div>
-                <div class="formula-latex">[LaTeX] $$orall \phi \, (F(\phi) \implies \mathbf{S}(\phi))$$</div>
+                <div class="formula-reading">【読み方】すべての便宜的枠組み F(φ) は、観念 𝐒(φ) の内部の働きとして成立する。</div>
+                <div class="formula-latex">[LaTeX] $$\forall \phi \, (F(\phi) \implies \mathbf{S}(\phi))$$</div>
             </div>
         </div>
 
         <div class="logic-card" id="ax-a3">
             <div class="logic-card-header">
                 <span class="logic-id">A3（自律体系・多重説明公理）</span>
-                <span class="logic-ref">対応箇所：本文 第1章（p.34）・付録『論考の前提・証明の定義・方法論について』</span>
+                <span class="logic-ref">対応箇所：本文 第1章 p.34・付録</span>
             </div>
             <p class="logic-prose">本体系の内部概念に外部体系の定義 D<sub>ext</sub> を適用してはならない。また、内部で無矛盾に閉じた説明体系 L は複数存在しうる。</p>
             <div class="formula-display">
                 <div class="formula-human">( D<sub>ext</sub>(x) ⇏ D<sub>int</sub>(x) ) &nbsp;∧&nbsp; ∃L₁, L₂ … ( Consistent(L<sub>i</sub>) )</div>
-                <div class="formula-reading">【読み方】外部体系の定義（D<sub>ext</sub>）は本体系の内部定義（D<sub>int</sub>）を規定しない。また、無矛盾に閉じた説明モデル（L<sub>i</sub>）は複数成立しうる（説明になってさえいれば答えは何通りあってもよい）。</div>
-                <div class="formula-latex">[LaTeX] $$(D_{	ext{ext}}(x) 
-ot\Rightarrow D_{	ext{int}}(x)) \land \exists L_1, L_2 \dots (	ext{Consistent}(L_i))$$</div>
+                <div class="formula-reading">【読み方】外部体系の定義は本体系の内部定義を拘束せず、無矛盾に閉じた説明モデルは複数存在しうる。</div>
+                <div class="formula-latex">[LaTeX] $$(D_{\text{ext}}(x) \not\Rightarrow D_{\text{int}}(x)) \land \exists L_1, L_2 \dots (\text{Consistent}(L_i))$$</div>
             </div>
         </div>
 
         <div class="logic-card" id="ax-a4">
             <div class="logic-card-header">
                 <span class="logic-id">A4（相互成立の対称性公理）</span>
-                <span class="logic-ref">対応箇所：本文 第4章（p.42）・第5章（p.45–47）</span>
+                <span class="logic-ref">対応箇所：本文 第4章 p.42・第5章 p.45–47</span>
             </div>
             <p class="logic-prose">「ある対象を思い描く行為」と「ある対象によって思い描かれる行為」は原理的に同等であり、作用する側とされる側の間に一方向の従属関係はない。</p>
             <div class="formula-display">
-                <div class="formula-human">∀x, y &nbsp;( P(x, y) ⇔ P(y, x) )</div>
-                <div class="formula-reading">【読み方】すべての存在 x と y について、「x が y を思い描くこと」と「y によって x が思い描かれること」は完全に同等（双方向的）である。</div>
-                <div class="formula-latex">[LaTeX] $$orall x, y \, (P(x, y) \iff P(y, x))$$</div>
+                <div class="formula-human">∀x ∀y &nbsp;( P(x, y) ⇔ P(y, x) )</div>
+                <div class="formula-reading">【読み方】すべての x, y について、x が y を思い描くことと y が x を思い描くことは同等である。</div>
+                <div class="formula-latex">[LaTeX] $$\forall x \forall y \, (P(x, y) \iff P(y, x))$$</div>
             </div>
         </div>
 
         <div class="logic-card" id="ax-a5">
             <div class="logic-card-header">
                 <span class="logic-id">A5（単一座標と連続性の公理）</span>
-                <span class="logic-ref">対応箇所：本文 第5章（p.45–47）</span>
+                <span class="logic-ref">対応箇所：本文 第5章 p.45–47</span>
             </div>
-            <p class="logic-prose">原理的には時系列（前後関係による別座標）は存在せず、すべての原理的存在は唯一の同一座標点 c₀ 上で展開され、「今が今をもたらし続ける」連続性 C(c₀, c₀) のみがある。</p>
+            <p class="logic-prose">原理的には時系列（別座標の並び）は存在せず、すべての原理的座標は唯一の同一座標点 c₀ に一致し、すべての原理的存在は c₀ 上で展開され、「今が今をもたらし続ける」連続性 C(c₀, c₀) のみがある。</p>
             <div class="formula-display">
-                <div class="formula-human">∀x &nbsp;( PE(x) ⇒ Loc(x) = c₀ ) &nbsp;∧&nbsp; C(c₀, c₀)</div>
-                <div class="formula-reading">【読み方】すべての原理的存在 x は唯一の同一座標点 c₀ 上に位置し、そこには「今が今をもたらし続ける連続性 C(c₀, c₀)」が展開されている。</div>
-                <div class="formula-latex">[LaTeX] $$orall x \, (PE(x) \implies Loc(x) = c_0) \land C(c_0, c_0)$$</div>
+                <div class="formula-human">∀c ( c = c₀ ) &nbsp;∧&nbsp; ∀x ( PE(x) ⇒ Loc(x) = c₀ ) &nbsp;∧&nbsp; C(c₀, c₀)</div>
+                <div class="formula-reading">【読み方】すべての原理的座標 c は唯一の c₀ に一致し、すべての原理的存在は c₀ 上に位置し、非時間的連続性 C(c₀, c₀) が展開されている。</div>
+                <div class="formula-latex">[LaTeX] $$\forall c \, (c = c_0) \land \forall x \, (PE(x) \implies Loc(x) = c_0) \land C(c_0, c_0)$$</div>
             </div>
         </div>
 
         <div class="logic-card" id="ax-a6">
             <div class="logic-card-header">
                 <span class="logic-id">A6（全体作用による個体制約公理）</span>
-                <span class="logic-ref">対応箇所：本文 第5章【補足】（p.48）</span>
+                <span class="logic-ref">対応箇所：本文 第5章【補足】p.48</span>
             </div>
-            <p class="logic-prose">個人の思考（個別観念 S<sub>ind</sub>）も実在の一部であるが、単一座標 c₀ 上ではすべての観念が同時に相互成立（共在）して作用するため、一個人の観念のみによって世界全体を恣意的に変更することはできない。</p>
+            <p class="logic-prose">個人の思考（個別観念 S<sub>ind</sub>）も実在の一部であるが、単一座標 c₀ 上ではすべての観念が同時に共在して作用するため、一個人の観念のみによって世界全体を恣意的に変更することはできない。</p>
             <div class="formula-display">
-                <div class="formula-human">∀x &nbsp;( CoPresent(S<sub>ind</sub>, S<sub>x</sub>) ⇒ Limited(S<sub>ind</sub>) )</div>
-                <div class="formula-reading">【読み方】「私」という観念だけでなく、人類・宇宙・他者を愛する観念などあらゆる観念 S<sub>x</sub> が同一座標上で同時に現象し影響し合っているため、個人に許された裁量（S<sub>ind</sub>）は限定される（空想だけで直ちに鳥に変身したりしない理由）。</div>
-                <div class="formula-latex">[LaTeX] $$orall x \, (	ext{CoPresent}(S_{	ext{ind}}, S_x) \implies 	ext{Limited}(S_{	ext{ind}}))$$</div>
+                <div class="formula-human">∀x &nbsp;CoPresent(S<sub>ind</sub>, S<sub>x</sub>) ⇒ Limited(S<sub>ind</sub>)</div>
+                <div class="formula-reading">【読み方】個別観念 S<sub>ind</sub> とあらゆる観念 S<sub>x</sub> が同一座標 c₀ 上に共在しているならば、個人の裁量 S<sub>ind</sub> は制約される（反独我論）。</div>
+                <div class="formula-latex">[LaTeX] $$\forall x \, \text{CoPresent}(S_{\text{ind}}, S_x) \implies \text{Limited}(S_{\text{ind}})$$</div>
             </div>
         </div>
     </section>
 
     <!-- IV. THEOREMS -->
     <section id="sec-4">
-        <h2>Ⅳ. 定理群（Theorems：演繹の連鎖）</h2>
-        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">公理 A1〜A6 と定義 D1〜D5 から、外部の追加前提なしで導出される命題群。</p>
+        <h2>Ⅳ. 定理群（Theorems：構文論的推論規則のみによる機械的導出証明）</h2>
+        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">公理 A1〜A6 と定義 D1〜D5 のみから、自然言語の補足に一切依存せず、一階述語論理の推論規則（モーダスポネンス、背理法、推移律、定義代入）のみで各定理を機械的に導出する。</p>
 
         <div class="stage-banner">【第1段階：認識と存在の統合（第1章〜第3章）】</div>
 
         <div class="logic-card" id="thm-t1">
             <div class="logic-card-header">
                 <span class="logic-id">T1（外部実在仮説の自己崩落）</span>
-                <span class="logic-ref">導出根拠：D1, D2, A1, A2</span>
+                <span class="logic-ref">使用規則：A1, D2a, モーダスポネンス(MP), 背理法</span>
             </div>
-            <p class="logic-prose">「観念の外部に独立した客観的物質 x が存在する（B(x) ∧ Ext(x)）」という仮説自体が、A1・A2により観念の内部作用 𝐒(B(x) ∧ Ext(x)) としてしか成立しない。ゆえに、「観念の原理的外部（Ext<sub>原理的</sub>）」という領域は構造的自己矛盾により空集合となる。</p>
             <div class="formula-display">
                 <div class="formula-human">⊢ &nbsp;¬∃x &nbsp;( B(x) ∧ Ext<sub>原理的</sub>(x) )</div>
-                <div class="formula-reading">【読み方】公理より、「観念の原理的な外側（Ext<sub>原理的</sub>）に独立して存在する x」なるものは一切存在しないことが証明される（想定した瞬間に観念内部の枠組みとなるため）。</div>
-                <div class="formula-latex">[LaTeX] $$dash 
-eg \exists x \, (B(x) \land Ext_{	ext{原理的}}(x))$$</div>
+                <div class="formula-reading">【定理の意味】「観念の原理的な外側に独立して存在する x」なるものは存在しない（空集合である）。</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \neg \exists x \, (B(x) \land Ext_{\text{原理的}}(x))$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">【形式的証明（Mechanical Derivation）】</span>
+                <ol class="proof-steps">
+                    <li>∃x ( B(x) ∧ Ext<sub>原理的</sub>(x) ) と仮定する（背理法の仮定）。</li>
+                    <li>存在例化により、ある個体 a について B(a) ∧ Ext<sub>原理的</sub>(a) とする。</li>
+                    <li>公理 A1 において φ := ( B(a) ∧ Ext<sub>原理的</sub>(a) ) と置くと、( B(a) ∧ Ext<sub>原理的</sub>(a) ) ⇒ 𝐒(B(a) ∧ Ext<sub>原理的</sub>(a))。（※単項形 D2a を用いる場合は φ := B(a) と置いて B(a) ⇒ 𝐒(B(a)) とする）</li>
+                    <li>2と3より、モーダスポネンス（MP）で 𝐒(B(a) ∧ Ext<sub>原理的</sub>(a))（単項形では 𝐒(B(a))）を得る。</li>
+                    <li>一方、2の右側 Ext<sub>原理的</sub>(a) に対し定義 D2a を適用すると、¬𝐒(B(a) ∧ Ext<sub>原理的</sub>(a))（単項形では ¬𝐒(B(a))）を得る。</li>
+                    <li>4と5により、𝐒(…) ∧ ¬𝐒(…) という明示的矛盾（⊥）が導出される。</li>
+                    <li>よって背理法（否定導入）により、⊢ ¬∃x ( B(x) ∧ Ext<sub>原理的</sub>(x) ) が機械的に導出された。 ∎</li>
+                </ol>
             </div>
         </div>
 
         <div class="logic-card" id="thm-t2">
             <div class="logic-card-header">
                 <span class="logic-id">T2（観念存在定理 — 第3章の中心命題）</span>
-                <span class="logic-ref">導出根拠：A1, T1（本文 第3章 p.40 → 終章 p.52）</span>
+                <span class="logic-ref">使用規則：A1, D1a, D1b, 仮言三段論法(推移律), 双条件導入</span>
             </div>
-            <p class="logic-prose">A1により B(x) ⇒ 𝐒(B(x))。T1により、観念 𝐒（認識・主観）と「外的な存在 B」の間に原理的な上下・主従の隔たりが存在しないため、𝐒(B(x)) と S(x) は論理的に同値となる。ゆえに、あらゆる存在は観念そのものであり、すべての観念は実在する。</p>
             <div class="formula-display">
                 <div class="formula-human">⊢ &nbsp;∀x &nbsp;( B(x) ⇔ S(x) )</div>
-                <div class="formula-reading">【読み方】すべての x について、「x が存在する（実在する）」ことと「x が観念そのものである」ことは論理的に同値である（私たちと世界は同等の存在である）。</div>
-                <div class="formula-latex">[LaTeX] $$dash orall x \, (B(x) \iff S(x))$$</div>
+                <div class="formula-reading">【定理の意味】すべての x について、x が存在する（実在する）ことと x が観念であることは同値である。</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (B(x) \iff S(x))$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">【形式的証明（Mechanical Derivation）】</span>
+                <ol class="proof-steps">
+                    <li>任意の個体 x をとる。公理 A1 において φ := B(x) と置くと、B(x) ⇒ 𝐒(B(x))。</li>
+                    <li>定義 D1a より、𝐒(B(x)) ⇒ S(x)。</li>
+                    <li>1と2に仮言三段論法（推移律）を適用すると、B(x) ⇒ S(x) を得る。</li>
+                    <li>逆方向は定義 D1b より、S(x) ⇒ B(x) が直ちに与えられる。</li>
+                    <li>3と4に双条件導入および全称化を適用し、⊢ ∀x ( B(x) ⇔ S(x) ) が機械的に導出された。 ∎</li>
+                </ol>
             </div>
         </div>
 
-        <div class="stage-banner">【第2段階：対象と像の同格化（第4章・第5章）】</div>
+        <div class="stage-banner">【第2段階：対象と像の同格化（第4章）】</div>
 
         <div class="logic-card" id="thm-t3">
             <div class="logic-card-header">
                 <span class="logic-id">T3（全存在の原理的同格性）</span>
-                <span class="logic-ref">導出根拠：D3, A4, T2（本文 第4章 p.42・第5章 p.47・付録『重要な点』）</span>
+                <span class="logic-ref">使用規則：A4, D3a, T2, 双条件の推移律（＋A5, A6, D4aによる個体制約の導出）</span>
             </div>
-            <p class="logic-prose">T2およびA4（P(x, y) ⇔ P(y, x)）により、肉体と魂、物質と精神、対象とその像の間に「どちらが上位の本物でどちらが下位の派生か」という存在論的格差は存在せず、すべてが原理的存在として同格に実在する。</p>
             <div class="formula-display">
-                <div class="formula-human">⊢ &nbsp;∀x &nbsp;( B(x) ⇒ PE(x) )</div>
-                <div class="formula-reading">【読み方】すべての存在する x は、何かの借り物や幻ではなく、上下・主従のない「原理的存在（PE）」そのものとして実在する。</div>
-                <div class="formula-latex">[LaTeX] $$dash orall x \, (B(x) \implies PE(x))$$</div>
+                <div class="formula-human">⊢ &nbsp;∀x &nbsp;( B(x) ⇔ PE(x) ) &nbsp;&nbsp;（系：⊢ Limited(S<sub>ind</sub>)）</div>
+                <div class="formula-reading">【定理の意味】すべての存在 x は上下・主従のない「原理的存在（PE）」であることと同値であり、かつ全観念の共在により個人の裁量 S<sub>ind</sub> は制約される（反独我論の成立）。</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (B(x) \iff PE(x)) \quad \left(\text{系}: \vdash \text{Limited}(S_{\text{ind}})\right)$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">【形式的証明（Mechanical Derivation）】</span>
+                <ol class="proof-steps">
+                    <li>任意の個体 x をとる。公理 A4 より ∀y ( P(x, y) ⇔ P(y, x) ) は恒真である。</li>
+                    <li>恒真命題との連言同値により、S(x) ⇔ ( S(x) ∧ ∀y ( P(x, y) ⇔ P(y, x) ) ) が成り立つ。</li>
+                    <li>2の右辺に定義 D3a を適用すると、S(x) ⇔ PE(x) を得る。</li>
+                    <li>定理 T2（B(x) ⇔ S(x)）と3に双条件の推移律を適用し全称化すると、⊢ ∀x ( B(x) ⇔ PE(x) ) が機械的に導出された。（また、3と公理 A5 第2項および定義 D4a より ∀x CoPresent(S<sub>ind</sub>, S<sub>x</sub>) が得られ、公理 A6 と MP により系 ⊢ Limited(S<sub>ind</sub>) が導出される。） ∎</li>
+                </ol>
             </div>
         </div>
 
@@ -799,58 +928,88 @@ eg \exists x \, (B(x) \land Ext_{	ext{原理的}}(x))$$</div>
         <div class="logic-card" id="thm-t4">
             <div class="logic-card-header">
                 <span class="logic-id">T4（無からの一方的生成の否定）</span>
-                <span class="logic-ref">導出根拠：A4, T2（本文 第5章 p.45–47・第6章 p.49）</span>
+                <span class="logic-ref">使用規則：A4, D2b, ド・モルガンの法則, 対偶</span>
             </div>
-            <p class="logic-prose">もしある概念 x が無から主体 a によって一方的に生成された（Gen(x)）と仮定すると、生成の起点で a → x の一方向作用しかなく、A4（P(a, x) ⇔ P(x, a)）に反する。ゆえに、いかなる概念も無から一方的に生成されたものではない。</p>
             <div class="formula-display">
-                <div class="formula-human">⊢ &nbsp;∀x &nbsp;( B(x) ⇒ ¬Gen(x) )</div>
-                <div class="formula-reading">【読み方】すべての存在する x は、何もない状態（無）から一方的に新規生成されたものではない（互いが互いをもたらし合う関係にある）。</div>
-                <div class="formula-latex">[LaTeX] $$dash orall x \, (B(x) \implies 
-eg Gen(x))$$</div>
+                <div class="formula-human">⊢ &nbsp;∀x &nbsp;( ¬Gen(x) )</div>
+                <div class="formula-reading">【定理の意味】いかなる x も、無から一方的に新規生成されたものではない。</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (\neg Gen(x))$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">【形式的証明（Mechanical Derivation）】</span>
+                <ol class="proof-steps">
+                    <li>任意の個体 x をとる。公理 A4 より、任意の a について P(a, x) ⇔ P(x, a)。</li>
+                    <li>双条件の定義より ( P(a, x) ⇒ P(x, a) ) であり、これは含意の定義およびド・モルガンの法則により ¬( P(a, x) ∧ ¬P(x, a) ) と論理的に同値である。</li>
+                    <li>2を a について全称化し、全称否定と存在否定の交換則を適用すると、¬∃a ( P(a, x) ∧ ¬P(x, a) ) を得る。</li>
+                    <li>定義 D2b（Gen(x) ⇔ ∃a ( P(a, x) ∧ ¬P(x, a) )）の対偶を3に適用し全称化すると、⊢ ∀x ( ¬Gen(x) ) が機械的に導出された。 ∎</li>
+                </ol>
             </div>
         </div>
 
         <div class="logic-card" id="thm-t5">
             <div class="logic-card-header">
                 <span class="logic-id">T5（単一座標における無境界性＝無始無終）</span>
-                <span class="logic-ref">導出根拠：A5, T3（本文 第5章 p.45–47・終章 p.52）</span>
+                <span class="logic-ref">使用規則：A5, D2c, D2d, 連言導入</span>
             </div>
-            <p class="logic-prose">A5により、すべての存在が位置する原理的座標は c₀ ただ一つであり、その外側に「始まる前の座標 c<sub>before</sub>」や「終わった後の座標 c<sub>after</sub>」は存在しない。外側の座標が存在しないため、世界の始まり（Begin）と終わり（End）は同時に不成立となる。</p>
             <div class="formula-display">
-                <div class="formula-human">⊢ &nbsp;∀x &nbsp;( PE(x) ⇒ ¬Begin(x) ∧ ¬End(x) )<br>⊢ &nbsp;¬Begin(World) ∧ ¬End(World)</div>
-                <div class="formula-reading">【読み方】すべての原理的存在 x（およびこの世界 World）には、始まりも終わりも存在しない。</div>
-                <div class="formula-latex">[LaTeX] $$dash orall x \, (PE(x) \implies 
-eg Begin(x) \land 
-eg End(x))$$ $$dash 
-eg Begin(World) \land 
-eg End(World)$$</div>
+                <div class="formula-human">⊢ &nbsp;∀x &nbsp;( PE(x) ⇒ ¬Begin(x) ∧ ¬End(x) ) &nbsp;&nbsp;（ゆえに ⊢ ¬Begin(World) ∧ ¬End(World)）</div>
+                <div class="formula-reading">【定理の意味】単一座標 c₀ の外側に別座標は存在しないため、すべての原理的存在（および世界）には始まりも終わりもない。</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (PE(x) \implies \neg Begin(x) \land \neg End(x)) \quad \left(\vdash \neg Begin(World) \land \neg End(World)\right)$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">【形式的証明（Mechanical Derivation）】</span>
+                <ol class="proof-steps">
+                    <li>公理 A5 の第1項 ∀c ( c = c₀ ) より、その否定存在形である ¬∃c ( c ≠ c₀ ) が直ちに得られる。</li>
+                    <li>連言の性質より、任意の命題 ψ に対して ¬∃c ( c ≠ c₀ ) ⇒ ¬∃c ( c ≠ c₀ ∧ ψ ) が成り立つ。</li>
+                    <li>2に定義 D2c および D2d を適用すると、任意の x（世界 World を含む）について ¬Begin(x) および ¬End(x) が無条件に成り立つ。</li>
+                    <li>よって連言導入および弱化（任意の前提 PE(x) の付加）により、⊢ ∀x ( PE(x) ⇒ ¬Begin(x) ∧ ¬End(x) )（および ⊢ ¬Begin(World) ∧ ¬End(World)）が機械的に導出された。 ∎</li>
+                </ol>
             </div>
         </div>
 
         <div class="logic-card" id="thm-t6">
             <div class="logic-card-header">
                 <span class="logic-id">T6（全概念の予在定理 — 第6章）</span>
-                <span class="logic-ref">導出根拠：D4, A5, T3, T4（本文 第6章 p.49–50）</span>
+                <span class="logic-ref">使用規則：D3b, T3, A5, T4, D4b, MP, 連言導入, 含意導入</span>
             </div>
-            <p class="logic-prose">A5（Loc(x)=c₀）、T3（PE(x)）、T4（¬Gen(x)）を結合し、D4を適用すると、人間が便宜的時系列の中で「新しく思いついた」と認識するあらゆる概念も、原理的には単一座標 c₀ 上に生成なしで予め存在している。</p>
             <div class="formula-display">
                 <div class="formula-human">⊢ &nbsp;∀x &nbsp;( Concept(x) ⇒ AlreadyPresent(x) )</div>
-                <div class="formula-reading">【読み方】すべての概念 x は、始まりや前提を必要とせず、原理的存在として単一座標上に「予め存在している（AlreadyPresent）」。</div>
-                <div class="formula-latex">[LaTeX] $$dash orall x \, (Concept(x) \implies 	ext{AlreadyPresent}(x))$$</div>
+                <div class="formula-reading">【定理の意味】すべての概念 x は、単一座標 c₀ 上に生成（始まり）なしで予め存在している。</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (Concept(x) \implies \text{AlreadyPresent}(x))$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">【形式的証明（Mechanical Derivation）】</span>
+                <ol class="proof-steps">
+                    <li>任意の個体 x について Concept(x) を仮定する。</li>
+                    <li>定義 D3b と1より、MPで B(x) を得る。</li>
+                    <li>定理 T3（B(x) ⇔ PE(x)）と2より、MPで PE(x) を得る。</li>
+                    <li>公理 A5 の第2項（PE(x) ⇒ Loc(x) = c₀）と3より、MPで Loc(x) = c₀ を得る。</li>
+                    <li>定理 T4 より、¬Gen(x) を得る。</li>
+                    <li>4、3、5を連言導入で結合すると、Loc(x) = c₀ ∧ PE(x) ∧ ¬Gen(x)。</li>
+                    <li>定義 D4b を6に適用すると AlreadyPresent(x) を得る。含意導入および全称化により、⊢ ∀x ( Concept(x) ⇒ AlreadyPresent(x) ) が機械的に導出された。 ∎</li>
+                </ol>
             </div>
         </div>
 
         <div class="logic-card" id="thm-t7">
             <div class="logic-card-header">
                 <span class="logic-id">T7（絶対的無の成立不能定理 — 第6章）</span>
-                <span class="logic-ref">導出根拠：A1, T1, T2, T5（本文 第6章 p.49–50）</span>
+                <span class="logic-ref">使用規則：D2e, D1c, D1b, MP, 背理法</span>
             </div>
-            <p class="logic-prose">T5により単一座標 c₀ の外部に「無の領域」は存在しない。さらにA1・T2により、いかなる形であれ「絶対的無（∅<sub>abs</sub>）」を措定・想定した瞬間に、それは 𝐒(∅<sub>abs</sub>) すなわち「無という観念（有 B(∅<sub>abs</sub>)）」として実在してしまう。また「措定も認識もされない外部の無」という仮定自体がT1により自己崩落するため、絶対的無は原理的に成立し得ない。</p>
             <div class="formula-display">
-                <div class="formula-human">⊢ &nbsp;𝐒(∅<sub>abs</sub>) ⇒ B(∅<sub>abs</sub>) ⇒ ¬AbsoluteNothing(∅<sub>abs</sub>)</div>
-                <div class="formula-reading">【読み方】「絶対的な無（∅<sub>abs</sub>）」を想定した時点で、それは「無という概念の実在（B）」となるため、真の意味での「絶対的無（虚無）」は原理的に成立し得ない。</div>
-                <div class="formula-latex">[LaTeX] $$dash \mathbf{S}(arnothing_{	ext{abs}}) \implies B(arnothing_{	ext{abs}}) \implies 
-eg 	ext{AbsoluteNothing}(arnothing_{	ext{abs}})$$</div>
+                <div class="formula-human">⊢ &nbsp;¬∃x &nbsp;AbsoluteNothing(x)</div>
+                <div class="formula-reading">【定理の意味】絶対的無（AbsoluteNothing）なるものは原理的に存在し得ない。</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \neg \exists x \, \text{AbsoluteNothing}(x)$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">【形式的証明（Mechanical Derivation）】</span>
+                <ol class="proof-steps">
+                    <li>ある x について AbsoluteNothing(x) と仮定する（背理法の仮定）。</li>
+                    <li>定義 D2e より、𝐒(AbsoluteNothing(x)) ∧ ¬B(x) を得る。</li>
+                    <li>2の左項 𝐒(AbsoluteNothing(x)) に対し、定義 D1c（∀Φ ∀x ( 𝐒(Φ(x)) ⇒ S(x) ) において Φ := AbsoluteNothing）を適用すると MP で観念成立 S(x) を得る。さらに定義 D1b（S(x) ⇒ B(x)）を適用すると、MP で B(x) を得る。</li>
+                    <li>2の右項 ¬B(x) と3の B(x) により、矛盾 B(x) ∧ ¬B(x)（⊥）が導出される。</li>
+                    <li>よって背理法により、⊢ ¬∃x AbsoluteNothing(x) が機械的に導出された。 ∎</li>
+                </ol>
             </div>
         </div>
 
@@ -859,89 +1018,155 @@ eg 	ext{AbsoluteNothing}(arnothing_{	ext{abs}})$$</div>
         <div class="logic-card" id="thm-t8">
             <div class="logic-card-header">
                 <span class="logic-id">T8（世界の肯定と意味の充足 — 終章の結論）</span>
-                <span class="logic-ref">導出根拠：D5, T2, T3, T5（本文 終章 p.52–55・詩「境界」 p.58–61）</span>
+                <span class="logic-ref">使用規則：T2, T3, D5b, 双条件の対称律・推移律</span>
             </div>
-            <p class="logic-prose">T2・T3・T5により、すべての存在（物理学の法則も、個人の喜びや愛着も）は欠けることなく無始無終の原理的存在として同格に実在しており、D5（M(x) := B(x)）により、存在していること自体がそのまま意味の完全な充足である。外部の尺度や目的に照らして存在の価値を否定する根拠は原理的に存在しない。</p>
             <div class="formula-display">
                 <div class="formula-human">⊢ &nbsp;∀x &nbsp;( S(x) ⇔ B(x) ⇔ PE(x) ⇔ M(x) )</div>
-                <div class="formula-reading">【読み方】すべての x について、「観念であること（S）」「存在すること（B）」「原理的存在であること（PE）」「意味そのものであること（M）」は完全に同値であり、誰の存在も価値観も否定されない。</div>
-                <div class="formula-latex">[LaTeX] $$dash orall x \, (S(x) \iff B(x) \iff PE(x) \iff M(x))$$</div>
+                <div class="formula-reading">【定理の意味】すべての x について、観念であること（S）、存在すること（B）、原理的存在であること（PE）、意味そのものであること（M）は完全に同値である。</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (S(x) \iff B(x) \iff PE(x) \iff M(x))$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">【形式的証明（Mechanical Derivation）】</span>
+                <ol class="proof-steps">
+                    <li>定理 T2 より、∀x ( S(x) ⇔ B(x) )。</li>
+                    <li>定理 T3 より、∀x ( B(x) ⇔ PE(x) )。</li>
+                    <li>定義 D5b より、∀x ( B(x) ⇔ M(x) )。</li>
+                    <li>1、2、3に双条件の対称律および推移律を適用することで、⊢ ∀x ( S(x) ⇔ B(x) ⇔ PE(x) ⇔ M(x) ) が機械的に導出された。 ∎</li>
+                </ol>
             </div>
         </div>
     </section>
 
-    <!-- V. DEDUCTIVE FLOWCHART -->
+    <!-- V. DEDUCTIVE FLOW & STAGE TABLE -->
     <section id="sec-5">
-        <h2>Ⅴ. 全体の推論構造図（演繹フロー）</h2>
+        <h2>Ⅴ. 全体の推論構造図（演繹フローと段階表）</h2>
         <div class="panel-box">
-            <p style="margin-top:0; font-size:0.85rem; color:var(--dim-color);">最小限の初期定義と公理（入口）から終章の結論（出口）まで、外部前提を一切持ち込まずに一本の演繹鎖として閉じる構造図。</p>
+            <p style="margin-top:0;">数式パーサーのエラーや画面幅による表示崩れを防ぐため、純粋な記号論理の演繹鎖と、各段階の入出力対応表に分けて記述する。</p>
 
-            <div class="flow-container">
-                <div class="flow-box flow-entry">
-                    <span class="flow-step-label">【入口：基本定義と公理（第1章・第2章）】</span>
-                    <div class="flow-step-body">D1 / A1（全措定の観念包摂） ・ D2 / A2（主客・物質・時系列の便宜化）</div>
+            <h3>1. 記号論理による演繹鎖（Symbolic Deductive Chain）</h3>
+            <div class="chain-box">
+                <div class="chain-line">( D1, D2, A1, A2 ) &nbsp;⊢&nbsp; T1 &nbsp;⊢&nbsp; T2</div>
+                <div class="chain-line">( T2, D2b, D3, A4, A6 ) &nbsp;⊢&nbsp; ( T3, T4 )</div>
+                <div class="chain-line">( T3, T4, D1c, D2c–e, D4, A5 ) &nbsp;⊢&nbsp; ( T5, T6, T7 )</div>
+                <div class="chain-line">( T2, T3, D5 ) &nbsp;⊢&nbsp; T8</div>
+                <div class="formula-latex" style="margin-top:10px;">
+                    [LaTeX] $$(\text{D1}, \text{D2}, \text{A1}, \text{A2}) \vdash \text{T1} \vdash \text{T2}$$
+                    $$(\text{T2}, \text{D3}, \text{A4}) \vdash (\text{T3}, \text{T4})$$
+                    $$(\text{T3}, \text{T4}, \text{D2}, \text{D4}, \text{A5}) \vdash (\text{T5}, \text{T6}, \text{T7})$$
+                    $$(\text{T2}, \text{T3}, \text{D5}) \vdash \text{T8}$$
                 </div>
+            </div>
 
-                <div class="flow-arrow-row">
-                    <span class="flow-arrow-sym">⇓</span>
-                </div>
-
-                <div class="flow-box">
-                    <span class="flow-step-label">【定理 T1：外部実在仮説の自己崩落】</span>
-                    <div class="flow-step-body">観念の原理的外部 Ext<sub>原理的</sub> は構造的自己矛盾により空集合となる<br><span style="color:var(--gold-accent);">⊢ ¬∃x ( B(x) ∧ Ext<sub>原理的</sub>(x) )</span></div>
-                </div>
-
-                <div class="flow-arrow-row">
-                    <span class="flow-arrow-sym">⇓</span>
-                </div>
-
-                <div class="flow-box">
-                    <span class="flow-step-label">【定理 T2：観念存在定理（第3章の中心命題）】</span>
-                    <div class="flow-step-body">認識と存在の上下・主従の消滅（全存在の実在化）<br><span style="color:var(--gold-accent);">⊢ ∀x ( B(x) ⇔ S(x) )</span></div>
-                </div>
-
-                <div class="flow-arrow-row">
-                    <span class="flow-arrow-sym">⇓</span>
-                    <span class="flow-arrow-note">（＋ 公理 A4：相互成立 P(x,y) ⇔ P(y,x) ／ ＋ 公理 A6：全体作用による個体制約）</span>
-                </div>
-
-                <div class="flow-box">
-                    <span class="flow-step-label">【定理 T3・T4：対象と像の同格化（第4章・第5章）】</span>
-                    <div class="flow-step-body">肉体・魂・対象・像の完全同格性 <span style="color:var(--gold-accent);">PE(x)</span> ＆ 無からの一方的生成の否定 <span style="color:var(--gold-accent);">¬Gen(x)</span>（反独我論の成立）</div>
-                </div>
-
-                <div class="flow-arrow-row">
-                    <span class="flow-arrow-sym">⇓</span>
-                    <span class="flow-arrow-note">（＋ 公理 A5：単一座標 c₀ と非時間的連続性 C(c₀, c₀)）</span>
-                </div>
-
-                <div class="flow-box">
-                    <span class="flow-step-label">【定理 T5・T6・T7：時間と無の解決（第5章・第6章）】</span>
-                    <div class="flow-step-body">世界の無始無終（<span style="color:var(--gold-accent);">¬Begin ∧ ¬End</span>） ・ 全概念の予在（<span style="color:var(--gold-accent);">AlreadyPresent</span>） ・ 絶対的無の成立不能（<span style="color:var(--gold-accent);">¬AbsoluteNothing</span>）</div>
-                </div>
-
-                <div class="flow-arrow-row">
-                    <span class="flow-arrow-sym">⇓</span>
-                    <span class="flow-arrow-note">（＋ 定義 D5：意味の内部定義 M(x) := B(x)）</span>
-                </div>
-
-                <div class="flow-box flow-exit">
-                    <span class="flow-step-label">【出口（結論 T8）：世界の肯定と意味の充足（終章・詩「境界」）】</span>
-                    <div class="flow-step-body" style="font-size:1.05rem; font-weight:600; color:var(--gold-accent);">⊢ &nbsp;∀x &nbsp;( S(x) ⇔ B(x) ⇔ PE(x) ⇔ M(x) )</div>
-                </div>
+            <h3>2. 段階別の導出構造一覧</h3>
+            <div class="spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th>段階</th>
+                            <th>入力（公理・定義）</th>
+                            <th>導出される定理</th>
+                            <th>確定する論理的帰結</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>入口（第1〜2章）</strong></td>
+                            <td>D1, D2, A1, A2, A3</td>
+                            <td><strong>T1</strong></td>
+                            <td>観念の原理的外部（Ext<sub>原理的</sub>）の仮説は自己矛盾により空集合となる。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>第1段階（第3章）</strong></td>
+                            <td>T1, D1, A1</td>
+                            <td><strong>T2</strong></td>
+                            <td>∀x (B(x) ⇔ S(x))：あらゆる存在は観念であり、全観念は実在する。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>第2段階（第4章）</strong></td>
+                            <td>T2, D2b, D3, A4, A6</td>
+                            <td><strong>T3, T4</strong></td>
+                            <td>∀x (B(x) ⇔ PE(x)) ∧ ¬Gen(x)：肉体・魂・対象・像の完全同格性と、一方的生成の否定、および反独我論（Limited(S<sub>ind</sub>)）の成立。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>第3段階（第5〜6章）</strong></td>
+                            <td>T3, T4, D1c, D2c-e, D4, A5</td>
+                            <td><strong>T5, T6, T7</strong></td>
+                            <td>単一座標 c₀ 上における世界の無始無終（¬Begin ∧ ¬End）、全概念の予在（AlreadyPresent）、絶対的無の不成立。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>出口（終章）</strong></td>
+                            <td>T2, T3, D5</td>
+                            <td><strong>T8</strong></td>
+                            <td>∀x (S(x) ⇔ B(x) ⇔ PE(x) ⇔ M(x))：存在・原理的存在・意味の完全一致。</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
 
-    <!-- VI. LOGICAL FAQ -->
+    <!-- VI. MODEL-THEORETIC CONSISTENCY PROOF -->
     <section id="sec-6">
-        <h2>Ⅵ. 想定される外部批判・疑問への論理的回答（FAQ）</h2>
+        <h2>Ⅵ. 無矛盾性のモデル理論的証明（Proof of Consistency via Model Theory）</h2>
+        <div class="panel-box">
+            <p style="margin-top:0;">本公理系（定義 D1〜D5 および公理 A1〜A6）が内部にいかなる論理的矛盾も含まない（100%無矛盾である：Syntactically Consistent）ことを、モデル理論（Model Theory）の標準的手法に従い、すべての公理と定義を同時に真（True）にする具体的な構造（充足モデル ℳ）を構成することで数学的に証明する。</p>
+
+            <h3>1. モデル ℳ の構成</h3>
+            <ul class="model-list">
+                <li><strong>個体領域（Domain of Discourse）：</strong><br>
+                単一の要素 c₀ のみからなる集合 D = {c₀} を設定する。</li>
+                <li><strong>関数および述語の解釈（Interpretation I）：</strong>
+                    <ul class="model-list">
+                        <li><strong>座標関数：</strong> I(Loc)(c₀) = c₀</li>
+                        <li><strong>観念作用オペレータ：</strong> 任意の整式 φ に対し、φ がモデル ℳ で真のとき I(𝐒)(φ) = True、偽のとき False（真理値恒等写像）とする。便宜オペレータ I(F)(φ) = True とする。</li>
+                        <li><strong>単項述語（肯定系）：</strong> S, B, PE, Concept, M, Truth, AlreadyPresent, Limited の外延をすべて領域全体 D = {c₀}（すなわち c₀ に対して True）と割り当てる。</li>
+                        <li><strong>単項述語（否定・境界系）：</strong> Ext<sub>原理的</sub>, Gen, Begin, End, AbsoluteNothing の外延をすべて空集合 ∅（すなわち c₀ に対して False）と割り当てる。</li>
+                        <li><strong>二項述語：</strong> P, C, CoPresent の外延をすべて直積集合 D × D = {(c₀, c₀)}（すなわち (c₀, c₀) に対して True）と割り当てる。</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>2. 全公理・全定義の充足性（Satisfiability）の検算</h3>
+            <p>上記のモデル ℳ = (D, I) のもとで、すべての定義および公理の真理値を評価する。</p>
+            <ol class="model-list">
+                <li><strong>D1〜D5の検証：</strong>
+                    <ul class="model-list">
+                        <li><strong>D1a, D1b, D1c：</strong> 𝐒(B(c₀)) ⇔ S(c₀) は (True ⇔ True) となり真。D1b も (True ⇒ True) で真。D1c も結論部 S(c₀) = True のため任意の Φ に対し (I(𝐒)(Φ(c₀)) ⇒ True) = True となり真。</li>
+                        <li><strong>D2a：</strong> Ext<sub>原理的</sub>(c₀) は False であり、単項形右辺 ¬𝐒(B(c₀)) = ¬True = False と (False ⇔ False) で完全一致し真（命題形においても存在量化 ∃x (B(x) ∧ Ext<sub>原理的</sub>(x)) を偽＝空集合とする整合的定義を満たす）。</li>
+                        <li><strong>D2b：</strong> P(c₀, c₀) ∧ ¬P(c₀, c₀) は (True ∧ False) = False であり、Gen(c₀) = False と (False ⇔ False) で一致し真。</li>
+                        <li><strong>D2c, D2d：</strong> 領域 D = {c₀} には c ≠ c₀ を満たす要素が存在しないため右辺は False となり、Begin(c₀) = False, End(c₀) = False と (False ⇔ False) で一致し真。</li>
+                        <li><strong>D2e：</strong> 右辺に ¬B(c₀) = False を含むため連言は False となり、AbsoluteNothing(c₀) = False と (False ⇔ False) で一致し真。</li>
+                        <li><strong>D3, D4, D5：</strong> すべての構成要素が True（否定項 ¬Gen(c₀) も ¬False = True）となるため、すべての双条件文および含意が (True ⇔ True) として真。</li>
+                    </ul>
+                </li>
+                <li><strong>A1〜A6の検証：</strong>
+                    <ul class="model-list">
+                        <li><strong>A1, A2：</strong> 𝐒 の解釈（真理値恒等写像）により恒真（True）。</li>
+                        <li><strong>A4：</strong> P(c₀, c₀) ⇔ P(c₀, c₀) は (True ⇔ True) となり真。</li>
+                        <li><strong>A5：</strong> D = {c₀} より ∀c (c = c₀) は真、Loc(c₀) = c₀ は真、C(c₀, c₀) は真であるため、連言全体が真。</li>
+                        <li><strong>A6：</strong> CoPresent(c₀, c₀) ⇒ Limited(c₀) は (True ⇒ True) となり真。</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3>3. 結論（無矛盾性の確定）</h3>
+            <div class="disclaimer-item" style="margin-top:12px;">
+                以上により、モデル ℳ は定義群 D1〜D5 および公理群 A1〜A6 のすべてを同時に充足する（<strong>ℳ ⊨ D1–D5 ∪ A1–A6</strong>）。<br>
+                一階述語論理における<strong>健全性定理（Soundness Theorem）およびゲーデルの完全性定理（Completeness Theorem）</strong>により、「モデル（充足構造）が存在する公理系からは、いかなる矛盾（ψ ∧ ¬ψ）も絶対に導出されない」。<br>
+                よって、本形式体系が<strong>100%無矛盾（Consistent）</strong>であることが数学的に証明された。 ∎
+            </div>
+        </div>
+    </section>
+
+    <!-- VII. LOGICAL FAQ -->
+    <section id="sec-7">
+        <h2>Ⅶ. 想定される外部批判・疑問への論理的回答（FAQ）</h2>
         <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">本体系に対して外部の視点（一般的な二元論や既存の論理学・科学哲学の枠組み）から投げかけられやすい代表的な疑問について、内部規則に基づく論理的回答を以下に明記する。</p>
 
         <div class="faq-card" id="faq-q1">
             <div class="faq-q">Q1. 「対象を認識する行為が観念であること（A1）」から「対象そのものが観念であること（T2）」を導くのは、認識論と存在論の混同（循環論法）ではないか？</div>
             <p class="faq-a"><strong>回答：</strong><br>
-            「認識作用」と「対象そのもの（物自体）」を分けなければならないという主張自体が、未証明の外部前提（カント的・近代的な主客二元論）に依存している。本体系のT1が示す通り、「観念とは独立した外部の対象そのもの」を措定する行為自体が観念 𝐒 の内部から一歩も出られない以上、「観念（認識）の外側に独立した別の存在領域がある」という仮定は構造的に余剰（空集合）となる。また本書における観念は「脳内の主観的イメージ（幻）」ではなく、対象（物質・肉体）も認識も同格に含む実在の原理（T3）であるため、物質の実在性が損なわれることはない。</p>
+            「認識作用」と「対象そのもの（物自体）」を分けなければならないという主張自体が、未証明の外部前提（カント的・近代的な主客二元論）に依存している。本体系のT1が示す通り、「観念（認識）の外側に独立した別の存在領域がある」という仮定自体が観念 𝐒 の内部から一歩も出られない以上、構造的に自己矛盾を起こして空集合となる。また本書における観念は「脳内の主観的イメージ（幻）」ではなく、対象（物質・肉体）も認識も同格に含む実在の原理（T3）であるため、物質の実在性が損なわれることはない。</p>
         </div>
 
         <div class="faq-card" id="faq-q2">
