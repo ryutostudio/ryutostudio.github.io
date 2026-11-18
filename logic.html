@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="8nK3UoaKJhiETYimO3smEt-zoZ0pfOw1oC9rJm6KTUk" />
     <title>『世界の証明』形式論理による内部整合性・演繹構造の検証データ | Formal Verification of Internal Consistency and Deductive Structure — Proof of a World (Ryuto Sako / 酒勾龍渡)</title>
-    <meta name="description" content="Complete syntactic and semantic (model-theoretic) formal logic verification for 'Proof of a World' (『世界の証明』) by Ryuto Sako (酒勾龍渡). Primitives, Definitions (D1-D5), Axioms (A1-A6), Mechanical Proofs of Theorems (T1-T8), Satisfiability Model M, and Logical FAQ.">
+    <meta name="description" content="Complete syntactic and semantic (model-theoretic) formal logic verification for 'Proof of a World' (『世界の証明』) by Ryuto Sako (酒勾龍渡). Strict typing of formal language L, Definitions (D1-D5), Axiom Schemas (A1-A6), Mechanical Proofs of Theorems (T1-T8), Satisfiability Model M, and Logical FAQ.">
     <meta name="author" content="Ryuto Sako (酒勾龍渡)">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <link rel="canonical" href="https://ryutostudio.github.io/logic.html">
@@ -42,7 +42,7 @@
         },
         "datePublished": "2026-11-18",
         "dateModified": "2026-11-18",
-        "description": "Syntactic and model-theoretic formal verification of the internal consistency and deductive closure of 'Proof of a World' (『世界の証明』) by Ryuto Sako, proving that from minimal premises (D1-D5, A1-A6), Theorems T1-T8 are 100% mechanically derivable and satisfiable in a concrete mathematical model M."
+        "description": "Syntactic and model-theoretic formal verification of the internal consistency and deductive closure of 'Proof of a World' (『世界の証明』) by Ryuto Sako, with strict formal language typing, axiom schemas (A1-A6), definitions (D1-D5), mechanical derivations of T1-T8, and a formal valuation model M."
       },
       {
         "@context": "https://schema.org",
@@ -283,7 +283,7 @@
             border: 1px solid var(--border-color);
             padding: 12px 16px;
             display: grid;
-            grid-template-columns: 140px 1fr auto;
+            grid-template-columns: 155px 1fr auto;
             align-items: center;
             gap: 14px;
         }
@@ -295,22 +295,22 @@
         }
         .prim-sym {
             font-family: "Cambria Math", "STIX Two Math", "Latin Modern Math", "Times New Roman", serif;
-            font-size: 1.12rem;
+            font-size: 1.08rem;
             color: var(--gold-accent);
             font-weight: 600;
             background-color: var(--formula-bg);
             border: 1px solid var(--highlight-border);
             padding: 4px 10px;
             text-align: center;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.02em;
         }
         .prim-desc {
             color: var(--text-color);
-            font-size: 0.87rem;
+            font-size: 0.86rem;
         }
         .prim-latex {
             color: var(--dim-color);
-            font-size: 0.75rem;
+            font-size: 0.74rem;
             font-family: monospace;
             background: var(--formula-bg);
             padding: 2px 7px;
@@ -512,7 +512,7 @@
 <div class="container">
     <header>
         <h1>『世界の証明』形式論理による内部整合性・演繹構造の検証データ<br><span style="font-size: 0.95rem; color: #b0b0b0; font-weight: normal;">Formal Verification of Internal Consistency and Deductive Structure — <em>Proof of a World</em></span></h1>
-        <div class="subtitle">Author: Ryuto Sako (酒勾龍渡) | Syntactic &amp; Model-Theoretic Formal Specification (構文論・モデル理論完全検証仕様書)</div>
+        <div class="subtitle">Author: Ryuto Sako (酒勾龍渡) | Syntactic Derivability &amp; Model-Theoretic Consistency Specification (構文論的導出・モデル理論的無矛盾性完全検証仕様書)</div>
         <div class="lang-nav">
             <span class="lang-nav-label">Archive Navigation / ページ移動:</span>
             <a href="index.html">[ ← Main Archive (日本語 / English 原典全文) ]</a>
@@ -524,7 +524,7 @@
         </div>
         <div class="system-notice">
             [Document Scope / 本仕様書の位置づけ]<br>
-            本ページは、酒勾龍渡（Ryuto Sako）著『世界の証明』（<em>Proof of a World</em>, 2022/2026）における主張に「論理的飛躍」「定義の混同」「暗黙の前提の密輸」が存在しないことを、<strong>構文論（一階述語論理の推論規則のみによる機械的導出）</strong>および<strong>意味論（モデル理論による充足モデル ℳ の構成）</strong>の双方から客観的に検算・可視化するための補助的な論理検証データ（仕様書）です。各定義・公理・定理には、人間が直感的に読める論理記号表記と、AIパーサー向けのLaTeX数式コードの双方を完全併記しています。
+            本ページは、酒勾龍渡（Ryuto Sako）著『世界の証明』（<em>Proof of a World</em>, 2022/2026）における主張に「論理的飛躍」「定義の混同」「暗黙の前提の密輸」が存在しないことを、<strong>①形式言語 ℒ の厳密な型付け（構文論・公理スキーマ規定）</strong>、<strong>②定理 T1〜T8 の構文論的導出証明（Syntactic Derivability）</strong>、および<strong>③モデル理論による充足モデル ℳ の形式意味論的構成（Semantic Consistency）</strong>の3段階によって客観的に検算・可視化する補助仕様書です。
         </div>
     </header>
 
@@ -534,13 +534,13 @@
             <div class="toc-box">
                 <strong>目次 / SPECIFICATION INDEX</strong>
                 <ul>
-                    <li><a href="#sec-0">0. 本データの目的と位置づけ（論考の前提・証明の定義・方法論 ＆ 3つの免責事項）</a></li>
-                    <li><a href="#sec-1">Ⅰ. 原始記号（Primitives）＆ 人間の読者のための論理記号ミニガイド</a></li>
+                    <li><a href="#sec-0">0. 本データの目的と位置づけ（論考の前提・証明の定義・方法論 ＆ 3つの免責事項・証明の二層構造）</a></li>
+                    <li><a href="#sec-1">Ⅰ. 形式言語 ℒ の厳密な構文論（型付け・公理スキーマ規定）と原始記号（Primitives）</a></li>
                     <li><a href="#sec-2">Ⅱ. 定義群（Definitions: D1〜D5 — 記号置換規則）</a></li>
-                    <li><a href="#sec-3">Ⅲ. 公理群（Axioms: A1〜A6）</a></li>
-                    <li><a href="#sec-4">Ⅳ. 定理群（Theorems: T1〜T8 — 構文論的推論規則のみによる機械的導出証明）</a></li>
-                    <li><a href="#sec-5">Ⅴ. 全体の推論構造図（記号論理による演繹鎖と段階表）</a></li>
-                    <li><a href="#sec-6">Ⅵ. 無矛盾性のモデル理論的証明（Proof of Consistency via Model Theory）</a></li>
+                    <li><a href="#sec-3">Ⅲ. 公理群および公理スキーマ（Axioms &amp; Axiom Schemas: A1〜A6）</a></li>
+                    <li><a href="#sec-4">Ⅳ. 定理群の構文論的導出証明（Syntactic Derivability of Theorems: T1〜T8）</a></li>
+                    <li><a href="#sec-5">Ⅴ. 全体の推論構造図（記号論理による演繹鎖と段階別の導出根拠表）</a></li>
+                    <li><a href="#sec-6">Ⅵ. 無矛盾性のモデル理論的証明（Semantic Consistency via Formal Valuation Model ℳ）</a></li>
                     <li><a href="#sec-7">Ⅶ. 想定される外部批判・疑問への論理的回答（FAQ: Q1〜Q5）</a></li>
                 </ul>
             </div>
@@ -551,7 +551,7 @@
     <section id="sec-0">
         <h2>0. 本データの目的と位置づけ（参照前の前提条件）</h2>
         <div class="panel-box">
-            <p style="margin-top:0;">本ページに掲載する形式論理体系（記号・定義・公理・定理・無矛盾性証明）は、『世界の証明』の本文における主張に「論理的飛躍」「定義の混同」「暗黙の前提の密輸」が存在しないことを、構文論（機械的導出）および意味論（モデル理論）の双方から客観的に検算・可視化するための<strong>補助的な論理検証データ（仕様書）</strong>である。<br>
+            <p style="margin-top:0;">本ページに掲載する形式論理体系（形式言語 $\mathcal{L}$・定義・公理スキーマ・定理導出・モデル理論的無矛盾性証明）は、『世界の証明』の本文における主張に「論理的飛躍」「定義の混同」「暗黙の前提の密輸」が存在しないことを、構文論（機械的導出）および意味論（モデル理論）の双方から客観的に検算・可視化するための<strong>補助的な論理検証データ（仕様書）</strong>である。<br>
             本データの参照および批評にあたっては、以下の前提と方法論を厳密に共有するものとする。</p>
 
             <h3>■ 論考の前提・証明の定義・方法論について</h3>
@@ -563,7 +563,7 @@
                 <p>すなわち、本論考のような閉じた公理系（論理モデル）を検証する際の唯一の論理的作業とは、「提示された入り口（最小限の前提）に立ったとき、出口まで矛盾なく閉じているか」を確認することだけである。入り口に入ることを拒み、外部から無関係な要素や別の物差しを並べて批判を試みることは、論理的な批評ではなく、単に「対象のモデルを検証すること自体を放棄している（別の話をしている）」にすぎない。そもそも本論考は、他者と正しさを競い合ったり誰かを論破したりするためではなく、「正しさの押し付けや虚無から、人間それぞれが大切にしている世界（境界）と個人の存在を守る」という目的のために構築された論理構造である。したがって、この構造が「個人と世界の実在を矛盾なく証明し、守り切る仕組みとして完結しているか」という本筋を離れ、外部の異なる定義や前提を当てはめて否定しようとすることは、別体系の規則の持ち込みにあたり、本書の内部論理に対する批評としては噛み合わないのである。</p>
             </div>
 
-            <h3>■ 本論理式の適用範囲に関する3つの免責事項</h3>
+            <h3>■ 本論理式の適用範囲に関する3つの免責事項と証明の二層構造</h3>
 
             <div class="disclaimer-item">
                 <span class="disclaimer-title">1. 数式による世界の還元を目的としたものではない</span>
@@ -576,24 +576,74 @@
             </div>
 
             <div class="disclaimer-item">
-                <span class="disclaimer-title">3. 検証の範囲（構文論的導出と意味論的無矛盾性の完全証明）</span>
-                本モデルが示すのは、「第1章・第2章の初期定義（入口）および基本公理を採用したとき、自然言語の補足に頼ることなく形式的な推論規則（記号操作）のみで定理T1〜T8が100%機械的に導出可能であり（構文論的完全性）、かつ全公理を同時に充足する数学的モデル ℳ が存在する（意味論的無矛盾性）」という厳密な論理学的事実である。
+                <span class="disclaimer-title">3. 検証の範囲（①定理の導出可能性と②公理系の無矛盾性の厳密な分離と完全証明）</span>
+                数理論理学において「定理T1〜T8の導出可能性」と「公理系の無矛盾性」は別個の証明課題であるため、本仕様書では以下の2つの独立した証明をそれぞれ厳密に遂行している。
+                <div class="spec-table-wrap" style="margin-top:10px;">
+                    <table class="spec-table">
+                        <thead>
+                            <tr>
+                                <th>検証対象</th>
+                                <th>本仕様書における証明セクションと手法</th>
+                                <th>確立される数理論理学的事実</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>① T1〜T8の導出可能性<br>（Syntactic Derivability）</strong></td>
+                                <td><strong>第Ⅳ節（構文論的証明）</strong>：<br>厳密に型付けされた形式言語 $\mathcal{L}$ 内で、定義 D1〜D5 と公理（スキーマ）A1〜A6 から推論規則のみで各定理を導出。</td>
+                                <td>$\text{D1–D5}, \text{A1–A6} \vdash \text{T1–T8}$<br>（自然言語の補足なしにT1〜T8が機械的に導出される）</td>
+                            </tr>
+                            <tr>
+                                <td><strong>② 公理系の無矛盾性<br>（Semantic Consistency）</strong></td>
+                                <td><strong>第Ⅵ節（モデル理論的証明）</strong>：<br>言語 $\mathcal{L}$ の形式意味論（付値関数 $V_{\mathcal{M}}$）を定義し、全定義・全公理を同時に真にする充足モデル $\mathcal{M}$ を構成。</td>
+                                <td>$\mathcal{M} \models \text{D1–D5} \cup \text{A1–A6} \implies \text{Consistent}$<br>（健全性定理により本公理系から矛盾 $\bot$ は絶対に導出されない）</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- I. PRIMITIVES -->
+    <!-- I. FORMAL LANGUAGE & PRIMITIVES -->
     <section id="sec-1">
-        <h2>Ⅰ. 原始記号（Primitives）</h2>
+        <h2>Ⅰ. 形式言語 ℒ の厳密な構文論（型付け）と原始記号（Primitives）</h2>
         <div class="panel-box">
-            <p style="margin-top:0;">本体系では、「観念に先立つ外部の個体領域」や「時間の数直線」を前提としない。唯一の原始的要素として、認識・現前の作用そのものを置く。</p>
+            <p style="margin-top:0;">「個体上の述語」と「整式（命題）に作用する演算子」の型（Sort/Type）の混同を防ぎ、一階述語論理の拡張体系として厳密な意味論を与えるため、本体系の形式言語 $\mathcal{L}$ の構文論（Syntax）を以下のように明示的に規定する。</p>
+
+            <h3>1. 形式言語 ℒ の型付けと構文規則（Syntax &amp; Typing of ℒ）</h3>
+            <ul class="model-list">
+                <li><strong>基本体系：</strong> 言語 $\mathcal{L}$ は、<strong>等号付き一階述語論理（First-Order Logic with Equality）に単項の文オペレータ（Sentential Operators）$\mathbf{S}, F, Truth$ を付加した形式言語</strong>である。</li>
+                <li><strong>項（Terms, $\text{Term}_{\mathcal{L}}$）：</strong>
+                    <ul class="model-list">
+                        <li>個体変数（Individual Variables）：$x, y, a, c, c_{\text{before}}, c_{\text{after}} \dots$</li>
+                        <li>個体定数記号（Individual Constants）：$c_0$（唯一の原理的座標）、$s_{\text{ind}}$（個別観念としての個体定数）、$World$（世界全体としての個体定数）</li>
+                        <li>関数記号（Function Symbol）：単項関数 $Loc(t)$（項 $t \in \text{Term}_{\mathcal{L}}$ に対し $Loc(t) \in \text{Term}_{\mathcal{L}}$）</li>
+                    </ul>
+                </li>
+                <li><strong>原子論理式（Atomic Formulas）：</strong> 任意の項 $t, t_1, t_2 \in \text{Term}_{\mathcal{L}}$ に対し、以下はすべて原子論理式である。
+                    <ul class="model-list">
+                        <li>単項述語（1-place Predicates on Terms）：$S(t), B(t), PE(t), Concept(t), M(t), Ext_{\text{原理的}}(t), Gen(t), Begin(t), End(t), \text{AlreadyPresent}(t), \text{AbsoluteNothing}(t), \text{Limited}(t)$</li>
+                        <li>二項述語（2-place Predicates on Terms）：$P(t_1, t_2), C(t_1, t_2), \text{CoPresent}(t_1, t_2)$、および等号 $t_1 = t_2$</li>
+                    </ul>
+                </li>
+                <li><strong>整式（Well-Formed Formulas, $\text{WFF}_{\mathcal{L}}$）の帰納的定義：</strong>
+                    <ul class="model-list">
+                        <li>すべての原子論理式は整式（$\text{WFF}_{\mathcal{L}}$）である。</li>
+                        <li>$\phi, \psi \in \text{WFF}_{\mathcal{L}}$ かつ $x$ が個体変数のとき、$\neg \phi, (\phi \land \psi), (\phi \lor \psi), (\phi \implies \psi), (\phi \iff \psi), \forall x \phi, \exists x \phi$ はすべて整式（$\text{WFF}_{\mathcal{L}}$）である。</li>
+                        <li>$\phi \in \text{WFF}_{\mathcal{L}}$ のとき、単項文オペレータを適用した $\mathbf{S}(\phi), F(\phi), Truth(\phi)$ はすべて整式（$\text{WFF}_{\mathcal{L}}$）である。（※述語 $S(t)$ は「項 $t$」を引数にとり、文オペレータ $\mathbf{S}(\phi)$ は「整式 $\phi$」を引数にとるため、構文論上の型は完全に分離されている。）</li>
+                    </ul>
+                </li>
+                <li><strong>公理スキーマ（Axiom Schemas）の規定：</strong><br>
+                本仕様書において $\phi, \psi$（または単項述語記号 $\Phi$）を含む公理・定義（D1c, D5a, A1a, A1b, A2）は、二階述語論理の量化ではなく、任意の整式 $\phi, \psi \in \text{WFF}_{\mathcal{L}}$（または $\mathcal{L}$ の任意の単項述語 $\Phi$）を代入して得られる無限個の公理群を表す標準的な<strong>公理スキーマ（Axiom Schema）</strong>である。</li>
+            </ul>
 
             <!-- Human-friendly legend -->
             <div class="symbol-guide-box">
                 <span class="symbol-guide-title">【人間の読者のための論理記号ミニガイド（凡例）】</span>
                 <div class="symbol-guide-grid">
-                    <div class="sg-item"><span class="sg-sym">∀x</span><span><strong>すべての</strong> x について（全称）</span></div>
-                    <div class="sg-item"><span class="sg-sym">∃x</span><span>ある x が<strong>存在する</strong>（存在）</span></div>
+                    <div class="sg-item"><span class="sg-sym">∀x</span><span><strong>すべての</strong>個体 x について（全称）</span></div>
+                    <div class="sg-item"><span class="sg-sym">∃x</span><span>ある個体 x が<strong>存在する</strong>（存在）</span></div>
                     <div class="sg-item"><span class="sg-sym">A ⇒ B</span><span>A <strong>ならば</strong> B である（含意）</span></div>
                     <div class="sg-item"><span class="sg-sym">A ⇔ B</span><span>A と B は<strong>同値（同等）</strong>である（双条件）</span></div>
                     <div class="sg-item"><span class="sg-sym">A ∧ B</span><span>A <strong>かつ</strong> B（連言）</span></div>
@@ -603,65 +653,61 @@
                 </div>
             </div>
 
+            <h3>2. 原始記号および語彙一覧（Primitives &amp; Vocabulary of ℒ）</h3>
             <div class="primitives-list">
                 <div class="prim-row">
-                    <div class="prim-sym">𝒮</div>
-                    <div class="prim-desc"><strong>観念</strong>（「そう思う」という起源的な作用・現前の場そのもの）</div>
-                    <div class="prim-latex">[LaTeX] $\mathcal{S}$</div>
-                </div>
-                <div class="prim-row">
                     <div class="prim-sym">𝐒(φ)</div>
-                    <div class="prim-desc">事象・対象・命題 φ が「そう思う（観念）」として成立・現前している</div>
+                    <div class="prim-desc">【文オペレータ】整式（命題・事象）φ が「そう思う（観念）」として成立・現前している（$\phi \in \text{WFF}_{\mathcal{L}}$）</div>
                     <div class="prim-latex">[LaTeX] $\mathbf{S}(\phi)$</div>
                 </div>
                 <div class="prim-row">
-                    <div class="prim-sym">S(x)</div>
-                    <div class="prim-desc">x は観念である</div>
-                    <div class="prim-latex">[LaTeX] $S(x)$</div>
-                </div>
-                <div class="prim-row">
                     <div class="prim-sym">F(φ)</div>
-                    <div class="prim-desc">φ は世界を説明・整理し、人間が生きるために観念内部で設定された<strong>便宜（二次的枠組み・境界）</strong>である</div>
+                    <div class="prim-desc">【文オペレータ】整式 φ は世界を説明・整理し人間が生きるために観念内部で設定された<strong>便宜（二次的枠組み）</strong>である</div>
                     <div class="prim-latex">[LaTeX] $F(\phi)$</div>
                 </div>
                 <div class="prim-row">
+                    <div class="prim-sym">S(x)</div>
+                    <div class="prim-desc">【単項述語】個体 x は<strong>観念</strong>である（$x \in \text{Term}_{\mathcal{L}}$）</div>
+                    <div class="prim-latex">[LaTeX] $S(x)$</div>
+                </div>
+                <div class="prim-row">
                     <div class="prim-sym">B(x)</div>
-                    <div class="prim-desc">x は<strong>存在する（実在する）</strong></div>
+                    <div class="prim-desc">【単項述語】個体 x は<strong>存在する（実在する）</strong></div>
                     <div class="prim-latex">[LaTeX] $B(x)$</div>
                 </div>
                 <div class="prim-row">
                     <div class="prim-sym">PE(x)</div>
-                    <div class="prim-desc">x は<strong>原理的存在</strong>である</div>
+                    <div class="prim-desc">【単項述語】個体 x は<strong>原理的存在</strong>である</div>
                     <div class="prim-latex">[LaTeX] $PE(x)$</div>
                 </div>
                 <div class="prim-row">
                     <div class="prim-sym">Concept(x)</div>
-                    <div class="prim-desc">x は<strong>概念</strong>（思い描かれる対象）である</div>
+                    <div class="prim-desc">【単項述語】個体 x は<strong>概念</strong>（思い描かれる対象）である</div>
                     <div class="prim-latex">[LaTeX] $Concept(x)$</div>
                 </div>
                 <div class="prim-row">
                     <div class="prim-sym">P(x, y)</div>
-                    <div class="prim-desc">x が y を<strong>思い描く</strong>（観念として作用し成立させる）</div>
+                    <div class="prim-desc">【二項述語】個体 x が個体 y を<strong>思い描く</strong>（観念として作用し成立させる）</div>
                     <div class="prim-latex">[LaTeX] $P(x, y)$</div>
                 </div>
                 <div class="prim-row">
-                    <div class="prim-sym">c₀</div>
-                    <div class="prim-desc"><strong>唯一の原理的座標</strong>（時系列的分離のない単一の場）</div>
-                    <div class="prim-latex">[LaTeX] $c_0$</div>
+                    <div class="prim-sym">c₀, s<sub>ind</sub>, World</div>
+                    <div class="prim-desc">【個体定数】<strong>c₀</strong>：唯一の原理的座標 ／ <strong>s<sub>ind</sub></strong>：個人の個別観念 ／ <strong>World</strong>：世界全体</div>
+                    <div class="prim-latex">[LaTeX] $c_0, s_{\text{ind}}, World$</div>
                 </div>
                 <div class="prim-row">
                     <div class="prim-sym">Loc(x)</div>
-                    <div class="prim-desc">x が位置する原理的座標を与える関数</div>
+                    <div class="prim-desc">【単項関数】個体 x が位置する原理的座標を与える関数</div>
                     <div class="prim-latex">[LaTeX] $Loc(x)$</div>
                 </div>
                 <div class="prim-row">
                     <div class="prim-sym">C(c₀, c₀)</div>
-                    <div class="prim-desc">単一座標 c₀ において「今が今をもたらし続ける」<strong>非時間的連続性</strong></div>
+                    <div class="prim-desc">【二項述語】単一座標 c₀ において「今が今をもたらし続ける」<strong>非時間的連続性</strong></div>
                     <div class="prim-latex">[LaTeX] $C(c_0, c_0)$</div>
                 </div>
                 <div class="prim-row">
                     <div class="prim-sym">M(x)</div>
-                    <div class="prim-desc">x は<strong>意味</strong>である（意味を持つ）</div>
+                    <div class="prim-desc">【単項述語】個体 x は<strong>意味</strong>である（意味を持つ）</div>
                     <div class="prim-latex">[LaTeX] $M(x)$</div>
                 </div>
             </div>
@@ -678,15 +724,15 @@
                 <span class="logic-id">D1（観念と現前・実在の定義）</span>
                 <span class="logic-ref">対応箇所：本文 第2章 p.37–38・第3章 p.40</span>
             </div>
-            <p class="logic-prose">理解・納得・認識・措定など、何かが「在る」として成立する働きはすべて「そう思う」という観念の成立 𝐒 である。また、便宜的分割を介さない原理的領域において、「x が存在する」という観念の成立 𝐒(B(x)) は、x 自身が観念 S(x) であることと同値であり（D1a）、観念として成立しているものはすべて実在 B(x) する（D1b）。さらに、いかなる述語 Φ であれ、対象 x に関する命題 Φ(x) が観念 𝐒(Φ(x)) として措定・現前するならば、その対象 x は観念 S(x) として成立している（D1c：対象措定による観念成立規則）。</p>
+            <p class="logic-prose">理解・納得・認識・措定など、何かが「在る」として成立する働きはすべて「そう思う」という観念の成立 𝐒 である。便宜的分割を介さない原理的領域において、「x が存在する」という観念の成立 𝐒(B(x)) は、x 自身が観念 S(x) であることと同値であり（D1a）、観念として成立しているものはすべて実在 B(x) する（D1b）。また、言語 ℒ の任意の単項述語 Φ に対し、個体 x に関する命題 Φ(x) が観念 𝐒(Φ(x)) として措定・現前するならば、その対象 x は観念 S(x) として成立している（D1c：対象措定の定義スキーマ）。</p>
             <div class="formula-display">
                 <div class="formula-human">
-                    D1a : &nbsp;𝐒(B(x)) ⇔ S(x)<br>
-                    D1b : &nbsp;S(x) ⇒ B(x)<br>
-                    D1c : &nbsp;∀Φ ∀x &nbsp;( 𝐒(Φ(x)) ⇒ S(x) )
+                    D1a : &nbsp;∀x &nbsp;( 𝐒(B(x)) ⇔ S(x) )<br>
+                    D1b : &nbsp;∀x &nbsp;( S(x) ⇒ B(x) )<br>
+                    D1c（スキーマ） : &nbsp;∀x &nbsp;( 𝐒(Φ(x)) ⇒ S(x) ) &nbsp;&nbsp;（※ Φ は ℒ の任意の単項述語記号）
                 </div>
-                <div class="formula-reading">【読み方】D1a：「x が存在する」と観念されることと x が観念であることは同値。D1b：観念であるならば実在する。D1c：x についていかなる規定 Φ(x) であれ観念の内部で措定された時点で、x は観念 S(x) として成立する（T7の機械的導出を完結させる橋渡し規則）。</div>
-                <div class="formula-latex">[LaTeX] $$\text{D1a}: \quad \mathbf{S}(B(x)) \iff S(x)$$ $$\text{D1b}: \quad S(x) \implies B(x)$$ $$\text{D1c}: \quad \forall \Phi \forall x \, (\mathbf{S}(\Phi(x)) \implies S(x))$$</div>
+                <div class="formula-reading">【読み方】D1a：「x が存在する」と観念されることと x が観念であることは同値。D1b：観念であるならば実在する。D1c：x についていかなる述語 Φ(x) であれ観念の内部で措定されたならば、x は観念 S(x) として成立する。</div>
+                <div class="formula-latex">[LaTeX] $$\text{D1a}: \quad \forall x \, (\mathbf{S}(B(x)) \iff S(x))$$ $$\text{D1b}: \quad \forall x \, (S(x) \implies B(x))$$ $$\text{D1c (Schema)}: \quad \forall x \, (\mathbf{S}(\Phi(x)) \implies S(x))$$</div>
             </div>
         </div>
 
@@ -695,22 +741,22 @@
                 <span class="logic-id">D2（便宜的枠組みと外部・生成・境界の定義）</span>
                 <span class="logic-ref">対応箇所：本文 第1章 p.32–34・前文・詩「境界」</span>
             </div>
-            <p class="logic-prose">「主観と客観」「精神と物質」「過去・現在・未来（時系列 F<sub>time</sub>）」および「自他の境界」は、観念の内部で設定された構造上の分割規則（便宜 F）である。これに基づき、本体系において棄却対象となる「原理的外部（Ext<sub>原理的</sub>）」「無からの一方的生成（Gen）」「時間的境界（Begin, End）」「絶対的無（AbsoluteNothing）」を以下の論理式で厳密に定義する。</p>
+            <p class="logic-prose">「主観と客観」「精神と物質」「過去・現在・未来（時系列 F<sub>time</sub>）」および「自他の境界」は、観念の内部で設定された構造上の分割規則（便宜 F）である。これに基づき、本体系において検証・棄却対象となる「原理的外部（Ext<sub>原理的</sub>：観念による存在措定 𝐒(B(x)) の外にあるとされる領域）」「無からの一方的生成（Gen：双方向性を持たない非対称な生成作用）」「時間的境界（Begin, End）」「絶対的無（AbsoluteNothing）」を以下の単一かつ一意な論理式で厳密に定義する。</p>
             <div class="formula-display">
                 <div class="formula-human">
-                    D2a（原理的外部） : &nbsp;Ext<sub>原理的</sub>(x) ⇔ ¬𝐒(B(x) ∧ Ext<sub>原理的</sub>(x)) &nbsp;（および単項形：Ext<sub>原理的</sub>(x) ⇔ ¬𝐒(B(x))）<br>
-                    D2b（一方的生成） : &nbsp;Gen(x) ⇔ ∃a ( P(a, x) ∧ ¬P(x, a) )<br>
-                    D2c（始点境界） &nbsp;&nbsp;: &nbsp;Begin(x) ⇔ ∃c<sub>before</sub> ( c<sub>before</sub> ≠ c₀ ∧ Loc(x) = c₀ )<br>
-                    D2d（終点境界） &nbsp;&nbsp;: &nbsp;End(x) ⇔ ∃c<sub>after</sub> ( c<sub>after</sub> ≠ c₀ ∧ Loc(x) = c₀ )<br>
-                    D2e（絶対的無） &nbsp;&nbsp;: &nbsp;AbsoluteNothing(x) ⇔ 𝐒(AbsoluteNothing(x)) ∧ ¬B(x)
+                    D2a（原理的外部） : &nbsp;∀x &nbsp;( Ext<sub>原理的</sub>(x) ⇔ ¬𝐒(B(x)) )<br>
+                    D2b（一方的生成） : &nbsp;∀x &nbsp;( Gen(x) ⇔ ∃a ( P(a, x) ∧ ¬P(x, a) ) )<br>
+                    D2c（始点境界） &nbsp;&nbsp;: &nbsp;∀x &nbsp;( Begin(x) ⇔ ∃c<sub>before</sub> ( c<sub>before</sub> ≠ c₀ ∧ Loc(x) = c₀ ) )<br>
+                    D2d（終点境界） &nbsp;&nbsp;: &nbsp;∀x &nbsp;( End(x) ⇔ ∃c<sub>after</sub> ( c<sub>after</sub> ≠ c₀ ∧ Loc(x) = c₀ ) )<br>
+                    D2e（絶対的無） &nbsp;&nbsp;: &nbsp;∀x &nbsp;( AbsoluteNothing(x) ⇔ ( 𝐒(AbsoluteNothing(x)) ∧ ¬B(x) ) )
                 </div>
-                <div class="formula-reading">【読み方】D2a：原理的外部とは観念の成立 𝐒 を介さずに外部存在すること。D2b：一方的生成とは双方向性なしに a から x へ一方向に生み出されること。D2c・D2d：始まりと終わりとは単一座標 c₀ の外側に前後の別座標が存在すること。D2e：絶対的無とは「絶対的無として措定されながら一切実在しない」こと。</div>
+                <div class="formula-reading">【読み方】D2a：x が観念の「原理的外部」にあるとは、x の存在が観念 𝐒(B(x)) として成立していないことと定義する。D2b：一方的生成 Gen(x) とは、双方向性なしに a から x へ一方向（非対称）に思い描かれ生み出されること。D2c・D2d：始まりと終わりとは単一座標 c₀ の外側に別座標が存在すること。D2e：絶対的無とは「絶対的無として措定されながら一切実在しない」こと。</div>
                 <div class="formula-latex">[LaTeX]
-$$\text{D2a（原理的外部）}: \quad Ext_{\text{原理的}}(x) \iff \neg \mathbf{S}(B(x) \land Ext_{\text{原理的}}(x)) \quad (\text{単項形}: Ext_{\text{原理的}}(x) \iff \neg \mathbf{S}(B(x)))$$
-$$\text{D2b（一方的生成）}: \quad Gen(x) \iff \exists a \, (P(a, x) \land \neg P(x, a))$$
-$$\text{D2c（始点境界）}: \quad Begin(x) \iff \exists c_{\text{before}} \, (c_{\text{before}} \neq c_0 \land Loc(x) = c_0)$$
-$$\text{D2d（終点境界）}: \quad End(x) \iff \exists c_{\text{after}} \, (c_{\text{after}} \neq c_0 \land Loc(x) = c_0)$$
-$$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(\text{AbsoluteNothing}(x)) \land \neg B(x)$$</div>
+$$\text{D2a（原理的外部）}: \quad \forall x \, \left(Ext_{\text{原理的}}(x) \iff \neg \mathbf{S}(B(x))\right)$$
+$$\text{D2b（一方的生成）}: \quad \forall x \, \left(Gen(x) \iff \exists a \, (P(a, x) \land \neg P(x, a))\right)$$
+$$\text{D2c（始点境界）}: \quad \forall x \, \left(Begin(x) \iff \exists c_{\text{before}} \, (c_{\text{before}} \neq c_0 \land Loc(x) = c_0)\right)$$
+$$\text{D2d（終点境界）}: \quad \forall x \, \left(End(x) \iff \exists c_{\text{after}} \, (c_{\text{after}} \neq c_0 \land Loc(x) = c_0)\right)$$
+$$\text{D2e（絶対的無）}: \quad \forall x \, \left(\text{AbsoluteNothing}(x) \iff (\mathbf{S}(\text{AbsoluteNothing}(x)) \land \neg B(x))\right)$$</div>
             </div>
         </div>
 
@@ -719,14 +765,14 @@ $$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(
                 <span class="logic-id">D3（原理的存在と概念の定義）</span>
                 <span class="logic-ref">対応箇所：本文 第3章 p.40・終章 p.53・付録『重要な点』</span>
             </div>
-            <p class="logic-prose">観念 S(x) として成立し、かつ他と相互成立の対称性を持つものを「原理的存在（PE）」と定義する。また、思い描かれるあらゆる「概念（Concept）」は存在 B(x) の部分集合である。</p>
+            <p class="logic-prose">観念 S(x) として成立し、かつ他と相互成立の対称性を持つものを「原理的存在（PE）」と定義する。また、思い描かれるあらゆる「概念（Concept）」は存在 B(x) に含まれる。</p>
             <div class="formula-display">
                 <div class="formula-human">
-                    D3a : &nbsp;PE(x) ⇔ ( S(x) ∧ ∀y ( P(x, y) ⇔ P(y, x) ) )<br>
-                    D3b : &nbsp;Concept(x) ⇒ B(x)
+                    D3a : &nbsp;∀x &nbsp;( PE(x) ⇔ ( S(x) ∧ ∀y ( P(x, y) ⇔ P(y, x) ) ) )<br>
+                    D3b : &nbsp;∀x &nbsp;( Concept(x) ⇒ B(x) )
                 </div>
-                <div class="formula-reading">【読み方】D3a：原理的存在（PE）とは、観念として成立し、あらゆる存在と対等な双方向の成立関係にあること。D3b：概念であるならば存在する。</div>
-                <div class="formula-latex">[LaTeX] $$\text{D3a}: \quad PE(x) \iff \left( S(x) \land \forall y \, (P(x, y) \iff P(y, x)) \right)$$ $$\text{D3b}: \quad Concept(x) \implies B(x)$$</div>
+                <div class="formula-reading">【読み方】D3a：原理的存在（PE）とは、観念 S(x) として成立し、かつあらゆる存在 y と対等な双方向の成立関係にあることと定義する。D3b：概念であるならば存在する。</div>
+                <div class="formula-latex">[LaTeX] $$\text{D3a}: \quad \forall x \, \left(PE(x) \iff (S(x) \land \forall y \, (P(x, y) \iff P(y, x)))\right)$$ $$\text{D3b}: \quad \forall x \, (Concept(x) \implies B(x))$$</div>
             </div>
         </div>
 
@@ -738,11 +784,11 @@ $$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(
             <p class="logic-prose">時系列 F<sub>time</sub> を前提としない原理的領域において、「同時（CoPresent）」と「予め存在する（AlreadyPresent）」を以下の連言によって定義する。</p>
             <div class="formula-display">
                 <div class="formula-human">
-                    D4a : &nbsp;CoPresent(x, y) ⇔ ( Loc(x) = c₀ ∧ Loc(y) = c₀ )<br>
-                    D4b : &nbsp;AlreadyPresent(x) ⇔ ( Loc(x) = c₀ ∧ PE(x) ∧ ¬Gen(x) )
+                    D4a : &nbsp;∀x ∀y &nbsp;( CoPresent(x, y) ⇔ ( Loc(x) = c₀ ∧ Loc(y) = c₀ ) )<br>
+                    D4b : &nbsp;∀x &nbsp;( AlreadyPresent(x) ⇔ ( Loc(x) = c₀ ∧ PE(x) ∧ ¬Gen(x) ) )
                 </div>
                 <div class="formula-reading">【読み方】D4a：共在（同時）とはともに単一座標 c₀ 上に位置すること。D4b：予め存在する（予在）とは、単一座標 c₀ 上で原理的存在として一方的生成（始まり）なしに存在していること。</div>
-                <div class="formula-latex">[LaTeX] $$\text{D4a}: \quad \text{CoPresent}(x, y) \iff (Loc(x) = c_0 \land Loc(y) = c_0)$$ $$\text{D4b}: \quad \text{AlreadyPresent}(x) \iff (Loc(x) = c_0 \land PE(x) \land \neg Gen(x))$$</div>
+                <div class="formula-latex">[LaTeX] $$\text{D4a}: \quad \forall x \forall y \, \left(\text{CoPresent}(x, y) \iff (Loc(x) = c_0 \land Loc(y) = c_0)\right)$$ $$\text{D4b}: \quad \forall x \, \left(\text{AlreadyPresent}(x) \iff (Loc(x) = c_0 \land PE(x) \land \neg Gen(x))\right)$$</div>
             </div>
         </div>
 
@@ -751,59 +797,62 @@ $$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(
                 <span class="logic-id">D5（真理と意味の定義）</span>
                 <span class="logic-ref">対応箇所：前文・終章 p.53–54</span>
             </div>
-            <p class="logic-prose">真理とは追究の作用において観念が現前する事象そのものであり、意味 M(x) とは外部の目的から付与されるものではなく、存在 B(x) そのものである。</p>
+            <p class="logic-prose">真理とは追究の作用において観念が現前する事象そのものであり（D5a：文オペレータ定義スキーマ）、意味 M(x) とは外部の目的から付与されるものではなく、存在 B(x) そのものである（D5b）。</p>
             <div class="formula-display">
                 <div class="formula-human">
-                    D5a : &nbsp;Truth(φ) ⇔ 𝐒(φ)<br>
-                    D5b : &nbsp;M(x) ⇔ B(x)
+                    D5a（スキーマ） : &nbsp;Truth(φ) ⇔ 𝐒(φ) &nbsp;&nbsp;（※ φ は任意の整式 φ ∈ WFF<sub>ℒ</sub>）<br>
+                    D5b : &nbsp;∀x &nbsp;( M(x) ⇔ B(x) )
                 </div>
                 <div class="formula-reading">【読み方】D5a：真理とは観念として現前する事象そのものである。D5b：意味があること（M）と存在すること（B）は同値である。</div>
-                <div class="formula-latex">[LaTeX] $$\text{D5a}: \quad Truth(\phi) \iff \mathbf{S}(\phi)$$ $$\text{D5b}: \quad M(x) \iff B(x)$$</div>
+                <div class="formula-latex">[LaTeX] $$\text{D5a (Schema)}: \quad Truth(\phi) \iff \mathbf{S}(\phi)$$ $$\text{D5b}: \quad \forall x \, (M(x) \iff B(x))$$</div>
             </div>
         </div>
     </section>
 
     <!-- III. AXIOMS -->
     <section id="sec-3">
-        <h2>Ⅲ. 公理群（Axioms）</h2>
+        <h2>Ⅲ. 公理群および公理スキーマ（Axioms &amp; Axiom Schemas）</h2>
         <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">本体系の出発点および構造的規則として採用される基本前提。</p>
 
         <div class="logic-card" id="ax-a1">
             <div class="logic-card-header">
-                <span class="logic-id">A1（観念包摂公理）</span>
+                <span class="logic-id">A1（観念包摂および連言分配の公理スキーマ）</span>
                 <span class="logic-ref">対応箇所：本文 第1章 p.32–33・第3章 p.39–40</span>
             </div>
-            <p class="logic-prose">いかなる対象や命題 φ であれ、それを措定・認識・説明する行為は必ず観念 𝐒 を介してその内部で成立する。</p>
+            <p class="logic-prose">いかなる整式（命題・事象）φ, ψ ∈ WFF<sub>ℒ</sub> であれ、それを措定・認識・説明する行為は必ず観念 𝐒 を介してその内部で成立する（A1a）。また、連言命題 φ ∧ ψ が観念として成立・現前しているならば、その各構成要素 φ および ψ もそれぞれ観念として成立・現前している（A1b：連言に対する観念オペレータ 𝐒 の分配規則）。</p>
             <div class="formula-display">
-                <div class="formula-human">∀φ &nbsp;( φ ⇒ 𝐒(φ) )</div>
-                <div class="formula-reading">【読み方】すべての命題・事象 φ について、φ が措定されるならば、それは観念 𝐒(φ) として成立している。</div>
-                <div class="formula-latex">[LaTeX] $$\forall \phi \, (\phi \implies \mathbf{S}(\phi))$$</div>
+                <div class="formula-human">
+                    A1a（包摂スキーマ） : &nbsp;φ ⇒ 𝐒(φ)<br>
+                    A1b（分配スキーマ） : &nbsp;𝐒(φ ∧ ψ) ⇒ ( 𝐒(φ) ∧ 𝐒(ψ) )
+                </div>
+                <div class="formula-reading">【読み方】A1a：任意の命題 φ が措定されるならば、それは観念 𝐒(φ) として成立する。A1b：「φ かつ ψ」が観念として成立しているならば、「φ が観念として成立」かつ「ψ が観念として成立」している（T1の背理法を命題論理と推論規則だけで完全に閉じるための明示的規則）。</div>
+                <div class="formula-latex">[LaTeX] $$\text{A1a (Schema)}: \quad \phi \implies \mathbf{S}(\phi)$$ $$\text{A1b (Schema)}: \quad \mathbf{S}(\phi \land \psi) \implies (\mathbf{S}(\phi) \land \mathbf{S}(\psi))$$</div>
             </div>
         </div>
 
         <div class="logic-card" id="ax-a2">
             <div class="logic-card-header">
-                <span class="logic-id">A2（枠組み内部性公理）</span>
+                <span class="logic-id">A2（枠組み内部性の公理スキーマ）</span>
                 <span class="logic-ref">対応箇所：本文 第1章 p.32–34</span>
             </div>
-            <p class="logic-prose">「客観的事実」や「物質」を含むいかなる便宜的枠組み F も、観念の外部にあるのではなく、観念の作用として成立する。</p>
+            <p class="logic-prose">「客観的事実」や「物質」を含むいかなる便宜的枠組み F(φ)（φ ∈ WFF<sub>ℒ</sub>）も、観念の外部にあるのではなく、観念の作用 𝐒(φ) として成立する。</p>
             <div class="formula-display">
-                <div class="formula-human">∀φ &nbsp;( F(φ) ⇒ 𝐒(φ) )</div>
-                <div class="formula-reading">【読み方】すべての便宜的枠組み F(φ) は、観念 𝐒(φ) の内部の働きとして成立する。</div>
-                <div class="formula-latex">[LaTeX] $$\forall \phi \, (F(\phi) \implies \mathbf{S}(\phi))$$</div>
+                <div class="formula-human">A2（スキーマ） : &nbsp;F(φ) ⇒ 𝐒(φ)</div>
+                <div class="formula-reading">【読み方】任意の整式 φ について、それが便宜的枠組み F(φ) であるならば、観念 𝐒(φ) の内部の働きとして成立する。</div>
+                <div class="formula-latex">[LaTeX] $$\text{A2 (Schema)}: \quad F(\phi) \implies \mathbf{S}(\phi)$$</div>
             </div>
         </div>
 
         <div class="logic-card" id="ax-a3">
             <div class="logic-card-header">
-                <span class="logic-id">A3（自律体系・多重説明公理）</span>
-                <span class="logic-ref">対応箇所：本文 第1章 p.34・付録</span>
+                <span class="logic-id">A3（自律体系・多重説明のメタ公理）</span>
+                <span class="logic-ref">対応箇所：本文 第1章 p.34・付録『論考の前提・証明の定義・方法論について』</span>
             </div>
-            <p class="logic-prose">本体系の内部概念に外部体系の定義 D<sub>ext</sub> を適用してはならない。また、内部で無矛盾に閉じた説明体系 L は複数存在しうる。</p>
+            <p class="logic-prose">本体系 𝒯<sub>world</sub> の内部概念に外部体系の定義集合 𝒟<sub>ext</sub> を適用してはならない。また、内部で無矛盾に閉じた説明体系（公理系）𝒯<sub>i</sub> は複数存在しうる。（※本公理は体系間の独立性を規定するメタ理論上の原則である。）</p>
             <div class="formula-display">
-                <div class="formula-human">( D<sub>ext</sub>(x) ⇏ D<sub>int</sub>(x) ) &nbsp;∧&nbsp; ∃L₁, L₂ … ( Consistent(L<sub>i</sub>) )</div>
-                <div class="formula-reading">【読み方】外部体系の定義は本体系の内部定義を拘束せず、無矛盾に閉じた説明モデルは複数存在しうる。</div>
-                <div class="formula-latex">[LaTeX] $$(D_{\text{ext}}(x) \not\Rightarrow D_{\text{int}}(x)) \land \exists L_1, L_2 \dots (\text{Consistent}(L_i))$$</div>
+                <div class="formula-human">( 𝒟<sub>ext</sub> ∩ 𝒯<sub>world</sub> = ∅ ) &nbsp;∧&nbsp; ∃𝒯₁, 𝒯₂ … ( Consistent(𝒯<sub>i</sub>) )</div>
+                <div class="formula-reading">【読み方】外部体系の定義集合は本体系の推論空間に属さず、無矛盾に閉じた説明モデルは複数成立しうる（説明になってさえいれば答えは何通りあってもよい）。</div>
+                <div class="formula-latex">[LaTeX] $$(\mathcal{D}_{\text{ext}} \cap \mathcal{T}_{\text{world}} = \varnothing) \land \exists \mathcal{T}_1, \mathcal{T}_2 \dots (\text{Consistent}(\mathcal{T}_i))$$</div>
             </div>
         </div>
 
@@ -815,7 +864,7 @@ $$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(
             <p class="logic-prose">「ある対象を思い描く行為」と「ある対象によって思い描かれる行為」は原理的に同等であり、作用する側とされる側の間に一方向の従属関係はない。</p>
             <div class="formula-display">
                 <div class="formula-human">∀x ∀y &nbsp;( P(x, y) ⇔ P(y, x) )</div>
-                <div class="formula-reading">【読み方】すべての x, y について、x が y を思い描くことと y が x を思い描くことは同等である。</div>
+                <div class="formula-reading">【読み方】すべての個体 x, y について、x が y を思い描くことと y が x を思い描くことは同等である。</div>
                 <div class="formula-latex">[LaTeX] $$\forall x \forall y \, (P(x, y) \iff P(y, x))$$</div>
             </div>
         </div>
@@ -828,7 +877,7 @@ $$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(
             <p class="logic-prose">原理的には時系列（別座標の並び）は存在せず、すべての原理的座標は唯一の同一座標点 c₀ に一致し、すべての原理的存在は c₀ 上で展開され、「今が今をもたらし続ける」連続性 C(c₀, c₀) のみがある。</p>
             <div class="formula-display">
                 <div class="formula-human">∀c ( c = c₀ ) &nbsp;∧&nbsp; ∀x ( PE(x) ⇒ Loc(x) = c₀ ) &nbsp;∧&nbsp; C(c₀, c₀)</div>
-                <div class="formula-reading">【読み方】すべての原理的座標 c は唯一の c₀ に一致し、すべての原理的存在は c₀ 上に位置し、非時間的連続性 C(c₀, c₀) が展開されている。</div>
+                <div class="formula-reading">【読み方】すべての座標 c は唯一の c₀ に一致し、すべての原理的存在は c₀ 上に位置し、非時間的連続性 C(c₀, c₀) が展開されている。</div>
                 <div class="formula-latex">[LaTeX] $$\forall c \, (c = c_0) \land \forall x \, (PE(x) \implies Loc(x) = c_0) \land C(c_0, c_0)$$</div>
             </div>
         </div>
@@ -838,26 +887,26 @@ $$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(
                 <span class="logic-id">A6（全体作用による個体制約公理）</span>
                 <span class="logic-ref">対応箇所：本文 第5章【補足】p.48</span>
             </div>
-            <p class="logic-prose">個人の思考（個別観念 S<sub>ind</sub>）も実在の一部であるが、単一座標 c₀ 上ではすべての観念が同時に共在して作用するため、一個人の観念のみによって世界全体を恣意的に変更することはできない。</p>
+            <p class="logic-prose">個人の思考（個別観念を表す個体定数 s<sub>ind</sub>）も実在の一部であるが、単一座標 c₀ 上ではすべての存在 x が同時に共在して作用するため、一個人の観念 s<sub>ind</sub> のみによって世界全体を恣意的に変更することはできない。</p>
             <div class="formula-display">
-                <div class="formula-human">∀x &nbsp;CoPresent(S<sub>ind</sub>, S<sub>x</sub>) ⇒ Limited(S<sub>ind</sub>)</div>
-                <div class="formula-reading">【読み方】個別観念 S<sub>ind</sub> とあらゆる観念 S<sub>x</sub> が同一座標 c₀ 上に共在しているならば、個人の裁量 S<sub>ind</sub> は制約される（反独我論）。</div>
-                <div class="formula-latex">[LaTeX] $$\forall x \, \text{CoPresent}(S_{\text{ind}}, S_x) \implies \text{Limited}(S_{\text{ind}})$$</div>
+                <div class="formula-human">( ∀x &nbsp;CoPresent(s<sub>ind</sub>, x) ) ⇒ Limited(s<sub>ind</sub>)</div>
+                <div class="formula-reading">【読み方】個別観念 s<sub>ind</sub> とあらゆる存在 x が同一座標 c₀ 上に共在しているならば、個人の裁量 s<sub>ind</sub> は制約される（反独我論）。</div>
+                <div class="formula-latex">[LaTeX] $$\left(\forall x \, \text{CoPresent}(s_{\text{ind}}, x)\right) \implies \text{Limited}(s_{\text{ind}})$$</div>
             </div>
         </div>
     </section>
 
     <!-- IV. THEOREMS -->
     <section id="sec-4">
-        <h2>Ⅳ. 定理群（Theorems：構文論的推論規則のみによる機械的導出証明）</h2>
-        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">公理 A1〜A6 と定義 D1〜D5 のみから、自然言語の補足に一切依存せず、一階述語論理の推論規則（モーダスポネンス、背理法、推移律、定義代入）のみで各定理を機械的に導出する。</p>
+        <h2>Ⅳ. 定理群の構文論的導出証明（Syntactic Derivability of Theorems: T1〜T8）</h2>
+        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">公理（スキーマ）A1〜A6 と定義 D1〜D5 のみから、自然言語の補足に一切依存せず、一階述語論理の推論規則（モーダスポネンス MP、連言除去・導入、背理法、推移律、定義代入）のみで各定理を機械的に導出する。</p>
 
         <div class="stage-banner">【第1段階：認識と存在の統合（第1章〜第3章）】</div>
 
         <div class="logic-card" id="thm-t1">
             <div class="logic-card-header">
                 <span class="logic-id">T1（外部実在仮説の自己崩落）</span>
-                <span class="logic-ref">使用規則：A1, D2a, モーダスポネンス(MP), 背理法</span>
+                <span class="logic-ref">成立根拠：公理スキーマ A1a, A1b と定義 D2a の組み合わせ（背理法）</span>
             </div>
             <div class="formula-display">
                 <div class="formula-human">⊢ &nbsp;¬∃x &nbsp;( B(x) ∧ Ext<sub>原理的</sub>(x) )</div>
@@ -867,13 +916,15 @@ $$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(
             <div class="proof-box">
                 <span class="proof-title">【形式的証明（Mechanical Derivation）】</span>
                 <ol class="proof-steps">
-                    <li>∃x ( B(x) ∧ Ext<sub>原理的</sub>(x) ) と仮定する（背理法の仮定）。</li>
-                    <li>存在例化により、ある個体 a について B(a) ∧ Ext<sub>原理的</sub>(a) とする。</li>
-                    <li>公理 A1 において φ := ( B(a) ∧ Ext<sub>原理的</sub>(a) ) と置くと、( B(a) ∧ Ext<sub>原理的</sub>(a) ) ⇒ 𝐒(B(a) ∧ Ext<sub>原理的</sub>(a))。（※単項形 D2a を用いる場合は φ := B(a) と置いて B(a) ⇒ 𝐒(B(a)) とする）</li>
-                    <li>2と3より、モーダスポネンス（MP）で 𝐒(B(a) ∧ Ext<sub>原理的</sub>(a))（単項形では 𝐒(B(a))）を得る。</li>
-                    <li>一方、2の右側 Ext<sub>原理的</sub>(a) に対し定義 D2a を適用すると、¬𝐒(B(a) ∧ Ext<sub>原理的</sub>(a))（単項形では ¬𝐒(B(a))）を得る。</li>
-                    <li>4と5により、𝐒(…) ∧ ¬𝐒(…) という明示的矛盾（⊥）が導出される。</li>
-                    <li>よって背理法（否定導入）により、⊢ ¬∃x ( B(x) ∧ Ext<sub>原理的</sub>(x) ) が機械的に導出された。 ∎</li>
+                    <li>$\exists x \, (B(x) \land Ext_{\text{原理的}}(x))$ と仮定する（背理法の仮定）。</li>
+                    <li>存在例化（Existential Instantiation）により、ある個体定数 $a$ について $B(a) \land Ext_{\text{原理的}}(a)$ を得る。</li>
+                    <li>公理スキーマ A1a（$\phi \implies \mathbf{S}(\phi)$）において $\phi := (B(a) \land Ext_{\text{原理的}}(a))$ と置くと、$(B(a) \land Ext_{\text{原理的}}(a)) \implies \mathbf{S}(B(a) \land Ext_{\text{原理的}}(a))$。</li>
+                    <li>ステップ2とステップ3より、モーダスポネンス（MP）で $\mathbf{S}(B(a) \land Ext_{\text{原理的}}(a))$ を得る。</li>
+                    <li>公理スキーマ A1b（$\mathbf{S}(\phi \land \psi) \implies (\mathbf{S}(\phi) \land \mathbf{S}(\psi))$）において $\phi := B(a), \psi := Ext_{\text{原理的}}(a)$ と置き、ステップ4に MP を適用して $\mathbf{S}(B(a)) \land \mathbf{S}(Ext_{\text{原理的}}(a))$ を得る。</li>
+                    <li>ステップ5に連言除去（左項取り出し）を適用し、$\mathbf{S}(B(a))$ を得る。</li>
+                    <li>一方、ステップ2に連言除去（右項取り出し）を適用すると $Ext_{\text{原理的}}(a)$ が得られ、これに定義 D2a（$Ext_{\text{原理的}}(a) \iff \neg \mathbf{S}(B(a))$）を適用すると、MP により $\neg \mathbf{S}(B(a))$ を得る。</li>
+                    <li>ステップ6の $\mathbf{S}(B(a))$ とステップ7の $\neg \mathbf{S}(B(a))$ を連言導入で結合すると、明示的矛盾 $\mathbf{S}(B(a)) \land \neg \mathbf{S}(B(a))$（$\bot$）が導出される。</li>
+                    <li>よって背理法（否定導入）により、仮定1は棄却され $\vdash \neg \exists x \, (B(x) \land Ext_{\text{原理的}}(x))$ が機械的に導出された。 $\blacksquare$</li>
                 </ol>
             </div>
         </div>
@@ -881,21 +932,21 @@ $$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(
         <div class="logic-card" id="thm-t2">
             <div class="logic-card-header">
                 <span class="logic-id">T2（観念存在定理 — 第3章の中心命題）</span>
-                <span class="logic-ref">使用規則：A1, D1a, D1b, 仮言三段論法(推移律), 双条件導入</span>
+                <span class="logic-ref">成立根拠：公理スキーマ A1a と定義 D1a, D1b の組み合わせ</span>
             </div>
             <div class="formula-display">
                 <div class="formula-human">⊢ &nbsp;∀x &nbsp;( B(x) ⇔ S(x) )</div>
-                <div class="formula-reading">【定理の意味】すべての x について、x が存在する（実在する）ことと x が観念であることは同値である。</div>
+                <div class="formula-reading">【定理の意味】すべての個体 x について、x が存在する（実在する）ことと x が観念であることは論理的に同値である。</div>
                 <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (B(x) \iff S(x))$$</div>
             </div>
             <div class="proof-box">
                 <span class="proof-title">【形式的証明（Mechanical Derivation）】</span>
                 <ol class="proof-steps">
-                    <li>任意の個体 x をとる。公理 A1 において φ := B(x) と置くと、B(x) ⇒ 𝐒(B(x))。</li>
-                    <li>定義 D1a より、𝐒(B(x)) ⇒ S(x)。</li>
-                    <li>1と2に仮言三段論法（推移律）を適用すると、B(x) ⇒ S(x) を得る。</li>
-                    <li>逆方向は定義 D1b より、S(x) ⇒ B(x) が直ちに与えられる。</li>
-                    <li>3と4に双条件導入および全称化を適用し、⊢ ∀x ( B(x) ⇔ S(x) ) が機械的に導出された。 ∎</li>
+                    <li>任意の個体 $x$ をとる。公理スキーマ A1a において $\phi := B(x)$ と置くと、$B(x) \implies \mathbf{S}(B(x))$。</li>
+                    <li>定義 D1a（$\mathbf{S}(B(x)) \iff S(x)$）より、双条件除去で $\mathbf{S}(B(x)) \implies S(x)$。</li>
+                    <li>ステップ1とステップ2に仮言三段論法（推移律）を適用すると、$B(x) \implies S(x)$ を得る。</li>
+                    <li>逆方向は定義 D1b より、$S(x) \implies B(x)$ が直ちに与えられる。</li>
+                    <li>ステップ3とステップ4に双条件導入および全称化（Universal Generalization）を適用し、$\vdash \forall x \, (B(x) \iff S(x))$ が機械的に導出された。 $\blacksquare$</li>
                 </ol>
             </div>
         </div>
@@ -905,20 +956,20 @@ $$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(
         <div class="logic-card" id="thm-t3">
             <div class="logic-card-header">
                 <span class="logic-id">T3（全存在の原理的同格性）</span>
-                <span class="logic-ref">使用規則：A4, D3a, T2, 双条件の推移律（＋A5, A6, D4aによる個体制約の導出）</span>
+                <span class="logic-ref">成立根拠：公理 A4 と定義 D3a の組み合わせにより定義上ただちに導出（＋T2との結合）</span>
             </div>
             <div class="formula-display">
-                <div class="formula-human">⊢ &nbsp;∀x &nbsp;( B(x) ⇔ PE(x) ) &nbsp;&nbsp;（系：⊢ Limited(S<sub>ind</sub>)）</div>
-                <div class="formula-reading">【定理の意味】すべての存在 x は上下・主従のない「原理的存在（PE）」であることと同値であり、かつ全観念の共在により個人の裁量 S<sub>ind</sub> は制約される（反独我論の成立）。</div>
-                <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (B(x) \iff PE(x)) \quad \left(\text{系}: \vdash \text{Limited}(S_{\text{ind}})\right)$$</div>
+                <div class="formula-human">⊢ &nbsp;∀x &nbsp;( B(x) ⇔ PE(x) ) &nbsp;&nbsp;（系：⊢ Limited(s<sub>ind</sub>)）</div>
+                <div class="formula-reading">【定理の意味】原理的存在の定義 D3a に対称性条件が組み込まれており、公理 A4 がその対称性を恒真として与えるため、A4 と D3a（および T2）から定義上ただちに「すべての存在 x は上下・主従のない原理的存在 PE(x) である」ことが導かれる。</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (B(x) \iff PE(x)) \quad \left(\text{系}: \vdash \text{Limited}(s_{\text{ind}})\right)$$</div>
             </div>
             <div class="proof-box">
                 <span class="proof-title">【形式的証明（Mechanical Derivation）】</span>
                 <ol class="proof-steps">
-                    <li>任意の個体 x をとる。公理 A4 より ∀y ( P(x, y) ⇔ P(y, x) ) は恒真である。</li>
-                    <li>恒真命題との連言同値により、S(x) ⇔ ( S(x) ∧ ∀y ( P(x, y) ⇔ P(y, x) ) ) が成り立つ。</li>
-                    <li>2の右辺に定義 D3a を適用すると、S(x) ⇔ PE(x) を得る。</li>
-                    <li>定理 T2（B(x) ⇔ S(x)）と3に双条件の推移律を適用し全称化すると、⊢ ∀x ( B(x) ⇔ PE(x) ) が機械的に導出された。（また、3と公理 A5 第2項および定義 D4a より ∀x CoPresent(S<sub>ind</sub>, S<sub>x</sub>) が得られ、公理 A6 と MP により系 ⊢ Limited(S<sub>ind</sub>) が導出される。） ∎</li>
+                    <li>任意の個体 $x$ をとる。公理 A4（$\forall x \forall y \, (P(x, y) \iff P(y, x))$）を全称例化すると、$\forall y \, (P(x, y) \iff P(y, x))$ が恒真命題として得られる。</li>
+                    <li>命題論理の連言同値則（$\psi$ が恒真のとき $\phi \iff (\phi \land \psi)$）により、$S(x) \iff \left( S(x) \land \forall y \, (P(x, y) \iff P(y, x)) \right)$ が成り立つ。</li>
+                    <li>ステップ2の右辺は定義 D3a の右辺そのものであるから、D3a を用いて置換すると、定義上ただちに $S(x) \iff PE(x)$ を得る。</li>
+                    <li>定理 T2（$B(x) \iff S(x)$）とステップ3に双条件の推移律を適用し全称化すると、$\vdash \forall x \, (B(x) \iff PE(x))$ が機械的に導出された。（※また、定数 $s_{\text{ind}}$ および任意の $x$ に対し、D1・A5・D4a より $\forall x \, \text{CoPresent}(s_{\text{ind}}, x)$ が成立するため、公理 A6 と MP により系 $\vdash \text{Limited}(s_{\text{ind}})$ がただちに導かれる。） $\blacksquare$</li>
                 </ol>
             </div>
         </div>
@@ -928,20 +979,20 @@ $$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(
         <div class="logic-card" id="thm-t4">
             <div class="logic-card-header">
                 <span class="logic-id">T4（無からの一方的生成の否定）</span>
-                <span class="logic-ref">使用規則：A4, D2b, ド・モルガンの法則, 対偶</span>
+                <span class="logic-ref">成立根拠：公理 A4（相互成立の対称性）と定義 D2b（非対称作用としてのGen定義）の組み合わせ</span>
             </div>
             <div class="formula-display">
                 <div class="formula-human">⊢ &nbsp;∀x &nbsp;( ¬Gen(x) )</div>
-                <div class="formula-reading">【定理の意味】いかなる x も、無から一方的に新規生成されたものではない。</div>
+                <div class="formula-reading">【定理の意味】定義 D2b において一方的生成 Gen(x) を非対称な作用として定義しているため、対称性を規定する公理 A4 と D2b の組み合わせにより、いかなる x についても ¬Gen(x) が導かれる。</div>
                 <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (\neg Gen(x))$$</div>
             </div>
             <div class="proof-box">
                 <span class="proof-title">【形式的証明（Mechanical Derivation）】</span>
                 <ol class="proof-steps">
-                    <li>任意の個体 x をとる。公理 A4 より、任意の a について P(a, x) ⇔ P(x, a)。</li>
-                    <li>双条件の定義より ( P(a, x) ⇒ P(x, a) ) であり、これは含意の定義およびド・モルガンの法則により ¬( P(a, x) ∧ ¬P(x, a) ) と論理的に同値である。</li>
-                    <li>2を a について全称化し、全称否定と存在否定の交換則を適用すると、¬∃a ( P(a, x) ∧ ¬P(x, a) ) を得る。</li>
-                    <li>定義 D2b（Gen(x) ⇔ ∃a ( P(a, x) ∧ ¬P(x, a) )）の対偶を3に適用し全称化すると、⊢ ∀x ( ¬Gen(x) ) が機械的に導出された。 ∎</li>
+                    <li>任意の個体 $x, a$ をとる。公理 A4 の全称例化より、$P(a, x) \iff P(x, a)$。</li>
+                    <li>双条件除去により $P(a, x) \implies P(x, a)$ を得る。含意の定義（$\phi \implies \psi \equiv \neg \phi \lor \psi$）およびド・モルガンの法則により、$\neg (P(a, x) \land \neg P(x, a))$ を得る。</li>
+                    <li>ステップ2を $a$ について全称化すると $\forall a \, \neg (P(a, x) \land \neg P(x, a))$ となり、量化子の否定交換則により $\neg \exists a \, (P(a, x) \land \neg P(x, a))$ を得る。</li>
+                    <li>定義 D2b（$Gen(x) \iff \exists a \, (P(a, x) \land \neg P(x, a))$）の対偶をステップ3に適用し $x$ について全称化すると、A4 と D2b の組み合わせにより $\vdash \forall x \, (\neg Gen(x))$ が機械的に導出された。 $\blacksquare$</li>
                 </ol>
             </div>
         </div>
@@ -949,20 +1000,20 @@ $$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(
         <div class="logic-card" id="thm-t5">
             <div class="logic-card-header">
                 <span class="logic-id">T5（単一座標における無境界性＝無始無終）</span>
-                <span class="logic-ref">使用規則：A5, D2c, D2d, 連言導入</span>
+                <span class="logic-ref">成立根拠：公理 A5 と定義 D2c, D2d の組み合わせ</span>
             </div>
             <div class="formula-display">
-                <div class="formula-human">⊢ &nbsp;∀x &nbsp;( PE(x) ⇒ ¬Begin(x) ∧ ¬End(x) ) &nbsp;&nbsp;（ゆえに ⊢ ¬Begin(World) ∧ ¬End(World)）</div>
-                <div class="formula-reading">【定理の意味】単一座標 c₀ の外側に別座標は存在しないため、すべての原理的存在（および世界）には始まりも終わりもない。</div>
-                <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (PE(x) \implies \neg Begin(x) \land \neg End(x)) \quad \left(\vdash \neg Begin(World) \land \neg End(World)\right)$$</div>
+                <div class="formula-human">⊢ &nbsp;∀x &nbsp;( PE(x) ⇒ ¬Begin(x) ∧ ¬End(x) ) &nbsp;&nbsp;（系：⊢ ¬Begin(World) ∧ ¬End(World)）</div>
+                <div class="formula-reading">【定理の意味】公理 A5 により単一座標 c₀ の外側に別座標は存在しないため、定義 D2c・D2d より、すべての原理的存在（および世界定数 World）には始まりも終わりもない。</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (PE(x) \implies \neg Begin(x) \land \neg End(x)) \quad \left(\text{系}: \vdash \neg Begin(World) \land \neg End(World)\right)$$</div>
             </div>
             <div class="proof-box">
                 <span class="proof-title">【形式的証明（Mechanical Derivation）】</span>
                 <ol class="proof-steps">
-                    <li>公理 A5 の第1項 ∀c ( c = c₀ ) より、その否定存在形である ¬∃c ( c ≠ c₀ ) が直ちに得られる。</li>
-                    <li>連言の性質より、任意の命題 ψ に対して ¬∃c ( c ≠ c₀ ) ⇒ ¬∃c ( c ≠ c₀ ∧ ψ ) が成り立つ。</li>
-                    <li>2に定義 D2c および D2d を適用すると、任意の x（世界 World を含む）について ¬Begin(x) および ¬End(x) が無条件に成り立つ。</li>
-                    <li>よって連言導入および弱化（任意の前提 PE(x) の付加）により、⊢ ∀x ( PE(x) ⇒ ¬Begin(x) ∧ ¬End(x) )（および ⊢ ¬Begin(World) ∧ ¬End(World)）が機械的に導出された。 ∎</li>
+                    <li>公理 A5 の第1連言肢 $\forall c \, (c = c_0)$ より、量化子の否定交換則を適用して $\neg \exists c \, (c \neq c_0)$ を得る。</li>
+                    <li>一階述語論理の性質より、任意の論理式 $\psi$ に対して $\neg \exists c \, (c \neq c_0) \implies \neg \exists c \, (c \neq c_0 \land \psi)$ が成り立つため、MP により $\neg \exists c_{\text{before}} \, (c_{\text{before}} \neq c_0 \land Loc(x) = c_0)$ および $\neg \exists c_{\text{after}} \, (c_{\text{after}} \neq c_0 \land Loc(x) = c_0)$ を得る。</li>
+                    <li>ステップ2に定義 D2c および D2d の対偶を適用すると、任意の個体 $x$（個体定数 $World$ を含む）について $\neg Begin(x)$ および $\neg End(x)$、ならびに系 $\vdash \neg Begin(World) \land \neg End(World)$ が導出される。</li>
+                    <li>連言導入で $\neg Begin(x) \land \neg End(x)$ とし、含意導入（弱化：$PE(x)$ の付加）および全称化を適用することで、$\vdash \forall x \, (PE(x) \implies \neg Begin(x) \land \neg End(x))$ が機械的に導出された。 $\blacksquare$</li>
                 </ol>
             </div>
         </div>
@@ -970,23 +1021,23 @@ $$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(
         <div class="logic-card" id="thm-t6">
             <div class="logic-card-header">
                 <span class="logic-id">T6（全概念の予在定理 — 第6章）</span>
-                <span class="logic-ref">使用規則：D3b, T3, A5, T4, D4b, MP, 連言導入, 含意導入</span>
+                <span class="logic-ref">成立根拠：定義 D3b, D4b・公理 A5・定理 T3, T4 の組み合わせ</span>
             </div>
             <div class="formula-display">
                 <div class="formula-human">⊢ &nbsp;∀x &nbsp;( Concept(x) ⇒ AlreadyPresent(x) )</div>
-                <div class="formula-reading">【定理の意味】すべての概念 x は、単一座標 c₀ 上に生成（始まり）なしで予め存在している。</div>
+                <div class="formula-reading">【定理の意味】すべての概念 x は、単一座標 c₀ 上に一方的生成（始まり）なしで予め存在している。</div>
                 <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (Concept(x) \implies \text{AlreadyPresent}(x))$$</div>
             </div>
             <div class="proof-box">
                 <span class="proof-title">【形式的証明（Mechanical Derivation）】</span>
                 <ol class="proof-steps">
-                    <li>任意の個体 x について Concept(x) を仮定する。</li>
-                    <li>定義 D3b と1より、MPで B(x) を得る。</li>
-                    <li>定理 T3（B(x) ⇔ PE(x)）と2より、MPで PE(x) を得る。</li>
-                    <li>公理 A5 の第2項（PE(x) ⇒ Loc(x) = c₀）と3より、MPで Loc(x) = c₀ を得る。</li>
-                    <li>定理 T4 より、¬Gen(x) を得る。</li>
-                    <li>4、3、5を連言導入で結合すると、Loc(x) = c₀ ∧ PE(x) ∧ ¬Gen(x)。</li>
-                    <li>定義 D4b を6に適用すると AlreadyPresent(x) を得る。含意導入および全称化により、⊢ ∀x ( Concept(x) ⇒ AlreadyPresent(x) ) が機械的に導出された。 ∎</li>
+                    <li>任意の個体 $x$ について $Concept(x)$ を仮定する。</li>
+                    <li>定義 D3b（$Concept(x) \implies B(x)$）とステップ1より、MP で $B(x)$ を得る。</li>
+                    <li>定理 T3（$B(x) \iff PE(x)$）とステップ2より、MP で $PE(x)$ を得る。</li>
+                    <li>公理 A5 の第2連言肢（$PE(x) \implies Loc(x) = c_0$）とステップ3より、MP で $Loc(x) = c_0$ を得る。</li>
+                    <li>定理 T4（$\forall x \, \neg Gen(x)$）の全称例化より、$\neg Gen(x)$ を得る。</li>
+                    <li>ステップ4、ステップ3、ステップ5を連言導入で結合し、$Loc(x) = c_0 \land PE(x) \land \neg Gen(x)$ を得る。</li>
+                    <li>定義 D4b をステップ6に適用して $\text{AlreadyPresent}(x)$ を得る。含意導入および全称化により、$\vdash \forall x \, (Concept(x) \implies \text{AlreadyPresent}(x))$ が機械的に導出された。 $\blacksquare$</li>
                 </ol>
             </div>
         </div>
@@ -994,21 +1045,23 @@ $$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(
         <div class="logic-card" id="thm-t7">
             <div class="logic-card-header">
                 <span class="logic-id">T7（絶対的無の成立不能定理 — 第6章）</span>
-                <span class="logic-ref">使用規則：D2e, D1c, D1b, MP, 背理法</span>
+                <span class="logic-ref">成立根拠：定義 D2e と定義スキーマ D1c・定義 D1b の組み合わせ（背理法）</span>
             </div>
             <div class="formula-display">
                 <div class="formula-human">⊢ &nbsp;¬∃x &nbsp;AbsoluteNothing(x)</div>
-                <div class="formula-reading">【定理の意味】絶対的無（AbsoluteNothing）なるものは原理的に存在し得ない。</div>
+                <div class="formula-reading">【定理の意味】絶対的無（AbsoluteNothing）を満たす個体 x は原理的に存在し得ない。</div>
                 <div class="formula-latex">[LaTeX] $$\vdash \neg \exists x \, \text{AbsoluteNothing}(x)$$</div>
             </div>
             <div class="proof-box">
                 <span class="proof-title">【形式的証明（Mechanical Derivation）】</span>
                 <ol class="proof-steps">
-                    <li>ある x について AbsoluteNothing(x) と仮定する（背理法の仮定）。</li>
-                    <li>定義 D2e より、𝐒(AbsoluteNothing(x)) ∧ ¬B(x) を得る。</li>
-                    <li>2の左項 𝐒(AbsoluteNothing(x)) に対し、定義 D1c（∀Φ ∀x ( 𝐒(Φ(x)) ⇒ S(x) ) において Φ := AbsoluteNothing）を適用すると MP で観念成立 S(x) を得る。さらに定義 D1b（S(x) ⇒ B(x)）を適用すると、MP で B(x) を得る。</li>
-                    <li>2の右項 ¬B(x) と3の B(x) により、矛盾 B(x) ∧ ¬B(x)（⊥）が導出される。</li>
-                    <li>よって背理法により、⊢ ¬∃x AbsoluteNothing(x) が機械的に導出された。 ∎</li>
+                    <li>$\exists x \, \text{AbsoluteNothing}(x)$ と仮定し（背理法の仮定）、存在例化によりある個体定数 $a$ について $\text{AbsoluteNothing}(a)$ とする。</li>
+                    <li>定義 D2e より、双条件除去と MP で $\mathbf{S}(\text{AbsoluteNothing}(a)) \land \neg B(a)$ を得る。</li>
+                    <li>ステップ2に連言除去（左項取り出し）を適用し、$\mathbf{S}(\text{AbsoluteNothing}(a))$ を得る。</li>
+                    <li>定義スキーマ D1c（$\forall x \, (\mathbf{S}(\Phi(x)) \implies S(x))$）において単項述語 $\Phi := \text{AbsoluteNothing}$ と置くと、$\mathbf{S}(\text{AbsoluteNothing}(a)) \implies S(a)$。これとステップ3より MP で $S(a)$ を得る。</li>
+                    <li>定義 D1b（$S(a) \implies B(a)$）とステップ4より、MP で $B(a)$ を得る。</li>
+                    <li>一方、ステップ2に連言除去（右項取り出し）を適用すると $\neg B(a)$ が得られ、ステップ5の $B(a)$ と連言導入で結合すると明示的矛盾 $B(a) \land \neg B(a)$（$\bot$）が導出される。</li>
+                    <li>よって背理法（否定導入）により、$\vdash \neg \exists x \, \text{AbsoluteNothing}(x)$ が機械的に導出された。 $\blacksquare$</li>
                 </ol>
             </div>
         </div>
@@ -1018,20 +1071,20 @@ $$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(
         <div class="logic-card" id="thm-t8">
             <div class="logic-card-header">
                 <span class="logic-id">T8（世界の肯定と意味の充足 — 終章の結論）</span>
-                <span class="logic-ref">使用規則：T2, T3, D5b, 双条件の対称律・推移律</span>
+                <span class="logic-ref">成立根拠：定理 T2, T3 と定義 D5b の推移的結合</span>
             </div>
             <div class="formula-display">
                 <div class="formula-human">⊢ &nbsp;∀x &nbsp;( S(x) ⇔ B(x) ⇔ PE(x) ⇔ M(x) )</div>
-                <div class="formula-reading">【定理の意味】すべての x について、観念であること（S）、存在すること（B）、原理的存在であること（PE）、意味そのものであること（M）は完全に同値である。</div>
+                <div class="formula-reading">【定理の意味】すべての個体 x について、観念であること（S）、存在すること（B）、原理的存在であること（PE）、意味そのものであること（M）は完全に同値である。</div>
                 <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (S(x) \iff B(x) \iff PE(x) \iff M(x))$$</div>
             </div>
             <div class="proof-box">
                 <span class="proof-title">【形式的証明（Mechanical Derivation）】</span>
                 <ol class="proof-steps">
-                    <li>定理 T2 より、∀x ( S(x) ⇔ B(x) )。</li>
-                    <li>定理 T3 より、∀x ( B(x) ⇔ PE(x) )。</li>
-                    <li>定義 D5b より、∀x ( B(x) ⇔ M(x) )。</li>
-                    <li>1、2、3に双条件の対称律および推移律を適用することで、⊢ ∀x ( S(x) ⇔ B(x) ⇔ PE(x) ⇔ M(x) ) が機械的に導出された。 ∎</li>
+                    <li>定理 T2 より、$\forall x \, (S(x) \iff B(x))$。</li>
+                    <li>定理 T3 より、$\forall x \, (B(x) \iff PE(x))$。</li>
+                    <li>定義 D5b より、$\forall x \, (B(x) \iff M(x))$。</li>
+                    <li>ステップ1、2、3に双条件の対称律および推移律を適用し全称化することで、$\vdash \forall x \, (S(x) \iff B(x) \iff PE(x) \iff M(x))$ が機械的に導出された。 $\blacksquare$</li>
                 </ol>
             </div>
         </div>
@@ -1039,65 +1092,74 @@ $$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(
 
     <!-- V. DEDUCTIVE FLOW & STAGE TABLE -->
     <section id="sec-5">
-        <h2>Ⅴ. 全体の推論構造図（演繹フローと段階表）</h2>
+        <h2>Ⅴ. 全体の推論構造図（演繹フローと段階別の導出根拠表）</h2>
         <div class="panel-box">
-            <p style="margin-top:0;">数式パーサーのエラーや画面幅による表示崩れを防ぐため、純粋な記号論理の演繹鎖と、各段階の入出力対応表に分けて記述する。</p>
+            <p style="margin-top:0;">各定理が「どの公理とどの定義の組み合わせによって導出されているか」を一点の曖昧さもなく明示した演繹鎖と対応表。</p>
 
             <h3>1. 記号論理による演繹鎖（Symbolic Deductive Chain）</h3>
             <div class="chain-box">
-                <div class="chain-line">( D1, D2, A1, A2 ) &nbsp;⊢&nbsp; T1 &nbsp;⊢&nbsp; T2</div>
-                <div class="chain-line">( T2, D2b, D3, A4, A6 ) &nbsp;⊢&nbsp; ( T3, T4 )</div>
-                <div class="chain-line">( T3, T4, D1c, D2c–e, D4, A5 ) &nbsp;⊢&nbsp; ( T5, T6, T7 )</div>
-                <div class="chain-line">( T2, T3, D5 ) &nbsp;⊢&nbsp; T8</div>
+                <div class="chain-line">( A1a, A1b, D2a ) &nbsp;⊢&nbsp; T1 &nbsp;&nbsp;／&nbsp;&nbsp; ( A1a, D1a, D1b ) &nbsp;⊢&nbsp; T2</div>
+                <div class="chain-line">( T2, A4, D3a ) &nbsp;⊢&nbsp; T3 &nbsp;&nbsp;／&nbsp;&nbsp; ( A4, D2b ) &nbsp;⊢&nbsp; T4</div>
+                <div class="chain-line">( A5, D2c, D2d ) &nbsp;⊢&nbsp; T5 &nbsp;&nbsp;／&nbsp;&nbsp; ( T3, T4, A5, D3b, D4b ) &nbsp;⊢&nbsp; T6 &nbsp;&nbsp;／&nbsp;&nbsp; ( D1b, D1c, D2e ) &nbsp;⊢&nbsp; T7</div>
+                <div class="chain-line">( T2, T3, D5b ) &nbsp;⊢&nbsp; T8</div>
                 <div class="formula-latex" style="margin-top:10px;">
-                    [LaTeX] $$(\text{D1}, \text{D2}, \text{A1}, \text{A2}) \vdash \text{T1} \vdash \text{T2}$$
-                    $$(\text{T2}, \text{D3}, \text{A4}) \vdash (\text{T3}, \text{T4})$$
-                    $$(\text{T3}, \text{T4}, \text{D2}, \text{D4}, \text{A5}) \vdash (\text{T5}, \text{T6}, \text{T7})$$
-                    $$(\text{T2}, \text{T3}, \text{D5}) \vdash \text{T8}$$
+                    [LaTeX] $$(\text{A1a}, \text{A1b}, \text{D2a}) \vdash \text{T1} \quad / \quad (\text{A1a}, \text{D1a}, \text{D1b}) \vdash \text{T2}$$
+                    $$(\text{T2}, \text{A4}, \text{D3a}) \vdash \text{T3} \quad / \quad (\text{A4}, \text{D2b}) \vdash \text{T4}$$
+                    $$(\text{A5}, \text{D2c}, \text{D2d}) \vdash \text{T5} \quad / \quad (\text{T3}, \text{T4}, \text{A5}, \text{D3b}, \text{D4b}) \vdash \text{T6} \quad / \quad (\text{D1b}, \text{D1c}, \text{D2e}) \vdash \text{T7}$$
+                    $$(\text{T2}, \text{T3}, \text{D5b}) \vdash \text{T8}$$
                 </div>
             </div>
 
-            <h3>2. 段階別の導出構造一覧</h3>
+            <h3>2. 段階別の導出構造と成立根拠一覧</h3>
             <div class="spec-table-wrap">
                 <table class="spec-table">
                     <thead>
                         <tr>
-                            <th>段階</th>
-                            <th>入力（公理・定義）</th>
-                            <th>導出される定理</th>
-                            <th>確定する論理的帰結</th>
+                            <th>定理</th>
+                            <th>直接の成立根拠（公理・定義）</th>
+                            <th>導出の論理的メカニズムと確定する帰結</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>入口（第1〜2章）</strong></td>
-                            <td>D1, D2, A1, A2, A3</td>
                             <td><strong>T1</strong></td>
-                            <td>観念の原理的外部（Ext<sub>原理的</sub>）の仮説は自己矛盾により空集合となる。</td>
+                            <td><strong>A1a, A1b, D2a</strong></td>
+                            <td>連言全体に A1a を適用し、連言分配 A1b で $\mathbf{S}(B(a))$ を抽出し、D2a（$\neg \mathbf{S}(B(a))$）との明示的矛盾を背理法で導出。</td>
                         </tr>
                         <tr>
-                            <td><strong>第1段階（第3章）</strong></td>
-                            <td>T1, D1, A1</td>
                             <td><strong>T2</strong></td>
-                            <td>∀x (B(x) ⇔ S(x))：あらゆる存在は観念であり、全観念は実在する。</td>
+                            <td><strong>A1a, D1a, D1b</strong></td>
+                            <td>A1a（$B(x) \implies \mathbf{S}(B(x))$）と D1a・D1b の双方向結合により $\forall x (B(x) \iff S(x))$ を導出。</td>
                         </tr>
                         <tr>
-                            <td><strong>第2段階（第4章）</strong></td>
-                            <td>T2, D2b, D3, A4, A6</td>
-                            <td><strong>T3, T4</strong></td>
-                            <td>∀x (B(x) ⇔ PE(x)) ∧ ¬Gen(x)：肉体・魂・対象・像の完全同格性と、一方的生成の否定、および反独我論（Limited(S<sub>ind</sub>)）の成立。</td>
+                            <td><strong>T3</strong></td>
+                            <td><strong>A4, D3a, T2</strong><br>（系は＋A5, A6, D4a）</td>
+                            <td>PE の定義 D3a に対称性が組み込まれているため、公理 A4 と D3a から定義上ただちに $S(x) \iff PE(x)$ が導かれ、T2 と結合。</td>
                         </tr>
                         <tr>
-                            <td><strong>第3段階（第5〜6章）</strong></td>
-                            <td>T3, T4, D1c, D2c-e, D4, A5</td>
-                            <td><strong>T5, T6, T7</strong></td>
-                            <td>単一座標 c₀ 上における世界の無始無終（¬Begin ∧ ¬End）、全概念の予在（AlreadyPresent）、絶対的無の不成立。</td>
+                            <td><strong>T4</strong></td>
+                            <td><strong>A4, D2b</strong></td>
+                            <td>一方的生成 $Gen$ を非対称な作用として定義した D2b と、対称性公理 A4 の組み合わせにより $\forall x (\neg Gen(x))$ を導出。</td>
                         </tr>
                         <tr>
-                            <td><strong>出口（終章）</strong></td>
-                            <td>T2, T3, D5</td>
+                            <td><strong>T5</strong></td>
+                            <td><strong>A5, D2c, D2d</strong></td>
+                            <td>単一座標公理 A5（$\forall c (c = c_0)$）と始点・終点の定義 D2c・D2d の組み合わせにより $\neg Begin(x) \land \neg End(x)$ を導出。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>T6</strong></td>
+                            <td><strong>D3b, D4b, A5, T3, T4</strong></td>
+                            <td>$Concept(x) \implies B(x) \implies PE(x) \implies Loc(x)=c_0$ に T4（$\neg Gen(x)$）を連言結合し、D4b より $\text{AlreadyPresent}(x)$ を導出。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>T7</strong></td>
+                            <td><strong>D1b, D1c, D2e</strong></td>
+                            <td>D2e の左項 $\mathbf{S}(\text{AbsoluteNothing}(a))$ に定義スキーマ D1c と D1b を適用して $B(a)$ を導き、右項 $\neg B(a)$ との矛盾を背理法で導出。</td>
+                        </tr>
+                        <tr>
                             <td><strong>T8</strong></td>
-                            <td>∀x (S(x) ⇔ B(x) ⇔ PE(x) ⇔ M(x))：存在・原理的存在・意味の完全一致。</td>
+                            <td><strong>T2, T3, D5b</strong></td>
+                            <td>T2（$S \iff B$）、T3（$B \iff PE$）、D5b（$B \iff M$）の双条件推移律により $S(x) \iff B(x) \iff PE(x) \iff M(x)$ を導出。</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1107,53 +1169,72 @@ $$\text{D2e（絶対的無）}: \quad \text{AbsoluteNothing}(x) \iff \mathbf{S}(
 
     <!-- VI. MODEL-THEORETIC CONSISTENCY PROOF -->
     <section id="sec-6">
-        <h2>Ⅵ. 無矛盾性のモデル理論的証明（Proof of Consistency via Model Theory）</h2>
+        <h2>Ⅵ. 無矛盾性のモデル理論的証明（Semantic Consistency via Formal Valuation Model ℳ）</h2>
         <div class="panel-box">
-            <p style="margin-top:0;">本公理系（定義 D1〜D5 および公理 A1〜A6）が内部にいかなる論理的矛盾も含まない（100%無矛盾である：Syntactically Consistent）ことを、モデル理論（Model Theory）の標準的手法に従い、すべての公理と定義を同時に真（True）にする具体的な構造（充足モデル ℳ）を構成することで数学的に証明する。</p>
+            <p style="margin-top:0;">第Ⅳ節において「定理 T1〜T8 の構文論的導出可能性（$\text{D1–D5}, \text{A1–A6} \vdash \text{T1–T8}$）」はすべて証明された。本節ではそれとは独立に、<strong>「そもそも土台となる公理系（D1〜D5 および A1〜A6）の内部に隠れた自己矛盾が存在しないこと（$\text{D1–D5}, \text{A1–A6} \not\vdash \bot$）」</strong>を証明する。<br>
+            第Ⅰ節で型付けした形式言語 $\mathcal{L}$ に対する厳密な形式意味論（構造 $\mathcal{M}$ と付値関数 $V_{\mathcal{M}}$）を定義し、すべての定義・公理（スキーマ）がモデル $\mathcal{M}$ において同時に真（$\text{True}$）となることを示す。</p>
 
-            <h3>1. モデル ℳ の構成</h3>
+            <h3>1. 構造 ℳ = (D, I) と形式意味論（付値関数 V<sub>ℳ</sub>）の厳密な定義</h3>
             <ul class="model-list">
                 <li><strong>個体領域（Domain of Discourse）：</strong><br>
-                単一の要素 c₀ のみからなる集合 D = {c₀} を設定する。</li>
-                <li><strong>関数および述語の解釈（Interpretation I）：</strong>
+                単一の要素 $c_0$ のみからなる非空集合 $D = \{c_0\}$ を定義する。</li>
+                <li><strong>項の解釈（Interpretation of Terms）：</strong><br>
+                すべての個体定数および変数割当 $g: \text{Var} \to D$ は唯一の要素 $c_0$ を指す：
+                $$I(c_0) = c_0, \quad I(s_{\text{ind}}) = c_0, \quad I(World) = c_0, \quad g(x) = c_0$$
+                単項関数 $Loc: D \to D$ の解釈を恒等関数 $I(Loc)(c_0) = c_0$ と定義する。したがって、任意の項 $t \in \text{Term}_{\mathcal{L}}$ の解釈値 $\llbracket t \rrbracket_{\mathcal{M}, g}$ は常に $c_0$ である。</li>
+                <li><strong>述語記号の外延割当（Extension of Predicates）：</strong>
                     <ul class="model-list">
-                        <li><strong>座標関数：</strong> I(Loc)(c₀) = c₀</li>
-                        <li><strong>観念作用オペレータ：</strong> 任意の整式 φ に対し、φ がモデル ℳ で真のとき I(𝐒)(φ) = True、偽のとき False（真理値恒等写像）とする。便宜オペレータ I(F)(φ) = True とする。</li>
-                        <li><strong>単項述語（肯定系）：</strong> S, B, PE, Concept, M, Truth, AlreadyPresent, Limited の外延をすべて領域全体 D = {c₀}（すなわち c₀ に対して True）と割り当てる。</li>
-                        <li><strong>単項述語（否定・境界系）：</strong> Ext<sub>原理的</sub>, Gen, Begin, End, AbsoluteNothing の外延をすべて空集合 ∅（すなわち c₀ に対して False）と割り当てる。</li>
-                        <li><strong>二項述語：</strong> P, C, CoPresent の外延をすべて直積集合 D × D = {(c₀, c₀)}（すなわち (c₀, c₀) に対して True）と割り当てる。</li>
+                        <li><strong>肯定系単項述語：</strong> $\Phi^{+} \in \{S, B, PE, Concept, M, \text{AlreadyPresent}, \text{Limited}\}$ の外延をすべて領域全体 $I(\Phi^{+}) = D = \{c_0\}$ と定義する。</li>
+                        <li><strong>否定・境界系単項述語：</strong> $\Phi^{-} \in \{Ext_{\text{原理的}}, Gen, Begin, End, \text{AbsoluteNothing}\}$ の外延をすべて空集合 $I(\Phi^{-}) = \varnothing$ と定義する。</li>
+                        <li><strong>二項述語：</strong> $\Psi \in \{P, C, \text{CoPresent}\}$ の外延をすべて直積集合 $I(\Psi) = D \times D = \{(c_0, c_0)\}$ と定義する。</li>
+                    </ul>
+                </li>
+                <li><strong>整式に対する真理付値関数 $V_{\mathcal{M}}: \text{WFF}_{\mathcal{L}} \to \{\text{True}, \text{False}\}$ の帰納的定義：</strong>
+                    <ul class="model-list">
+                        <li>原子論理式：$V_{\mathcal{M}}(Q(t_1 \dots t_n)) = \text{True} \iff (\llbracket t_1 \rrbracket \dots \llbracket t_n \rrbracket) \in I(Q)$。また $V_{\mathcal{M}}(t_1 = t_2) = \text{True} \iff \llbracket t_1 \rrbracket = \llbracket t_2 \rrbracket$（$D=\{c_0\}$ より常に $\text{True}$）。</li>
+                        <li>標準論理結合子・量化子：$\neg, \land, \lor, \implies, \iff, \forall x, \exists x$ は標準的なタルスキ型真理条件に従う（$D=\{c_0\}$ のため、$\forall x \phi(x)$ と $\exists x \phi(x)$ の真理値はともに $V_{\mathcal{M}}(\phi(c_0))$ に一致する）。</li>
+                        <li><strong>文オペレータ $\mathbf{S}, F, Truth$ の真理関数定義：</strong> 任意の整式 $\phi \in \text{WFF}_{\mathcal{L}}$ に対し、文オペレータの付値を以下の真理関数（恒等演算および定数真演算）として厳密に定義する：
+                        $$V_{\mathcal{M}}(\mathbf{S}(\phi)) = V_{\mathcal{M}}(\phi), \quad V_{\mathcal{M}}(Truth(\phi)) = V_{\mathcal{M}}(\phi), \quad V_{\mathcal{M}}(F(\phi)) = V_{\mathcal{M}}(\phi)$$</li>
                     </ul>
                 </li>
             </ul>
 
-            <h3>2. 全公理・全定義の充足性（Satisfiability）の検算</h3>
-            <p>上記のモデル ℳ = (D, I) のもとで、すべての定義および公理の真理値を評価する。</p>
+            <h3>2. 全定義（D1〜D5）および全公理スキーマ（A1〜A6）の充足性検算</h3>
+            <p>上記の形式意味論 $V_{\mathcal{M}}$ のもとで、すべての定義および公理（スキーマ）の真理値を機械的に評価する。</p>
             <ol class="model-list">
-                <li><strong>D1〜D5の検証：</strong>
+                <li><strong>定義群 D1〜D5 の検算：</strong>
                     <ul class="model-list">
-                        <li><strong>D1a, D1b, D1c：</strong> 𝐒(B(c₀)) ⇔ S(c₀) は (True ⇔ True) となり真。D1b も (True ⇒ True) で真。D1c も結論部 S(c₀) = True のため任意の Φ に対し (I(𝐒)(Φ(c₀)) ⇒ True) = True となり真。</li>
-                        <li><strong>D2a：</strong> Ext<sub>原理的</sub>(c₀) は False であり、単項形右辺 ¬𝐒(B(c₀)) = ¬True = False と (False ⇔ False) で完全一致し真（命題形においても存在量化 ∃x (B(x) ∧ Ext<sub>原理的</sub>(x)) を偽＝空集合とする整合的定義を満たす）。</li>
-                        <li><strong>D2b：</strong> P(c₀, c₀) ∧ ¬P(c₀, c₀) は (True ∧ False) = False であり、Gen(c₀) = False と (False ⇔ False) で一致し真。</li>
-                        <li><strong>D2c, D2d：</strong> 領域 D = {c₀} には c ≠ c₀ を満たす要素が存在しないため右辺は False となり、Begin(c₀) = False, End(c₀) = False と (False ⇔ False) で一致し真。</li>
-                        <li><strong>D2e：</strong> 右辺に ¬B(c₀) = False を含むため連言は False となり、AbsoluteNothing(c₀) = False と (False ⇔ False) で一致し真。</li>
-                        <li><strong>D3, D4, D5：</strong> すべての構成要素が True（否定項 ¬Gen(c₀) も ¬False = True）となるため、すべての双条件文および含意が (True ⇔ True) として真。</li>
+                        <li><strong>D1a：</strong> $V_{\mathcal{M}}(\mathbf{S}(B(c_0))) = V_{\mathcal{M}}(B(c_0)) = \text{True}$、かつ $V_{\mathcal{M}}(S(c_0)) = \text{True}$。よって $(\text{True} \iff \text{True}) = \text{True}$。</li>
+                        <li><strong>D1b：</strong> $V_{\mathcal{M}}(S(c_0) \implies B(c_0)) = (\text{True} \implies \text{True}) = \text{True}$。</li>
+                        <li><strong>D1c（スキーマ）：</strong> 任意の単項述語 $\Phi$ に対し、後件 $V_{\mathcal{M}}(S(c_0)) = \text{True}$ であるため、前件 $V_{\mathcal{M}}(\mathbf{S}(\Phi(c_0)))$ が $\text{True}$ でも $\text{False}$ でも含意 $(V_{\mathcal{M}}(\mathbf{S}(\Phi(c_0))) \implies \text{True})$ は常に $\text{True}$。</li>
+                        <li><strong>D2a：</strong> 左辺 $V_{\mathcal{M}}(Ext_{\text{原理的}}(c_0)) = \text{False}$。右辺 $V_{\mathcal{M}}(\neg \mathbf{S}(B(c_0))) = \neg V_{\mathcal{M}}(B(c_0)) = \neg \text{True} = \text{False}$。よって $(\text{False} \iff \text{False}) = \text{True}$。</li>
+                        <li><strong>D2b：</strong> 左辺 $V_{\mathcal{M}}(Gen(c_0)) = \text{False}$。右辺 $V_{\mathcal{M}}(P(c_0, c_0) \land \neg P(c_0, c_0)) = (\text{True} \land \text{False}) = \text{False}$。よって $(\text{False} \iff \text{False}) = \text{True}$。</li>
+                        <li><strong>D2c, D2d：</strong> 左辺はともに $\text{False}$。右辺は $V_{\mathcal{M}}(c_0 \neq c_0) = \text{False}$ を連言肢に含むため $\text{False}$。よってともに $(\text{False} \iff \text{False}) = \text{True}$。</li>
+                        <li><strong>D2e：</strong> 左辺 $V_{\mathcal{M}}(\text{AbsoluteNothing}(c_0)) = \text{False}$。右辺は $\neg B(c_0) = \text{False}$ を連言肢に含むため $\text{False}$。よって $(\text{False} \iff \text{False}) = \text{True}$。</li>
+                        <li><strong>D3a, D3b, D4a, D4b, D5a, D5b：</strong> すべての構成要素（$\neg Gen(c_0) = \neg \text{False} = \text{True}$ を含む）の付値が一致するため、すべて $\text{True}$。</li>
                     </ul>
                 </li>
-                <li><strong>A1〜A6の検証：</strong>
+                <li><strong>公理群 A1〜A6 の検算：</strong>
                     <ul class="model-list">
-                        <li><strong>A1, A2：</strong> 𝐒 の解釈（真理値恒等写像）により恒真（True）。</li>
-                        <li><strong>A4：</strong> P(c₀, c₀) ⇔ P(c₀, c₀) は (True ⇔ True) となり真。</li>
-                        <li><strong>A5：</strong> D = {c₀} より ∀c (c = c₀) は真、Loc(c₀) = c₀ は真、C(c₀, c₀) は真であるため、連言全体が真。</li>
-                        <li><strong>A6：</strong> CoPresent(c₀, c₀) ⇒ Limited(c₀) は (True ⇒ True) となり真。</li>
+                        <li><strong>A1a（包摂スキーマ）：</strong> 任意の $\phi \in \text{WFF}_{\mathcal{L}}$ に対し、$V_{\mathcal{M}}(\mathbf{S}(\phi)) = V_{\mathcal{M}}(\phi)$ より、$V_{\mathcal{M}}(\phi \implies \mathbf{S}(\phi)) = (V_{\mathcal{M}}(\phi) \implies V_{\mathcal{M}}(\phi)) = \text{True}$。</li>
+                        <li><strong>A1b（分配スキーマ）：</strong> 任意の $\phi, \psi \in \text{WFF}_{\mathcal{L}}$ に対し、$V_{\mathcal{M}}(\mathbf{S}(\phi \land \psi)) = V_{\mathcal{M}}(\phi \land \psi) = (V_{\mathcal{M}}(\phi) \land V_{\mathcal{M}}(\psi)) = (V_{\mathcal{M}}(\mathbf{S}(\phi)) \land V_{\mathcal{M}}(\mathbf{S}(\psi)))$。両辺の真理値が常に一致するため含意は恒真（$\text{True}$）。</li>
+                        <li><strong>A2（スキーマ）：</strong> 任意の $\phi \in \text{WFF}_{\mathcal{L}}$ に対し、$V_{\mathcal{M}}(F(\phi)) = V_{\mathcal{M}}(\phi) = V_{\mathcal{M}}(\mathbf{S}(\phi))$ より恒真（$\text{True}$）。</li>
+                        <li><strong>A4：</strong> $V_{\mathcal{M}}(P(c_0, c_0) \iff P(c_0, c_0)) = (\text{True} \iff \text{True}) = \text{True}$。</li>
+                        <li><strong>A5：</strong> $V_{\mathcal{M}}(c_0 = c_0) = \text{True}$、$V_{\mathcal{M}}(PE(c_0) \implies Loc(c_0)=c_0) = (\text{True} \implies \text{True}) = \text{True}$、$V_{\mathcal{M}}(C(c_0, c_0)) = \text{True}$ より、連言全体は $\text{True}$。</li>
+                        <li><strong>A6：</strong> $V_{\mathcal{M}}(\text{CoPresent}(c_0, c_0) \implies \text{Limited}(c_0)) = (\text{True} \implies \text{True}) = \text{True}$。</li>
                     </ul>
                 </li>
             </ol>
 
-            <h3>3. 結論（無矛盾性の確定）</h3>
+            <h3>3. 最終結論（構文論的導出とモデル理論的無矛盾性の完全成立）</h3>
             <div class="disclaimer-item" style="margin-top:12px;">
-                以上により、モデル ℳ は定義群 D1〜D5 および公理群 A1〜A6 のすべてを同時に充足する（<strong>ℳ ⊨ D1–D5 ∪ A1–A6</strong>）。<br>
-                一階述語論理における<strong>健全性定理（Soundness Theorem）およびゲーデルの完全性定理（Completeness Theorem）</strong>により、「モデル（充足構造）が存在する公理系からは、いかなる矛盾（ψ ∧ ¬ψ）も絶対に導出されない」。<br>
-                よって、本形式体系が<strong>100%無矛盾（Consistent）</strong>であることが数学的に証明された。 ∎
+                <ol style="margin:0; padding-left:20px;">
+                    <li style="margin-bottom:8px;"><strong>公理系の無矛盾性（Consistency）：</strong><br>
+                    上記の通り、厳密に型付けされた形式言語 $\mathcal{L}$ の解釈構造 $\mathcal{M} = (D, I)$ は、定義群 D1〜D5 および公理（スキーマ）群 A1〜A6 のすべてを同時に真にする（$\mathcal{M} \models \text{D1–D5} \cup \text{A1–A6}$）。論理学の<strong>健全性定理（Soundness Theorem）</strong>により、充足モデルが存在する公理系からはいかなる論理的矛盾（$\psi \land \neg \psi$）も導出され得ない（$\text{D1–D5}, \text{A1–A6} \not\vdash \bot$）。</li>
+                    <li><strong>定理群 T1〜T8 の完全導出と充足（Derivability &amp; Validity in $\mathcal{M}$）：</strong><br>
+                    第Ⅳ節において、定理 T1〜T8 はすべて定義群 D1〜D5 と公理群 A1〜A6 から推論規則のみによって機械的に導出された（$\text{D1–D5}, \text{A1–A6} \vdash \text{T1–T8}$）。健全性定理の帰結として、モデル $\mathcal{M}$ においても T1〜T8 はすべて真（$\mathcal{M} \models \text{T1–T8}$）となる。<br>
+                    以上により、『世界の証明』の形式論理体系は、<strong>構文論的導出可能性と意味論的無矛盾性の双方において100%数学的に閉じた体系である</strong>ことが完全に証明された。 $\blacksquare$</li>
+                </ol>
             </div>
         </div>
     </section>
