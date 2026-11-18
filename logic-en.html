@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="8nK3UoaKJhiETYimO3smEt-zoZ0pfOw1oC9rJm6KTUk" />
+    <title>Formal Verification of Internal Consistency and Deductive Structure — Proof of a World / Rev. 5 | 『世界の証明』形式論理検証データ (Ryuto Sako / 酒勾龍渡)</title>
+    <meta name="description" content="Formal reconstruction of the argument of 'Proof of a World' (『世界の証明』) by Ryuto Sako (酒勾龍渡) in a typed first-order language with entity and coordinate sorts: definitions D1–D5, axioms A1–A8, derivations of L1 and T1–T8, a model M proving consistency, and Logical FAQ (Rev. 5, 2026-11-19).">
+    <meta name="author" content="Ryuto Sako (酒勾龍渡)">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://ryutostudio.github.io/logic-en.html">
+    <link rel="alternate" hreflang="ja" href="https://ryutostudio.github.io/logic.html">
+    <link rel="alternate" hreflang="en" href="https://ryutostudio.github.io/logic-en.html">
+    <link rel="alternate" hreflang="x-default" href="https://ryutostudio.github.io/logic.html">
+
+    <!-- JSON-LD Structured Data: ScholarlyArticle & FAQPage -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "ScholarlyArticle",
+        "headline": "Formal Verification of Internal Consistency and Deductive Structure — Proof of a World / Rev. 5 (『世界の証明』形式論理による内部整合性・演繹構造の検証データ)",
+        "author": {
+          "@type": "Person",
+          "name": "Ryuto Sako",
+          "alternateName": "酒勾龍渡",
+          "url": "https://ryutostudio.github.io/",
+          "sameAs": [
+            "https://id.ndl.go.jp/auth/ndlna/032264173",
+            "https://orcid.org/0009-0007-5501-8426",
+            "http://viaf.org/viaf/26165867632464002694",
+            "https://www.wikidata.org/wiki/Q141911037",
+            "https://doi.org/10.5281/zenodo.23607369"
+          ]
+        },
+        "isPartOf": {
+          "@type": "Book",
+          "name": "Proof of a World",
+          "alternateName": "世界の証明",
+          "isbn": "978-4-9912331-0-4",
+          "url": "https://ryutostudio.github.io/"
+        },
+        "inLanguage": "en",
+        "datePublished": "2026-11-18",
+        "dateModified": "2026-11-19",
+        "description": "Formal reconstruction of the argument of 'Proof of a World' in a typed first-order language with entity and coordinate sorts: definitions D1–D5, axioms A1–A8, derivations of T1–T8, and a model proving consistency. The formalization was drafted by Gemini (Google) at the author's direction and checked and revised by Claude (Anthropic); the author is not a specialist in formal logic."
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Q1. Does deriving 'the object itself is sō-omou (T2)' from 'whatever holds, holds as thinking-it-so (A1)' not conflate epistemology with ontology (circular reasoning)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "There is no circularity in the formal structure. T2 is derived from A1, D1, and A7, and no step uses the conclusion T2 as a premise. The claim connecting recognition and existence is stated explicitly on the side of the premises A1, A7, and A8, which correspond to what Section 3 of the book sets out as its 'hypothesis' (the book verifies in Sections 4–6 that this hypothesis does not contradict questions of time and nothingness, and takes it as the conclusion in the Final Section). What T1 shows is that, under these premises, the assumption that 'an independent domain of existence lies outside sō-omou (recognition)' cannot hold. Moreover, the claim that 'the act of recognition' and 'the object in itself (thing-in-itself)' must be separated itself rests on a different premise (Kantian or modern subject-object dualism). Furthermore, sō-omou in this book is not a 'subjective mental image inside the brain (an illusion)', but the principle of reality that includes objects (matter and body) and recognition on an equal footing (T3), so the reality of matter is in no way impaired."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Q2. Is it not an internal contradiction to hold that 'the distinctions between subject and object or self and other are conveniences (D2) and are one at a single coordinate', while arguing in the Preface and Final Section that 'each person's boundaries ought to be protected'?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "There is no contradiction. 'Being one at a single coordinate' means that there is only one coordinate (A5) and that all beings are fundamentally identical (D4c, Corollary 2 of T8); it does not mean that everything is numerically a single individual. The individual, the other, and the world can each exist simultaneously as distinct real beings at the same single coordinate point c0 (Model M in Section VI is an example; unlike Rev. 4, the present system does not require the individual and the world to be a single individual). A 'convenience F' does not mean a 'worthless illusion', but a structural division by which the whole at the single coordinate c0 is concretely established as human beings and individual worlds. And by T3 and T8, the individual world in which each person lives (the domain of joy and attachment shaped by conveniences) is also affirmed as a 'fundamental being (reality)' on an equal footing with the laws of physics and the universe as a whole. Precisely because there is no hierarchy of superiority or inferiority among beings, the act of trampling upon and negating another's boundary by an external yardstick is logically unjustified."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Q3. Are Axiom A4 (symmetry of mutual establishment) and Definition D5b (existence = meaning) not independent premises (redefinitions) posited by the author rather than deduced results?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "That is correct. In addition to A4 and D5b, A1, A7, and A8 connecting existence and sō-omou, as well as A5 on the single coordinate, are premises posited by this book. No system of mathematics or logic can generate theorems out of nothing; every system sets down 'axioms' and 'definitions' that determine its character as its starting point. Whereas conventional philosophy has tacitly adopted 'the asymmetry of subject and object (dualism)' or 'the separation of existence and meaning' as premises, this book selects 'mutual establishment (A4)' and 'existence = meaning (D5b)' as explicit premises and exhibits a system that closes without contradiction from them. What this data demonstrates is that the conclusions are derived without contradiction from these premises, not that the premises themselves are uniquely true."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Q4. If 'every concept is already present (T7)', how can the human experience of thinking up something new (novelty) be explained?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It 'appears as though newly born' because human beings grasp phenomena through the frame of chronological convenience (F_time: the flow from past to future). At the fundamental coordinate c0, there is no unilateral generation (Gen) (T4). Insofar as a relation of establishment holds between a concept x—which is included in the overall structure from the start—and a human being a, it is necessarily mutual establishment (P(a, x) ⇔ P(x, a), A4), appearing within the continuity C(c0, c0). This has the same structure as the position in mathematics that 'new theorems are not invented, but rather theorems that were present in logical space from the start are discovered'."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Q5. Does Theorem T6 merely show that 'nothingness as an object of thought' becomes a being, without ruling out the possibility of 'absolute nothingness that is neither thought nor recognised'?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In this system, absolute nothingness is defined as non-reality (D2e), so 'real absolute nothingness' cannot hold by definition. And 'absolute nothingness that is neither thought nor recognised'—that is, an a for which AbsoluteNothing(a) holds while S(AbsoluteNothing(a)) does not hold—is ruled out by A1 (whatever holds, also holds as 'thinking-it-so'). Furthermore, by T6, there is no being corresponding to absolute nothingness at all. Note, however, that because classical first-order logic used by this system presupposes from the outset that something exists (that the domain is non-empty), the state of 'nothing existing whatsoever' cannot be expressed in this system in the first place. What T6 shows is up to 'no being in the domain is absolute nothingness', which corresponds to p. 21 of the English edition (p. 49 of the Japanese edition): 'there is no longer any need to admit even a beginning, let alone nothingness'. The strength of this conclusion rests on the premises A1 and A8."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Q6. If the individual, the world, and the coordinate are treated as distinct, does a hierarchy (superiority/subordination) not arise among beings?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No hierarchy arises. Being distinct means being numerically distinguished, which involves no hierarchical ordering. Hierarchy or subordination arises only when there is a relation that holds in one direction alone (subordination or unilateral generation); in this system, however, the relation of picturing is symmetric (A4), there is no unilateral generation (T4), co-presence is symmetric (D4a), all beings are fundamental beings and meanings on an equal footing (Corollary 1 of T8), and all beings are fundamentally identical (Corollary 2 of T8). A coordinate is not one of the beings but a distinct sort representing the location of beings, so there is no hierarchy between coordinates and beings either. While being fundamentally identical, distinct real beings can exist simultaneously at one and the same coordinate point (Model M in Section VI)—this is the world depicted by the present system."
+            }
+          }
+        ]
+      }
+    ]
+    </script>
+
+    <style>
+        :root {
+            --bg-color: #080808;
+            --panel-bg: #111111;
+            --card-bg: #151515;
+            --formula-bg: #0c0c0c;
+            --text-color: #dcdcdc;
+            --accent-color: #ffffff;
+            --gold-accent: #e6d2a8;
+            --dim-color: #888888;
+            --border-color: #262626;
+            --highlight-border: #444444;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "SF Mono", "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, "Yu Gothic", monospace;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.75;
+            margin: 0;
+            padding: 36px 18px 80px 18px;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 24px;
+            margin-bottom: 32px;
+        }
+        h1 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin: 0 0 8px 0;
+            letter-spacing: 0.02em;
+            font-weight: 600;
+            line-height: 1.45;
+        }
+        .subtitle {
+            color: var(--dim-color);
+            font-size: 0.85rem;
+            margin-bottom: 14px;
+        }
+        .id-meta-bar {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            font-size: 0.8rem;
+            color: #bdbdbd;
+            margin-bottom: 14px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 4px 16px;
+        }
+        .lang-nav {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--highlight-border);
+            padding: 10px 15px;
+            font-size: 0.85rem;
+            margin-bottom: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+        .lang-nav-label {
+            color: var(--dim-color);
+            font-size: 0.8rem;
+        }
+        .lang-nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 2px 6px;
+            border: 1px solid transparent;
+        }
+        .lang-nav a:hover {
+            border-color: var(--accent-color);
+            background-color: var(--border-color);
+        }
+        .lang-nav .active-lang {
+            color: var(--bg-color);
+            background-color: var(--accent-color);
+            padding: 2px 8px;
+            font-weight: 600;
+        }
+        .ai-creation-notice {
+            background-color: #14130f;
+            border: 1px solid var(--gold-accent);
+            padding: 14px 18px;
+            font-size: 0.83rem;
+            color: #dcdcdc;
+            margin-bottom: 14px;
+        }
+        .ai-creation-notice strong {
+            color: var(--gold-accent);
+            display: block;
+            margin-bottom: 6px;
+        }
+        .ai-creation-notice ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        .ai-creation-notice li {
+            margin-bottom: 4px;
+        }
+        h2 {
+            color: var(--accent-color);
+            font-size: 1.08rem;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 12px;
+            margin: 46px 0 18px 0;
+            letter-spacing: 0.03em;
+        }
+        h3 {
+            color: var(--accent-color);
+            font-size: 0.96rem;
+            margin: 24px 0 10px 0;
+            font-weight: 600;
+        }
+        a {
+            color: var(--accent-color);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+        a:hover {
+            background-color: var(--border-color);
+        }
+        .panel-box {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            padding: 22px 24px;
+            margin-bottom: 24px;
+            font-size: 0.88rem;
+        }
+        .methodology-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--accent-color);
+            padding: 18px 20px;
+            margin-bottom: 22px;
+            font-size: 0.87rem;
+            line-height: 1.75;
+        }
+        .methodology-box p {
+            margin: 0 0 14px 0;
+        }
+        .methodology-box p:last-child {
+            margin-bottom: 0;
+        }
+        .disclaimer-item {
+            background-color: var(--card-bg);
+            border-left: 3px solid var(--gold-accent);
+            padding: 14px 18px;
+            margin-bottom: 14px;
+        }
+        .disclaimer-item:last-child {
+            margin-bottom: 0;
+        }
+        .disclaimer-title {
+            color: var(--gold-accent);
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: block;
+        }
+        /* Legend for Human Readability */
+        .symbol-guide-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--highlight-border);
+            padding: 16px 20px;
+            margin-bottom: 22px;
+            font-size: 0.83rem;
+        }
+        .symbol-guide-title {
+            color: var(--gold-accent);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .symbol-guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 8px 16px;
+        }
+        .sg-item {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .sg-sym {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1rem;
+            min-width: 32px;
+            text-align: center;
+            background: var(--formula-bg);
+            border: 1px solid var(--border-color);
+            padding: 1px 6px;
+        }
+        /* Primitives Table/Cards */
+        .primitives-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        .prim-row {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            display: grid;
+            grid-template-columns: 160px 1fr auto;
+            align-items: center;
+            gap: 14px;
+        }
+        @media (max-width: 680px) {
+            .prim-row {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+        }
+        .prim-sym {
+            font-family: "Cambria Math", "STIX Two Math", "Latin Modern Math", "Times New Roman", serif;
+            font-size: 1.06rem;
+            color: var(--gold-accent);
+            font-weight: 600;
+            background-color: var(--formula-bg);
+            border: 1px solid var(--highlight-border);
+            padding: 4px 10px;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+        .prim-desc {
+            color: var(--text-color);
+            font-size: 0.86rem;
+        }
+        .prim-latex {
+            color: var(--dim-color);
+            font-size: 0.74rem;
+            font-family: monospace;
+            background: var(--formula-bg);
+            padding: 2px 7px;
+            border: 1px dashed var(--border-color);
+            white-space: nowrap;
+        }
+        /* Logic Cards (Definitions, Axioms, Theorems) */
+        .logic-card {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px 22px;
+            margin-bottom: 18px;
+        }
+        .logic-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .logic-id {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.96rem;
+        }
+        .logic-ref {
+            color: var(--dim-color);
+            font-size: 0.78rem;
+        }
+        .logic-prose {
+            margin: 0 0 14px 0;
+            font-size: 0.88rem;
+        }
+        .formula-display {
+            background-color: var(--formula-bg);
+            border: 1px solid var(--highlight-border);
+            padding: 14px 18px;
+            margin-bottom: 10px;
+        }
+        .formula-human {
+            font-family: "Cambria Math", "STIX Two Math", "Latin Modern Math", serif;
+            font-size: 1.05rem;
+            color: var(--gold-accent);
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 8px;
+            line-height: 1.65;
+            word-break: break-word;
+        }
+        .formula-reading {
+            font-size: 0.82rem;
+            color: #b5b5b5;
+            border-top: 1px dashed #252525;
+            padding-top: 6px;
+            margin-bottom: 4px;
+        }
+        .formula-latex {
+            font-size: 0.74rem;
+            color: var(--dim-color);
+            font-family: "SF Mono", Consolas, monospace;
+            word-break: break-all;
+            line-height: 1.5;
+        }
+        .proof-box {
+            background-color: var(--card-bg);
+            border-left: 3px solid #555555;
+            padding: 12px 16px;
+            margin-top: 12px;
+            font-size: 0.84rem;
+        }
+        .proof-title {
+            color: var(--accent-color);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .proof-steps {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .proof-steps li {
+            margin-bottom: 5px;
+        }
+        .stage-banner {
+            background-color: #191919;
+            border-left: 4px solid var(--gold-accent);
+            color: var(--gold-accent);
+            padding: 8px 14px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 28px 0 14px 0;
+        }
+        /* Section V Table & Deductive Chain */
+        .chain-box {
+            background-color: var(--formula-bg);
+            border: 1px solid var(--highlight-border);
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .chain-line {
+            font-family: "Cambria Math", "STIX Two Math", serif;
+            font-size: 1.03rem;
+            color: var(--gold-accent);
+            font-weight: 600;
+            margin: 8px 0;
+        }
+        .spec-table-wrap {
+            overflow-x: auto;
+        }
+        table.spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.83rem;
+            background-color: var(--card-bg);
+        }
+        table.spec-table th, table.spec-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        table.spec-table th {
+            background-color: #1a1a1a;
+            color: var(--gold-accent);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        /* Section VI Model Theory */
+        .model-list {
+            margin: 8px 0 16px 0;
+            padding-left: 20px;
+        }
+        .model-list li {
+            margin-bottom: 8px;
+        }
+        /* FAQ */
+        .faq-card {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px 24px;
+            margin-bottom: 18px;
+        }
+        .faq-q {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.94rem;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+        .faq-a {
+            font-size: 0.88rem;
+            color: var(--text-color);
+            margin: 0;
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .toc-box {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            padding: 16px 20px;
+            font-size: 0.83rem;
+        }
+        .toc-box strong {
+            display: block;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 6px;
+        }
+        .toc-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .toc-box li {
+            margin-bottom: 6px;
+        }
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 24px;
+            margin-top: 64px;
+            color: var(--dim-color);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Formal Verification of Internal Consistency and Deductive Structure — <em>Proof of a World</em><br><span style="font-size: 0.95rem; color: #b0b0b0; font-weight: normal;">（『世界の証明』形式論理による内部整合性・演繹構造の検証データ / Rev. 5, 19 November 2026）</span></h1>
+        <div class="subtitle">Author: Ryuto Sako (酒勾龍渡) | Auxiliary Formal Logic Verification Data (English Edition / Rev. 5)</div>
+
+        <div class="id-meta-bar">
+            <div>• Target Work: <em>Proof of a World</em> (『世界の証明』)</div>
+            <div>• Author: Ryuto Sako (酒勾龍渡)</div>
+            <div>• National Diet Library (NDL) Authority ID: <a href="https://id.ndl.go.jp/auth/ndlna/032264173" target="_blank" rel="noopener">032264173</a></div>
+            <div>• DOI: <a href="https://doi.org/10.5281/zenodo.23607369" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.23607369</a></div>
+            <div>• ORCID iD: <a href="https://orcid.org/0009-0007-5501-8426" target="_blank" rel="noopener">https://orcid.org/0009-0007-5501-8426</a></div>
+            <div>• VIAF: <a href="http://viaf.org/viaf/26165867632464002694" target="_blank" rel="noopener">http://viaf.org/viaf/26165867632464002694</a></div>
+            <div>• Wikidata: <a href="https://www.wikidata.org/wiki/Q141911037" target="_blank" rel="noopener">https://www.wikidata.org/wiki/Q141911037</a></div>
+            <div>• ISBN: 978-4-9912331-0-4</div>
+        </div>
+
+        <div class="lang-nav">
+            <span class="lang-nav-label">Archive Navigation / ページ移動:</span>
+            <a href="index.html">[ ← Main Archive (日本語 / English Full Text) ]</a>
+            <a href="ko.html">[ 한국어 ]</a>
+            <a href="zh-hant.html">[ 繁體中文 ]</a>
+            <a href="zh-hans.html">[ 简体中文 ]</a>
+            <a href="ru.html">[ Русский ]</a>
+            <a href="logic.html">[ 形式論理検証データ (JA) ]</a>
+            <span class="active-lang">[ Formal Logic (EN) ]</span>
+        </div>
+
+        <div class="ai-creation-notice">
+            <strong>■ About the Creation of This Data (Use of AI)</strong>
+            <ul>
+                <li>Every word of the main text of <em>Proof of a World</em> (『世界の証明』, published in May 2022) was written by the author himself.</li>
+                <li>The formalization in this document (formal language, definitions, axioms, derivations, model, and FAQ) was drafted by Gemini (Google) at the author’s direction and inspected by multiple AI systems. On 19 November 2026, Claude (Anthropic) inspected the entire specification and revised the coordinate sort (A5) and related formulations.</li>
+                <li>The author is not a specialist in mathematical logic. The correspondence with the content of the book is shown through the [Reading] (in plain language) attached to each formula and the page references to the main text.</li>
+                <li>The validity of the formulas rests not on inspection by AI, but on the derivations in Section IV (where every step can be checked by standard rules of inference) and the model in Section VI (which anyone can verify by direct evaluation).</li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- TOC -->
+    <section id="toc">
+        <div class="toc-grid">
+            <div class="toc-box">
+                <strong>SPECIFICATION INDEX / 目次</strong>
+                <ul>
+                    <li><a href="#sec-0">0. Purpose and Position of This Data (Premise, Definition of Proof, Methodology, 3 Disclaimers, Two-Layer Structure &amp; Use of AI)</a></li>
+                    <li><a href="#sec-1">I. Typing of Formal Language ℒ (Entity Sort, Coordinate Sort, and Sentential Operators) &amp; Primitives</a></li>
+                    <li><a href="#sec-2">II. Definitions (D1–D5)</a></li>
+                    <li><a href="#sec-3">III. Axioms (A1, A2, A4–A8 &amp; Meta-Theoretic Restriction A3)</a></li>
+                    <li><a href="#sec-4">IV. Derivations of Theorems (Lemma L1, Theorems T1–T8)</a></li>
+                    <li><a href="#sec-5">V. Overall Deductive Structure (Symbolic Deductive Chain &amp; Stage Table)</a></li>
+                    <li><a href="#sec-6">VI. Model-Theoretic Proof of Consistency (Model ℳ Satisfying All Definitions and Axioms)</a></li>
+                    <li><a href="#sec-7">VII. Logical Responses to Anticipated External Criticisms and Questions (FAQ: Q1–Q6)</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 0. PURPOSE & METHODOLOGY & DISCLAIMERS -->
+    <section id="sec-0">
+        <h2>0. Purpose and Position of This Data (Prerequisites Before Reference)</h2>
+        <div class="panel-box">
+            <p style="margin-top:0;">The formal logical system presented on this page (formal language $\mathcal{L}$, definitions, axioms, derivations of theorems, and model-theoretic proof of consistency) is an <strong>auxiliary logical verification specification</strong> designed to objectively verify and visualize—through (1) the typing of the formal language $\mathcal{L}$ (distinguishing the entity sort and the coordinate sort, and specifying sentential operators on formulas and axiom schemas), (2) the derivation of Theorems T1–T8 from Definitions D1–D5 and Axioms A1, A2, A4–A8, and (3) the construction of a model $\mathcal{M}$ simultaneously satisfying all definitions and axioms (proof of consistency)—that the argument in the main text of <em>Proof of a World</em> contains no “logical leaps”, “conflation of definitions”, or “smuggling in of tacit premises”.<br>
+            In referring to or critiquing this data, the following premises and methodology are shared.</p>
+
+            <h3>■ On the Premise, Definition of Proof, and Methodology of This Treatise<br><span style="font-size:0.8rem; color:var(--dim-color); font-weight:normal;">(Identical to the section of the same title in the Appendix of the Complete Edition, EN pp. 29–30 / JA pp. 68–69)</span></h3>
+            <div class="methodology-box">
+                <p>Every science and philosophy ultimately aims at acquiring a complete logical (explanatory) model—that is, a “completely closed logic”. Moreover, “objective facts” and “the established methods of science” are, just like this book, treated on the basis of subjectivity in accordance with a “convenience”. Accordingly, the task that ought properly to be carried out in any inquiry is not endless scepticism that does not even amount to a refutation, but arriving at a closed logic.</p>
+                <p>“Proof” in this book is not a narrow mathematical or deductive proof that uses formulas or technical terms; rather, it means clarifying and establishing, using everyday words alone, the “state” in which the existence of individuals and the world holds true without leaving loose ends within this closed logic. At the same time, if one focuses on the structure itself—laying down only very plain, everyday concepts as a minimum of axioms (premises) and building the argument without bringing in external assumptions to derive the reality of the world and individuals—in a broad sense it follows the same procedure as a deductive proof based on an axiomatic system, and stands literally as a “Proof of a World”. Even if science were someday to unravel the mysteries of the universe by deductive methods, the question would still remain: “Does that truly amount to a fundamental explanation?” This book conducts its inquiry precisely at that level.</p>
+                <p>Furthermore, the criticism that the progression from Sections 1 and 2 (subjective frames and the definition of sō-omou as the sense of “thinking so”) to Section 3 (the hypothesis that “every being is sō-omou itself”) involves a “leap from epistemology to ontology” does not apply. This is because the assumption or conjecture that “an independent objective matter might exist outside of sō-omou” is itself one framework brought about by the operation of sō-omou (“thinking so”), as shown in Sections 1 and 3, and the matter assumed there can also be considered a being equal to sō-omou (consciousness). Therefore, once one stands on the premises of Sections 1–3, there is no fundamental hierarchy or subordination between “recognition (subjectivity)” and “external existence” (we and the world are equal beings). This book posits it as a “hypothesis” in Section 3, verifies in Sections 4–6 that all doubts regarding time and nothingness are resolved without contradiction, and closes the argument without any leap by gathering it back as the conclusion in the Final Section.</p>
+                <p>On top of that, this book holds that as long as something works as an explanation, there may be any number of answers. That fundamental premises cannot be falsified is equally true for those who demand falsifiability. Whether one accepts the premises or the argument is a matter of individual freedom; however, against something that is closed as a complete explanation, merely cutting out fragments to raise doubts does not constitute a refutation. Attempting to apply only existing definitions from the outside to concepts such as time and existence is no different, and does not hold up as a logical critique. There is cooking that uses no fire, and there is no need to put pasta into curry and rice. Just as one cannot ride a bicycle while driving a car, one should not impose elements from a different system without questioning the falsifiability of one’s own premises.</p>
+                <p>In other words, the only valid logical task when examining a closed axiomatic system (logical model) such as this treatise is to verify whether, once one stands at the proposed entrance (the minimal premises), the system closes without contradiction all the way to the exit. Refusing to enter the premise and attempting to criticize the model by lining up unrelated external elements or different yardsticks is not an examination of the target model, but merely amounts to “discussing a different topic from a different system of premises”. Above all, this treatise was constructed not to compete over rightness or to argue others down, but for the purpose of “protecting the world (boundaries) and individual existence that each person holds dear from nihility and the imposition of rightness”. Therefore, departing from the central question—whether this structure is complete as a mechanism that consistently proves and protects the reality of individuals and the world—and attempting to negate it by external standards amounts to bringing in the rules of a different system, which simply does not mesh as a critique of the internal logic of this book.</p>
+            </div>
+
+            <h3>■ Three Disclaimers on the Scope of These Formulas and the Two-Layer Structure of Proof</h3>
+
+            <div class="disclaimer-item">
+                <span class="disclaimer-title">1. Not Intended to Reduce the World to Mathematical Formulas</span>
+                The essence of this book lies in protecting the reality of individuals and the world, and their boundaries, through plain everyday language; it is not claimed that the formulas on this page “explain everything in the world as mathematical formulas in themselves”. They are strictly an auxiliary tool for verifying that the natural-language inference in the main text contains no logical leaps.
+            </div>
+
+            <div class="disclaimer-item">
+                <span class="disclaimer-title">2. No External Premises (Subject-Object Dualism or Linear Time Models) Are Posited</span>
+                Although this model uses standard (classical) first-order logic, external premises such as “objective individuals exist in advance outside recognition” or “time is a before-and-after ordering on a number line” are not posited as axioms. Only definitions and axioms reflecting the internal rules of this book (the framing of conveniences, the foundational nature of sō-omou, the symmetry of mutual establishment, and continuity at a single coordinate) are posited.
+            </div>
+
+            <div class="disclaimer-item">
+                <span class="disclaimer-title">3. Scope of Verification (Distinction Between (1) Derivability of Theorems and (2) Consistency of the Axiom System)</span>
+                Because “the derivability of Theorems T1–T8” and “the consistency of the axiom system” are distinct proof tasks in mathematical logic, this specification demonstrates the following two points separately:
+                <ul class="model-list" style="margin-bottom:0;">
+                    <li><strong>Verification Target (1): Derivability of T1–T8 (Syntactic Derivability)</strong><br>
+                    In Section IV, within the typed formal language $\mathcal{L}$, each theorem is derived from Definitions D1–D5 and Axioms (including schemas) A1, A2, A4–A8 using rules of inference alone ($\text{D1–D5}, \text{A1, A2, A4–A8} \vdash \text{T1–T8}$).</li>
+                    <li style="margin-bottom:0;"><strong>Verification Target (2): Consistency of the Axiom System (Semantic Consistency)</strong><br>
+                    In Section VI, a model $\mathcal{M}$ that simultaneously makes all 19 formulas of the definitions and axioms true is constructed and verified ($\mathcal{M} \models \text{D1–D5} \cup \{\text{A1, A2, A4–A8}\} \implies \text{Consistent}$).</li>
+                </ul>
+            </div>
+
+            <h3>■ Two-Layer Structure of Proof</h3>
+            <div class="disclaimer-item">
+                As stated in the section above, “proof” in this book is a broad proof in everyday words, and this data does not replace it with a narrow mathematical proof. What this data shows is that, for the system in which the argument of the book is reconstructed in a formal language, the following two points hold in the narrow sense (in the sense of mathematical logic):
+                <ul class="model-list" style="margin:6px 0;">
+                    <li>Theorems T1–T8 are derived from the definitions and axioms (Section IV).</li>
+                    <li>Those definitions and axioms do not contradict one another (Section VI).</li>
+                </ul>
+                It does not show that the premises (axioms) themselves are true.
+            </div>
+
+            <h3>■ About the Creation of This Data (Use of AI)</h3>
+            <div class="disclaimer-item">
+                <ul class="model-list" style="margin:0;">
+                    <li>Every word of the main text of <em>Proof of a World</em> (『世界の証明』, published in May 2022) was written by the author himself.</li>
+                    <li>The formalization in this document (formal language, definitions, axioms, derivations, model, and FAQ) was drafted by Gemini (Google) at the author’s direction and inspected by multiple AI systems. On 19 November 2026, Claude (Anthropic) inspected the entire specification and revised the coordinate sort (A5) and related formulations.</li>
+                    <li>The author is not a specialist in mathematical logic. The correspondence with the content of the book is shown through the [Reading] (in plain language) attached to each formula and the page references to the main text.</li>
+                    <li style="margin-bottom:0;">The validity of the formulas rests not on inspection by AI, but on the derivations in Section IV (where every step can be checked by standard rules of inference) and the model in Section VI (which anyone can verify by direct evaluation).</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- I. FORMAL LANGUAGE & PRIMITIVES -->
+    <section id="sec-1">
+        <h2>I. Typing of Formal Language ℒ (Entity Sort, Coordinate Sort, and Sentential Operators) &amp; Primitives</h2>
+        <div class="panel-box">
+            <p style="margin-top:0;">To eliminate any conflation between “quantification in first-order predicate logic” and “operations on propositions (formulas)”, and to avoid confusing “beings (entities)” with “coordinates (locations)”, the sorts (types) and syntactic rules of the formal language $\mathcal{L}$ of this system are specified as follows.</p>
+
+            <h3>[1. Typing of Formal Language ℒ]</h3>
+            <ol class="model-list">
+                <li><strong>Entity Sort ($\text{Ent}$):</strong><br>
+                The set of terms belonging to the domain of beings (individuals) $D_E$ over which quantifiers ($\forall, \exists$) range.
+                    <ul class="model-list">
+                        <li>Entity variables: $x, y, a$</li>
+                        <li>Entity constants: $S_{\text{ind}}$ (the individual’s personal sō-omou), $World$ (the world as a whole)</li>
+                        <li>(* Note: The variable $S_x$ in Rev. 4 has been replaced by the entity variable $y$ to avoid visual confusion with the predicate $S$ and the operator $\mathbf{S}$.)</li>
+                    </ul>
+                </li>
+                <li><strong>Coordinate Sort ($\text{Crd}$):</strong><br>
+                The set of terms belonging to the domain of coordinates (locations) $D_C$ over which quantifiers range. A coordinate is not one of the beings, but a distinct sort representing the “location” of beings (Main Text, EN p. 21 / JA p. 47: “To use coordinates as an analogy, it is easy to imagine if we think of every phenomenon as unfolding at one and the same coordinate point”).
+                    <ul class="model-list">
+                        <li>Coordinate variables: $c, c'$</li>
+                        <li>Coordinate constant: $c_0$ (the single fundamental coordinate)</li>
+                        <li>Function symbol: $Loc: \text{Ent} \to \text{Crd}$ (returns the coordinate $Loc(t)$ at which an entity $t$ is located)</li>
+                    </ul>
+                </li>
+                <li><strong>Predicate Symbols:</strong>
+                    <ul class="model-list">
+                        <li>1-place predicates on entities: $S, B, PE, Concept, M, Ext_{\text{原理的}}, Gen, Begin, End, \text{AlreadyPresent}, \text{AbsoluteNothing}, \text{Limited}$<br>
+                        (* Note: $Ext_{\text{原理的}}(x)$ denotes “being in the fundamental exterior of sō-omou”; the subscript “原理的” [<em>genriteki</em> = fundamental] is retained identical to the Japanese specification so that all 19 symbolic formulas match character-for-character across both editions.)</li>
+                        <li>2-place predicates on entities: $P(t_1, t_2), \text{CoPresent}(t_1, t_2), \text{Same}(t_1, t_2)$</li>
+                        <li>2-place predicates on coordinates: $C(c_1, c_2)$ (continuity), $\text{Before}(c_1, c_2)$ (chronological precedence)</li>
+                        <li>Equality: $t_1 = t_2$ between entities, and between coordinates</li>
+                    </ul>
+                </li>
+                <li><strong>Well-Formed Formulas ($\text{WFF}_{\mathcal{L}}$) and Sentential Operators:</strong><br>
+                The set of formulas inductively constructed from atomic formulas via logical connectives ($\neg, \land, \lor, \implies, \iff$), quantification over entity and coordinate variables ($\forall, \exists$), and sentential operators $\mathbf{S}(\phi), F(\phi), Truth(\phi)$ (where $\phi \in \text{WFF}_{\mathcal{L}}$).
+                    <ul class="model-list">
+                        <li>Propositions (formulas) themselves are not quantified over (propositions are not elements of a domain, nor do they form a sort). Rules containing $\phi$ (A1, A2, A8, D5a) are “axiom schemas” in which each instance obtained by substituting an arbitrary formula $\phi$ is an axiom (in A8, $\phi(x)$ is an arbitrary formula containing $x$ as a free variable).</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <!-- Human-friendly legend -->
+            <div class="symbol-guide-box">
+                <span class="symbol-guide-title">[Mini-Guide to Logical Symbols for Human Readers (Legend)]</span>
+                <div class="symbol-guide-grid">
+                    <div class="sg-item"><span class="sg-sym">∀x</span><span><strong>For all</strong> x (universal)</span></div>
+                    <div class="sg-item"><span class="sg-sym">∃x</span><span><strong>There exists</strong> an x (existential)</span></div>
+                    <div class="sg-item"><span class="sg-sym">A ⇒ B</span><span><strong>If</strong> A <strong>then</strong> B (implication)</span></div>
+                    <div class="sg-item"><span class="sg-sym">A ⇔ B</span><span>A and B are <strong>equivalent</strong> (biconditional)</span></div>
+                    <div class="sg-item"><span class="sg-sym">A ∧ B</span><span>A <strong>and</strong> B (conjunction)</span></div>
+                    <div class="sg-item"><span class="sg-sym">¬A</span><span><strong>Not</strong> A (negation)</span></div>
+                    <div class="sg-item"><span class="sg-sym">⊢ P</span><span>Proposition P is <strong>derived</strong> from axioms &amp; definitions</span></div>
+                    <div class="sg-item"><span class="sg-sym">⊥ / ∎</span><span><strong>⊥</strong> = contradiction, <strong>∎</strong> = end of derivation (Q.E.D.)</span></div>
+                </div>
+            </div>
+
+            <h3>[2. List of Primitive Symbols and Vocabulary]</h3>
+            <div class="primitives-list">
+                <div class="prim-row">
+                    <div class="prim-sym">𝐒(φ)</div>
+                    <div class="prim-desc">[Sentential Operator] Formula φ is established and appears as “thinking-it-so (sō-omou / 観念)”</div>
+                    <div class="prim-latex">[LaTeX] $\mathbf{S}(\phi)$</div>
+                </div>
+                <div class="prim-row">
+                    <div class="prim-sym">F(φ)</div>
+                    <div class="prim-desc">[Sentential Operator] φ is a convenience (secondary framework) set up within sō-omou</div>
+                    <div class="prim-latex">[LaTeX] $F(\phi)$</div>
+                </div>
+                <div class="prim-row">
+                    <div class="prim-sym">Truth(φ)</div>
+                    <div class="prim-desc">[Sentential Operator] φ appears as truth (defined in D5a)</div>
+                    <div class="prim-latex">[LaTeX] $Truth(\phi)$</div>
+                </div>
+                <div class="prim-row">
+                    <div class="prim-sym">S(x)</div>
+                    <div class="prim-desc">Entity x is sō-omou (観念) (defined in D1)</div>
+                    <div class="prim-latex">[LaTeX] $S(x)$</div>
+                </div>
+                <div class="prim-row">
+                    <div class="prim-sym">B(x)</div>
+                    <div class="prim-desc">Entity x exists (is real)</div>
+                    <div class="prim-latex">[LaTeX] $B(x)$</div>
+                </div>
+                <div class="prim-row">
+                    <div class="prim-sym">PE(x)</div>
+                    <div class="prim-desc">x is a fundamental being (原理的存在) (defined in D3)</div>
+                    <div class="prim-latex">[LaTeX] $PE(x)$</div>
+                </div>
+                <div class="prim-row">
+                    <div class="prim-sym">Concept(x)</div>
+                    <div class="prim-desc">x is a concept (an object that is pictured)</div>
+                    <div class="prim-latex">[LaTeX] $Concept(x)$</div>
+                </div>
+                <div class="prim-row">
+                    <div class="prim-sym">M(x)</div>
+                    <div class="prim-desc">x is meaning (has meaning) (defined in D5b)</div>
+                    <div class="prim-latex">[LaTeX] $M(x)$</div>
+                </div>
+                <div class="prim-row">
+                    <div class="prim-sym">P(x, y)</div>
+                    <div class="prim-desc">x pictures y (acts as sō-omou and establishes it)</div>
+                    <div class="prim-latex">[LaTeX] $P(x, y)$</div>
+                </div>
+                <div class="prim-row">
+                    <div class="prim-sym">Same(x, y)</div>
+                    <div class="prim-desc">x and y are fundamentally the same being (defined in D4c; distinct from numerical identity x = y)</div>
+                    <div class="prim-latex">[LaTeX] $\text{Same}(x, y)$</div>
+                </div>
+                <div class="prim-row">
+                    <div class="prim-sym">S<sub>ind</sub>, World</div>
+                    <div class="prim-desc">S<sub>ind</sub>: an individual’s personal sō-omou (entity constant) / World: the world as a whole (entity constant)</div>
+                    <div class="prim-latex">[LaTeX] $S_{\text{ind}}, World$</div>
+                </div>
+                <div class="prim-row">
+                    <div class="prim-sym">c₀</div>
+                    <div class="prim-desc">The single fundamental coordinate (coordinate constant)</div>
+                    <div class="prim-latex">[LaTeX] $c_0$</div>
+                </div>
+                <div class="prim-row">
+                    <div class="prim-sym">Loc(x)</div>
+                    <div class="prim-desc">The coordinate at which entity x is located</div>
+                    <div class="prim-latex">[LaTeX] $Loc(x)$</div>
+                </div>
+                <div class="prim-row">
+                    <div class="prim-sym">C(c₀, c₀)</div>
+                    <div class="prim-desc">Non-temporal continuity in which “the now keeps bringing about the now” at the single coordinate c₀</div>
+                    <div class="prim-latex">[LaTeX] $C(c_0, c_0)$</div>
+                </div>
+                <div class="prim-row">
+                    <div class="prim-sym">Before(c, c')</div>
+                    <div class="prim-desc">Coordinate c is before coordinate c' (chronological precedence)</div>
+                    <div class="prim-latex">[LaTeX] $\text{Before}(c, c')$</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- II. DEFINITIONS -->
+    <section id="sec-2">
+        <h2>II. Definitions (D1–D5)</h2>
+        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">Internal rules specifying the meaning of terms in the main text and appendix. Each symbol is defined only once. A defined symbol is an abbreviation and is read by replacing it with the right-hand side of its definition inside any formula (including inside sentential operators $\mathbf{S}, F, Truth$). Consequently, definitions add no new claims (formulas that add substantive claims are placed as axioms in Section III).</p>
+
+        <div class="logic-card" id="def-d1">
+            <div class="logic-card-header">
+                <span class="logic-id">D1 (Definition of sō-omou / 観念)</span>
+                <span class="logic-ref">Main Text, Sec. 2, p. 18 &amp; Sec. 3, p. 19 [JA ed.: Ch. 2, pp. 37–38 &amp; Ch. 3, p. 40]</span>
+            </div>
+            <p class="logic-prose">Every operation by which something is established as “being there”—such as understanding, conviction, recognition, or positing—is the establishment $\mathbf{S}$ of sō-omou (“thinking-it-so”). In the fundamental domain not mediated by divisions of convenience, for $x$ to be sō-omou $S(x)$ is for “$x$ exists” to be established as sō-omou $\mathbf{S}(B(x))$. (* D1b and D1c of Rev. 4 contain substantive claims and have therefore been moved to Axioms A7 and A8 rather than definitions.)</p>
+            <div class="formula-display">
+                <div class="formula-human">D1 : &nbsp;∀x &nbsp;( S(x) ⇔ 𝐒(B(x)) )</div>
+                <div class="formula-reading">[Reading] For $x$ to be sō-omou is equivalent to “$x$ exists” being established as sō-omou.</div>
+                <div class="formula-latex">[LaTeX] $$\text{D1}: \quad \forall x \, (S(x) \iff \mathbf{S}(B(x)))$$</div>
+            </div>
+        </div>
+
+        <div class="logic-card" id="def-d2">
+            <div class="logic-card-header">
+                <span class="logic-id">D2 (Definitions of Frameworks of Convenience, Exterior, Unilateral Generation, and Boundaries)</span>
+                <span class="logic-ref">Main Text, Sec. 1, pp. 16–17; Sec. 5, p. 20; Sec. 6, p. 21; Final Sec., p. 22; Preface; Poem “Boundary” [JA ed.: pp. 32–34, 45, 49, 52]</span>
+            </div>
+            <p class="logic-prose">Distinctions such as “subject and object”, “mind and matter”, “past, present, and future (chronology $F_{\text{time}}$)”, and “the boundary between self and other” are structural rules of division (conveniences $F$) set up within sō-omou (* this preamble explains the background in the main text; $F$ does not appear in the formulas D2a–D2e, and $F_{\text{time}}$ is not a formal symbol but a descriptive label for “the convenience called chronology”). On this basis, “fundamental exterior ($Ext_{\text{原理的}}$)”, “unilateral generation ($Gen$)”, “temporal boundaries ($Begin, End$)”, and “absolute nothingness ($\text{AbsoluteNothing}$)”—which are targets of refutation in this system—are defined by the following formulas. (* For D2a, only the non-self-referential unary form $\forall x \, (Ext_{\text{原理的}}(x) \iff \neg \mathbf{S}(B(x)))$ is adopted as the definition.)</p>
+            <div class="formula-display">
+                <div class="formula-human">
+                    D2a : &nbsp;∀x &nbsp;( Ext<sub>原理的</sub>(x) ⇔ ¬𝐒(B(x)) )<br>
+                    D2b : &nbsp;∀x &nbsp;( Gen(x) ⇔ ∃a ( P(a, x) ∧ ¬P(x, a) ) )<br>
+                    D2c : &nbsp;∀x &nbsp;( Begin(x) ⇔ ∃c &nbsp;Before(c, Loc(x)) )<br>
+                    D2d : &nbsp;∀x &nbsp;( End(x) ⇔ ∃c &nbsp;Before(Loc(x), c) )<br>
+                    D2e : &nbsp;∀x &nbsp;( AbsoluteNothing(x) ⇔ ¬B(x) )
+                </div>
+                <div class="formula-reading">[Reading] D2a: For $x$ to lie in the “fundamental exterior” of sō-omou is for the existence of $x$ not to be established as sō-omou $\mathbf{S}(B(x))$. D2b: Unilateral generation $Gen(x)$ means being pictured and brought about asymmetrically from some $a$ to $x$ without bidirectionality (a chronological relation of subordination; Main Text, EN p. 20 / JA p. 45). D2c: For $x$ to have a beginning is for there to be a coordinate before the coordinate of $x$. D2d: For $x$ to have an end is for there to be a coordinate after the coordinate of $x$. D2e: For $x$ to be absolute nothingness is for $x$ not to be real ($\neg B(x)$).</div>
+                <div class="formula-latex">[LaTeX]
+$$\text{D2a}: \quad \forall x \, \left(Ext_{\text{原理的}}(x) \iff \neg \mathbf{S}(B(x))\right)$$
+$$\text{D2b}: \quad \forall x \, \left(Gen(x) \iff \exists a \, (P(a, x) \land \neg P(x, a))\right)$$
+$$\text{D2c}: \quad \forall x \, \left(Begin(x) \iff \exists c \, \text{Before}(c, Loc(x))\right)$$
+$$\text{D2d}: \quad \forall x \, \left(End(x) \iff \exists c \, \text{Before}(Loc(x), c)\right)$$
+$$\text{D2e}: \quad \forall x \, \left(\text{AbsoluteNothing}(x) \iff \neg B(x)\right)$$</div>
+            </div>
+        </div>
+
+        <div class="logic-card" id="def-d3">
+            <div class="logic-card-header">
+                <span class="logic-id">D3 (Definition of Fundamental Being / 原理的存在)</span>
+                <span class="logic-ref">Main Text, Sec. 3, p. 19; Final Sec., p. 22; Appendix “Important Points” [JA ed.: Ch. 3, p. 40; Final Ch., p. 53]</span>
+            </div>
+            <p class="logic-prose">A being that is established as sō-omou $S(x)$ and stands in symmetry of mutual establishment with others is defined as a “fundamental being ($PE$)”. (* D3b of Rev. 4, “$Concept(x) \implies B(x)$”, is not a definition and can be derived from other formulas [the Corollary of T6], so it has been omitted.)</p>
+            <div class="formula-display">
+                <div class="formula-human">D3 : &nbsp;∀x &nbsp;( PE(x) ⇔ ( S(x) ∧ ∀y ( P(x, y) ⇔ P(y, x) ) ) )</div>
+                <div class="formula-reading">[Reading] A fundamental being is one that is established as sō-omou and has no merely one-way relation of establishment with any being $y$ (whenever a relation of establishment holds, it is necessarily bidirectional).</div>
+                <div class="formula-latex">[LaTeX] $$\text{D3}: \quad \forall x \, \left(PE(x) \iff (S(x) \land \forall y \, (P(x, y) \iff P(y, x)))\right)$$</div>
+            </div>
+        </div>
+
+        <div class="logic-card" id="def-d4">
+            <div class="logic-card-header">
+                <span class="logic-id">D4 (Non-Temporal Definitions of Co-Presence, Already-Present, and Fundamental Identity)</span>
+                <span class="logic-ref">Main Text, Sec. 5, pp. 20–21; Sec. 6, pp. 21–22; Appendix [JA ed.: Ch. 5, pp. 45–47; Ch. 6, pp. 49–51]</span>
+            </div>
+            <p class="logic-prose">In the fundamental domain that does not presuppose chronology $F_{\text{time}}$, “simultaneous ($\text{CoPresent}$)”, “already present ($\text{AlreadyPresent}$)”, and “fundamentally identical ($\text{Same}$)” are defined by the following conjunctions:</p>
+            <div class="formula-display">
+                <div class="formula-human">
+                    D4a : &nbsp;∀x ∀y &nbsp;( CoPresent(x, y) ⇔ ( Loc(x) = c₀ ∧ Loc(y) = c₀ ) )<br>
+                    D4b : &nbsp;∀x &nbsp;( AlreadyPresent(x) ⇔ ( Loc(x) = c₀ ∧ PE(x) ∧ ¬Gen(x) ) )<br>
+                    D4c : &nbsp;∀x ∀y &nbsp;( Same(x, y) ⇔ ( PE(x) ∧ PE(y) ∧ Loc(x) = Loc(y) ) )
+                </div>
+                <div class="formula-reading">[Reading] D4a: For $x$ and $y$ to be co-present (simultaneous) is for both to be located at the single coordinate $c_0$. D4b: To be already present is to exist at the single coordinate $c_0$ as a fundamental being without unilateral generation. D4c: For $x$ and $y$ to be fundamentally the same being is for both to be fundamental beings located at the same coordinate (Main Text, EN p. 20 / JA p. 46: “fundamentally they are one and the same being”). This is not numerical identity ($x = y$): $x$ and $y$ can be fundamentally identical while being distinct real beings.</div>
+                <div class="formula-latex">[LaTeX]
+$$\text{D4a}: \quad \forall x \forall y \, \left(\text{CoPresent}(x, y) \iff (Loc(x) = c_0 \land Loc(y) = c_0)\right)$$
+$$\text{D4b}: \quad \forall x \, \left(\text{AlreadyPresent}(x) \iff (Loc(x) = c_0 \land PE(x) \land \neg Gen(x))\right)$$
+$$\text{D4c}: \quad \forall x \forall y \, \left(\text{Same}(x, y) \iff (PE(x) \land PE(y) \land Loc(x) = Loc(y))\right)$$</div>
+            </div>
+        </div>
+
+        <div class="logic-card" id="def-d5">
+            <div class="logic-card-header">
+                <span class="logic-id">D5 (Definitions of Truth and Meaning)</span>
+                <span class="logic-ref">Preface &amp; Final Sec., p. 22 [JA ed.: pp. 53–54]</span>
+            </div>
+            <p class="logic-prose">Truth is the event itself in which sō-omou appears through the act of pursuit (D5a: definition schema for any formula), and meaning $M(x)$ is not something conferred by an external purpose, but existence $B(x)$ itself (D5b).</p>
+            <div class="formula-display">
+                <div class="formula-human">
+                    D5a (Schema) : &nbsp;Truth(φ) ⇔ 𝐒(φ)<br>
+                    D5b : &nbsp;∀x &nbsp;( M(x) ⇔ B(x) )
+                </div>
+                <div class="formula-reading">[Reading] D5a: Truth is the event itself that appears as sō-omou. D5b: Having meaning ($M$) and existing ($B$) are equivalent. (* D5a is not used in the derivations of T1–T8; it is a definition for situating the book’s view of truth within the formal language.)</div>
+                <div class="formula-latex">[LaTeX] $$\text{D5a (Schema)}: \quad Truth(\phi) \iff \mathbf{S}(\phi)$$ $$\text{D5b}: \quad \forall x \, (M(x) \iff B(x))$$</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- III. AXIOMS -->
+    <section id="sec-3">
+        <h2>III. Axioms (A1, A2, A4–A8 &amp; Meta-Theoretic Restriction A3)</h2>
+        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">The axioms in the object language $\mathcal{L}$ of this system are the seven principles A1, A2 (axiom schemas) and A4, A5, A6, A7, A8 (where A8 is also an axiom schema). A3 is stated explicitly not as an axiom (formula) of the object language, but as a meta-theoretic restriction. These axioms are not deduced; they are the premises posited by this book (see Section VII, Q3).</p>
+
+        <div class="logic-card" id="ax-a1">
+            <div class="logic-card-header">
+                <span class="logic-id">A1 (Axiom Schema of Sō-omou Subsumption)</span>
+                <span class="logic-ref">Main Text, Sec. 1, pp. 16–17 &amp; Sec. 3, pp. 18–19 [JA ed.: Ch. 1, pp. 32–33 &amp; Ch. 3, pp. 39–40]</span>
+            </div>
+            <p class="logic-prose">For any formula $\phi$, whatever holds, necessarily holds through and within sō-omou $\mathbf{S}$.</p>
+            <div class="formula-display">
+                <div class="formula-human">A1 (Schema) : &nbsp;φ ⇒ 𝐒(φ)</div>
+                <div class="formula-reading">[Reading] For any formula $\phi$, if $\phi$ holds, then it holds as sō-omou $\mathbf{S}(\phi)$. (* The antecedent is “$\phi$ holds”, not “$\phi$ is asserted”. Together with A7 and A8, A1 is a strong premise formalizing what Section 3 of the book posits as its “hypothesis” [that every being is sō-omou itself], and the weight of the system’s conclusions rests here.)</div>
+                <div class="formula-latex">[LaTeX] $$\text{A1 (Schema)}: \quad \phi \implies \mathbf{S}(\phi)$$</div>
+            </div>
+        </div>
+
+        <div class="logic-card" id="ax-a2">
+            <div class="logic-card-header">
+                <span class="logic-id">A2 (Axiom Schema of Framework Internality)</span>
+                <span class="logic-ref">Main Text, Sec. 1, pp. 16–17 [JA ed.: Ch. 1, pp. 32–34]</span>
+            </div>
+            <p class="logic-prose">Any framework of convenience $F(\phi)$, including “objective facts” and “matter”, does not lie outside sō-omou, but is established as an operation $\mathbf{S}(\phi)$ of sō-omou.</p>
+            <div class="formula-display">
+                <div class="formula-human">A2 (Schema) : &nbsp;F(φ) ⇒ 𝐒(φ)</div>
+                <div class="formula-reading">[Reading] For any formula $\phi$, if it is a framework of convenience $F(\phi)$, it is established as an internal operation of sō-omou $\mathbf{S}(\phi)$. (* A2 is not used in the derivations of T1–T8; it is an axiom for situating “convenience” within the formal system.)</div>
+                <div class="formula-latex">[LaTeX] $$\text{A2 (Schema)}: \quad F(\phi) \implies \mathbf{S}(\phi)$$</div>
+            </div>
+        </div>
+
+        <div class="logic-card" id="ax-a3">
+            <div class="logic-card-header">
+                <span class="logic-id">A3 ([Meta-Theoretic Restriction] Meta-Rule on Autonomous Systems and Multiple Explanations)</span>
+                <span class="logic-ref">Main Text, Sec. 1, p. 17 &amp; Appendix [JA ed.: Ch. 1, p. 34]</span>
+            </div>
+            <p class="logic-prose"><strong>[Clarification of Status]</strong> Item A3 is not an axiom (formula) written inside the object language $\mathcal{L}$, but a meta-theoretic restriction when referring to or verifying this formal system from the outside. Accordingly, it adds no undefined predicates or sorts to the object language $\mathcal{L}$.</p>
+            <div class="formula-display">
+                <div class="formula-reading" style="border-top:none; padding-top:0; color:var(--gold-accent);">
+                    (1) The meanings of the internal symbols of this formal system ($B, S, PE, Loc$, etc.) are determined by the definitions, axioms, and [Readings] in this document. Inferences that substitute definitions of the same words from different external philosophical or scientific systems do not constitute a verification of this system, but rather inferences about a different system.<br>
+                    (2) Multiple explanatory models that each close consistently upon different axiom systems can coexist independently in the meta-theory (“as long as it works as an explanation, there may be any number of answers”).
+                </div>
+            </div>
+        </div>
+
+        <div class="logic-card" id="ax-a4">
+            <div class="logic-card-header">
+                <span class="logic-id">A4 (Axiom of Symmetry of Mutual Establishment)</span>
+                <span class="logic-ref">Main Text, Sec. 4, p. 19 &amp; Sec. 5, p. 20 [JA ed.: Ch. 4, p. 42 &amp; Ch. 5, pp. 45–47]</span>
+            </div>
+            <p class="logic-prose">“The act of picturing an object” and “the act of being pictured by that object” are fundamentally equal; there is no one-way relation of subordination between the side that acts and the side acted upon.</p>
+            <div class="formula-display">
+                <div class="formula-human">A4 : &nbsp;∀x ∀y &nbsp;( P(x, y) ⇔ P(y, x) )</div>
+                <div class="formula-reading">[Reading] For all beings $x, y$, $x$ picturing $y$ and $y$ picturing $x$ are equivalent.</div>
+                <div class="formula-latex">[LaTeX] $$\text{A4}: \quad \forall x \forall y \, (P(x, y) \iff P(y, x))$$</div>
+            </div>
+        </div>
+
+        <div class="logic-card" id="ax-a5">
+            <div class="logic-card-header">
+                <span class="logic-id">A5 (Axiom of Single Coordinate and Continuity)</span>
+                <span class="logic-ref">Main Text, Sec. 5, pp. 20–21 [JA ed.: Ch. 5, pp. 45–47]</span>
+            </div>
+            <p class="logic-prose">Fundamentally, no chronology (sequence of distinct coordinates) exists. There is only one coordinate $c_0$, before-and-after relations hold only between distinct coordinates, and at $c_0$ there is the continuity $C(c_0, c_0)$ in which “the now keeps bringing about the now”.</p>
+            <div class="formula-display">
+                <div class="formula-human">A5 : &nbsp;∀c ( c = c₀ ) &nbsp;∧&nbsp; ∀c ∀c' ( Before(c, c') ⇒ c ≠ c' ) &nbsp;∧&nbsp; C(c₀, c₀) &nbsp;&nbsp;(where c, c' are coordinate-sort variables)</div>
+                <div class="formula-reading">[Reading] Every coordinate $c$ coincides with the single coordinate $c_0$. A before-and-after relation holds only between distinct coordinates. At the single coordinate $c_0$, non-temporal continuity $C(c_0, c_0)$ unfolds.<br>
+                (* In Rev. 4, $c$ was an entity (individual) variable, so the first conjunct meant “every being is identical to a single individual $c_0$”, making it impossible to express the distinction among the individual, the world, and others. By making $c$ a variable of the coordinate sort, the formula now expresses its intended meaning that “there is only one coordinate”. The second conjunct of Rev. 4, “$PE(x) \implies Loc(x) = c_0$”, follows from the first conjunct [Lemma L1] and has therefore been omitted.)</div>
+                <div class="formula-latex">[LaTeX] $$\text{A5}: \quad \forall c \, (c = c_0) \land \forall c \, \forall c' \, (\text{Before}(c, c') \implies c \neq c') \land C(c_0, c_0) \quad (c, c' \text{ are coordinate-sort variables})$$</div>
+            </div>
+        </div>
+
+        <div class="logic-card" id="ax-a6">
+            <div class="logic-card-header">
+                <span class="logic-id">A6 (Axiom of Individual Constraint by Total Operation)</span>
+                <span class="logic-ref">Main Text, Sec. 5 [Supplementary Note], p. 21 [JA ed.: Ch. 5, p. 48]</span>
+            </div>
+            <p class="logic-prose">$S_{\text{ind}}$ is an entity constant representing an individual’s personal sō-omou, and $y$ is a variable ranging over arbitrary beings. Because the personal sō-omou $S_{\text{ind}}$ and all beings $y$ are simultaneously co-present and operating at the single coordinate $c_0$, the world as a whole cannot be arbitrarily altered by a single individual’s sō-omou $S_{\text{ind}}$ alone.</p>
+            <div class="formula-display">
+                <div class="formula-human">A6 : &nbsp;( ∀y &nbsp;CoPresent(S<sub>ind</sub>, y) ) ⇒ Limited(S<sub>ind</sub>)</div>
+                <div class="formula-reading">[Reading] If an individual’s sō-omou $S_{\text{ind}}$ is co-present with all beings $y$ at the same coordinate $c_0$, then the individual’s leeway is constrained ($\text{Limited}(S_{\text{ind}})$).</div>
+                <div class="formula-latex">[LaTeX] $$\text{A6}: \quad \left(\forall y \, \text{CoPresent}(S_{\text{ind}}, y)\right) \implies \text{Limited}(S_{\text{ind}})$$</div>
+            </div>
+        </div>
+
+        <div class="logic-card" id="ax-a7">
+            <div class="logic-card-header">
+                <span class="logic-id">A7 (Axiom of the Reality of Sō-omou)</span>
+                <span class="logic-ref">Main Text, Sec. 3, p. 19 &amp; Final Sec., p. 22 [JA ed.: Ch. 3, p. 40 &amp; Final Ch., p. 52] (D1b in Rev. 4)</span>
+            </div>
+            <p class="logic-prose">Everything that is established as sō-omou is real.</p>
+            <div class="formula-display">
+                <div class="formula-human">A7 : &nbsp;∀x &nbsp;( S(x) ⇒ B(x) )</div>
+                <div class="formula-reading">[Reading] If $x$ is sō-omou, then $x$ is real (exists).</div>
+                <div class="formula-latex">[LaTeX] $$\text{A7}: \quad \forall x \, (S(x) \implies B(x))$$</div>
+            </div>
+        </div>
+
+        <div class="logic-card" id="ax-a8">
+            <div class="logic-card-header">
+                <span class="logic-id">A8 (Axiom Schema of Object Positing)</span>
+                <span class="logic-ref">Main Text, Sec. 2, p. 18 &amp; Sec. 3, p. 19 [JA ed.: Ch. 2, pp. 37–38 &amp; Ch. 3, p. 40] (D1c in Rev. 4)</span>
+            </div>
+            <p class="logic-prose">Whatever proposition $\phi(x)$ about a being $x$ may be, if it is posited and appears as sō-omou $\mathbf{S}(\phi(x))$, then that being $x$ is established as sō-omou $S(x)$.</p>
+            <div class="formula-display">
+                <div class="formula-human">A8 (Schema) : &nbsp;∀x &nbsp;( 𝐒(φ(x)) ⇒ S(x) ) &nbsp;&nbsp;(where φ(x) is any formula containing x as a free variable)</div>
+                <div class="formula-reading">[Reading] For any being $x$, if any proposition $\phi(x)$ is posited within sō-omou, then $x$ is established as sō-omou $S(x)$.<br>
+                (* D1c in Rev. 4 was a schema over “any 1-place predicate symbol $\Phi$ of $\mathcal{L}$” and was applied to defined symbols such as $\text{AbsoluteNothing}$, causing definitions to generate substantive claims. In Rev. 5 it is formulated as a schema over any formula $\phi(x)$, making the strength of the premise explicit on the side of the axioms.)<br>
+                (* Combined with A1, A8 has a strong consequence. Since something holds of every being $x$ [for instance, $x = x$], by A1 it also holds as sō-omou $\mathbf{S}$, and by A8 $x$ is sō-omou. Consequently, every being in the domain is sō-omou [$\forall x \, S(x)$] and, by A7, is real [$\forall x \, B(x)$]. The thesis of Section 3 of the book, “every being is sō-omou itself”, enters the formal system in the form of these premises.)</div>
+                <div class="formula-latex">[LaTeX] $$\text{A8 (Schema)}: \quad \forall x \, (\mathbf{S}(\phi(x)) \implies S(x)) \quad (\phi(x) \text{ is any formula containing } x \text{ as a free variable})$$</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IV. THEOREMS -->
+    <section id="sec-4">
+        <h2>IV. Derivations of Theorems (Lemma L1, Theorems T1–T8)</h2>
+        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">From Definitions D1–D5 and Axioms A1, A2, A4–A8 alone, without relying on natural-language supplementation, each theorem is derived without omission using only standard rules of inference of first-order predicate logic (Modus Ponens MP, introduction and elimination of conjunction, implication, and biconditional, proof by contradiction [reductio ad absurdum], contraposition, double negation elimination, transitivity, universal instantiation and generalization, existential instantiation, quantifier negation exchange, reflexivity/symmetry/transitivity and substitution of equality, and expansion of definitions). (* The derivations are written out by hand and have not been mechanically checked by a proof assistant such as Lean or Isabelle; every step can be verified directly by the inference rules listed above.)</p>
+
+        <div class="stage-banner">[Lemma]</div>
+
+        <div class="logic-card" id="lem-l1">
+            <div class="logic-card-header">
+                <span class="logic-id">L1 (Every Being Is Located at One and the Same Coordinate Point — Main Text, Sec. 5, p. 21 / JA p. 47)</span>
+                <span class="logic-ref">Basis: Axiom A5 (First Conjunct)</span>
+            </div>
+            <div class="formula-display">
+                <div class="formula-human">⊢ &nbsp;∀x &nbsp;( Loc(x) = c₀ )</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (Loc(x) = c_0)$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">[Derivation]</span>
+                <ol class="proof-steps">
+                    <li>Take an arbitrary being $x$. $Loc(x)$ is a term of the coordinate sort.</li>
+                    <li>Instantiating the first conjunct of Axiom A5, $\forall c \, (c = c_0)$, with $c := Loc(x)$ yields $Loc(x) = c_0$.</li>
+                    <li>By universal generalization, $\vdash \forall x \, (Loc(x) = c_0)$ is derived. $\blacksquare$</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="stage-banner">[Stage 1: Integration of Recognition and Existence (Sections 1–3)]</div>
+
+        <div class="logic-card" id="thm-t1">
+            <div class="logic-card-header">
+                <span class="logic-id">T1 (Self-Collapse of the External Reality Hypothesis)</span>
+                <span class="logic-ref">Basis: Combination of Axiom Schema A1 and Definition D2a (Proof by Contradiction)</span>
+            </div>
+            <div class="formula-display">
+                <div class="formula-human">⊢ &nbsp;¬∃x &nbsp;( B(x) ∧ Ext<sub>原理的</sub>(x) )</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \neg \exists x \, (B(x) \land Ext_{\text{原理的}}(x))$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">[Derivation]</span>
+                <ol class="proof-steps">
+                    <li>Assume $\exists x \, (B(x) \land Ext_{\text{原理的}}(x))$ (assumption for proof by contradiction).</li>
+                    <li>By existential instantiation, for some entity $a$, we have $B(a) \land Ext_{\text{原理的}}(a)$.</li>
+                    <li>Applying conjunction elimination to Step 2 yields $B(a)$ and $Ext_{\text{原理的}}(a)$ respectively.</li>
+                    <li>In Axiom Schema A1 ($\phi \implies \mathbf{S}(\phi)$), setting $\phi := B(a)$ gives $B(a) \implies \mathbf{S}(B(a))$. From this and $B(a)$ in Step 3, MP yields $\mathbf{S}(B(a))$.</li>
+                    <li>Instantiating Definition D2a with $a$ and applying biconditional elimination gives $Ext_{\text{原理的}}(a) \implies \neg \mathbf{S}(B(a))$. From this and $Ext_{\text{原理的}}(a)$ in Step 3, MP yields $\neg \mathbf{S}(B(a))$.</li>
+                    <li>Combining Step 4 and Step 5 by conjunction introduction derives the explicit contradiction $\mathbf{S}(B(a)) \land \neg \mathbf{S}(B(a))$ ($\bot$).</li>
+                    <li>Therefore, by proof by contradiction (negation introduction), Assumption 1 is discharged and $\vdash \neg \exists x \, (B(x) \land Ext_{\text{原理的}}(x))$ is derived. $\blacksquare$</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="logic-card" id="thm-t2">
+            <div class="logic-card-header">
+                <span class="logic-id">T2 (Sō-omou Existence Theorem — Central Proposition of Section 3)</span>
+                <span class="logic-ref">Basis: Axiom Schema A1, Definition D1, Axiom A7</span>
+            </div>
+            <div class="formula-display">
+                <div class="formula-human">⊢ &nbsp;∀x &nbsp;( B(x) ⇔ S(x) )</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (B(x) \iff S(x))$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">[Derivation]</span>
+                <ol class="proof-steps">
+                    <li>Take an arbitrary being $x$. In Axiom Schema A1, setting $\phi := B(x)$ gives $B(x) \implies \mathbf{S}(B(x))$.</li>
+                    <li>By universal instantiation and biconditional elimination on Definition D1 ($\forall x \, (S(x) \iff \mathbf{S}(B(x)))$), we obtain $\mathbf{S}(B(x)) \implies S(x)$.</li>
+                    <li>Applying hypothetical syllogism (transitivity) to Step 1 and Step 2 yields $B(x) \implies S(x)$.</li>
+                    <li>The converse direction is given immediately by universal instantiation of Axiom A7 ($\forall x \, (S(x) \implies B(x))$): $S(x) \implies B(x)$.</li>
+                    <li>Applying biconditional introduction and universal generalization to Step 3 and Step 4 derives $\vdash \forall x \, (B(x) \iff S(x))$. $\blacksquare$</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="stage-banner">[Stage 2: Equal Standing of Object and Image, and Individual Constraint (Sections 4–5)]</div>
+
+        <div class="logic-card" id="thm-t3">
+            <div class="logic-card-header">
+                <span class="logic-id">T3 (Fundamental Equality of All Beings and Derivation of Individual Constraint)</span>
+                <span class="logic-ref">Basis: Axiom A4, Definition D3, Theorem T2 (Corollary: Lemma L1, Definition D4a, Axiom A6)</span>
+            </div>
+            <div class="formula-display">
+                <div class="formula-human">⊢ &nbsp;∀x &nbsp;( B(x) ⇔ PE(x) ) &nbsp;&nbsp;(Corollary: ⊢ Limited(S<sub>ind</sub>))</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (B(x) \iff PE(x)) \quad \left(\text{Corollary}: \vdash \text{Limited}(S_{\text{ind}})\right)$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">[Derivation]</span>
+                <ol class="proof-steps">
+                    <li>Take an arbitrary being $x$. By universal instantiation of Axiom A4 ($\forall x \forall y \, (P(x, y) \iff P(y, x))$), $\forall y \, (P(x, y) \iff P(y, x))$ holds.</li>
+                    <li>Because the second conjunct on the right-hand side of Definition D3 ($PE(x) \iff (S(x) \land \forall y \, (P(x, y) \iff P(y, x)))$) holds by Step 1, $S(x) \iff PE(x)$ follows.</li>
+                    <li>Applying transitivity of the biconditional to Theorem T2 ($B(x) \iff S(x)$) and Step 2, and universally generalizing, derives $\vdash \forall x \, (B(x) \iff PE(x))$.</li>
+                    <li><strong>[Derivation of Corollary $\vdash \text{Limited}(S_{\text{ind}})$]:</strong> Instantiating Lemma L1 with $S_{\text{ind}}$ and an arbitrary being $y$ yields $Loc(S_{\text{ind}}) = c_0 \land Loc(y) = c_0$. Applying Definition D4a ($x := S_{\text{ind}}$) gives $\text{CoPresent}(S_{\text{ind}}, y)$, and universally generalizing over $y$ gives $\forall y \, \text{CoPresent}(S_{\text{ind}}, y)$. From this and Axiom A6, MP derives $\vdash \text{Limited}(S_{\text{ind}})$. $\blacksquare$</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="logic-card" id="thm-t4">
+            <div class="logic-card-header">
+                <span class="logic-id">T4 (Negation of Unilateral Generation — Mutual Establishment)</span>
+                <span class="logic-ref">Basis: Combination of Axiom A4 and Definition D2b (Defining Gen as an Asymmetric Operation)</span>
+            </div>
+            <div class="formula-display">
+                <div class="formula-human">⊢ &nbsp;∀x &nbsp;( ¬Gen(x) )</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (\neg Gen(x))$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">[Derivation]</span>
+                <ol class="proof-steps">
+                    <li>Take arbitrary beings $x, a$. By universal instantiation of Axiom A4, $P(a, x) \iff P(x, a)$.</li>
+                    <li>Biconditional elimination yields $P(a, x) \implies P(x, a)$. By the definition of implication and De Morgan’s laws, this is equivalent to $\neg (P(a, x) \land \neg P(x, a))$.</li>
+                    <li>Universally generalizing Step 2 over $a$ and applying quantifier negation exchange yields $\neg \exists a \, (P(a, x) \land \neg P(x, a))$.</li>
+                    <li>Applying the contrapositive of Definition D2b ($Gen(x) \iff \exists a \, (P(a, x) \land \neg P(x, a))$) to Step 3 and universally generalizing over $x$ derives $\vdash \forall x \, (\neg Gen(x))$. $\blacksquare$</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="stage-banner">[Stage 3: Neither Beginning Nor End, Negation of Nothingness, and Already-Present (Sections 5–6)]</div>
+
+        <div class="logic-card" id="thm-t5">
+            <div class="logic-card-header">
+                <span class="logic-id">T5 (Boundlessness at the Single Coordinate = Neither Beginning Nor End)</span>
+                <span class="logic-ref">Basis: Axiom A5, Lemma L1, and Definitions D2c, D2d</span>
+            </div>
+            <div class="formula-display">
+                <div class="formula-human">⊢ &nbsp;∀x &nbsp;( ¬Begin(x) ∧ ¬End(x) ) &nbsp;&nbsp;(Corollary: ⊢ ¬Begin(World) ∧ ¬End(World))</div>
+                <div class="formula-reading">[Meaning of Theorem] Because there is only the single coordinate $c_0$ and a before-and-after relation holds only between distinct coordinates, no being has a coordinate before its coordinate or a coordinate after its coordinate. Therefore, every being (including the world as a whole, $World$) has neither beginning nor end (Final Sec., EN p. 22 / JA p. 52: “This world has neither beginning nor end”).</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (\neg Begin(x) \land \neg End(x)) \quad \left(\text{Corollary}: \vdash \neg Begin(World) \land \neg End(World)\right)$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">[Derivation]</span>
+                <ol class="proof-steps">
+                    <li>Take an arbitrary being $x$ and assume $Begin(x)$ (assumption for proof by contradiction).</li>
+                    <li>By Definition D2c, $\exists c \, \text{Before}(c, Loc(x))$. By existential instantiation, for some coordinate $c_1$, we have $\text{Before}(c_1, Loc(x))$.</li>
+                    <li>Instantiating the first conjunct of Axiom A5, $\forall c \, (c = c_0)$, with $c := c_1$ gives $c_1 = c_0$. By Lemma L1, $Loc(x) = c_0$. Substitution of equality yields $\text{Before}(c_0, c_0)$.</li>
+                    <li>Instantiating the second conjunct of Axiom A5, $\forall c \, \forall c' \, (\text{Before}(c, c') \implies c \neq c')$, with $c := c_0, c' := c_0$ and applying MP with Step 3 yields $c_0 \neq c_0$. This contradicts the reflexivity of equality $c_0 = c_0$ ($\bot$).</li>
+                    <li>Hence by proof by contradiction, $\neg Begin(x)$. By an identical argument on Definition D2d, $\text{Before}(Loc(x), c_2)$ yields $\text{Before}(c_0, c_0)$ and a contradiction, giving $\neg End(x)$.</li>
+                    <li>By conjunction introduction and universal generalization, $\vdash \forall x \, (\neg Begin(x) \land \neg End(x))$ is derived. Instantiating with the entity constant $World$ yields the corollary. $\blacksquare$<br>
+                    (* The condition “$PE(x) \implies$” in Rev. 4 is unnecessary and has been removed; the theorem holds for all beings.)</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="logic-card" id="thm-t6">
+            <div class="logic-card-header">
+                <span class="logic-id">T6 (Negation of Absolute Nothingness — Section 6; T7 in Rev. 4)</span>
+                <span class="logic-ref">Basis: Combination of Axiom Schemas A1, A8, Axiom A7, and Definition D2e (Proof by Contradiction)</span>
+            </div>
+            <div class="formula-display">
+                <div class="formula-human">⊢ &nbsp;¬∃x &nbsp;AbsoluteNothing(x) &nbsp;&nbsp;(Corollary: ⊢ ∀x &nbsp;B(x))</div>
+                <div class="formula-reading">[Meaning of Theorem] If we assume that “absolute nothingness ($\text{AbsoluteNothing}(a)$)” holds of some being $a$, then by A1 it also holds (is posited) as sō-omou $\mathbf{S}$, from which A8 and A7 derive $B(a)$, colliding with D2e ($\neg B(a)$). Therefore, there is no being corresponding to absolute nothingness. As a corollary, every being in the domain is real.<br>
+                [Correspondence with the Main Text and Limitations] The main text (EN p. 21 / JA p. 49) states: “there is no longer any need to admit even ‘a beginning’, let alone ‘nothingness’”. Formally, under the strong premises A1 and A8, this takes the form “there is no being corresponding to absolute nothingness” (the strength of this conclusion comes from A1 and A8; see the note to A8). In addition, because the classical first-order logic used by this system presupposes from the outset that the domain is non-empty (that something exists), the state of “nothing existing whatsoever” cannot be expressed in this system in the first place. What T6 shows is up to “no being in the domain is absolute nothingness”.</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \neg \exists x \, \text{AbsoluteNothing}(x) \quad \left(\text{Corollary}: \vdash \forall x \, B(x)\right)$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">[Derivation]</span>
+                <ol class="proof-steps">
+                    <li>Assume $\exists x \, \text{AbsoluteNothing}(x)$ (assumption for proof by contradiction) and, by existential instantiation, let $\text{AbsoluteNothing}(a)$ hold for some being $a$.</li>
+                    <li>In Axiom Schema A1, setting $\phi := \text{AbsoluteNothing}(a)$ gives $\text{AbsoluteNothing}(a) \implies \mathbf{S}(\text{AbsoluteNothing}(a))$. By Step 1 and MP, we obtain $\mathbf{S}(\text{AbsoluteNothing}(a))$.</li>
+                    <li>In Axiom Schema A8, setting $\phi(x) := \text{AbsoluteNothing}(x)$, instantiating with $a$, and applying MP to Step 2 yields $S(a)$.</li>
+                    <li>From Axiom A7 ($\forall x \, (S(x) \implies B(x))$) and Step 3, MP yields $B(a)$.</li>
+                    <li>On the other hand, applying Definition D2e to $\text{AbsoluteNothing}(a)$ in Step 1 yields $\neg B(a)$.</li>
+                    <li>Combining $B(a)$ from Step 4 and $\neg B(a)$ from Step 5 by conjunction introduction derives the explicit contradiction $B(a) \land \neg B(a)$ ($\bot$).</li>
+                    <li>Therefore, by proof by contradiction (negation introduction), $\vdash \neg \exists x \, \text{AbsoluteNothing}(x)$ is derived.</li>
+                    <li><strong>[Derivation of Corollary $\vdash \forall x \, B(x)$]:</strong> For an arbitrary being $x$, T6 gives $\neg \text{AbsoluteNothing}(x)$. By the contrapositive of Definition D2e, $\neg \neg B(x)$, hence $B(x)$. Universal generalization yields $\vdash \forall x \, B(x)$. $\blacksquare$</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="logic-card" id="thm-t7">
+            <div class="logic-card-header">
+                <span class="logic-id">T7 (Theorem of the Already-Presence of All Concepts — Section 6; T6 in Rev. 4)</span>
+                <span class="logic-ref">Basis: Corollary of T6, Theorem T3, Lemma L1, Theorem T4, Definition D4b</span>
+            </div>
+            <div class="formula-display">
+                <div class="formula-human">⊢ &nbsp;∀x &nbsp;( Concept(x) ⇒ AlreadyPresent(x) ) &nbsp;&nbsp;(Corollary: ⊢ ∀x &nbsp;AlreadyPresent(x))</div>
+                <div class="formula-reading">[Meaning of Theorem] Every concept $x$ is already present at the single coordinate $c_0$ without unilateral generation (Main Text, EN p. 21 / JA p. 49: “every concept is already present”). As a corollary, every being, ourselves included, is already present (Final Sec., EN p. 22 / JA p. 52).</div>
+                <div class="formula-latex">[LaTeX] $$\vdash \forall x \, (Concept(x) \implies \text{AlreadyPresent}(x)) \quad \left(\text{Corollary}: \vdash \forall x \, \text{AlreadyPresent}(x)\right)$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">[Derivation]</span>
+                <ol class="proof-steps">
+                    <li>Assume $Concept(x)$ for an arbitrary being $x$.</li>
+                    <li>By universal instantiation of the Corollary of T6 ($\forall x \, B(x)$), we obtain $B(x)$.</li>
+                    <li>From Theorem T3 ($B(x) \iff PE(x)$) and Step 2, MP yields $PE(x)$.</li>
+                    <li>By Lemma L1, we obtain $Loc(x) = c_0$.</li>
+                    <li>By universal instantiation of Theorem T4 ($\forall x \, \neg Gen(x)$), we obtain $\neg Gen(x)$.</li>
+                    <li>Combining Step 4, Step 3, and Step 5 by conjunction introduction yields $Loc(x) = c_0 \land PE(x) \land \neg Gen(x)$.</li>
+                    <li>Applying Definition D4b to Step 6 yields $\text{AlreadyPresent}(x)$. By implication introduction and universal generalization, $\vdash \forall x \, (Concept(x) \implies \text{AlreadyPresent}(x))$ is derived.</li>
+                    <li><strong>[Corollary]:</strong> Since Steps 2–7 do not use the assumption $Concept(x)$, $\text{AlreadyPresent}(x)$ holds for any arbitrary being $x$, and universal generalization yields $\vdash \forall x \, \text{AlreadyPresent}(x)$. $\blacksquare$</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="stage-banner">[Stage 4: Unity of Existence and Meaning (Final Section)]</div>
+
+        <div class="logic-card" id="thm-t8">
+            <div class="logic-card-header">
+                <span class="logic-id">T8 (Affirmation of the World and Sufficiency of Meaning — Conclusion of the Final Section)</span>
+                <span class="logic-ref">Basis: Theorems T2, T3 and Definition D5b (Corollary 1: Corollary of T6; Corollary 2: Corollary 1, Lemma L1, Definition D4c)</span>
+            </div>
+            <div class="formula-display">
+                <div class="formula-human">
+                    ⊢ &nbsp;∀x &nbsp;( ( S(x) ⇔ B(x) ) ∧ ( B(x) ⇔ PE(x) ) ∧ ( PE(x) ⇔ M(x) ) )<br>
+                    (Corollary 1: ⊢ ∀x ( S(x) ∧ B(x) ∧ PE(x) ∧ M(x) ) &nbsp;&nbsp;&nbsp; Corollary 2: ⊢ ∀x ∀y &nbsp;Same(x, y))
+                </div>
+                <div class="formula-reading">[Meaning of Theorem] For every being $x$, being sō-omou ($S$), existing ($B$), being a fundamental being ($PE$), and being meaning itself ($M$) are equivalent. Corollary 1: Every being is sō-omou, is real, is a fundamental being, and is meaning (Final Sec., EN p. 22 / JA pp. 52, 54). Corollary 2: All beings are fundamentally one and the same being (Main Text, EN p. 20 / JA p. 46). Note that Corollary 2 is not numerical identity ($x = y$); distinct beings can exist simultaneously as distinct real beings at one and the same coordinate point (see Model $\mathcal{M}$ in Section VI).</div>
+                <div class="formula-latex">[LaTeX]
+$$\vdash \forall x \, \left((S(x) \iff B(x)) \land (B(x) \iff PE(x)) \land (PE(x) \iff M(x))\right)$$
+$$\left(\text{Corollary 1}: \vdash \forall x \, (S(x) \land B(x) \land PE(x) \land M(x)) \qquad \text{Corollary 2}: \vdash \forall x \forall y \, \text{Same}(x, y)\right)$$</div>
+            </div>
+            <div class="proof-box">
+                <span class="proof-title">[Derivation]</span>
+                <ol class="proof-steps">
+                    <li>By Theorem T2, $\forall x \, (S(x) \iff B(x))$.</li>
+                    <li>By Theorem T3, $\forall x \, (B(x) \iff PE(x))$.</li>
+                    <li>By Definition D5b, $\forall x \, (B(x) \iff M(x))$. Combining this with Step 2 via symmetry and transitivity of the biconditional yields $\forall x \, (PE(x) \iff M(x))$.</li>
+                    <li>Combining Steps 1–3 by conjunction introduction and universally generalizing derives T8.</li>
+                    <li><strong>[Corollary 1]:</strong> From the Corollary of T6 ($\forall x \, B(x)$) and T8, $S(x)$, $PE(x)$, and $M(x)$ also hold for an arbitrary being $x$. Conjunction introduction and universal generalization yield Corollary 1.</li>
+                    <li><strong>[Corollary 2]:</strong> For arbitrary beings $x, y$, Corollary 1 gives $PE(x)$ and $PE(y)$, and Lemma L1 gives $Loc(x) = c_0 = Loc(y)$. Definition D4c yields $\text{Same}(x, y)$. Universal generalization yields Corollary 2. $\blacksquare$<br>
+                    (* The chained notation “$S(x) \iff B(x) \iff PE(x) \iff M(x)$” in Rev. 4 literally means “an even number of components are false” in propositional logic, and has therefore been rewritten as a conjunction of biconditionals.)</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- V. DEDUCTIVE FLOW & STAGE TABLE -->
+    <section id="sec-5">
+        <h2>V. Overall Deductive Structure (Deductive Flow and Stage-by-Stage Basis)</h2>
+        <div class="panel-box">
+            <h3>[1. Symbolic Deductive Chain]</h3>
+            <div class="chain-box">
+                <div class="chain-line">( A5 ) &nbsp;⊢&nbsp; L1</div>
+                <div class="chain-line">( A1, D2a ) &nbsp;⊢&nbsp; T1 &nbsp;&nbsp;／&nbsp;&nbsp; ( A1, D1, A7 ) &nbsp;⊢&nbsp; T2</div>
+                <div class="chain-line">( T2, A4, D3 ) &nbsp;⊢&nbsp; T3 &nbsp;&nbsp;／&nbsp;&nbsp; ( L1, D4a, A6 ) &nbsp;⊢&nbsp; Limited(S<sub>ind</sub>) &nbsp;&nbsp;／&nbsp;&nbsp; ( A4, D2b ) &nbsp;⊢&nbsp; T4</div>
+                <div class="chain-line">( A5, L1, D2c, D2d ) &nbsp;⊢&nbsp; T5 &nbsp;&nbsp;／&nbsp;&nbsp; ( A1, A8, A7, D2e ) &nbsp;⊢&nbsp; T6, T6 Cor. &nbsp;&nbsp;／&nbsp;&nbsp; ( T6 Cor., T3, L1, T4, D4b ) &nbsp;⊢&nbsp; T7</div>
+                <div class="chain-line">( T2, T3, D5b ) &nbsp;⊢&nbsp; T8 &nbsp;&nbsp;／&nbsp;&nbsp; ( T6 Cor., T8 ) &nbsp;⊢&nbsp; T8 Cor. 1 &nbsp;&nbsp;／&nbsp;&nbsp; ( T8 Cor. 1, L1, D4c ) &nbsp;⊢&nbsp; T8 Cor. 2</div>
+                <div style="font-size:0.8rem; color:var(--dim-color); margin-top:8px;">(A2, D5a, and $C(c_0, c_0)$ in A5 are not used in the derivation of any theorem.)</div>
+                <div class="formula-latex" style="margin-top:10px;">
+                    [LaTeX]
+$$(\text{A5}) \vdash \text{L1}$$
+$$(\text{A1}, \text{D2a}) \vdash \text{T1} \quad / \quad (\text{A1}, \text{D1}, \text{A7}) \vdash \text{T2}$$
+$$(\text{T2}, \text{A4}, \text{D3}) \vdash \text{T3} \quad / \quad (\text{L1}, \text{D4a}, \text{A6}) \vdash \text{Limited}(S_{\text{ind}}) \quad / \quad (\text{A4}, \text{D2b}) \vdash \text{T4}$$
+$$(\text{A5}, \text{L1}, \text{D2c}, \text{D2d}) \vdash \text{T5} \quad / \quad (\text{A1}, \text{A8}, \text{A7}, \text{D2e}) \vdash \text{T6}, \text{T6 Cor.} \quad / \quad (\text{T6 Cor.}, \text{T3}, \text{L1}, \text{T4}, \text{D4b}) \vdash \text{T7}$$
+$$(\text{T2}, \text{T3}, \text{D5b}) \vdash \text{T8} \quad / \quad (\text{T6 Cor.}, \text{T8}) \vdash \text{T8 Cor. 1} \quad / \quad (\text{T8 Cor. 1}, \text{L1}, \text{D4c}) \vdash \text{T8 Cor. 2}$$
+                </div>
+            </div>
+
+            <h3>[2. Summary of Basis and Deductive Mechanism by Theorem]</h3>
+            <div class="spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th>Lemma / Theorem</th>
+                            <th>Direct Basis</th>
+                            <th>Logical Mechanism of Derivation and Established Consequence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>L1</strong></td>
+                            <td><strong>A5</strong></td>
+                            <td>Applies the first conjunct of A5, $\forall c \, (c = c_0)$, to the coordinate $Loc(x)$, deriving that every being is located at $c_0$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>T1</strong></td>
+                            <td><strong>A1, D2a</strong></td>
+                            <td>From $B(a) \implies \mathbf{S}(B(a))$ (A1) and $Ext_{\text{原理的}}(a) \implies \neg \mathbf{S}(B(a))$ (D2a), derives the contradiction $\mathbf{S}(B(a)) \land \neg \mathbf{S}(B(a))$ ($\bot$) under the assumption $B(a) \land Ext_{\text{原理的}}(a)$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>T2</strong></td>
+                            <td><strong>A1, D1, A7</strong></td>
+                            <td>Obtains $B(x) \implies S(x)$ from A1 ($B(x) \implies \mathbf{S}(B(x))$) and D1, and $S(x) \implies B(x)$ from A7, deriving $\forall x (B(x) \iff S(x))$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>T3</strong></td>
+                            <td><strong>A4, D3, T2</strong><br>(Corollary: L1, D4a, A6)</td>
+                            <td>$S(x) \iff PE(x)$ follows from A4 and D3 and combines with T2. Also derives $\text{Limited}(S_{\text{ind}})$ via L1, D4a, and A6.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>T4</strong></td>
+                            <td><strong>A4, D2b</strong></td>
+                            <td>Combines D2b (defining $Gen$ as an asymmetric operation) with the symmetry axiom A4 to derive $\forall x (\neg Gen(x))$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>T5</strong></td>
+                            <td><strong>A5, L1, D2c, D2d</strong></td>
+                            <td>Because there is only the single coordinate $c_0$ and before-and-after relations hold only between distinct coordinates (A5), $\text{Before}(c_0, c_0)$ cannot hold, deriving $\neg Begin(x) \land \neg End(x)$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>T6</strong></td>
+                            <td><strong>A1, A8, A7, D2e</strong></td>
+                            <td>From the assumption $\text{AbsoluteNothing}(a)$, derives $B(a)$ via A1, A8, and A7, yielding a contradiction ($\bot$) with $\neg B(a)$ from D2e. Corollary: $\forall x \, B(x)$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>T7</strong></td>
+                            <td><strong>Cor. of T6, T3, L1, T4, D4b</strong></td>
+                            <td>From $B(x)$ (Cor. of T6), obtains $PE(x)$ (T3), $Loc(x) = c_0$ (L1), and $\neg Gen(x)$ (T4), deriving $\text{AlreadyPresent}(x)$ via D4b.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>T8</strong></td>
+                            <td><strong>T2, T3, D5b</strong><br>(Cor. 1: Cor. of T6; Cor. 2: L1, D4c)</td>
+                            <td>Conjoins T2 ($S \iff B$), T3 ($B \iff PE$), and D5b ($B \iff M$). Derives $\forall x (S \land B \land PE \land M)$ in Corollary 1 and $\forall x \forall y \, \text{Same}(x, y)$ in Corollary 2.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- VI. MODEL-THEORETIC CONSISTENCY PROOF -->
+    <section id="sec-6">
+        <h2>VI. Model-Theoretic Proof of Consistency (Model ℳ Satisfying All Definitions and Axioms)</h2>
+        <div class="panel-box">
+            <p style="margin-top:0;">Independently of the derivations in Section IV, this section demonstrates that there exists a model $\mathcal{M}$ that simultaneously makes all 19 formulas of the definitions (D1, D2a, D2b, D2c, D2d, D2e, D3, D4a, D4b, D4c, D5a, D5b) and axioms (A1, A2, A4, A5, A6, A7, A8) of the object language $\mathcal{L}$ true, thereby proving the consistency of the system. (* A3 is a meta-theoretic restriction and not a formula of the object language.)</p>
+
+            <h3>[1. Definition of Structure ℳ]</h3>
+            <ul class="model-list">
+                <li><strong>Domain of Beings (Entities):</strong> $D_E = \{s, t, w\}$ ($s$: an individual’s personal sō-omou, $t$: another individual [the other], $w$: the world as a whole)</li>
+                <li><strong>Domain of Coordinates:</strong> $D_C = \{k\}$</li>
+                <li><strong>Interpretation of Constants:</strong> $I(S_{\text{ind}}) = s$, $I(World) = w$, $I(c_0) = k$</li>
+                <li><strong>Interpretation of Function:</strong> $I(Loc)(s) = I(Loc)(t) = I(Loc)(w) = k$ (all three beings are located at the single coordinate point $k$)</li>
+                <li><strong>1-Place Predicates on Beings:</strong> The extensions of $S, B, PE, Concept, M, \text{AlreadyPresent}$ are the entire domain $D_E$. The extension of $\text{Limited}$ is $\{s, t\}$. The extensions of $Ext_{\text{原理的}}, Gen, Begin, End, \text{AbsoluteNothing}$ are the empty set $\varnothing$.</li>
+                <li><strong>2-Place Predicates on Beings:</strong> The extensions of $P, \text{CoPresent}, \text{Same}$ are $D_E \times D_E$ (true for all pairs).</li>
+                <li><strong>2-Place Predicates on Coordinates:</strong> The extension of $C$ is $\{(k, k)\}$, and the extension of $\text{Before}$ is the empty set $\varnothing$.</li>
+                <li><strong>Sentential Operators:</strong> The valuation of $\mathbf{S}, F, Truth$ is defined as the truth-value identity mapping for any formula $\phi$:
+                $$V_{\mathcal{M}}(\mathbf{S}(\phi)) = V_{\mathcal{M}}(\phi), \quad V_{\mathcal{M}}(F(\phi)) = V_{\mathcal{M}}(\phi), \quad V_{\mathcal{M}}(Truth(\phi)) = V_{\mathcal{M}}(\phi)$$</li>
+                <li><strong>Logical Connectives and Quantifiers:</strong> Follow standard Tarskian truth conditions (entity variables range over $D_E$, and coordinate variables range over $D_C$).</li>
+            </ul>
+
+            <h3>[2. Verification of All 19 Formulas of Definitions (D1–D5) and Axioms (A1, A2, A4–A8)]<br><span style="font-size:0.8rem; color:var(--dim-color); font-weight:normal;">(Below, $x, y$ are arbitrary elements of $D_E$)</span></h3>
+            <div class="spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Object-Language Formula (Definition / Axiom)</th>
+                            <th>Evaluation in Model ℳ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>(1) D1</strong></td>
+                            <td>$\forall x \, (S(x) \iff \mathbf{S}(B(x)))$</td>
+                            <td>LHS $S(x)$ is True. RHS $V_{\mathcal{M}}(\mathbf{S}(B(x))) = V_{\mathcal{M}}(B(x))$ is True. <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(2) D2a</strong></td>
+                            <td>$\forall x \, (Ext_{\text{原理的}}(x) \iff \neg \mathbf{S}(B(x)))$</td>
+                            <td>LHS is False. RHS $\neg V_{\mathcal{M}}(\mathbf{S}(B(x))) = \neg\text{True} = \text{False}$. <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(3) D2b</strong></td>
+                            <td>$\forall x \, (Gen(x) \iff \exists a \, (P(a, x) \land \neg P(x, a)))$</td>
+                            <td>LHS is False. Since $P$ is True for all pairs, no $a$ satisfies $P(a, x) \land \neg P(x, a)$, so RHS is False. <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(4) D2c</strong></td>
+                            <td>$\forall x \, (Begin(x) \iff \exists c \, \text{Before}(c, Loc(x)))$</td>
+                            <td>LHS is False. Since $\text{Before}$ is empty, RHS is also False. <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(5) D2d</strong></td>
+                            <td>$\forall x \, (End(x) \iff \exists c \, \text{Before}(Loc(x), c))$</td>
+                            <td>Likewise, both LHS and RHS are False. <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(6) D2e</strong></td>
+                            <td>$\forall x \, (\text{AbsoluteNothing}(x) \iff \neg B(x))$</td>
+                            <td>LHS is False. RHS $\neg\text{True} = \text{False}$. <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(7) D3</strong></td>
+                            <td>$\forall x \, (PE(x) \iff (S(x) \land \forall y \, (P(x, y) \iff P(y, x))))$</td>
+                            <td>LHS is True. $S(x)$ is True and $P$ is symmetric, so RHS is also True. <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(8) D4a</strong></td>
+                            <td>$\forall x \forall y \, (\text{CoPresent}(x, y) \iff (Loc(x) = c_0 \land Loc(y) = c_0))$</td>
+                            <td>LHS is True. $Loc(x) = k = I(c_0)$ and $Loc(y) = k$, so RHS is also True. <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(9) D4b</strong></td>
+                            <td>$\forall x \, (\text{AlreadyPresent}(x) \iff (Loc(x) = c_0 \land PE(x) \land \neg Gen(x)))$</td>
+                            <td>LHS is True. RHS is $\text{True} \land \text{True} \land \neg\text{False} = \text{True}$. <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(10) D4c</strong></td>
+                            <td>$\forall x \forall y \, (\text{Same}(x, y) \iff (PE(x) \land PE(y) \land Loc(x) = Loc(y)))$</td>
+                            <td>LHS is True. RHS is $\text{True} \land \text{True} \land \text{True}$ ($k = k$). <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(11) D5a (Schema)</strong></td>
+                            <td>$Truth(\phi) \iff \mathbf{S}(\phi)$</td>
+                            <td>For any $\phi$, $V_{\mathcal{M}}(Truth(\phi)) = V_{\mathcal{M}}(\phi) = V_{\mathcal{M}}(\mathbf{S}(\phi))$. Always <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(12) D5b</strong></td>
+                            <td>$\forall x \, (M(x) \iff B(x))$</td>
+                            <td>Both LHS and RHS are True. <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(13) A1 (Schema)</strong></td>
+                            <td>$\phi \implies \mathbf{S}(\phi)$</td>
+                            <td>For any $\phi$, $(V_{\mathcal{M}}(\phi) \implies V_{\mathcal{M}}(\phi))$. Always <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(14) A2 (Schema)</strong></td>
+                            <td>$F(\phi) \implies \mathbf{S}(\phi)$</td>
+                            <td>For any $\phi$, $(V_{\mathcal{M}}(\phi) \implies V_{\mathcal{M}}(\phi))$. Always <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(15) A4</strong></td>
+                            <td>$\forall x \forall y \, (P(x, y) \iff P(y, x))$</td>
+                            <td>Since $P$ is True for all pairs, it is symmetric. <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(16) A5</strong></td>
+                            <td>$\forall c \, (c = c_0) \land \forall c \, \forall c' \, (\text{Before}(c, c') \implies c \neq c') \land C(c_0, c_0)$</td>
+                            <td>Since $D_C = \{k\}$, the 1st conjunct is True. Since $\text{Before}$ is empty, the 2nd conjunct is True. $C(k, k)$ is True. <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(17) A6</strong></td>
+                            <td>$(\forall y \, \text{CoPresent}(S_{\text{ind}}, y)) \implies \text{Limited}(S_{\text{ind}})$</td>
+                            <td>Antecedent $\forall y \, \text{CoPresent}(s, y)$ is True, and consequent $\text{Limited}(s)$ is True. <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(18) A7</strong></td>
+                            <td>$\forall x \, (S(x) \implies B(x))$</td>
+                            <td>Both antecedent and consequent are True. <strong>True</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(19) A8 (Schema)</strong></td>
+                            <td>$\forall x \, (\mathbf{S}(\phi(x)) \implies S(x))$</td>
+                            <td>Since the consequent $S(x)$ is True for every $x$, it is <strong>True</strong> for any formula $\phi(x)$.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>[3. Conclusion]</h3>
+            <div class="disclaimer-item" style="margin-top:12px;">
+                <ol style="margin:0; padding-left:20px;">
+                    <li style="margin-bottom:8px;"><strong>Consistency:</strong> In structure $\mathcal{M}$, all 19 formulas of the definitions and axioms are true ($\mathcal{M} \models \text{D1–D5} \cup \{\text{A1, A2, A4–A8}\}$). Therefore, by the Soundness Theorem, no contradiction ($\psi \land \neg \psi$) can be derived from this system ($\text{D1–D5}, \text{A1, A2, A4–A8} \nvdash \bot$).</li>
+                    <li style="margin-bottom:8px;"><strong>Derivability:</strong> In Section IV, Lemma L1, Theorems T1–T8, and their corollaries were derived from the above definitions and axioms alone by standard rules of inference ($\text{D1–D5}, \text{A1, A2, A4–A8} \vdash \text{T1–T8}$).</li>
+                    <li style="margin-bottom:8px;"><strong>What This Model Shows:</strong> The individual $s$, the other $t$, and the world $w$, while being numerically distinct beings from one another, exist simultaneously at the single coordinate point $k$, are all fundamental beings on an equal footing, and are fundamentally identical ($\text{Same}$). All relations among beings ($P$, $\text{CoPresent}$, $\text{Same}$) are symmetric, with no hierarchy or subordination.</li>
+                </ol>
+                <p style="margin:8px 0 0 0;">From the above, the present system is consistent, and T1–T8 are derived from its definitions and axioms. Note, however, that this does not show that the premises (axioms) themselves are true (see Section 0, “Two-Layer Structure of Proof”). $\blacksquare$</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- VII. LOGICAL FAQ -->
+    <section id="sec-7">
+        <h2>VII. Logical Responses to Anticipated External Criticisms and Questions (FAQ)</h2>
+
+        <div class="faq-card" id="faq-q1">
+            <div class="faq-q">Q1. Does deriving “the object itself is sō-omou (T2)” from “whatever holds, holds as ‘thinking-it-so’ (A1)” not conflate epistemology with ontology (circular reasoning)?</div>
+            <p class="faq-a"><strong>[Answer]</strong><br>
+            There is no circularity in the formal structure. T2 is derived from A1, D1, and A7, and no step uses the conclusion T2 as a premise. The claim connecting recognition and existence is stated explicitly on the side of the premises A1, A7, and A8, which correspond to what Section 3 of the book sets out as its “hypothesis” (the book verifies in Sections 4–6 that this hypothesis does not contradict questions of time and nothingness, and takes it as the conclusion in the Final Section). What T1 shows is that, under these premises, the assumption that “an independent domain of existence lies outside sō-omou (recognition)” cannot hold. Moreover, the claim that “the act of recognition” and “the object in itself (thing-in-itself)” must be separated itself rests on a different premise (Kantian or modern subject-object dualism). Furthermore, sō-omou in this book is not a “subjective mental image inside the brain (an illusion)”, but the principle of reality that includes objects (matter and body) and recognition on an equal footing (T3), so the reality of matter is in no way impaired.</p>
+        </div>
+
+        <div class="faq-card" id="faq-q2">
+            <div class="faq-q">Q2. Is it not an internal contradiction to hold that “the distinctions between subject and object or self and other are conveniences (D2) and are one at a single coordinate”, while arguing in the Preface and Final Section that “each person’s boundaries ought to be protected”?</div>
+            <p class="faq-a"><strong>[Answer]</strong><br>
+            There is no contradiction. “Being one at a single coordinate” means that there is only one coordinate (A5) and that all beings are fundamentally identical (D4c, Corollary 2 of T8); it does not mean that everything is numerically a single individual. The individual, the other, and the world can each exist simultaneously as distinct real beings at the same single coordinate point $c_0$ (Model $\mathcal{M}$ in Section VI is an example; unlike Rev. 4, the present system does not require the individual and the world to be a single individual). A “convenience $F$” does not mean a “worthless illusion”, but a structural division by which the whole at the single coordinate $c_0$ is concretely established as human beings and individual worlds. And by T3 and T8, the individual world in which each person lives (the domain of joy and attachment shaped by conveniences) is also affirmed as a “fundamental being (reality)” on an equal footing with the laws of physics and the universe as a whole. Precisely because there is no hierarchy of superiority or inferiority among beings (one cannot negate a lower subjectivity from a higher objective truth), the act of trampling upon and negating another’s boundary by an external yardstick is logically unjustified.</p>
+        </div>
+
+        <div class="faq-card" id="faq-q3">
+            <div class="faq-q">Q3. Are Axiom A4 (symmetry of mutual establishment) and Definition D5b (existence = meaning) not independent premises (redefinitions) posited by the author rather than deduced results?</div>
+            <p class="faq-a"><strong>[Answer]</strong><br>
+            That is correct. In addition to A4 and D5b, A1, A7, and A8 connecting existence and sō-omou, as well as A5 on the single coordinate, are premises posited by this book. No system of mathematics or logic can generate theorems out of nothing; every system sets down “axioms” and “definitions” that determine its character as its starting point. Whereas conventional philosophy has tacitly adopted “the asymmetry of subject and object (dualism)” or “the separation of existence and meaning” as premises, this book selects “mutual establishment (A4)” and “existence = meaning (D5b)” as explicit premises and exhibits a system that closes without contradiction from them. What this data demonstrates is that the conclusions are derived without contradiction from these premises, not that the premises themselves are uniquely true.</p>
+        </div>
+
+        <div class="faq-card" id="faq-q4">
+            <div class="faq-q">Q4. If “every concept is already present (T7)”, how can the human experience of thinking up something new (novelty) be explained?</div>
+            <p class="faq-a"><strong>[Answer]</strong><br>
+            It “appears as though newly born” because human beings grasp phenomena through the frame of chronological convenience ($F_{\text{time}}$: the flow from past to future). At the fundamental coordinate $c_0$, there is no unilateral generation ($Gen$) (T4). Insofar as a relation of establishment holds between a concept $x$—which is included in the overall structure from the start—and a human being $a$, it is necessarily mutual establishment ($P(a, x) \iff P(x, a)$, A4), appearing within the continuity $C(c_0, c_0)$. This has the same structure as the position in mathematics that “new theorems are not invented, but rather theorems that were present in logical space from the start are discovered”.</p>
+        </div>
+
+        <div class="faq-card" id="faq-q5">
+            <div class="faq-q">Q5. Does Theorem T6 merely show that “nothingness as an object of thought” becomes a being, without ruling out the possibility of “absolute nothingness that is neither thought nor recognised”?</div>
+            <p class="faq-a"><strong>[Answer]</strong><br>
+            In this system, absolute nothingness is defined as non-reality (D2e), so “real absolute nothingness” cannot hold by definition. And “absolute nothingness that is neither thought nor recognised”—that is, an $a$ for which $\text{AbsoluteNothing}(a)$ holds while $\mathbf{S}(\text{AbsoluteNothing}(a))$ does not hold—is ruled out by A1 (whatever holds, also holds as “thinking-it-so”). Furthermore, by T6, there is no being corresponding to absolute nothingness at all. Note, however, that because classical first-order logic used by this system presupposes from the outset that something exists (that the domain is non-empty), the state of “nothing existing whatsoever” cannot be expressed in this system in the first place. What T6 shows is up to “no being in the domain is absolute nothingness”, which corresponds to p. 21 of the English edition (p. 49 of the Japanese edition): “there is no longer any need to admit even ‘a beginning’, let alone ‘nothingness’”. Moreover, the strength of this conclusion rests on the premises A1 and A8.</p>
+        </div>
+
+        <div class="faq-card" id="faq-q6">
+            <div class="faq-q">Q6. If the individual, the world, and the coordinate are treated as distinct, does a hierarchy (superiority/subordination) not arise among beings?</div>
+            <p class="faq-a"><strong>[Answer]</strong><br>
+            No hierarchy arises. Being distinct means being numerically distinguished, which involves no hierarchical ordering. Hierarchy or subordination arises only when there is a relation that holds in one direction alone (subordination or unilateral generation); in this system, however, the relation of picturing is symmetric (A4), there is no unilateral generation (T4), co-presence is symmetric (D4a), all beings are fundamental beings and meanings on an equal footing (Corollary 1 of T8), and all beings are fundamentally identical (Corollary 2 of T8). A coordinate is not one of the beings but a distinct sort representing the location of beings, so there is no hierarchy between coordinates and beings either. While being fundamentally identical, distinct real beings can exist simultaneously at one and the same coordinate point (Model $\mathcal{M}$ in Section VI)—this is the world depicted by the present system.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p><a href="index.html">[ ← Return to Main Archive / 『世界の証明』日英原典トップページへ戻る ]</a> &nbsp;|&nbsp; <a href="logic.html">[ 形式論理検証データ (日本語版) → ]</a></p>
+        <p>&copy; 2022–2026 Ryuto Sako (酒勾龍渡) / Ryuto Studio 研究所. All rights reserved.<br>
+        NDL Authority ID: 032264173 | DOI: 10.5281/zenodo.23607369 | PhilArchive: SAKPOA | Wikidata: Q141911037 | ISBN: 978-4-9912331-0-4</p>
+    </footer>
+</div>
+
+</body>
+</html>
