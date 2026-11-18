@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="8nK3UoaKJhiETYimO3smEt-zoZ0pfOw1oC9rJm6KTUk" />
     <title>『世界の証明』形式論理による内部整合性・演繹構造の検証データ | Formal Verification of Internal Consistency and Deductive Structure — Proof of a World / Rev. 5 (Ryuto Sako / 酒勾龍渡)</title>
-    <meta name="description" content="Formal reconstruction of the argument of 'Proof of a World' (『世界の証明』) by Ryuto Sako (酒勾龍渡) in a typed first-order language with entity and coordinate sorts: definitions D1–D5, axioms A1–A8, derivations of L1 and T1–T8, a model M proving consistency, and Logical FAQ (Rev. 5, 2026-11-19).">
+    <meta name="description" content="Formal reconstruction of the main claims of 'Proof of a World' (『世界の証明』) by Ryuto Sako (酒勾龍渡) as premises and conclusions in a many-sorted first-order language with sentential operators: definitions D1–D5, axioms A1–A8, derivations of L1 and T1–T8, a model M proving consistency, and Logical FAQ (Rev. 5, 2026-11-19).">
     <meta name="author" content="Ryuto Sako (酒勾龍渡)">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <link rel="canonical" href="https://ryutostudio.github.io/logic.html">
@@ -42,7 +42,7 @@
         },
         "datePublished": "2026-11-18",
         "dateModified": "2026-11-19",
-        "description": "Formal reconstruction of the argument of 'Proof of a World' in a typed first-order language with entity and coordinate sorts: definitions D1–D5, axioms A1–A8, derivations of T1–T8, and a model proving consistency. The formalization was drafted by Gemini (Google) at the author's direction and checked and revised by Claude (Anthropic); the author is not a specialist in formal logic."
+        "description": "Formal reconstruction of the main claims of 'Proof of a World' as premises (axioms) and conclusions (theorems) in a many-sorted first-order language with entity and coordinate sorts and sentential operators: definitions D1–D5, axioms A1–A8, derivations of L1 and T1–T8, and a model proving consistency. The formalisation was produced by Gemini (Google) at the author's direction and checked and revised by Claude (Anthropic); the author is not a specialist in formal logic."
       },
       {
         "@context": "https://schema.org",
@@ -564,6 +564,8 @@
             <a href="zh-hant.html">[ 繁體中文 ]</a>
             <a href="zh-hans.html">[ 简体中文 ]</a>
             <a href="ru.html">[ Русский ]</a>
+            <a href="es.html">[ Español ]</a>
+            <a href="pt.html">[ Português ]</a>
             <span class="active-lang">[ 形式論理検証データ (JA) ]</span>
             <a href="logic-en.html">[ Formal Logic (EN) ]</a>
         </div>
@@ -602,7 +604,7 @@
     <section id="sec-0">
         <h2>0. 本データの目的と位置づけ（参照前の前提条件）</h2>
         <div class="panel-box">
-            <p style="margin-top:0;">本データに掲載する形式論理体系（形式言語 $\mathcal{L}$・定義・公理・定理の導出・モデルによる無矛盾性の証明）は、『世界の証明』の本文における主張に「論理的飛躍」「定義の混同」「暗黙の前提の密輸」が存在しないことを、①形式言語 $\mathcal{L}$ の型付け（存在ソートと座標ソートの区別、論理式に付く文演算子と公理図式の明示）、②定義（D1〜D5）と公理（A1, A2, A4〜A8）からの定理 T1〜T8 の導出、および③定義と公理のすべてを同時に満たすモデル $\mathcal{M}$ の構成（無矛盾性の証明）によって、客観的に検算・可視化するための<strong>補助的な論理検証データ（仕様書）</strong>である。<br>
+            <p style="margin-top:0;">本データに掲載する形式論理体系（形式言語 $\mathcal{L}$・定義・公理・定理の導出・モデルによる無矛盾性の証明）は、『世界の証明』の主要な主張を前提（公理）と結論（定理）に分けて形式言語で書き直し、その体系に「論理的飛躍」「定義の混同」「暗黙の前提の密輸」が存在しないことを、①形式言語 $\mathcal{L}$ の型付け（存在ソートと座標ソートの区別、論理式に付く文演算子と公理図式の明示）、②定義（D1〜D5）と公理（A1, A2, A4〜A8）からの定理 T1〜T8 の導出、および③定義と公理のすべてを同時に満たすモデル $\mathcal{M}$ の構成（無矛盾性の証明）によって、客観的に検算・可視化するための<strong>補助的な論理検証データ（仕様書）</strong>である。本文の一つ一つの推論の運び（例えば、第5章 pp.45–46 の議論から p.47 の結論へ）は形式化しておらず、本データの範囲外である。<br>
             本データの参照および批評にあたっては、以下の前提と方法論を共有するものとする。</p>
 
             <h3>■ 論考の前提・証明の定義・方法論について<br><span style="font-size:0.8rem; color:var(--dim-color); font-weight:normal;">（日本語完全版の巻末付録 pp.68–69 の同じ題の節と同文）</span></h3>
@@ -618,12 +620,12 @@
 
             <div class="disclaimer-item">
                 <span class="disclaimer-title">1. 数式による世界の還元を目的としたものではない</span>
-                本書の本質は、平易な日常言語によって個人と世界の実在およびその境界を守り切ることにあり、本ページの論理式が「数式そのものとして世界のすべてを説明している」と主張するものではない。あくまで本文の自然言語による推論に論理的飛躍がないことを検算するための補助ツールである。
+                本書の本質は、平易な日常言語によって個人と世界の実在およびその境界を守り切ることにあり、本ページの論理式が「数式そのものとして世界のすべてを説明している」と主張するものではない。あくまで、本文の主要な主張を前提と結論に分けて書き直し、結論が前提から矛盾なく導かれることを検算するための補助ツールである（本文の推論の一つ一つを検算するものではない）。
             </div>
 
             <div class="disclaimer-item">
                 <span class="disclaimer-title">2. 外部前提（主客二元論・直線的時間モデル）を置かない</span>
-                本モデルは標準的な（古典）一階論理を用いるが、「認識の外部に客観的個体があらかじめ存在する」「時間は数直線上の前後関係である」といった外部の前提は、公理として置かない。置くのは、本書の内部規則（枠組みの便宜化、観念の根源性、相互成立の対称性、単一座標の連続性）を写した定義と公理だけである。
+                本モデルは、標準的な（古典）一階論理に文演算子 $\mathbf{S}$・$F$・$Truth$ を加えた言語を用いるが（扱いは第Ⅰ節【1】(4)）、「認識の外部に客観的個体があらかじめ存在する」「時間は数直線上の前後関係である」といった外部の前提は、公理として置かない。置くのは、本書の内部規則（枠組みの便宜化、観念の根源性、相互成立の対称性、単一座標の連続性）を写した定義と公理だけである。
             </div>
 
             <div class="disclaimer-item">
@@ -695,6 +697,7 @@
                 原子論理式から、論理結合子（$\neg, \land, \lor, \implies, \iff$）、存在・座標の変数に対する量化（$\forall, \exists$）、および文演算子 $\mathbf{S}(\phi), F(\phi), Truth(\phi)$（$\phi \in \text{WFF}_{\mathcal{L}}$）によって帰納的に作られる論理式の集合。
                     <ul class="model-list">
                         <li>命題（論理式）そのものは量化しない（命題は領域の要素ではなく、ソートでもない）。$\phi$ を含む規則（A1, A2, A8, D5a）は、任意の論理式 $\phi$ を当てはめた一つ一つを公理とする「公理図式」である（A8 では、$x$ を自由変数として含む任意の論理式 $\phi(x)$）。</li>
+                        <li>文演算子の扱い：$\mathbf{S}(\phi)$・$F(\phi)$・$Truth(\phi)$ は、論理式 $\phi$ ごとに、$\phi$ の自由変数を引数とする一つの述語として扱う（例えば $\mathbf{S}(B(x))$ は、$x$ についての一項述語である）。したがって本体系は通常の（多ソートの）一階論理の言語であり、健全性定理がそのまま使える。文演算子の中では、論理的に同値な別の式への置き換えはしない（定義された記号を定義の右辺に展開することは、同じ式の書き換えなので、してよい）。</li>
                     </ul>
                 </li>
             </ol>

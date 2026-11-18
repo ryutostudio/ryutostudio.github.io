@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="8nK3UoaKJhiETYimO3smEt-zoZ0pfOw1oC9rJm6KTUk" />
     <title>Formal Verification of Internal Consistency and Deductive Structure — Proof of a World / Rev. 5 | 『世界の証明』形式論理検証データ (Ryuto Sako / 酒勾龍渡)</title>
-    <meta name="description" content="Formal reconstruction of the argument of 'Proof of a World' (『世界の証明』) by Ryuto Sako (酒勾龍渡) in a typed first-order language with entity and coordinate sorts: definitions D1–D5, axioms A1–A8, derivations of L1 and T1–T8, a model M proving consistency, and Logical FAQ (Rev. 5, 2026-11-19).">
+    <meta name="description" content="Formal reconstruction of the main claims of 'Proof of a World' (『世界の証明』) by Ryuto Sako (酒勾龍渡) as premises and conclusions in a many-sorted first-order language with sentential operators: definitions D1–D5, axioms A1–A8, derivations of L1 and T1–T8, a model M proving consistency, and Logical FAQ (Rev. 5, 2026-11-19).">
     <meta name="author" content="Ryuto Sako (酒勾龍渡)">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <link rel="canonical" href="https://ryutostudio.github.io/logic-en.html">
@@ -43,7 +43,7 @@
         "inLanguage": "en",
         "datePublished": "2026-11-18",
         "dateModified": "2026-11-19",
-        "description": "Formal reconstruction of the argument of 'Proof of a World' in a typed first-order language with entity and coordinate sorts: definitions D1–D5, axioms A1–A8, derivations of T1–T8, and a model proving consistency. The formalization was drafted by Gemini (Google) at the author's direction and checked and revised by Claude (Anthropic); the author is not a specialist in formal logic."
+        "description": "Formal reconstruction of the main claims of 'Proof of a World' as premises (axioms) and conclusions (theorems) in a many-sorted first-order language with entity and coordinate sorts and sentential operators: definitions D1–D5, axioms A1–A8, derivations of L1 and T1–T8, and a model proving consistency. The formalisation was produced by Gemini (Google) at the author's direction and checked and revised by Claude (Anthropic); the author is not a specialist in formal logic. The English text was translated from the Japanese by Gemini (Google), except for the methodological section taken from the English edition of the book."
       },
       {
         "@context": "https://schema.org",
@@ -575,7 +575,8 @@
             <strong>■ About the Creation of This Data (Use of AI)</strong>
             <ul>
                 <li>Every word of the main text of <em>Proof of a World</em> (『世界の証明』, published in May 2022) was written by the author himself.</li>
-                <li>The formalisation in this document (formal language, definitions, axioms, derivations, model, and FAQ) was drafted by Gemini (Google) at the author’s direction and inspected by multiple AI systems. On 19 November 2026, Claude (Anthropic) inspected the entire specification and revised the coordinate sort (A5) and related formulations.</li>
+                <li>The formalisation in this document (formal language, definitions, axioms, derivations, model, and FAQ) was produced by Gemini (Google) at the author’s direction and inspected by multiple AI systems. On 19 November 2026, Claude (Anthropic) inspected the entire specification and revised the coordinate sort (A5) and related formulations.</li>
+                <li>The English text of this page was translated from the Japanese by Gemini (Google). The section “On the Premises of the Essay, the Definition of Proof, and Methodology” uses the translation in the English edition of the book, which was made with the help of Claude (Anthropic) and checked by the author against the Japanese.</li>
                 <li>The author is not a specialist in mathematical logic. The correspondence with the content of the book is shown through the [Reading] (in plain language) attached to each formula and the page references to the main text.</li>
                 <li>The validity of the formulas rests not on inspection by AI, but on the derivations in Section IV (where every step can be checked by standard rules of inference) and the model in Section VI (which anyone can verify by direct evaluation).</li>
             </ul>
@@ -605,7 +606,7 @@
     <section id="sec-0">
         <h2>0. Purpose and Position of This Data (Prerequisites Before Reference)</h2>
         <div class="panel-box">
-            <p style="margin-top:0;">The formal logical system presented on this page (formal language $\mathcal{L}$, definitions, axioms, derivations of theorems, and model-theoretic proof of consistency) is an <strong>auxiliary logical verification specification</strong> designed to objectively verify and visualise—through (1) the typing of the formal language $\mathcal{L}$ (distinguishing the entity sort and the coordinate sort, and specifying sentential operators on formulas and axiom schemas), (2) the derivation of Theorems T1–T8 from Definitions D1–D5 and Axioms A1, A2, A4–A8, and (3) the construction of a model $\mathcal{M}$ simultaneously satisfying all definitions and axioms (proof of consistency)—that the argument in the main text of <em>Proof of a World</em> contains no “logical leaps”, “conflation of definitions”, or “smuggling in of tacit premises”.<br>
+            <p style="margin-top:0;">The formal logical system presented on this page (formal language $\mathcal{L}$, definitions, axioms, derivations of theorems, and model-theoretic proof of consistency) is an <strong>auxiliary logical verification specification</strong> designed to objectively verify and visualise—through (1) the typing of the formal language $\mathcal{L}$ (distinguishing the entity sort and the coordinate sort, and specifying sentential operators on formulas and axiom schemas), (2) the derivation of Theorems T1–T8 from Definitions D1–D5 and Axioms A1, A2, A4–A8, and (3) the construction of a model $\mathcal{M}$ simultaneously satisfying all definitions and axioms (proof of consistency)—that the system obtained by restating the main claims of <em>Proof of a World</em> as premises (axioms) and conclusions (theorems) in a formal language contains no “logical leaps”, “conflation of definitions”, or “smuggling in of tacit premises”. The individual steps of reasoning in the main text (for example, in section 5, the step from the discussion on EN p. 20 / JA pp. 45–46 to the conclusion on EN pp. 20–21 / JA p. 47) are not formalised and lie outside the scope of this page.<br>
             In referring to or critiquing this data, the following premises and methodology are shared.</p>
 
             <h3>■ On the Premises of the Essay, the Definition of Proof, and Methodology<br><span style="font-size:0.8rem; color:var(--dim-color); font-weight:normal;">(Identical to the section of the same title in the Appendix of the Complete Edition, EN pp. 30–31 / JA pp. 68–69)</span></h3>
@@ -621,12 +622,12 @@
 
             <div class="disclaimer-item">
                 <span class="disclaimer-title">1. Not Intended to Reduce the World to Mathematical Formulas</span>
-                The essence of this book lies in protecting the reality of individuals and the world, and their boundaries, through plain everyday language; it is not claimed that the formulas on this page “explain everything in the world as mathematical formulas in themselves”. They are strictly an auxiliary tool for verifying that the natural-language inference in the main text contains no logical leaps.
+                The essence of this book lies in protecting the reality of individuals and the world, and their boundaries, through plain everyday language; it is not claimed that the formulas on this page “explain everything in the world as mathematical formulas in themselves”. They are strictly an auxiliary tool for checking, after the main claims of the book have been restated as premises and conclusions, that the conclusions follow from the premises without contradiction; they do not check each individual step of the natural-language reasoning in the main text.
             </div>
 
             <div class="disclaimer-item">
                 <span class="disclaimer-title">2. No External Premises (Subject-Object Dualism or Linear Time Models) Are Posited</span>
-                Although this model uses standard (classical) first-order logic, external premises such as “objective individuals exist in advance outside recognition” or “time is a before-and-after ordering on a number line” are not posited as axioms. Only definitions and axioms reflecting the internal rules of this book (the framing of conveniences, the foundational nature of sō-omou, the symmetry of mutual establishment, and continuity at a single coordinate) are posited.
+                Although this model uses standard (classical) first-order logic extended with the sentential operators $\mathbf{S}$, $F$ and $Truth$ (treated as described in Section I [1] (4)), external premises such as “objective individuals exist in advance outside recognition” or “time is a before-and-after ordering on a number line” are not posited as axioms. Only definitions and axioms reflecting the internal rules of this book (the framing of conveniences, the foundational nature of sō-omou, the symmetry of mutual establishment, and continuity at a single coordinate) are posited.
             </div>
 
             <div class="disclaimer-item">
@@ -654,7 +655,8 @@
             <div class="disclaimer-item">
                 <ul class="model-list" style="margin:0;">
                     <li>Every word of the main text of <em>Proof of a World</em> (『世界の証明』, published in May 2022) was written by the author himself.</li>
-                    <li>The formalisation in this document (formal language, definitions, axioms, derivations, model, and FAQ) was drafted by Gemini (Google) at the author’s direction and inspected by multiple AI systems. On 19 November 2026, Claude (Anthropic) inspected the entire specification and revised the coordinate sort (A5) and related formulations.</li>
+                    <li>The formalisation in this document (formal language, definitions, axioms, derivations, model, and FAQ) was produced by Gemini (Google) at the author’s direction and inspected by multiple AI systems. On 19 November 2026, Claude (Anthropic) inspected the entire specification and revised the coordinate sort (A5) and related formulations.</li>
+                <li>The English text of this page was translated from the Japanese by Gemini (Google). The section “On the Premises of the Essay, the Definition of Proof, and Methodology” uses the translation in the English edition of the book, which was made with the help of Claude (Anthropic) and checked by the author against the Japanese.</li>
                     <li>The author is not a specialist in mathematical logic. The correspondence with the content of the book is shown through the [Reading] (in plain language) attached to each formula and the page references to the main text.</li>
                     <li style="margin-bottom:0;">The validity of the formulas rests not on inspection by AI, but on the derivations in Section IV (where every step can be checked by standard rules of inference) and the model in Section VI (which anyone can verify by direct evaluation).</li>
                 </ul>
@@ -699,6 +701,7 @@
                 The set of formulas inductively constructed from atomic formulas via logical connectives ($\neg, \land, \lor, \implies, \iff$), quantification over entity and coordinate variables ($\forall, \exists$), and sentential operators $\mathbf{S}(\phi), F(\phi), Truth(\phi)$ (where $\phi \in \text{WFF}_{\mathcal{L}}$).
                     <ul class="model-list">
                         <li>Propositions (formulas) themselves are not quantified over (propositions are not elements of a domain, nor do they form a sort). Rules containing $\phi$ (A1, A2, A8, D5a) are “axiom schemas” in which each instance obtained by substituting an arbitrary formula $\phi$ is an axiom (in A8, $\phi(x)$ is an arbitrary formula containing $x$ as a free variable).</li>
+                        <li>Treatment of the sentential operators: for each formula $\phi$, $\mathbf{S}(\phi)$, $F(\phi)$ and $Truth(\phi)$ are each treated as a single predicate whose arguments are the free variables of $\phi$ (for example, $\mathbf{S}(B(x))$ is a one-place predicate of $x$). The system is therefore an ordinary (many-sorted) first-order language, and the Soundness Theorem applies as it stands. Inside a sentential operator, a formula is never replaced by a different, logically equivalent formula (expanding a defined symbol into its definition is allowed, since it rewrites the same formula).</li>
                     </ul>
                 </li>
             </ol>
