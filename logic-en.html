@@ -556,6 +556,7 @@
             <div>• VIAF: <a href="http://viaf.org/viaf/26165867632464002694" target="_blank" rel="noopener">http://viaf.org/viaf/26165867632464002694</a></div>
             <div>• Wikidata: <a href="https://www.wikidata.org/wiki/Q141911037" target="_blank" rel="noopener">https://www.wikidata.org/wiki/Q141911037</a></div>
             <div>• ISBN: 978-4-9912331-0-4</div>
+            <div>• Record of this data (formal model Rev. 5 and its machine verification in Lean 4), Zenodo DOI: <a href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368376</a></div>
         </div>
 
         <div class="lang-nav">
@@ -574,11 +575,12 @@
         <div class="ai-creation-notice">
             <strong>■ About the Creation of This Data (Use of AI)</strong>
             <ul>
-                <li>Every word of the main text of <em>Proof of a World</em> (『世界の証明』, published in May 2022) was written by the author himself.</li>
+                <li>Every word of the main text of <em>Proof of a World</em> (『世界の証明』, published in May 2022, with the original archived at the National Diet Library of Japan on publication) was written by the author himself, and its argument was complete, in the author’s own words, at that time. The formalisation in this document was made from that argument.</li>
                 <li>The formalisation in this document (formal language, definitions, axioms, derivations, model, and FAQ) was produced by Gemini (Google) at the author’s direction and inspected by multiple AI systems. On 19 November 2026, Claude (Anthropic) inspected the entire specification and revised the coordinate sort (A5) and related formulations.</li>
                 <li>The English text of this page was translated from the Japanese by Gemini (Google). The section “On the Premises of the Essay, the Definition of Proof, and Methodology” uses the translation in the English edition of the book, which was made with the help of Claude (Anthropic) and checked by the author against the Japanese.</li>
                 <li>The author is not a specialist in mathematical logic. The correspondence with the content of the book is shown through the [Reading] (in plain language) attached to each formula and the page references to the main text.</li>
-                <li>The validity of the formulas rests not on inspection by AI, but on the derivations in Section IV (where every step can be checked by standard rules of inference) and the model in Section VI (which anyone can verify by direct evaluation).</li>
+                <li>The file for the machine verification in Lean 4 (ProofOfAWorld_Rev5.lean) was written by Claude (Anthropic) at the author’s request (19 November 2026). Its correctness rests not on trust in the writer but on Lean’s check.</li>
+                <li>The validity of the formulas rests not on inspection by AI, but on the derivations in Section IV (where every step can be checked by standard rules of inference) and the model in Section VI (which anyone can verify by direct evaluation). Both have also been checked mechanically in Lean 4 (see “Machine Verification in Lean 4” in Section 0).</li>
             </ul>
         </div>
     </header>
@@ -651,14 +653,28 @@
                 It does not show that the premises (axioms) themselves are true.
             </div>
 
+            <h3>■ Machine Verification in Lean 4</h3>
+            <div class="disclaimer-item">
+                The two points above (the derivations in Section IV and the model in Section VI) have also been checked mechanically with the proof assistant Lean 4.
+                <ul class="model-list" style="margin:6px 0;">
+                    <li><strong>What was checked:</strong> (1) that Lemma L1 and Theorems T1–T8 with their corollaries are derivable from Definitions D1–D5 and Axioms A1, A2, A4–A8, in a general form that holds for any number of beings; (2) that the model ℳ of Section VI satisfies all 19 formulas of the definitions and axioms (consistency); (3) that the definitions and axioms do not force all beings to be numerically one (non-triviality; in ℳ the individual and the world are distinct).</li>
+                    <li><strong>Result (19 November 2026, Lean v4.36.0, Lean Web):</strong> no errors, no warnings, and no unproved steps (sorry). Lean’s report of what each result depends on (#print axioms) shows that no result uses any premise beyond the definitions and axioms, except the version of the corollary of T6 derived as in the text (by double-negation elimination), which uses the standard axioms of classical logic (propext, Classical.choice, Quot.sound). The same corollary is also derived by a route that does not use double-negation elimination (the note to A8).</li>
+                    <li><strong>Notes on the encoding:</strong> the schemas (A1, A2, A8, D5a) are written in Lean as single statements about all propositions, which is slightly stronger than a schema. The derivations use only instances expressible in the language ℒ, and the model ℳ satisfies even the stronger form, so both conclusions also hold for the schemas. A3, a meta-theoretic restriction, is not written in Lean.</li>
+                    <li><strong>Scope:</strong> Lean checks only what lies inside the formal system (derivability and consistency). Whether the formulas faithfully represent the book, and whether the premises (axioms) are true, lie outside its scope.</li>
+                    <li><strong>Record (DOI):</strong> this formal model (Rev. 5) and its machine verification in Lean 4 are archived on Zenodo, together with the document in Japanese and in English (PDF) and the Lean file (<a href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368376</a>).</li>
+                    <li style="margin-bottom:0;"><strong>File and how to re-run the check:</strong> ProofOfAWorld_Rev5.lean (<a href="https://github.com/ryutostudio/ryutostudio.github.io/blob/main/ProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">view on GitHub</a>). Opening <a href="https://live.lean-lang.org/#url=https%3A%2F%2Fryutostudio.github.io%2FProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">Re-run the check on Lean Web</a> loads this file into the official browser version of Lean, so that anyone can repeat the same check.</li>
+                </ul>
+            </div>
+
             <h3>■ About the Creation of This Data (Use of AI)</h3>
             <div class="disclaimer-item">
                 <ul class="model-list" style="margin:0;">
-                    <li>Every word of the main text of <em>Proof of a World</em> (『世界の証明』, published in May 2022) was written by the author himself.</li>
+                    <li>Every word of the main text of <em>Proof of a World</em> (『世界の証明』, published in May 2022, with the original archived at the National Diet Library of Japan on publication) was written by the author himself, and its argument was complete, in the author’s own words, at that time. The formalisation in this document was made from that argument.</li>
                     <li>The formalisation in this document (formal language, definitions, axioms, derivations, model, and FAQ) was produced by Gemini (Google) at the author’s direction and inspected by multiple AI systems. On 19 November 2026, Claude (Anthropic) inspected the entire specification and revised the coordinate sort (A5) and related formulations.</li>
                 <li>The English text of this page was translated from the Japanese by Gemini (Google). The section “On the Premises of the Essay, the Definition of Proof, and Methodology” uses the translation in the English edition of the book, which was made with the help of Claude (Anthropic) and checked by the author against the Japanese.</li>
                     <li>The author is not a specialist in mathematical logic. The correspondence with the content of the book is shown through the [Reading] (in plain language) attached to each formula and the page references to the main text.</li>
-                    <li style="margin-bottom:0;">The validity of the formulas rests not on inspection by AI, but on the derivations in Section IV (where every step can be checked by standard rules of inference) and the model in Section VI (which anyone can verify by direct evaluation).</li>
+                    <li>The file for the machine verification in Lean 4 (ProofOfAWorld_Rev5.lean) was written by Claude (Anthropic) at the author’s request (19 November 2026). Its correctness rests not on trust in the writer but on Lean’s check.</li>
+                    <li style="margin-bottom:0;">The validity of the formulas rests not on inspection by AI, but on the derivations in Section IV (where every step can be checked by standard rules of inference) and the model in Section VI (which anyone can verify by direct evaluation). Both have also been checked mechanically in Lean 4 (see “Machine Verification in Lean 4” in Section 0).</li>
                 </ul>
             </div>
         </div>
@@ -1011,7 +1027,7 @@ $$\text{D4c}: \quad \forall x \forall y \, \left(\text{Same}(x, y) \iff (PE(x) \
     <!-- IV. THEOREMS -->
     <section id="sec-4">
         <h2>IV. Derivations of Theorems (Lemma L1, Theorems T1–T8)</h2>
-        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">From Definitions D1–D5 and Axioms A1, A2, A4–A8 alone, without relying on natural-language supplementation, each theorem is derived without omission using only standard rules of inference of first-order predicate logic (Modus Ponens MP, introduction and elimination of conjunction, implication, and biconditional, proof by contradiction [reductio ad absurdum], contraposition, double negation elimination, transitivity, universal instantiation and generalisation, existential instantiation, quantifier negation exchange, reflexivity/symmetry/transitivity and substitution of equality, and expansion of definitions). (* The derivations are written out by hand and have not been mechanically checked by a proof assistant such as Lean or Isabelle; every step can be verified directly by the inference rules listed above.)</p>
+        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">From Definitions D1–D5 and Axioms A1, A2, A4–A8 alone, without relying on natural-language supplementation, each theorem is derived without omission using only standard rules of inference of first-order predicate logic (Modus Ponens MP, introduction and elimination of conjunction, implication, and biconditional, proof by contradiction [reductio ad absurdum], contraposition, double negation elimination, transitivity, universal instantiation and generalisation, existential instantiation, quantifier negation exchange, reflexivity/symmetry/transitivity and substitution of equality, and expansion of definitions). (* The derivations are written out by hand, and every step can be verified directly by the inference rules listed above. They have also been checked mechanically with the proof assistant Lean 4 (see “Machine Verification in Lean 4” in Section 0).)</p>
 
         <div class="stage-banner">[Lemma]</div>
 

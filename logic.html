@@ -555,6 +555,7 @@
             <div>・VIAF：<a href="http://viaf.org/viaf/26165867632464002694" target="_blank" rel="noopener">http://viaf.org/viaf/26165867632464002694</a></div>
             <div>・Wikidata：<a href="https://www.wikidata.org/wiki/Q141911037" target="_blank" rel="noopener">https://www.wikidata.org/wiki/Q141911037</a></div>
             <div>・ISBN：978-4-9912331-0-4</div>
+            <div>・本データの記録（形式論理モデル Rev. 5 と Lean 4 による機械検証、Zenodo DOI）：<a href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368376</a></div>
         </div>
 
         <div class="lang-nav">
@@ -573,10 +574,11 @@
         <div class="ai-creation-notice">
             <strong>■ このデータの作成について（AI の使用）</strong>
             <ul>
-                <li>本書『世界の証明』の本文（2022年刊）は、すべて著者が書いたものである。</li>
+                <li>本書『世界の証明』の本文（2022年刊。発行時に国立国会図書館に原典をアーカイブ済み）は、すべて著者が書いたものであり、その論証は2022年の時点で著者自身の言葉によって完成している。本データの形式化は、その論証をもとに行ったものである。</li>
                 <li>本データの形式化（形式言語・定義・公理・導出・モデル・FAQ）は、著者の指示のもとで Gemini（Google）が作成し、複数の AI に点検させた。2026年11月19日に Claude（Anthropic）が全体を点検し、座標の型（A5）などを修正した。</li>
                 <li>著者は数理論理学の専門家ではない。本書の内容との対応は、各式に付けた【読み方】（日本語）と本文のページで示している。</li>
-                <li>式の正しさの根拠は、AI による点検ではなく、第Ⅳ節の導出（各段を推論規則で確かめられる）と、第Ⅵ節のモデル（だれでも検算できる）である。</li>
+                <li>Lean 4 による機械検証のファイル（ProofOfAWorld_Rev5.lean）は、著者の依頼により Claude（Anthropic）が作成した（2026年11月19日）。その正しさは、作成者への信用ではなく、Lean による検査に基づく。</li>
+                <li>式の正しさの根拠は、AI による点検ではなく、第Ⅳ節の導出（各段を推論規則で確かめられる）と、第Ⅵ節のモデル（だれでも検算できる）である。この2点は、Lean 4 でも機械的に確かめた（第0節「■ Lean 4 による機械検証」）。</li>
             </ul>
         </div>
     </header>
@@ -649,13 +651,27 @@
                 前提（公理）そのものが正しいことを示すものではない。
             </div>
 
+            <h3>■ Lean 4 による機械検証</h3>
+            <div class="disclaimer-item">
+                上の2点（第Ⅳ節の導出と第Ⅵ節のモデル）は、証明支援系 Lean 4 によっても機械的に確かめた。
+                <ul class="model-list" style="margin:6px 0;">
+                    <li><strong>確かめたこと：</strong>①補題 L1 と定理 T1〜T8・各系が、定義 D1〜D5 と公理 A1, A2, A4〜A8 から導かれること（存在の個数を問わない一般の形で）。②第Ⅵ節のモデル ℳ が、定義と公理の19式をすべて満たすこと（無矛盾性）。③定義と公理が、すべての存在を数として一つにしてしまわないこと（非自明性。ℳ では個人と世界が別の存在である）。</li>
+                    <li><strong>結果（2026年11月19日、Lean v4.36.0、Lean Web）：</strong>エラー 0、警告 0、未証明の箇所（sorry）なし。各結果が何に依存するかを Lean に表示させると（#print axioms）、定義と公理のほかには何も前提を用いていない。ただし、T6 の系を本文どおり（二重否定の除去）に導いた版だけは、古典論理の標準の公理（propext, Classical.choice, Quot.sound）を用いる。同じ系は、二重否定を用いない道（A8 の注）でも導いた。</li>
+                    <li><strong>書き方の注意：</strong>図式（A1, A2, A8, D5a）は、Lean では「すべての命題について」の1つの式として書いた（図式よりわずかに強い形）。導出に使ったのは言語 ℒ で書ける例だけで、モデル ℳ はこの強い形も満たすので、二つの結論は図式についても成り立つ。A3 は体系の外の制限なので、Lean には書いていない。</li>
+                    <li><strong>範囲：</strong>Lean が確かめるのは、形式体系の内部（導出と無矛盾）までである。式が本書を正しく写しているか、前提（公理）が正しいかは、確かめる範囲の外である。</li>
+                    <li><strong>記録（DOI）：</strong>この形式論理モデル（Rev. 5）と Lean 4 による機械検証は、日本語と英語の文書（PDF）と Lean のファイルとともに、Zenodo に記録として保存した（<a href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368376</a>）。</li>
+                    <li style="margin-bottom:0;"><strong>ファイルと確かめ直し方：</strong>ProofOfAWorld_Rev5.lean（<a href="https://github.com/ryutostudio/ryutostudio.github.io/blob/main/ProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">GitHub で見る</a>）。<a href="https://live.lean-lang.org/#url=https%3A%2F%2Fryutostudio.github.io%2FProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">Lean Web で確かめ直す</a>を開くと、Lean の公式のブラウザ版にこのファイルが読み込まれ、だれでも同じ確認をやり直せる。</li>
+                </ul>
+            </div>
+
             <h3>■ このデータの作成について（AI の使用）</h3>
             <div class="disclaimer-item">
                 <ul class="model-list" style="margin:0;">
-                    <li>本書『世界の証明』の本文（2022年刊）は、すべて著者が書いたものである。</li>
+                    <li>本書『世界の証明』の本文（2022年刊。発行時に国立国会図書館に原典をアーカイブ済み）は、すべて著者が書いたものであり、その論証は2022年の時点で著者自身の言葉によって完成している。本データの形式化は、その論証をもとに行ったものである。</li>
                     <li>本データの形式化（形式言語・定義・公理・導出・モデル・FAQ）は、著者の指示のもとで Gemini（Google）が作成し、複数の AI に点検させた。2026年11月19日に Claude（Anthropic）が全体を点検し、座標の型（A5）などを修正した。</li>
                     <li>著者は数理論理学の専門家ではない。本書の内容との対応は、各式に付けた【読み方】（日本語）と本文のページで示している。</li>
-                    <li style="margin-bottom:0;">式の正しさの根拠は、AI による点検ではなく、第Ⅳ節の導出（各段を推論規則で確かめられる）と、第Ⅵ節のモデル（だれでも検算できる）である。</li>
+                    <li>Lean 4 による機械検証のファイル（ProofOfAWorld_Rev5.lean）は、著者の依頼により Claude（Anthropic）が作成した（2026年11月19日）。その正しさは、作成者への信用ではなく、Lean による検査に基づく。</li>
+                    <li style="margin-bottom:0;">式の正しさの根拠は、AI による点検ではなく、第Ⅳ節の導出（各段を推論規則で確かめられる）と、第Ⅵ節のモデル（だれでも検算できる）である。この2点は、Lean 4 でも機械的に確かめた（第0節「■ Lean 4 による機械検証」）。</li>
                 </ul>
             </div>
         </div>
@@ -1007,7 +1023,7 @@ $$\text{D4c}: \quad \forall x \forall y \, \left(\text{Same}(x, y) \iff (PE(x) \
     <!-- IV. THEOREMS -->
     <section id="sec-4">
         <h2>Ⅳ. 定理の導出（Derivations: 補題 L1、定理 T1〜T8）</h2>
-        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">定義 D1〜D5 と公理 A1, A2, A4〜A8 のみから、自然言語の補足に依存せず、一階述語論理の標準的な推論規則（モーダスポネンス MP、連言・含意・双条件の導入と除去、背理法、対偶、二重否定の除去、推移律、全称例化・全称化、存在例化、量化子の否定交換、等号の反射・対称・推移と代入、定義の展開）のみで、各定理を省略なく導出する。（※導出は手で書いたものであり、証明支援系（Lean・Isabelle など）による機械検査は行っていない。各段は上の推論規則で確かめられる。）</p>
+        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">定義 D1〜D5 と公理 A1, A2, A4〜A8 のみから、自然言語の補足に依存せず、一階述語論理の標準的な推論規則（モーダスポネンス MP、連言・含意・双条件の導入と除去、背理法、対偶、二重否定の除去、推移律、全称例化・全称化、存在例化、量化子の否定交換、等号の反射・対称・推移と代入、定義の展開）のみで、各定理を省略なく導出する。（※導出は手で書いたもので、各段は上の推論規則で確かめられる。この導出は、証明支援系 Lean 4 によっても機械的に確かめた（第0節「■ Lean 4 による機械検証」）。）</p>
 
         <div class="stage-banner">【補題】</div>
 

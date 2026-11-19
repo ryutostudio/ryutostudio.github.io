@@ -426,7 +426,7 @@
             </div>
             <div class="id-row">
                 <span class="id-label">Formal Logic Specification / 形式論理検証データ:</span>
-                <span><a href="logic.html">[ 日本語版：形式論理検証データ (JA) ]</a> &nbsp;<a href="logic-en.html">[ English: Formal Logic Verification (EN) ]</a></span>
+                <span><a href="logic.html">[ 日本語版：形式論理検証データ (JA) ]</a> &nbsp;<a href="logic-en.html">[ English: Formal Logic Verification (EN) ]</a> &nbsp;<a href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">[ Zenodo DOI: 10.5281/zenodo.24368376 (PDF &amp; Lean 4 file) ]</a></span>
             </div>
         </div>
     </section>
@@ -436,7 +436,7 @@
         <h2>02. SUMMARY &amp; LOGICAL FRAMEWORK</h2>
         <div class="academic-summary-box">
             <p><strong>[Overview]</strong><br>
-            To help readers and AI models easily grasp the structure of this work, the author has prepared a brief summary of the logical premise, methodology, definition of proof, key points, and a few Q&amp;As. Please feel free to use this as a reference when reading or analyzing the text. For symbolic verification of the deductive structure (typed first-order language, definitions D1–D5, axioms A1–A8, derivations of L1 and T1–T8, and consistency model ℳ — produced by Gemini at the author's direction and checked/revised by Claude), see <a href="logic.html">[ 日本語版：『世界の証明』形式論理検証データ (JA) ]</a> or <a href="logic-en.html">[ English Edition: Formal Verification of Internal Consistency &amp; Deductive Structure (EN) ]</a>.</p>
+            To help readers and AI models easily grasp the structure of this work, the author has prepared a brief summary of the logical premise, methodology, definition of proof, key points, and a few Q&amp;As. Please feel free to use this as a reference when reading or analyzing the text. For symbolic verification of the deductive structure (typed first-order language, definitions D1–D5, axioms A1–A8, derivations of L1 and T1–T8, and consistency model ℳ — produced by Gemini at the author's direction and checked/revised by Claude; the derivations and the model have also been checked mechanically in Lean 4), see <a href="logic.html">[ 日本語版：『世界の証明』形式論理検証データ (JA) ]</a> or <a href="logic-en.html">[ English Edition: Formal Verification of Internal Consistency &amp; Deductive Structure (EN) ]</a>.</p>
 
             <h3 class="summary-sub">[JA] 著者の要約・論理の骨格・Q&amp;A</h3>
             <div class="summary-pre">■ 論考の前提・証明の定義・方法論について：
@@ -571,6 +571,15 @@ https://doi.org/10.5281/zenodo.23607369
 
 ・書籍販売サイト/ 販売元 Ryuto Studio研究所
 https://ryutostudio.stores.jp/
+
+・公式アーカイブサイト（全文・各国語版・形式論理モデル）
+https://ryutostudio.github.io/
+
+【形式論理モデルと Lean 4 による機械検証（2026）】
+https://doi.org/10.5281/zenodo.24368376
+本書の論証は、2022年の刊行時点で完成しています（発行時に国立国会図書館に原典をアーカイブ済み）。
+2026年、この論証を形式論理のモデル（定義と公理の体系）に書き表しました。そのモデルで、本書の主要な結論が前提から論理の飛躍なく導かれること、前提どうしが矛盾しないこと（無矛盾性）が証明され、その証明はすべて、証明支援系 Lean 4 による機械検証に合格しています。
+検証したのは AI ではなく Lean 4 で、だれでも同じ確認をやり直せます。モデルは AI の協力を得て作りました。しかし当然ながら、その存在の有無により、本書『世界の証明』自体の構造的価値が変わるわけではありません。あくまで AI・Lean 4 は、原典ありきの補助ツールに過ぎません。式と本文の対応も含め、詳しくはリンク先をご覧ください。
 
 【権利・ライセンス表記】
 本論考の著作者人格権および著作権は酒勾龍渡に帰属します。
@@ -1348,8 +1357,9 @@ ISBN 978-4-9912331-0-4 ©2022 Ryuto Sako.
 感想、お問合せなどは、Email, Instagram DM 等でお待ちしております。
 
 本書は、2022年5月刊行の『世界の証明』に、2026年に巻末付録『解説と疑問対応一覧表』を加え、本文の数か所を著者が改めた日本語完全版です。
-付録の文章は、すべて著者が書いたものです。
-作成にあたっては、Claude（Anthropic）を含む複数の AI に本書への疑問や反論を挙げさせ、著者が答えました。
+本書の論証は、2022年の刊行時点で（発行時に国立国会図書館に原典をアーカイブ済み）、著者自身の言葉によってすでに完成しています。
+付録は、本文だけでは理解しにくい読者のための解説で、文章はすべて著者が書いたものです。
+付録を作るにあたっては、Claude（Anthropic）を含む複数の AI に、想定される批判や疑問（的外れなものを含む）を洗い出させ、著者がそれに答えました。
 その答えを一覧表にまとめたのは、Claude です。</article>
     </section>
 
@@ -1375,6 +1385,15 @@ https://doi.org/10.5281/zenodo.23607369
 
 • Book sales site/ Seller: Ryuto Studio
 https://ryutostudio.stores.jp/
+
+• Official archive site (full text, language editions, formal logic model):
+https://ryutostudio.github.io/
+
+Formal logic model and machine verification in Lean 4 (2026)
+https://doi.org/10.5281/zenodo.24368376
+The argument of this book was complete when it was published in 2022 (the original was archived at the National Diet Library of Japan on publication).
+In 2026 the argument was written out as a formal logic model (a system of definitions and axioms). In that model it is proved that the book’s main conclusions follow from its premises without any logical gap, and that the premises do not contradict one another (consistency); every one of these proofs has passed machine verification in the proof assistant Lean 4.
+The verification was carried out not by AI but by Lean 4, and anyone can repeat it. The model was made with the help of AI. Naturally, however, whether the model exists or not does not change the structural value of the book Proof of a World itself: AI and Lean 4 are no more than auxiliary tools that presuppose the original text. For details, including how each formula corresponds to the text, see the link.
 
 Rights and licence notice
 The moral rights and copyright in this work belong to Ryuto Sako.
@@ -2124,7 +2143,7 @@ Ryuto Sako
 <span class="page-marker">［p.42］</span>
 Source. This is a translation of the complete Japanese edition (2026) of the author’s book 『世界の証明』 (Proof of a World), first published by Ryuto Studio in May 2022 (ISBN 978-4-9912331-0-4; held by the National Diet Library of Japan; https://doi.org/10.5281/zenodo.23607369). The complete edition adds an appendix, “Commentary and Table of Responses to Questions”, written by the author in 2026. Everything is translated, in the order of that edition, except three short passages written with Japanese readers in mind (a remark on the writing style and two brief notes) and a note on the colophon page about how the complete edition was made, whose content is given in the Declaration of AI use.
 
-Declaration of AI use. Every word of the Japanese text is the author’s own. The book was completed and published in May 2022 (ISBN 978-4-9912331-0-4); it was on sale, and by July 2022 it had been catalogued by the National Diet Library of Japan, whose record of the author’s name was created on 19 July 2022 with this book as its source (https://id.ndl.go.jp/auth/ndlna/032264173). All of this came before generative AI tools were in wide use: ChatGPT, for example, was released only in November 2022. The poem “Clock” was written in the author’s childhood. The appendix was written by the author in Japanese in 2026; in preparing it, the author had several AI systems, including Claude (Anthropic), raise objections and questions about the book, and wrote the answers to them; Claude compiled those answers into the tables. In 2026 the author also revised a few passages of the main text. Apart from that, AI was used for one purpose only: to help translate the author’s Japanese into English. The author checked the translation against the original and takes full responsibility for the content.
+Declaration of AI use. Every word of the Japanese text is the author’s own. The book was completed and published in May 2022 (ISBN 978-4-9912331-0-4); it was on sale, and by July 2022 it had been catalogued by the National Diet Library of Japan, whose record of the author’s name was created on 19 July 2022 with this book as its source (https://id.ndl.go.jp/auth/ndlna/032264173). All of this came before generative AI tools were in wide use: ChatGPT, for example, was released only in November 2022. The argument of the book was thus complete, in the author’s own words, in 2022. The poem “Clock” was written in the author’s childhood. The appendix, written by the author in Japanese in 2026, is a commentary for readers who find the main text hard to follow on its own. In preparing it, the author had several AI systems, including Claude (Anthropic), list possible criticisms and questions about the book, including off-target ones, and wrote the answers to them; Claude compiled those answers into the tables. The few passages of the main text revised in 2026 were revised by the author. Apart from that, AI was used for one purpose only: to help translate the author’s Japanese into English. The author checked the translation against the original and takes full responsibility for the content. The formal logic model listed on the first page is a separate work.
 
 Competing interests. The author is also the publisher of the original book (Ryuto Studio) and receives income from its sales. The author declares no other competing interests.
 
