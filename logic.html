@@ -156,8 +156,9 @@
             color: #bdbdbd;
             margin-bottom: 14px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
             gap: 4px 16px;
+            overflow-wrap: anywhere;
         }
         .lang-nav {
             background-color: var(--panel-bg);
@@ -481,6 +482,7 @@
         }
         .model-list li {
             margin-bottom: 8px;
+            overflow-wrap: anywhere;
         }
         /* FAQ */
         .faq-card {
@@ -569,6 +571,8 @@
             <a href="pt.html">[ Português ]</a>
             <span class="active-lang">[ 形式論理検証データ (JA) ]</span>
             <a href="logic-en.html">[ Formal Logic (EN) ]</a>
+            <a href="lean.html">[ Lean 4 機械検証 (JA) ]</a>
+            <a href="lean-en.html">[ Lean 4 Verification (EN) ]</a>
         </div>
 
         <div class="ai-creation-notice">
@@ -660,7 +664,7 @@
                     <li><strong>書き方の注意：</strong>図式（A1, A2, A8, D5a）は、Lean では「すべての命題について」の1つの式として書いた（図式よりわずかに強い形）。導出に使ったのは言語 ℒ で書ける例だけで、モデル ℳ はこの強い形も満たすので、二つの結論は図式についても成り立つ。A3 は体系の外の制限なので、Lean には書いていない。</li>
                     <li><strong>範囲：</strong>Lean が確かめるのは、形式体系の内部（導出と無矛盾）までである。式が本書を正しく写しているか、前提（公理）が正しいかは、確かめる範囲の外である。</li>
                     <li><strong>記録（DOI）：</strong>この形式論理モデル（Rev. 5）と Lean 4 による機械検証は、日本語と英語の文書（PDF）と Lean のファイルとともに、Zenodo に記録として保存した（<a href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368376</a>）。</li>
-                    <li style="margin-bottom:0;"><strong>ファイルと確かめ直し方：</strong>ProofOfAWorld_Rev5.lean（<a href="https://github.com/ryutostudio/ryutostudio.github.io/blob/main/ProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">GitHub で見る</a>）。<a href="https://live.lean-lang.org/#url=https%3A%2F%2Fryutostudio.github.io%2FProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">Lean Web で確かめ直す</a>を開くと、Lean の公式のブラウザ版にこのファイルが読み込まれ、だれでも同じ確認をやり直せる。</li>
+                    <li style="margin-bottom:0;"><strong>ファイルと確かめ直し方：</strong>ProofOfAWorld_Rev5.lean（<a href="https://github.com/ryutostudio/ryutostudio.github.io/blob/main/ProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">GitHub で見る</a>）。<a href="https://live.lean-lang.org/#url=https%3A%2F%2Fryutostudio.github.io%2FProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">Lean Web で確かめ直す</a>を開くと、Lean の公式のブラウザ版にこのファイルが読み込まれ、だれでも同じ確認をやり直せる。Lean のコードの全文と確かめ直し方は、特設ページ「<a href="lean.html">Lean 4 による機械検証</a>」にまとめた。</li>
                 </ul>
             </div>
 

@@ -157,8 +157,9 @@
             color: #bdbdbd;
             margin-bottom: 14px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
             gap: 4px 16px;
+            overflow-wrap: anywhere;
         }
         .lang-nav {
             background-color: var(--panel-bg);
@@ -482,6 +483,7 @@
         }
         .model-list li {
             margin-bottom: 8px;
+            overflow-wrap: anywhere;
         }
         /* FAQ */
         .faq-card {
@@ -570,6 +572,8 @@
             <a href="pt.html">[ Português ]</a>
             <a href="logic.html">[ 形式論理検証データ (JA) ]</a>
             <span class="active-lang">[ Formal Logic (EN) ]</span>
+            <a href="lean.html">[ Lean 4 機械検証 (JA) ]</a>
+            <a href="lean-en.html">[ Lean 4 Verification (EN) ]</a>
         </div>
 
         <div class="ai-creation-notice">
@@ -662,7 +666,7 @@
                     <li><strong>Notes on the encoding:</strong> the schemas (A1, A2, A8, D5a) are written in Lean as single statements about all propositions, which is slightly stronger than a schema. The derivations use only instances expressible in the language ℒ, and the model ℳ satisfies even the stronger form, so both conclusions also hold for the schemas. A3, a meta-theoretic restriction, is not written in Lean.</li>
                     <li><strong>Scope:</strong> Lean checks only what lies inside the formal system (derivability and consistency). Whether the formulas faithfully represent the book, and whether the premises (axioms) are true, lie outside its scope.</li>
                     <li><strong>Record (DOI):</strong> this formal model (Rev. 5) and its machine verification in Lean 4 are archived on Zenodo, together with the document in Japanese and in English (PDF) and the Lean file (<a href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368376</a>).</li>
-                    <li style="margin-bottom:0;"><strong>File and how to re-run the check:</strong> ProofOfAWorld_Rev5.lean (<a href="https://github.com/ryutostudio/ryutostudio.github.io/blob/main/ProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">view on GitHub</a>). Opening <a href="https://live.lean-lang.org/#url=https%3A%2F%2Fryutostudio.github.io%2FProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">Re-run the check on Lean Web</a> loads this file into the official browser version of Lean, so that anyone can repeat the same check.</li>
+                    <li style="margin-bottom:0;"><strong>File and how to re-run the check:</strong> ProofOfAWorld_Rev5.lean (<a href="https://github.com/ryutostudio/ryutostudio.github.io/blob/main/ProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">view on GitHub</a>). Opening <a href="https://live.lean-lang.org/#url=https%3A%2F%2Fryutostudio.github.io%2FProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">Re-run the check on Lean Web</a> loads this file into the official browser version of Lean, so that anyone can repeat the same check. The full Lean code and how to re-run the check are also on the page “<a href="lean-en.html">Machine Verification in Lean 4</a>”.</li>
                 </ul>
             </div>
 
