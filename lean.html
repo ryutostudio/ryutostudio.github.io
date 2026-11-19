@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>『世界の証明』形式論理モデル — Lean 4 による機械検証に合格 | Proof of a World: Formal Model Verified in Lean 4 (Ryuto Sako / 酒勾龍渡)</title>
+    <meta name="description" content="『世界の証明』（酒勾龍渡、2022）の論証を書き表した形式論理モデルは、証明支援系 Lean 4 による機械検証に合格しました。そのモデルで、本書の主要な結論が前提から論理の飛躍なく導かれること、前提どうしが矛盾しないことが証明されています。Lean のコードの全文を掲載し、だれでも Lean Web で確かめ直せます。">
+    <meta name="author" content="Ryuto Sako (酒勾龍渡)">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://ryutostudio.github.io/lean.html">
+    <link rel="alternate" hreflang="ja" href="https://ryutostudio.github.io/lean.html">
+    <link rel="alternate" hreflang="en" href="https://ryutostudio.github.io/lean-en.html">
+    <link rel="alternate" hreflang="x-default" href="https://ryutostudio.github.io/lean-en.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="『世界の証明』形式論理モデル — Lean 4 による機械検証に合格">
+    <meta property="og:description" content="『世界の証明』（酒勾龍渡、2022）の論証を書き表した形式論理モデルは、証明支援系 Lean 4 による機械検証に合格しました。そのモデルで、本書の主要な結論が前提から論理の飛躍なく導かれること、前提どうしが矛盾しないことが証明されています。Lean のコードの全文を掲載し、だれでも Lean Web で確かめ直せます。">
+    <meta property="og:url" content="https://ryutostudio.github.io/lean.html">
+    <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "『世界の証明』形式論理モデル — Lean 4 による機械検証に合格",
+    "inLanguage": "ja",
+    "url": "https://ryutostudio.github.io/lean.html",
+    "description": "『世界の証明』（酒勾龍渡、2022）の論証を書き表した形式論理モデルは、証明支援系 Lean 4 による機械検証に合格しました。そのモデルで、本書の主要な結論が前提から論理の飛躍なく導かれること、前提どうしが矛盾しないことが証明されています。Lean のコードの全文を掲載し、だれでも Lean Web で確かめ直せます。",
+    "author": {
+      "@type": "Person",
+      "name": "Ryuto Sako",
+      "alternateName": "酒勾龍渡",
+      "url": "https://ryutostudio.github.io/",
+      "sameAs": [
+        "https://orcid.org/0009-0007-5501-8426",
+        "https://id.ndl.go.jp/auth/ndlna/032264173"
+      ]
+    },
+    "isBasedOn": {
+      "@type": "Book",
+      "name": "Proof of a World",
+      "alternateName": "世界の証明",
+      "isbn": "978-4-9912331-0-4",
+      "sameAs": "https://doi.org/10.5281/zenodo.23607369"
+    },
+    "citation": "https://doi.org/10.5281/zenodo.24368376",
+    "datePublished": "2026-11-20"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "ProofOfAWorld_Rev5.lean",
+    "programmingLanguage": "Lean 4",
+    "codeRepository": "https://github.com/ryutostudio/ryutostudio.github.io",
+    "url": "https://github.com/ryutostudio/ryutostudio.github.io/blob/5aad55494640b17f80da0e935748cc3e3d763a22/ProofOfAWorld_Rev5.lean",
+    "dateCreated": "2026-11-19",
+    "identifier": "https://doi.org/10.5281/zenodo.24368376"
+  }
+]
+    </script>
+    <style>
+        :root {
+            --bg-color: #080808;
+            --panel-bg: #111111;
+            --card-bg: #151515;
+            --formula-bg: #0c0c0c;
+            --text-color: #dcdcdc;
+            --accent-color: #ffffff;
+            --gold-accent: #e6d2a8;
+            --dim-color: #888888;
+            --border-color: #262626;
+            --highlight-border: #444444;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "SF Mono", "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, "Yu Gothic", "Hiragino Kaku Gothic ProN", "Meiryo", monospace;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+            padding: 36px 18px 80px 18px;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 24px;
+            margin-bottom: 32px;
+        }
+        h1 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin: 0 0 8px 0;
+            letter-spacing: 0.02em;
+            font-weight: 600;
+            line-height: 1.45;
+        }
+        .subtitle {
+            color: var(--dim-color);
+            font-size: 0.85rem;
+            margin-bottom: 14px;
+        }
+        .id-meta-bar {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            font-size: 0.8rem;
+            color: #bdbdbd;
+            margin-bottom: 14px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 4px 16px;
+        }
+        .lang-nav {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--highlight-border);
+            padding: 10px 15px;
+            font-size: 0.85rem;
+            margin-bottom: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+        .lang-nav-label {
+            color: var(--dim-color);
+            font-size: 0.8rem;
+        }
+        .lang-nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 2px 6px;
+            border: 1px solid transparent;
+        }
+        .lang-nav a:hover {
+            border-color: var(--accent-color);
+            background-color: var(--border-color);
+        }
+        .lang-nav .active-lang {
+            color: var(--bg-color);
+            background-color: var(--accent-color);
+            padding: 2px 8px;
+            font-weight: 600;
+        }
+        .ai-creation-notice {
+            background-color: #14130f;
+            border: 1px solid var(--gold-accent);
+            padding: 14px 18px;
+            font-size: 0.83rem;
+            color: #dcdcdc;
+            margin-bottom: 14px;
+        }
+        .ai-creation-notice strong {
+            color: var(--gold-accent);
+            display: block;
+            margin-bottom: 6px;
+        }
+        .ai-creation-notice ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        .ai-creation-notice li {
+            margin-bottom: 4px;
+        }
+        h2 {
+            color: var(--accent-color);
+            font-size: 1.08rem;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 12px;
+            margin: 46px 0 18px 0;
+            letter-spacing: 0.03em;
+        }
+        h3 {
+            color: var(--accent-color);
+            font-size: 0.96rem;
+            margin: 24px 0 10px 0;
+            font-weight: 600;
+        }
+        a {
+            color: var(--accent-color);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+        a:hover {
+            background-color: var(--border-color);
+        }
+        .panel-box {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            padding: 22px 24px;
+            margin-bottom: 24px;
+            font-size: 0.88rem;
+        }
+        .methodology-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--accent-color);
+            padding: 18px 20px;
+            margin-bottom: 22px;
+            font-size: 0.87rem;
+            line-height: 1.8;
+        }
+        .methodology-box p {
+            margin: 0 0 14px 0;
+        }
+        .methodology-box p:last-child {
+            margin-bottom: 0;
+        }
+        .disclaimer-item {
+            background-color: var(--card-bg);
+            border-left: 3px solid var(--gold-accent);
+            padding: 14px 18px;
+            margin-bottom: 14px;
+        }
+        .disclaimer-item:last-child {
+            margin-bottom: 0;
+        }
+        .disclaimer-title {
+            color: var(--gold-accent);
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: block;
+        }
+        /* Legend for Human Readability */
+        .symbol-guide-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--highlight-border);
+            padding: 16px 20px;
+            margin-bottom: 22px;
+            font-size: 0.83rem;
+        }
+        .symbol-guide-title {
+            color: var(--gold-accent);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .symbol-guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 8px 16px;
+        }
+        .sg-item {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .sg-sym {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1rem;
+            min-width: 32px;
+            text-align: center;
+            background: var(--formula-bg);
+            border: 1px solid var(--border-color);
+            padding: 1px 6px;
+        }
+        /* Primitives Table/Cards */
+        .primitives-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        .prim-row {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            display: grid;
+            grid-template-columns: 160px 1fr auto;
+            align-items: center;
+            gap: 14px;
+        }
+        @media (max-width: 680px) {
+            .prim-row {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+        }
+        .prim-sym {
+            font-family: "Cambria Math", "STIX Two Math", "Latin Modern Math", "Times New Roman", serif;
+            font-size: 1.06rem;
+            color: var(--gold-accent);
+            font-weight: 600;
+            background-color: var(--formula-bg);
+            border: 1px solid var(--highlight-border);
+            padding: 4px 10px;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+        .prim-desc {
+            color: var(--text-color);
+            font-size: 0.86rem;
+        }
+        .prim-latex {
+            color: var(--dim-color);
+            font-size: 0.74rem;
+            font-family: monospace;
+            background: var(--formula-bg);
+            padding: 2px 7px;
+            border: 1px dashed var(--border-color);
+            white-space: nowrap;
+        }
+        /* Logic Cards (Definitions, Axioms, Theorems) */
+        .logic-card {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px 22px;
+            margin-bottom: 18px;
+        }
+        .logic-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .logic-id {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.96rem;
+        }
+        .logic-ref {
+            color: var(--dim-color);
+            font-size: 0.78rem;
+        }
+        .logic-prose {
+            margin: 0 0 14px 0;
+            font-size: 0.88rem;
+        }
+        .formula-display {
+            background-color: var(--formula-bg);
+            border: 1px solid var(--highlight-border);
+            padding: 14px 18px;
+            margin-bottom: 10px;
+        }
+        .formula-human {
+            font-family: "Cambria Math", "STIX Two Math", "Latin Modern Math", "Yu Gothic", serif;
+            font-size: 1.05rem;
+            color: var(--gold-accent);
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 8px;
+            line-height: 1.65;
+            word-break: break-word;
+        }
+        .formula-reading {
+            font-size: 0.82rem;
+            color: #b5b5b5;
+            border-top: 1px dashed #252525;
+            padding-top: 6px;
+            margin-bottom: 4px;
+        }
+        .formula-latex {
+            font-size: 0.74rem;
+            color: var(--dim-color);
+            font-family: "SF Mono", Consolas, monospace;
+            word-break: break-all;
+            line-height: 1.5;
+        }
+        .proof-box {
+            background-color: var(--card-bg);
+            border-left: 3px solid #555555;
+            padding: 12px 16px;
+            margin-top: 12px;
+            font-size: 0.84rem;
+        }
+        .proof-title {
+            color: var(--accent-color);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .proof-steps {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .proof-steps li {
+            margin-bottom: 5px;
+        }
+        .stage-banner {
+            background-color: #191919;
+            border-left: 4px solid var(--gold-accent);
+            color: var(--gold-accent);
+            padding: 8px 14px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 28px 0 14px 0;
+        }
+        /* Section V Table & Deductive Chain */
+        .chain-box {
+            background-color: var(--formula-bg);
+            border: 1px solid var(--highlight-border);
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .chain-line {
+            font-family: "Cambria Math", "STIX Two Math", serif;
+            font-size: 1.03rem;
+            color: var(--gold-accent);
+            font-weight: 600;
+            margin: 8px 0;
+        }
+        .spec-table-wrap {
+            overflow-x: auto;
+        }
+        table.spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.83rem;
+            background-color: var(--card-bg);
+        }
+        table.spec-table th, table.spec-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        table.spec-table th {
+            background-color: #1a1a1a;
+            color: var(--gold-accent);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        /* Section VI Model Theory */
+        .model-list {
+            margin: 8px 0 16px 0;
+            padding-left: 20px;
+        }
+        .model-list li {
+            margin-bottom: 8px;
+        }
+        /* FAQ */
+        .faq-card {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px 24px;
+            margin-bottom: 18px;
+        }
+        .faq-q {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.94rem;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+        .faq-a {
+            font-size: 0.88rem;
+            color: var(--text-color);
+            margin: 0;
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .toc-box {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            padding: 16px 20px;
+            font-size: 0.83rem;
+        }
+        .toc-box strong {
+            display: block;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 6px;
+        }
+        .toc-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .toc-box li {
+            margin-bottom: 6px;
+        }
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 24px;
+            margin-top: 64px;
+            color: var(--dim-color);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+    
+        /* ---- Lean 4 special page: the formal-logic look, with soft pastel accents ---- */
+        :root {
+            --pink: #ff9ecb;
+            --lav: #c9b6ff;
+            --mint: #8ee6c4;
+            --peach: #ffc69a;
+            --sky: #9ad0ff;
+            --butter: #ffe08a;
+        }
+        h2 {
+            border-left: 3px solid var(--pink);
+            border-image: linear-gradient(to bottom, var(--pink), var(--lav)) 1;
+        }
+        .hero {
+            margin: 6px 0 30px 0;
+        }
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+        .badge {
+            font-size: 0.76rem;
+            padding: 3px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--lav);
+            color: var(--lav);
+            line-height: 1.6;
+        }
+        .badge.pass {
+            background: linear-gradient(135deg, var(--mint), #c2f5e2);
+            border-color: transparent;
+            color: #08281d;
+            font-weight: 700;
+        }
+        .hero-box {
+            border: 1px solid var(--gold-accent);
+            border-radius: 14px;
+            padding: 20px 22px;
+            background-color: #12110f;
+            box-shadow: 0 0 0 5px rgba(230, 210, 168, 0.05), 0 10px 30px rgba(0, 0, 0, 0.35);
+        }
+        .hero-head {
+            color: var(--gold-accent);
+            font-weight: 700;
+            font-size: 1.02rem;
+            margin: 0 0 4px 0;
+        }
+        .hero-doi {
+            margin: 0 0 12px 0;
+            font-size: 0.92rem;
+        }
+        .hero-doi a {
+            color: var(--sky);
+            text-decoration-color: rgba(154, 208, 255, 0.5);
+        }
+        .hero-box p.body {
+            margin: 0 0 10px 0;
+            font-size: 0.88rem;
+        }
+        .hero-box p.body:last-child {
+            margin-bottom: 0;
+        }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 18px 0 14px 0;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 16px;
+            border-radius: 999px;
+            border: 1px solid;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.83rem;
+            line-height: 1.5;
+            transition: background-color 0.15s, color 0.15s;
+        }
+        .btn .ico {
+            font-size: 0.95em;
+        }
+        .btn.mint { border-color: var(--mint); color: var(--mint); }
+        .btn.mint:hover { background-color: var(--mint); color: #08281d; }
+        .btn.lav { border-color: var(--lav); color: var(--lav); }
+        .btn.lav:hover { background-color: var(--lav); color: #1b1230; }
+        .btn.pink { border-color: var(--pink); color: var(--pink); }
+        .btn.pink:hover { background-color: var(--pink); color: #2e0c1c; }
+        .btn.gold { border-color: var(--gold-accent); color: var(--gold-accent); }
+        .btn.gold:hover { background-color: var(--gold-accent); color: #221b0c; }
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .chip {
+            font-size: 0.75rem;
+            padding: 2px 11px;
+            border-radius: 999px;
+            background-color: #151517;
+            border: 1px dashed #34343a;
+            color: #cfcfd4;
+        }
+        .chip b {
+            color: var(--mint);
+        }
+        ol.steps {
+            margin: 6px 0 0 0;
+            padding-left: 22px;
+        }
+        ol.steps li {
+            margin-bottom: 6px;
+        }
+        ol.steps li::marker {
+            color: var(--pink);
+            font-weight: 700;
+        }
+        .code-wrap {
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, var(--pink), var(--lav) 50%, var(--mint));
+            margin: 12px 0 10px 0;
+        }
+        .code-inner {
+            background-color: #0b0b0d;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .code-bar {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 10px 14px;
+            border-bottom: 1px solid #1d1d22;
+            font-size: 0.78rem;
+            color: #bdbdc4;
+            flex-wrap: wrap;
+        }
+        .dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .dot.p { background-color: var(--pink); }
+        .dot.o { background-color: var(--peach); }
+        .dot.m { background-color: var(--mint); }
+        .code-bar .fname {
+            margin-left: 6px;
+            color: #ece6da;
+            font-weight: 600;
+        }
+        .code-bar .meta {
+            color: #7f7f88;
+        }
+        .code-bar .spacer {
+            flex: 1;
+        }
+        .mini-btn {
+            font: inherit;
+            font-size: 0.74rem;
+            padding: 2px 11px;
+            border-radius: 999px;
+            border: 1px solid var(--lav);
+            background: transparent;
+            color: var(--lav);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .mini-btn:hover {
+            background-color: var(--lav);
+            color: #1b1230;
+        }
+        pre.lean {
+            margin: 0;
+            padding: 14px 0;
+            overflow-x: auto;
+            font-size: 12.5px;
+            line-height: 1.7;
+            max-height: 78vh;
+            overflow-y: auto;
+            color: #e9e4d9;
+        }
+        pre.lean .row {
+            display: block;
+            white-space: pre;
+            padding-right: 20px;
+        }
+        pre.lean .row:hover {
+            background-color: rgba(201, 182, 255, 0.06);
+        }
+        pre.lean .ln {
+            display: inline-block;
+            width: 3.4em;
+            padding-right: 1.1em;
+            text-align: right;
+            color: #4b4b54;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        pre.lean .kw { color: var(--pink); }
+        pre.lean .tac { color: #ffb8dc; }
+        pre.lean .ty { color: var(--mint); }
+        pre.lean .cst { color: var(--sky); }
+        pre.lean .decl { color: var(--lav); font-weight: 700; }
+        pre.lean .cmt { color: #a39b8e; font-style: italic; }
+        pre.lean .doc { color: #cdbb94; font-style: italic; }
+        pre.lean .str { color: var(--butter); }
+        pre.lean .num { color: var(--peach); }
+        pre.lean .op { color: var(--peach); }
+        pre.lean .cmd { color: #ff8f80; font-weight: 700; }
+        pre.lean .br { color: #8b8b95; }
+        pre.lean .cc { color: #d9cbff; font-style: normal; }
+        pre.lean .ca { color: var(--peach); font-style: normal; }
+        .code-note {
+            font-size: 0.78rem;
+            color: var(--dim-color);
+            margin: 4px 0 0 0;
+        }
+        .id-meta-bar {
+            grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
+        }
+        .id-meta-bar div, .hero-doi, .model-list li, .code-note, footer p {
+            overflow-wrap: anywhere;   /* long URLs break instead of widening the page on phones */
+        }
+        @media (max-width: 680px) {
+            .hero-box { padding: 16px 16px; }
+            pre.lean { font-size: 11.5px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>形式論理モデルと Lean 4 による機械検証<br><span style="font-size: 0.95rem; color: #b0b0b0; font-weight: normal;">（<em>Proof of a World</em> — Formal Model and Machine Verification in Lean 4 / 2026）</span></h1>
+        <div class="subtitle">Author: Ryuto Sako (酒勾龍渡) | 『世界の証明』形式論理モデル Rev. 5 ・ Lean 4（v4.36.0）・ 2026年11月19日</div>
+
+        <div class="id-meta-bar">
+            <div>・対象作品：『世界の証明』（Proof of a World）</div>
+            <div>・著者：酒勾龍渡（Ryuto Sako）</div>
+            <div>・本の DOI：<a href="https://doi.org/10.5281/zenodo.23607369" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.23607369</a></div>
+            <div>・形式論理モデルと Lean 4 による機械検証の記録（Zenodo DOI）：<a href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368376</a></div>
+        </div>
+
+        <div class="lang-nav">
+            <span class="lang-nav-label">Archive Navigation / ページ移動:</span>
+            <a href="index.html">[ ← Main Archive (日本語 / English 原典全文) ]</a>
+            <a href="logic.html">[ 形式論理検証データ (JA) ]</a>
+            <a href="logic-en.html">[ Formal Logic (EN) ]</a>
+            <span class="active-lang">[ Lean 4 機械検証 (JA) ]</span>
+            <a href="lean-en.html">[ Lean 4 Verification (EN) ]</a>
+        </div>
+    </header>
+
+    <section class="hero" id="summary">
+        <div class="hero-badges"><span class="badge pass">✓ Lean 4 による機械検証に合格</span><span class="badge">Lean v4.36.0</span><span class="badge">2026-11-19</span></div>
+        <div class="hero-box">
+            <p class="hero-head">【形式論理モデルと Lean 4 による機械検証（2026）】</p>
+            <p class="hero-doi"><a href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368376</a></p>
+                <p class="body">本書の論証は、2022年の刊行時点で完成しています（発行時に国立国会図書館に原典をアーカイブ済み）。</p>
+                <p class="body">2026年、この論証を形式論理のモデル（定義と公理の体系）に書き表しました。そのモデルで、本書の主要な結論が前提から論理の飛躍なく導かれること、前提どうしが矛盾しないこと（無矛盾性）が証明され、その証明はすべて、証明支援系 Lean 4 による機械検証に合格しています。</p>
+                <p class="body">検証したのは AI ではなく Lean 4 で、だれでも同じ確認をやり直せます。モデルは AI の協力を得て作りました。しかし当然ながら、その存在の有無により、本書『世界の証明』自体の構造的価値が変わるわけではありません。あくまで AI・Lean 4 は、原典ありきの補助ツールに過ぎません。式と本文の対応も含め、詳しくはリンク先をご覧ください。</p>
+        </div>
+        <div class="actions">
+            <a class="btn mint" href="https://live.lean-lang.org/#url=https%3A%2F%2Fryutostudio.github.io%2FProofOfAWorld_Rev5.lean" target="_blank" rel="noopener"><span class="ico">▶</span>Lean Web で確かめ直す</a>
+            <a class="btn lav" href="https://github.com/ryutostudio/ryutostudio.github.io/blob/5aad55494640b17f80da0e935748cc3e3d763a22/ProofOfAWorld_Rev5.lean" target="_blank" rel="noopener"><span class="ico">⌘</span>GitHub で見る（検証した版）</a>
+            <a class="btn pink" href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener"><span class="ico">◆</span>Zenodo の記録（DOI）</a>
+            <a class="btn gold" href="logic.html"><span class="ico">§</span>形式論理モデルの本文</a>
+        </div>
+        <div class="chips"><span class="chip">エラー <b>0</b></span><span class="chip">警告 <b>0</b></span><span class="chip">未証明の箇所（sorry） <b>なし</b></span><span class="chip">#print axioms の結果 <b>19</b> 件</span></div>
+    </section>
+
+    <section id="checked">
+        <h2>Lean 4 で確かめたこと</h2>
+        <div class="disclaimer-item">
+            形式論理モデル（Rev. 5）の第Ⅳ節の導出と第Ⅵ節のモデルを、証明支援系 Lean 4 で機械的に確かめた。
+            <ul class="model-list" style="margin:6px 0;">
+                    <li><strong>確かめたこと：</strong>①補題 L1 と定理 T1〜T8・各系が、定義 D1〜D5 と公理 A1, A2, A4〜A8 から導かれること（存在の個数を問わない一般の形で）。②第Ⅵ節のモデル ℳ が、定義と公理の19式をすべて満たすこと（無矛盾性）。③定義と公理が、すべての存在を数として一つにしてしまわないこと（非自明性。ℳ では個人と世界が別の存在である）。</li>
+                    <li><strong>結果（2026年11月19日、Lean v4.36.0、Lean Web）：</strong>エラー 0、警告 0、未証明の箇所（sorry）なし。各結果が何に依存するかを Lean に表示させると（#print axioms）、定義と公理のほかには何も前提を用いていない。ただし、T6 の系を本文どおり（二重否定の除去）に導いた版だけは、古典論理の標準の公理（propext, Classical.choice, Quot.sound）を用いる。同じ系は、二重否定を用いない道（A8 の注）でも導いた。</li>
+                    <li><strong>書き方の注意：</strong>図式（A1, A2, A8, D5a）は、Lean では「すべての命題について」の1つの式として書いた（図式よりわずかに強い形）。導出に使ったのは言語 ℒ で書ける例だけで、モデル ℳ はこの強い形も満たすので、二つの結論は図式についても成り立つ。A3 は体系の外の制限なので、Lean には書いていない。</li>
+                    <li><strong>範囲：</strong>Lean が確かめるのは、形式体系の内部（導出と無矛盾）までである。式が本書を正しく写しているか、前提（公理）が正しいかは、確かめる範囲の外である。</li>
+                    <li><strong>記録（DOI）：</strong>この形式論理モデル（Rev. 5）と Lean 4 による機械検証は、日本語と英語の文書（PDF）と Lean のファイルとともに、Zenodo に記録として保存した（<a href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368376</a>）。</li>
+                    <li style="margin-bottom:0;"><strong>ファイルと確かめ直し方：</strong>ProofOfAWorld_Rev5.lean（<a href="https://github.com/ryutostudio/ryutostudio.github.io/blob/5aad55494640b17f80da0e935748cc3e3d763a22/ProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">GitHub で見る</a>）。<a href="https://live.lean-lang.org/#url=https%3A%2F%2Fryutostudio.github.io%2FProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">Lean Web で確かめ直す</a>を開くと、Lean の公式のブラウザ版にこのファイルが読み込まれ、だれでも同じ確認をやり直せる。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="how">
+        <h2>確かめ直し方</h2>
+        <div class="disclaimer-item">
+            <ol class="steps">
+                    <li>上の「Lean Web で確かめ直す」を押す。Lean の公式のブラウザ版（live.lean-lang.org）が開き、このファイルが読み込まれる。</li>
+                    <li>読み込みと検査が終わるまで、少し待つ。</li>
+                    <li>右側の「All Messages」に、#print axioms の結果が 19 件出て、エラーと警告がないことを確かめる。</li>
+            </ol>
+        </div>
+        <h3>結果の読み方</h3>
+        <div class="disclaimer-item">
+            <ul class="model-list" style="margin:0;">
+                    <li>エラー（赤）も警告もなければ、すべての証明が受け入れられたということ。</li>
+                    <li>「does not depend on any axioms」は、その結果が形式論理モデルの定義と公理から論理だけで導かれ、ほかに何も仮定していないということ。</li>
+                    <li>本文どおり二重否定の除去を使う T6_cor_text_route だけは古典論理を用いるので、その標準の公理 propext, Classical.choice, Quot.sound が表示される。これは想定どおり。</li>
+                    <li>ほかの公理が表示された行があれば、その証明は合格していない。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="code">
+        <h2>Lean のコード（全文）</h2>
+        <div class="code-wrap">
+            <div class="code-inner">
+                <div class="code-bar">
+                    <span class="dot p"></span><span class="dot o"></span><span class="dot m"></span>
+                    <span class="fname">ProofOfAWorld_Rev5.lean</span>
+                    <span class="meta">346 行 ・ Lean 4（コアのみ、Mathlib なし）</span>
+                    <span class="spacer"></span>
+                    <button class="mini-btn" id="copy-lean" type="button" data-done="コピーしました ✓">コピー</button>
+                    <a class="mini-btn" href="ProofOfAWorld_Rev5.lean" download>ダウンロード</a>
+                </div>
+<pre class="lean"><code><span class="row"><span class="ln">1</span><span class="lc"><span class="cmt">/-</span></span></span><span class="row"><span class="ln">2</span><span class="lc"><span class="cmt">  Proof of a World (『世界の証明』, Ryuto Sako) —</span></span></span><span class="row"><span class="ln">3</span><span class="lc"><span class="cmt">  machine check of the formal model, Rev. 5 (19 November 2026)</span></span></span><span class="row"><span class="ln">4</span><span class="lc"></span></span><span class="row"><span class="ln">5</span><span class="lc"><span class="cmt">  What this file does</span></span></span><span class="row"><span class="ln">6</span><span class="lc"><span class="cmt">  1. It writes down the symbols, the definitions D1–D5 and the axioms</span></span></span><span class="row"><span class="ln">7</span><span class="lc"><span class="cmt">     A1, A2, A4–A8 of the formal model (Rev. 5) as a Lean structure</span></span></span><span class="row"><span class="ln">8</span><span class="lc"><span class="cmt">     <span class="cc">`ProofOfAWorld`</span>.</span></span></span><span class="row"><span class="ln">9</span><span class="lc"><span class="cmt">  2. It proves Lemma L1 and Theorems T1–T8 with their corollaries for EVERY</span></span></span><span class="row"><span class="ln">10</span><span class="lc"><span class="cmt">     structure that satisfies those definitions and axioms (derivability).</span></span></span><span class="row"><span class="ln">11</span><span class="lc"><span class="cmt">     The proofs follow the steps of Section IV of the formal model.</span></span></span><span class="row"><span class="ln">12</span><span class="lc"><span class="cmt">  3. It builds the model ℳ of Section VI (three beings s, t, w; one</span></span></span><span class="row"><span class="ln">13</span><span class="lc"><span class="cmt">     coordinate k) and proves that it satisfies all 19 formulas</span></span></span><span class="row"><span class="ln">14</span><span class="lc"><span class="cmt">     (consistency). It also shows that the definitions and axioms do not</span></span></span><span class="row"><span class="ln">15</span><span class="lc"><span class="cmt">     force all beings to be numerically one (non-triviality).</span></span></span><span class="row"><span class="ln">16</span><span class="lc"><span class="cmt">  4. At the end, <span class="cc">`#print axioms`</span> reports what each result relies on.</span></span></span><span class="row"><span class="ln">17</span><span class="lc"></span></span><span class="row"><span class="ln">18</span><span class="lc"><span class="cmt">  How to read the result</span></span></span><span class="row"><span class="ln">19</span><span class="lc"><span class="cmt">  * No red error and no warning anywhere <span class="ca">→</span> every proof was accepted.</span></span></span><span class="row"><span class="ln">20</span><span class="lc"><span class="cmt">  * "does not depend on any axioms" <span class="ca">→</span> the result follows from the</span></span></span><span class="row"><span class="ln">21</span><span class="lc"><span class="cmt">    definitions and axioms of the formal model by logic alone; nothing</span></span></span><span class="row"><span class="ln">22</span><span class="lc"><span class="cmt">    else was assumed.</span></span></span><span class="row"><span class="ln">23</span><span class="lc"><span class="cmt">  * One result, <span class="cc">`T6_cor_text_route`</span> (the route of the text, which uses</span></span></span><span class="row"><span class="ln">24</span><span class="lc"><span class="cmt">    double-negation elimination), relies on classical logic; Lean then</span></span></span><span class="row"><span class="ln">25</span><span class="lc"><span class="cmt">    lists its three standard axioms <span class="cc">`propext`</span>, <span class="cc">`Classical.choice`</span>,</span></span></span><span class="row"><span class="ln">26</span><span class="lc"><span class="cmt">    <span class="cc">`Quot.sound`</span>. This is expected.</span></span></span><span class="row"><span class="ln">27</span><span class="lc"><span class="cmt">  * If any line lists any other axiom, that proof did not pass.</span></span></span><span class="row"><span class="ln">28</span><span class="lc"></span></span><span class="row"><span class="ln">29</span><span class="lc"><span class="cmt">  Notes on the encoding</span></span></span><span class="row"><span class="ln">30</span><span class="lc"><span class="cmt">  * Sorts: <span class="cc">`Ent`</span> (beings) and <span class="cc">`Crd`</span> (coordinates) are two separate types.</span></span></span><span class="row"><span class="ln">31</span><span class="lc"><span class="cmt">  * The sentential operators 𝐒, F, Truth are functions <span class="cc">`Prop <span class="ca">→</span> Prop`</span></span></span></span><span class="row"><span class="ln">32</span><span class="lc"><span class="cmt">    (<span class="cc">`Sop`</span>, <span class="cc">`F`</span>, <span class="cc">`Truth`</span>).</span></span></span><span class="row"><span class="ln">33</span><span class="lc"><span class="cmt">  * The schemas A1, A2, A8 and D5a are written as single statements about</span></span></span><span class="row"><span class="ln">34</span><span class="lc"><span class="cmt">    all propositions, which is slightly stronger than a schema. The proofs</span></span></span><span class="row"><span class="ln">35</span><span class="lc"><span class="cmt">    use only instances that can be written in the language ℒ</span></span></span><span class="row"><span class="ln">36</span><span class="lc"><span class="cmt">    (B(a), AbsoluteNothing(a), x = x), and the model ℳ satisfies even the</span></span></span><span class="row"><span class="ln">37</span><span class="lc"><span class="cmt">    stronger form, so both conclusions hold for the schemas as well.</span></span></span><span class="row"><span class="ln">38</span><span class="lc"><span class="cmt">  * A3 is a meta-theoretic restriction, not a formula of ℒ, so it is not</span></span></span><span class="row"><span class="ln">39</span><span class="lc"><span class="cmt">    written here.</span></span></span><span class="row"><span class="ln">40</span><span class="lc"><span class="cmt">  * <span class="cc">`Ext`</span> stands for Ext_原理的 (being in the fundamental exterior of</span></span></span><span class="row"><span class="ln">41</span><span class="lc"><span class="cmt">    sō-omou).</span></span></span><span class="row"><span class="ln">42</span><span class="lc"><span class="cmt">  * Defined symbols are kept as symbols together with their defining</span></span></span><span class="row"><span class="ln">43</span><span class="lc"><span class="cmt">    biconditionals, as in Section VI, where the 19 formulas are checked.</span></span></span><span class="row"><span class="ln">44</span><span class="lc"></span></span><span class="row"><span class="ln">45</span><span class="lc"><span class="cmt">  Lean 4, core library only (no Mathlib).</span></span></span><span class="row"><span class="ln">46</span><span class="lc"><span class="cmt">  Formal model: https://ryutostudio.github.io/logic-en.html (Rev. 5)</span></span></span><span class="row"><span class="ln">47</span><span class="lc"><span class="cmt">  Book: https://doi.org/10.5281/zenodo.23607369</span></span></span><span class="row"><span class="ln">48</span><span class="lc"><span class="cmt">  This Lean file was written by Claude (Anthropic) at the author's request.</span></span></span><span class="row"><span class="ln">49</span><span class="lc"><span class="cmt">  Its correctness does not rest on trust in the writer: Lean checks it.</span></span></span><span class="row"><span class="ln">50</span><span class="lc"><span class="cmt">-/</span></span></span><span class="row"><span class="ln">51</span><span class="lc"></span></span><span class="row"><span class="ln">52</span><span class="lc"><span class="kw">set_option</span> autoImplicit <span class="cst">false</span></span></span><span class="row"><span class="ln">53</span><span class="lc"></span></span><span class="row"><span class="ln">54</span><span class="lc"><span class="doc">/-- The symbols of the formal language ℒ, with the definitions D1–D5 and</span></span></span><span class="row"><span class="ln">55</span><span class="lc"><span class="doc">the axioms A1, A2, A4–A8 of Rev. 5. -/</span></span></span><span class="row"><span class="ln">56</span><span class="lc"><span class="kw">structure</span> <span class="decl">ProofOfAWorld</span> <span class="kw">where</span></span></span><span class="row"><span class="ln">57</span><span class="lc">  <span class="cmt">-- Sorts (types)</span></span></span><span class="row"><span class="ln">58</span><span class="lc">  Ent : <span class="ty">Type</span>                   <span class="cmt">-- beings (entities)</span></span></span><span class="row"><span class="ln">59</span><span class="lc">  Crd : <span class="ty">Type</span>                   <span class="cmt">-- coordinates (locations)</span></span></span><span class="row"><span class="ln">60</span><span class="lc">  <span class="cmt">-- Constants and function</span></span></span><span class="row"><span class="ln">61</span><span class="lc">  S_ind : Ent                  <span class="cmt">-- an individual's personal sō-omou</span></span></span><span class="row"><span class="ln">62</span><span class="lc">  World : Ent                  <span class="cmt">-- the world as a whole</span></span></span><span class="row"><span class="ln">63</span><span class="lc">  c0 : Crd                     <span class="cmt">-- the single fundamental coordinate</span></span></span><span class="row"><span class="ln">64</span><span class="lc">  Loc : Ent <span class="op">→</span> Crd              <span class="cmt">-- the coordinate at which a being is located</span></span></span><span class="row"><span class="ln">65</span><span class="lc">  <span class="cmt">-- Sentential operators</span></span></span><span class="row"><span class="ln">66</span><span class="lc">  Sop : <span class="ty">Prop</span> <span class="op">→</span> <span class="ty">Prop</span>            <span class="cmt">-- 𝐒(φ): φ is established as sō-omou</span></span></span><span class="row"><span class="ln">67</span><span class="lc">  F : <span class="ty">Prop</span> <span class="op">→</span> <span class="ty">Prop</span>              <span class="cmt">-- F(φ): φ is a convenience within sō-omou</span></span></span><span class="row"><span class="ln">68</span><span class="lc">  Truth : <span class="ty">Prop</span> <span class="op">→</span> <span class="ty">Prop</span>          <span class="cmt">-- Truth(φ): φ appears as truth</span></span></span><span class="row"><span class="ln">69</span><span class="lc">  <span class="cmt">-- One-place predicates on beings</span></span></span><span class="row"><span class="ln">70</span><span class="lc">  S : Ent <span class="op">→</span> <span class="ty">Prop</span>               <span class="cmt">-- x is sō-omou</span></span></span><span class="row"><span class="ln">71</span><span class="lc">  B : Ent <span class="op">→</span> <span class="ty">Prop</span>               <span class="cmt">-- x exists (is real)</span></span></span><span class="row"><span class="ln">72</span><span class="lc">  PE : Ent <span class="op">→</span> <span class="ty">Prop</span>              <span class="cmt">-- x is a fundamental being</span></span></span><span class="row"><span class="ln">73</span><span class="lc">  Concept : Ent <span class="op">→</span> <span class="ty">Prop</span>         <span class="cmt">-- x is a concept</span></span></span><span class="row"><span class="ln">74</span><span class="lc">  M : Ent <span class="op">→</span> <span class="ty">Prop</span>               <span class="cmt">-- x is meaning</span></span></span><span class="row"><span class="ln">75</span><span class="lc">  Ext : Ent <span class="op">→</span> <span class="ty">Prop</span>             <span class="cmt">-- Ext_原理的: x is in the fundamental exterior</span></span></span><span class="row"><span class="ln">76</span><span class="lc">  Gen : Ent <span class="op">→</span> <span class="ty">Prop</span>             <span class="cmt">-- unilateral generation</span></span></span><span class="row"><span class="ln">77</span><span class="lc">  Begin : Ent <span class="op">→</span> <span class="ty">Prop</span></span></span><span class="row"><span class="ln">78</span><span class="lc">  End : Ent <span class="op">→</span> <span class="ty">Prop</span></span></span><span class="row"><span class="ln">79</span><span class="lc">  AlreadyPresent : Ent <span class="op">→</span> <span class="ty">Prop</span></span></span><span class="row"><span class="ln">80</span><span class="lc">  AbsoluteNothing : Ent <span class="op">→</span> <span class="ty">Prop</span></span></span><span class="row"><span class="ln">81</span><span class="lc">  Limited : Ent <span class="op">→</span> <span class="ty">Prop</span></span></span><span class="row"><span class="ln">82</span><span class="lc">  <span class="cmt">-- Two-place predicates</span></span></span><span class="row"><span class="ln">83</span><span class="lc">  P : Ent <span class="op">→</span> Ent <span class="op">→</span> <span class="ty">Prop</span>         <span class="cmt">-- x pictures y</span></span></span><span class="row"><span class="ln">84</span><span class="lc">  CoPresent : Ent <span class="op">→</span> Ent <span class="op">→</span> <span class="ty">Prop</span></span></span><span class="row"><span class="ln">85</span><span class="lc">  Same : Ent <span class="op">→</span> Ent <span class="op">→</span> <span class="ty">Prop</span>      <span class="cmt">-- fundamentally the same being</span></span></span><span class="row"><span class="ln">86</span><span class="lc">  C : Crd <span class="op">→</span> Crd <span class="op">→</span> <span class="ty">Prop</span>         <span class="cmt">-- continuity</span></span></span><span class="row"><span class="ln">87</span><span class="lc">  Before : Crd <span class="op">→</span> Crd <span class="op">→</span> <span class="ty">Prop</span>    <span class="cmt">-- chronological precedence</span></span></span><span class="row"><span class="ln">88</span><span class="lc">  <span class="cmt">-- Definitions D1–D5</span></span></span><span class="row"><span class="ln">89</span><span class="lc">  D1  : <span class="op">∀</span> x : Ent, S x <span class="op">↔</span> Sop <span class="br">(</span>B x<span class="br">)</span></span></span><span class="row"><span class="ln">90</span><span class="lc">  D2a : <span class="op">∀</span> x : Ent, Ext x <span class="op">↔</span> <span class="op">¬</span> Sop <span class="br">(</span>B x<span class="br">)</span></span></span><span class="row"><span class="ln">91</span><span class="lc">  D2b : <span class="op">∀</span> x : Ent, Gen x <span class="op">↔</span> <span class="op">∃</span> a : Ent, P a x <span class="op">∧</span> <span class="op">¬</span> P x a</span></span><span class="row"><span class="ln">92</span><span class="lc">  D2c : <span class="op">∀</span> x : Ent, Begin x <span class="op">↔</span> <span class="op">∃</span> c : Crd, Before c <span class="br">(</span>Loc x<span class="br">)</span></span></span><span class="row"><span class="ln">93</span><span class="lc">  D2d : <span class="op">∀</span> x : Ent, End x <span class="op">↔</span> <span class="op">∃</span> c : Crd, Before <span class="br">(</span>Loc x<span class="br">)</span> c</span></span><span class="row"><span class="ln">94</span><span class="lc">  D2e : <span class="op">∀</span> x : Ent, AbsoluteNothing x <span class="op">↔</span> <span class="op">¬</span> B x</span></span><span class="row"><span class="ln">95</span><span class="lc">  D3  : <span class="op">∀</span> x : Ent, PE x <span class="op">↔</span> <span class="br">(</span>S x <span class="op">∧</span> <span class="op">∀</span> y : Ent, <span class="br">(</span>P x y <span class="op">↔</span> P y x<span class="br">)</span><span class="br">)</span></span></span><span class="row"><span class="ln">96</span><span class="lc">  D4a : <span class="op">∀</span> x y : Ent, CoPresent x y <span class="op">↔</span> <span class="br">(</span>Loc x <span class="op">=</span> c0 <span class="op">∧</span> Loc y <span class="op">=</span> c0<span class="br">)</span></span></span><span class="row"><span class="ln">97</span><span class="lc">  D4b : <span class="op">∀</span> x : Ent, AlreadyPresent x <span class="op">↔</span> <span class="br">(</span>Loc x <span class="op">=</span> c0 <span class="op">∧</span> PE x <span class="op">∧</span> <span class="op">¬</span> Gen x<span class="br">)</span></span></span><span class="row"><span class="ln">98</span><span class="lc">  D4c : <span class="op">∀</span> x y : Ent, Same x y <span class="op">↔</span> <span class="br">(</span>PE x <span class="op">∧</span> PE y <span class="op">∧</span> Loc x <span class="op">=</span> Loc y<span class="br">)</span></span></span><span class="row"><span class="ln">99</span><span class="lc">  D5a : <span class="op">∀</span> φ : <span class="ty">Prop</span>, Truth φ <span class="op">↔</span> Sop φ</span></span><span class="row"><span class="ln">100</span><span class="lc">  D5b : <span class="op">∀</span> x : Ent, M x <span class="op">↔</span> B x</span></span><span class="row"><span class="ln">101</span><span class="lc">  <span class="cmt">-- Axioms A1, A2, A4–A8 (A3 is a meta-theoretic restriction)</span></span></span><span class="row"><span class="ln">102</span><span class="lc">  A1 : <span class="op">∀</span> φ : <span class="ty">Prop</span>, φ <span class="op">→</span> Sop φ</span></span><span class="row"><span class="ln">103</span><span class="lc">  A2 : <span class="op">∀</span> φ : <span class="ty">Prop</span>, F φ <span class="op">→</span> Sop φ</span></span><span class="row"><span class="ln">104</span><span class="lc">  A4 : <span class="op">∀</span> x y : Ent, P x y <span class="op">↔</span> P y x</span></span><span class="row"><span class="ln">105</span><span class="lc">  A5 : <span class="br">(</span><span class="op">∀</span> c : Crd, c <span class="op">=</span> c0<span class="br">)</span> <span class="op">∧</span> <span class="br">(</span><span class="op">∀</span> c c' : Crd, Before c c' <span class="op">→</span> c <span class="op">≠</span> c'<span class="br">)</span> <span class="op">∧</span> C c0 c0</span></span><span class="row"><span class="ln">106</span><span class="lc">  A6 : <span class="br">(</span><span class="op">∀</span> y : Ent, CoPresent S_ind y<span class="br">)</span> <span class="op">→</span> Limited S_ind</span></span><span class="row"><span class="ln">107</span><span class="lc">  A7 : <span class="op">∀</span> x : Ent, S x <span class="op">→</span> B x</span></span><span class="row"><span class="ln">108</span><span class="lc">  A8 : <span class="op">∀</span> <span class="br">(</span>φ : Ent <span class="op">→</span> <span class="ty">Prop</span><span class="br">)</span> <span class="br">(</span>x : Ent<span class="br">)</span>, Sop <span class="br">(</span>φ x<span class="br">)</span> <span class="op">→</span> S x</span></span><span class="row"><span class="ln">109</span><span class="lc"></span></span><span class="row"><span class="ln">110</span><span class="lc"><span class="kw">namespace</span> ProofOfAWorld</span></span><span class="row"><span class="ln">111</span><span class="lc"></span></span><span class="row"><span class="ln">112</span><span class="lc"><span class="kw">variable</span> <span class="br">(</span>W : ProofOfAWorld<span class="br">)</span></span></span><span class="row"><span class="ln">113</span><span class="lc"></span></span><span class="row"><span class="ln">114</span><span class="lc"><span class="cmt">/-! ## Lemma L1 and Theorems T1–T8 (Section IV) -/</span></span></span><span class="row"><span class="ln">115</span><span class="lc"></span></span><span class="row"><span class="ln">116</span><span class="lc"><span class="doc">/-- L1. ∀x (Loc(x) = c0). Basis: A5 (first conjunct). -/</span></span></span><span class="row"><span class="ln">117</span><span class="lc"><span class="kw">theorem</span> <span class="decl">L1</span> : <span class="op">∀</span> x : W.Ent, W.Loc x <span class="op">=</span> W.c0 <span class="op">:=</span></span></span><span class="row"><span class="ln">118</span><span class="lc">  <span class="kw">fun</span> x <span class="op">=</span><span class="op">&gt;</span> W.A5.1 <span class="br">(</span>W.Loc x<span class="br">)</span></span></span><span class="row"><span class="ln">119</span><span class="lc"></span></span><span class="row"><span class="ln">120</span><span class="lc"><span class="doc">/-- T1. ¬∃x (B(x) ∧ Ext(x)). Basis: A1, D2a. -/</span></span></span><span class="row"><span class="ln">121</span><span class="lc"><span class="kw">theorem</span> <span class="decl">T1</span> : <span class="op">¬</span> <span class="op">∃</span> x : W.Ent, W.B x <span class="op">∧</span> W.Ext x <span class="op">:=</span></span></span><span class="row"><span class="ln">122</span><span class="lc">  <span class="kw">fun</span> <span class="op">⟨</span>a, hB, hExt<span class="op">⟩</span> <span class="op">=</span><span class="op">&gt;</span></span></span><span class="row"><span class="ln">123</span><span class="lc">    <span class="cmt">-- Step 4: A1 with φ := B(a) gives 𝐒(B(a))</span></span></span><span class="row"><span class="ln">124</span><span class="lc">    <span class="kw">have</span> h4 : W.Sop <span class="br">(</span>W.B a<span class="br">)</span> <span class="op">:=</span> W.A1 <span class="br">(</span>W.B a<span class="br">)</span> hB</span></span><span class="row"><span class="ln">125</span><span class="lc">    <span class="cmt">-- Step 5: D2a gives ¬𝐒(B(a))</span></span></span><span class="row"><span class="ln">126</span><span class="lc">    <span class="kw">have</span> h5 : <span class="op">¬</span> W.Sop <span class="br">(</span>W.B a<span class="br">)</span> <span class="op">:=</span> <span class="br">(</span>W.D2a a<span class="br">)</span>.mp hExt</span></span><span class="row"><span class="ln">127</span><span class="lc">    <span class="cmt">-- Step 6: contradiction</span></span></span><span class="row"><span class="ln">128</span><span class="lc">    h5 h4</span></span><span class="row"><span class="ln">129</span><span class="lc"></span></span><span class="row"><span class="ln">130</span><span class="lc"><span class="doc">/-- T2. ∀x (B(x) <span class="ca">↔</span> S(x)). Basis: A1, D1, A7. -/</span></span></span><span class="row"><span class="ln">131</span><span class="lc"><span class="kw">theorem</span> <span class="decl">T2</span> : <span class="op">∀</span> x : W.Ent, W.B x <span class="op">↔</span> W.S x <span class="op">:=</span></span></span><span class="row"><span class="ln">132</span><span class="lc">  <span class="kw">fun</span> x <span class="op">=</span><span class="op">&gt;</span></span></span><span class="row"><span class="ln">133</span><span class="lc">    <span class="op">⟨</span><span class="kw">fun</span> hB <span class="op">=</span><span class="op">&gt;</span> <span class="br">(</span>W.D1 x<span class="br">)</span>.mpr <span class="br">(</span>W.A1 <span class="br">(</span>W.B x<span class="br">)</span> hB<span class="br">)</span>,  <span class="cmt">-- Steps 1–3</span></span></span><span class="row"><span class="ln">134</span><span class="lc">     <span class="kw">fun</span> hS <span class="op">=</span><span class="op">&gt;</span> W.A7 x hS<span class="op">⟩</span>                        <span class="cmt">-- Step 4</span></span></span><span class="row"><span class="ln">135</span><span class="lc"></span></span><span class="row"><span class="ln">136</span><span class="lc"><span class="doc">/-- T3. ∀x (B(x) <span class="ca">↔</span> PE(x)). Basis: A4, D3, T2. -/</span></span></span><span class="row"><span class="ln">137</span><span class="lc"><span class="kw">theorem</span> <span class="decl">T3</span> : <span class="op">∀</span> x : W.Ent, W.B x <span class="op">↔</span> W.PE x <span class="op">:=</span></span></span><span class="row"><span class="ln">138</span><span class="lc">  <span class="kw">fun</span> x <span class="op">=</span><span class="op">&gt;</span></span></span><span class="row"><span class="ln">139</span><span class="lc">    <span class="cmt">-- Step 1: A4 gives ∀y (P(x, y) <span class="ca">↔</span> P(y, x))</span></span></span><span class="row"><span class="ln">140</span><span class="lc">    <span class="kw">have</span> h1 : <span class="op">∀</span> y : W.Ent, <span class="br">(</span>W.P x y <span class="op">↔</span> W.P y x<span class="br">)</span> <span class="op">:=</span> <span class="kw">fun</span> y <span class="op">=</span><span class="op">&gt;</span> W.A4 x y</span></span><span class="row"><span class="ln">141</span><span class="lc">    <span class="cmt">-- Step 2: with D3, S(x) <span class="ca">↔</span> PE(x)</span></span></span><span class="row"><span class="ln">142</span><span class="lc">    <span class="kw">have</span> h2 : W.S x <span class="op">↔</span> W.PE x <span class="op">:=</span></span></span><span class="row"><span class="ln">143</span><span class="lc">      <span class="op">⟨</span><span class="kw">fun</span> hS <span class="op">=</span><span class="op">&gt;</span> <span class="br">(</span>W.D3 x<span class="br">)</span>.mpr <span class="op">⟨</span>hS, h1<span class="op">⟩</span>, <span class="kw">fun</span> hPE <span class="op">=</span><span class="op">&gt;</span> <span class="br">(</span><span class="br">(</span>W.D3 x<span class="br">)</span>.mp hPE<span class="br">)</span>.<span class="num">1</span><span class="op">⟩</span></span></span><span class="row"><span class="ln">144</span><span class="lc">    <span class="cmt">-- Step 3: T2 and transitivity</span></span></span><span class="row"><span class="ln">145</span><span class="lc">    <span class="br">(</span>W.T2 x<span class="br">)</span>.trans h2</span></span><span class="row"><span class="ln">146</span><span class="lc"></span></span><span class="row"><span class="ln">147</span><span class="lc"><span class="doc">/-- Corollary of T3: Limited(S_ind). Basis: L1, D4a, A6. -/</span></span></span><span class="row"><span class="ln">148</span><span class="lc"><span class="kw">theorem</span> <span class="decl">T3_cor</span> : W.Limited W.S_ind <span class="op">:=</span></span></span><span class="row"><span class="ln">149</span><span class="lc">  W.A6 <span class="br">(</span><span class="kw">fun</span> y <span class="op">=</span><span class="op">&gt;</span> <span class="br">(</span>W.D4a W.S_ind y<span class="br">)</span>.mpr <span class="op">⟨</span>W.L1 W.S_ind, W.L1 y<span class="op">⟩</span><span class="br">)</span></span></span><span class="row"><span class="ln">150</span><span class="lc"></span></span><span class="row"><span class="ln">151</span><span class="lc"><span class="doc">/-- T4. ∀x ¬Gen(x). Basis: A4, D2b. -/</span></span></span><span class="row"><span class="ln">152</span><span class="lc"><span class="kw">theorem</span> <span class="decl">T4</span> : <span class="op">∀</span> x : W.Ent, <span class="op">¬</span> W.Gen x <span class="op">:=</span></span></span><span class="row"><span class="ln">153</span><span class="lc">  <span class="kw">fun</span> x <span class="op">=</span><span class="op">&gt;</span></span></span><span class="row"><span class="ln">154</span><span class="lc">    <span class="cmt">-- Steps 1–3: by A4, there is no a with P(a, x) ∧ ¬P(x, a)</span></span></span><span class="row"><span class="ln">155</span><span class="lc">    <span class="kw">have</span> h3 : <span class="op">¬</span> <span class="op">∃</span> a : W.Ent, W.P a x <span class="op">∧</span> <span class="op">¬</span> W.P x a <span class="op">:=</span></span></span><span class="row"><span class="ln">156</span><span class="lc">      <span class="kw">fun</span> <span class="op">⟨</span>a, hPax, hnPxa<span class="op">⟩</span> <span class="op">=</span><span class="op">&gt;</span> hnPxa <span class="br">(</span><span class="br">(</span>W.A4 a x<span class="br">)</span>.mp hPax<span class="br">)</span></span></span><span class="row"><span class="ln">157</span><span class="lc">    <span class="cmt">-- Step 4: contrapositive of D2b</span></span></span><span class="row"><span class="ln">158</span><span class="lc">    <span class="kw">fun</span> hGen <span class="op">=</span><span class="op">&gt;</span> h3 <span class="br">(</span><span class="br">(</span>W.D2b x<span class="br">)</span>.mp hGen<span class="br">)</span></span></span><span class="row"><span class="ln">159</span><span class="lc"></span></span><span class="row"><span class="ln">160</span><span class="lc"><span class="doc">/-- T5. ∀x (¬Begin(x) ∧ ¬End(x)). Basis: A5, L1, D2c, D2d. -/</span></span></span><span class="row"><span class="ln">161</span><span class="lc"><span class="kw">theorem</span> <span class="decl">T5</span> : <span class="op">∀</span> x : W.Ent, <span class="op">¬</span> W.Begin x <span class="op">∧</span> <span class="op">¬</span> W.End x <span class="op">:=</span> <span class="kw">by</span></span></span><span class="row"><span class="ln">162</span><span class="lc">  <span class="tac">intro</span> x</span></span><span class="row"><span class="ln">163</span><span class="lc">  <span class="tac">constructor</span></span></span><span class="row"><span class="ln">164</span><span class="lc">  <span class="op">·</span> <span class="tac">intro</span> hBegin</span></span><span class="row"><span class="ln">165</span><span class="lc">    <span class="cmt">-- Step 2: by D2c, Before(c1, Loc(x)) for some coordinate c1</span></span></span><span class="row"><span class="ln">166</span><span class="lc">    <span class="kw">match</span> <span class="br">(</span>W.D2c x<span class="br">)</span>.mp hBegin <span class="kw">with</span></span></span><span class="row"><span class="ln">167</span><span class="lc">    <span class="op">|</span> <span class="op">⟨</span>c1, hBefore<span class="op">⟩</span> <span class="op">=</span><span class="op">&gt;</span></span></span><span class="row"><span class="ln">168</span><span class="lc">      <span class="cmt">-- Step 3: c1 = c0 (A5, first conjunct) and Loc(x) = c0 (L1),</span></span></span><span class="row"><span class="ln">169</span><span class="lc">      <span class="cmt">-- so Before(c0, c0)</span></span></span><span class="row"><span class="ln">170</span><span class="lc">      <span class="tac">rw</span> <span class="br">[</span>W.A5.1 c1, W.L1 x<span class="br">]</span> <span class="kw">at</span> hBefore</span></span><span class="row"><span class="ln">171</span><span class="lc">      <span class="cmt">-- Step 4: A5 (second conjunct) gives c0 ≠ c0, against c0 = c0</span></span></span><span class="row"><span class="ln">172</span><span class="lc">      <span class="tac">exact</span> W.A5.2.1 W.c0 W.c0 hBefore <span class="tac">rfl</span></span></span><span class="row"><span class="ln">173</span><span class="lc">  <span class="op">·</span> <span class="tac">intro</span> hEnd</span></span><span class="row"><span class="ln">174</span><span class="lc">    <span class="cmt">-- Step 5: the same argument with D2d</span></span></span><span class="row"><span class="ln">175</span><span class="lc">    <span class="kw">match</span> <span class="br">(</span>W.D2d x<span class="br">)</span>.mp hEnd <span class="kw">with</span></span></span><span class="row"><span class="ln">176</span><span class="lc">    <span class="op">|</span> <span class="op">⟨</span>c2, hBefore<span class="op">⟩</span> <span class="op">=</span><span class="op">&gt;</span></span></span><span class="row"><span class="ln">177</span><span class="lc">      <span class="tac">rw</span> <span class="br">[</span>W.A5.1 c2, W.L1 x<span class="br">]</span> <span class="kw">at</span> hBefore</span></span><span class="row"><span class="ln">178</span><span class="lc">      <span class="tac">exact</span> W.A5.2.1 W.c0 W.c0 hBefore <span class="tac">rfl</span></span></span><span class="row"><span class="ln">179</span><span class="lc"></span></span><span class="row"><span class="ln">180</span><span class="lc"><span class="doc">/-- Corollary of T5: ¬Begin(World) ∧ ¬End(World). -/</span></span></span><span class="row"><span class="ln">181</span><span class="lc"><span class="kw">theorem</span> <span class="decl">T5_cor</span> : <span class="op">¬</span> W.Begin W.World <span class="op">∧</span> <span class="op">¬</span> W.End W.World <span class="op">:=</span></span></span><span class="row"><span class="ln">182</span><span class="lc">  W.T5 W.World</span></span><span class="row"><span class="ln">183</span><span class="lc"></span></span><span class="row"><span class="ln">184</span><span class="lc"><span class="doc">/-- T6. ¬∃x AbsoluteNothing(x). Basis: A1, A8, A7, D2e. -/</span></span></span><span class="row"><span class="ln">185</span><span class="lc"><span class="kw">theorem</span> <span class="decl">T6</span> : <span class="op">¬</span> <span class="op">∃</span> x : W.Ent, W.AbsoluteNothing x <span class="op">:=</span></span></span><span class="row"><span class="ln">186</span><span class="lc">  <span class="kw">fun</span> <span class="op">⟨</span>a, hAN<span class="op">⟩</span> <span class="op">=</span><span class="op">&gt;</span></span></span><span class="row"><span class="ln">187</span><span class="lc">    <span class="cmt">-- Step 2: A1 with φ := AbsoluteNothing(a)</span></span></span><span class="row"><span class="ln">188</span><span class="lc">    <span class="kw">have</span> h2 : W.Sop <span class="br">(</span>W.AbsoluteNothing a<span class="br">)</span> <span class="op">:=</span> W.A1 <span class="br">(</span>W.AbsoluteNothing a<span class="br">)</span> hAN</span></span><span class="row"><span class="ln">189</span><span class="lc">    <span class="cmt">-- Step 3: A8 with φ(x) := AbsoluteNothing(x)</span></span></span><span class="row"><span class="ln">190</span><span class="lc">    <span class="kw">have</span> h3 : W.S a <span class="op">:=</span> W.A8 W.AbsoluteNothing a h2</span></span><span class="row"><span class="ln">191</span><span class="lc">    <span class="cmt">-- Step 4: A7</span></span></span><span class="row"><span class="ln">192</span><span class="lc">    <span class="kw">have</span> h4 : W.B a <span class="op">:=</span> W.A7 a h3</span></span><span class="row"><span class="ln">193</span><span class="lc">    <span class="cmt">-- Steps 5–6: D2e gives ¬B(a); contradiction</span></span></span><span class="row"><span class="ln">194</span><span class="lc">    <span class="br">(</span>W.D2e a<span class="br">)</span>.mp hAN h4</span></span><span class="row"><span class="ln">195</span><span class="lc"></span></span><span class="row"><span class="ln">196</span><span class="lc"><span class="doc">/-- Corollary of T6: ∀x B(x), by the route of the text (Step 8):</span></span></span><span class="row"><span class="ln">197</span><span class="lc"><span class="doc">T6, the contrapositive of D2e, and double-negation elimination</span></span></span><span class="row"><span class="ln">198</span><span class="lc"><span class="doc">(classical logic). -/</span></span></span><span class="row"><span class="ln">199</span><span class="lc"><span class="kw">theorem</span> <span class="decl">T6_cor_text_route</span> : <span class="op">∀</span> x : W.Ent, W.B x <span class="op">:=</span></span></span><span class="row"><span class="ln">200</span><span class="lc">  <span class="kw">fun</span> x <span class="op">=</span><span class="op">&gt;</span> Classical.byContradiction <span class="br">(</span><span class="kw">fun</span> hnB <span class="op">=</span><span class="op">&gt;</span> W.T6 <span class="op">⟨</span>x, <span class="br">(</span>W.D2e x<span class="br">)</span>.mpr hnB<span class="op">⟩</span><span class="br">)</span></span></span><span class="row"><span class="ln">201</span><span class="lc"></span></span><span class="row"><span class="ln">202</span><span class="lc"><span class="doc">/-- Corollary of T6: ∀x B(x), by the route noted under A8: x = x holds;</span></span></span><span class="row"><span class="ln">203</span><span class="lc"><span class="doc">by A1 it holds as sō-omou; by A8 x is sō-omou; by A7 x is real.</span></span></span><span class="row"><span class="ln">204</span><span class="lc"><span class="doc">This route needs no classical logic. It is the one used below. -/</span></span></span><span class="row"><span class="ln">205</span><span class="lc"><span class="kw">theorem</span> <span class="decl">T6_cor</span> : <span class="op">∀</span> x : W.Ent, W.B x <span class="op">:=</span></span></span><span class="row"><span class="ln">206</span><span class="lc">  <span class="kw">fun</span> x <span class="op">=</span><span class="op">&gt;</span></span></span><span class="row"><span class="ln">207</span><span class="lc">    <span class="kw">have</span> h1 : W.Sop <span class="br">(</span>x <span class="op">=</span> x<span class="br">)</span> <span class="op">:=</span> W.A1 <span class="br">(</span>x <span class="op">=</span> x<span class="br">)</span> <span class="tac">rfl</span></span></span><span class="row"><span class="ln">208</span><span class="lc">    <span class="kw">have</span> h2 : W.S x <span class="op">:=</span> W.A8 <span class="br">(</span><span class="kw">fun</span> y <span class="op">=</span><span class="op">&gt;</span> y <span class="op">=</span> y<span class="br">)</span> x h1</span></span><span class="row"><span class="ln">209</span><span class="lc">    W.A7 x h2</span></span><span class="row"><span class="ln">210</span><span class="lc"></span></span><span class="row"><span class="ln">211</span><span class="lc"><span class="doc">/-- T7. ∀x (Concept(x) <span class="ca">→</span> AlreadyPresent(x)).</span></span></span><span class="row"><span class="ln">212</span><span class="lc"><span class="doc">Basis: corollary of T6, T3, L1, T4, D4b. -/</span></span></span><span class="row"><span class="ln">213</span><span class="lc"><span class="kw">theorem</span> <span class="decl">T7</span> : <span class="op">∀</span> x : W.Ent, W.Concept x <span class="op">→</span> W.AlreadyPresent x <span class="op">:=</span></span></span><span class="row"><span class="ln">214</span><span class="lc">  <span class="kw">fun</span> x _ <span class="op">=</span><span class="op">&gt;</span> <span class="br">(</span>W.D4b x<span class="br">)</span>.mpr <span class="op">⟨</span>W.L1 x, <span class="br">(</span>W.T3 x<span class="br">)</span>.mp <span class="br">(</span>W.T6_cor x<span class="br">)</span>, W.T4 x<span class="op">⟩</span></span></span><span class="row"><span class="ln">215</span><span class="lc"></span></span><span class="row"><span class="ln">216</span><span class="lc"><span class="doc">/-- Corollary of T7: ∀x AlreadyPresent(x)</span></span></span><span class="row"><span class="ln">217</span><span class="lc"><span class="doc">(Steps 2–7 do not use the assumption Concept(x)). -/</span></span></span><span class="row"><span class="ln">218</span><span class="lc"><span class="kw">theorem</span> <span class="decl">T7_cor</span> : <span class="op">∀</span> x : W.Ent, W.AlreadyPresent x <span class="op">:=</span></span></span><span class="row"><span class="ln">219</span><span class="lc">  <span class="kw">fun</span> x <span class="op">=</span><span class="op">&gt;</span> <span class="br">(</span>W.D4b x<span class="br">)</span>.mpr <span class="op">⟨</span>W.L1 x, <span class="br">(</span>W.T3 x<span class="br">)</span>.mp <span class="br">(</span>W.T6_cor x<span class="br">)</span>, W.T4 x<span class="op">⟩</span></span></span><span class="row"><span class="ln">220</span><span class="lc"></span></span><span class="row"><span class="ln">221</span><span class="lc"><span class="doc">/-- T8. ∀x ((S(x) <span class="ca">↔</span> B(x)) ∧ (B(x) <span class="ca">↔</span> PE(x)) ∧ (PE(x) <span class="ca">↔</span> M(x))).</span></span></span><span class="row"><span class="ln">222</span><span class="lc"><span class="doc">Basis: T2, T3, D5b. -/</span></span></span><span class="row"><span class="ln">223</span><span class="lc"><span class="kw">theorem</span> <span class="decl">T8</span> : <span class="op">∀</span> x : W.Ent, <span class="br">(</span>W.S x <span class="op">↔</span> W.B x<span class="br">)</span> <span class="op">∧</span> <span class="br">(</span>W.B x <span class="op">↔</span> W.PE x<span class="br">)</span> <span class="op">∧</span> <span class="br">(</span>W.PE x <span class="op">↔</span> W.M x<span class="br">)</span> <span class="op">:=</span></span></span><span class="row"><span class="ln">224</span><span class="lc">  <span class="kw">fun</span> x <span class="op">=</span><span class="op">&gt;</span> <span class="op">⟨</span><span class="br">(</span>W.T2 x<span class="br">)</span>.symm, W.T3 x, <span class="br">(</span>W.T3 x<span class="br">)</span>.symm.trans <span class="br">(</span>W.D5b x<span class="br">)</span>.symm<span class="op">⟩</span></span></span><span class="row"><span class="ln">225</span><span class="lc"></span></span><span class="row"><span class="ln">226</span><span class="lc"><span class="doc">/-- Corollary 1 of T8: ∀x (S(x) ∧ B(x) ∧ PE(x) ∧ M(x)). -/</span></span></span><span class="row"><span class="ln">227</span><span class="lc"><span class="kw">theorem</span> <span class="decl">T8_cor1</span> : <span class="op">∀</span> x : W.Ent, W.S x <span class="op">∧</span> W.B x <span class="op">∧</span> W.PE x <span class="op">∧</span> W.M x <span class="op">:=</span></span></span><span class="row"><span class="ln">228</span><span class="lc">  <span class="kw">fun</span> x <span class="op">=</span><span class="op">&gt;</span></span></span><span class="row"><span class="ln">229</span><span class="lc">    <span class="kw">have</span> hB : W.B x <span class="op">:=</span> W.T6_cor x</span></span><span class="row"><span class="ln">230</span><span class="lc">    <span class="op">⟨</span><span class="br">(</span>W.T2 x<span class="br">)</span>.mp hB, hB, <span class="br">(</span>W.T3 x<span class="br">)</span>.mp hB, <span class="br">(</span>W.D5b x<span class="br">)</span>.mpr hB<span class="op">⟩</span></span></span><span class="row"><span class="ln">231</span><span class="lc"></span></span><span class="row"><span class="ln">232</span><span class="lc"><span class="doc">/-- Corollary 2 of T8: ∀x∀y Same(x, y)</span></span></span><span class="row"><span class="ln">233</span><span class="lc"><span class="doc">(fundamental identity, not numerical identity). -/</span></span></span><span class="row"><span class="ln">234</span><span class="lc"><span class="kw">theorem</span> <span class="decl">T8_cor2</span> : <span class="op">∀</span> x y : W.Ent, W.Same x y <span class="op">:=</span></span></span><span class="row"><span class="ln">235</span><span class="lc">  <span class="kw">fun</span> x y <span class="op">=</span><span class="op">&gt;</span> <span class="br">(</span>W.D4c x y<span class="br">)</span>.mpr <span class="op">⟨</span><span class="br">(</span>W.T8_cor1 x<span class="br">)</span>.<span class="num">2</span>.<span class="num">2</span>.<span class="num">1</span>, <span class="br">(</span>W.T8_cor1 y<span class="br">)</span>.<span class="num">2</span>.<span class="num">2</span>.<span class="num">1</span>, <span class="br">(</span>W.L1 x<span class="br">)</span>.trans <span class="br">(</span>W.L1 y<span class="br">)</span>.symm<span class="op">⟩</span></span></span><span class="row"><span class="ln">236</span><span class="lc"></span></span><span class="row"><span class="ln">237</span><span class="lc"><span class="kw">end</span> ProofOfAWorld</span></span><span class="row"><span class="ln">238</span><span class="lc"></span></span><span class="row"><span class="ln">239</span><span class="lc"><span class="cmt">/-! ## The model ℳ of Section VI (consistency) -/</span></span></span><span class="row"><span class="ln">240</span><span class="lc"></span></span><span class="row"><span class="ln">241</span><span class="lc"><span class="doc">/-- The three beings of ℳ: s (an individual's personal sō-omou),</span></span></span><span class="row"><span class="ln">242</span><span class="lc"><span class="doc">t (another individual), w (the world as a whole). -/</span></span></span><span class="row"><span class="ln">243</span><span class="lc"><span class="kw">inductive</span> <span class="decl">Being</span> <span class="kw">where</span></span></span><span class="row"><span class="ln">244</span><span class="lc">  <span class="op">|</span> s</span></span><span class="row"><span class="ln">245</span><span class="lc">  <span class="op">|</span> t</span></span><span class="row"><span class="ln">246</span><span class="lc">  <span class="op">|</span> w</span></span><span class="row"><span class="ln">247</span><span class="lc"></span></span><span class="row"><span class="ln">248</span><span class="lc"><span class="doc">/-- The model ℳ: beings {s, t, w}; one coordinate k (here <span class="cc">`()`</span>);</span></span></span><span class="row"><span class="ln">249</span><span class="lc"><span class="doc">𝐒, F, Truth interpreted as the identity on truth values. -/</span></span></span><span class="row"><span class="ln">250</span><span class="lc"><span class="kw">def</span> <span class="decl">modelM</span> : ProofOfAWorld <span class="kw">where</span></span></span><span class="row"><span class="ln">251</span><span class="lc">  Ent <span class="op">:=</span> Being</span></span><span class="row"><span class="ln">252</span><span class="lc">  Crd <span class="op">:=</span> Unit</span></span><span class="row"><span class="ln">253</span><span class="lc">  S_ind <span class="op">:=</span> Being.s</span></span><span class="row"><span class="ln">254</span><span class="lc">  World <span class="op">:=</span> Being.w</span></span><span class="row"><span class="ln">255</span><span class="lc">  c0 <span class="op">:=</span> <span class="br">(</span><span class="br">)</span></span></span><span class="row"><span class="ln">256</span><span class="lc">  Loc <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="br">(</span><span class="br">)</span></span></span><span class="row"><span class="ln">257</span><span class="lc">  Sop <span class="op">:=</span> <span class="kw">fun</span> φ <span class="op">=</span><span class="op">&gt;</span> φ</span></span><span class="row"><span class="ln">258</span><span class="lc">  F <span class="op">:=</span> <span class="kw">fun</span> φ <span class="op">=</span><span class="op">&gt;</span> φ</span></span><span class="row"><span class="ln">259</span><span class="lc">  Truth <span class="op">:=</span> <span class="kw">fun</span> φ <span class="op">=</span><span class="op">&gt;</span> φ</span></span><span class="row"><span class="ln">260</span><span class="lc">  S <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="cst">True</span></span></span><span class="row"><span class="ln">261</span><span class="lc">  B <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="cst">True</span></span></span><span class="row"><span class="ln">262</span><span class="lc">  PE <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="cst">True</span></span></span><span class="row"><span class="ln">263</span><span class="lc">  Concept <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="cst">True</span></span></span><span class="row"><span class="ln">264</span><span class="lc">  M <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="cst">True</span></span></span><span class="row"><span class="ln">265</span><span class="lc">  Ext <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="cst">False</span></span></span><span class="row"><span class="ln">266</span><span class="lc">  Gen <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="cst">False</span></span></span><span class="row"><span class="ln">267</span><span class="lc">  Begin <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="cst">False</span></span></span><span class="row"><span class="ln">268</span><span class="lc">  End <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="cst">False</span></span></span><span class="row"><span class="ln">269</span><span class="lc">  AlreadyPresent <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="cst">True</span></span></span><span class="row"><span class="ln">270</span><span class="lc">  AbsoluteNothing <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="cst">False</span></span></span><span class="row"><span class="ln">271</span><span class="lc">  Limited <span class="op">:=</span> <span class="kw">fun</span> x <span class="op">=</span><span class="op">&gt;</span> x <span class="op">=</span> Being.s <span class="op">∨</span> x <span class="op">=</span> Being.t</span></span><span class="row"><span class="ln">272</span><span class="lc">  P <span class="op">:=</span> <span class="kw">fun</span> _ _ <span class="op">=</span><span class="op">&gt;</span> <span class="cst">True</span></span></span><span class="row"><span class="ln">273</span><span class="lc">  CoPresent <span class="op">:=</span> <span class="kw">fun</span> _ _ <span class="op">=</span><span class="op">&gt;</span> <span class="cst">True</span></span></span><span class="row"><span class="ln">274</span><span class="lc">  Same <span class="op">:=</span> <span class="kw">fun</span> _ _ <span class="op">=</span><span class="op">&gt;</span> <span class="cst">True</span></span></span><span class="row"><span class="ln">275</span><span class="lc">  C <span class="op">:=</span> <span class="kw">fun</span> _ _ <span class="op">=</span><span class="op">&gt;</span> <span class="cst">True</span></span></span><span class="row"><span class="ln">276</span><span class="lc">  Before <span class="op">:=</span> <span class="kw">fun</span> _ _ <span class="op">=</span><span class="op">&gt;</span> <span class="cst">False</span></span></span><span class="row"><span class="ln">277</span><span class="lc">  <span class="cmt">-- The 19 formulas hold in ℳ:</span></span></span><span class="row"><span class="ln">278</span><span class="lc">  D1  <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> Iff.rfl</span></span><span class="row"><span class="ln">279</span><span class="lc">  D2a <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="op">⟨</span><span class="kw">fun</span> h <span class="op">=</span><span class="op">&gt;</span> False.elim h, <span class="kw">fun</span> h <span class="op">=</span><span class="op">&gt;</span> False.elim <span class="br">(</span>h <span class="tac">trivial</span><span class="br">)</span><span class="op">⟩</span></span></span><span class="row"><span class="ln">280</span><span class="lc">  D2b <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="op">⟨</span><span class="kw">fun</span> h <span class="op">=</span><span class="op">&gt;</span> False.elim h, <span class="kw">fun</span> <span class="op">⟨</span>_, _, h<span class="op">⟩</span> <span class="op">=</span><span class="op">&gt;</span> False.elim <span class="br">(</span>h <span class="tac">trivial</span><span class="br">)</span><span class="op">⟩</span></span></span><span class="row"><span class="ln">281</span><span class="lc">  D2c <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="op">⟨</span><span class="kw">fun</span> h <span class="op">=</span><span class="op">&gt;</span> False.elim h, <span class="kw">fun</span> <span class="op">⟨</span>_, h<span class="op">⟩</span> <span class="op">=</span><span class="op">&gt;</span> False.elim h<span class="op">⟩</span></span></span><span class="row"><span class="ln">282</span><span class="lc">  D2d <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="op">⟨</span><span class="kw">fun</span> h <span class="op">=</span><span class="op">&gt;</span> False.elim h, <span class="kw">fun</span> <span class="op">⟨</span>_, h<span class="op">⟩</span> <span class="op">=</span><span class="op">&gt;</span> False.elim h<span class="op">⟩</span></span></span><span class="row"><span class="ln">283</span><span class="lc">  D2e <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="op">⟨</span><span class="kw">fun</span> h <span class="op">=</span><span class="op">&gt;</span> False.elim h, <span class="kw">fun</span> h <span class="op">=</span><span class="op">&gt;</span> False.elim <span class="br">(</span>h <span class="tac">trivial</span><span class="br">)</span><span class="op">⟩</span></span></span><span class="row"><span class="ln">284</span><span class="lc">  D3  <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="op">⟨</span><span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="op">⟨</span><span class="tac">trivial</span>, <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> Iff.rfl<span class="op">⟩</span>, <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="tac">trivial</span><span class="op">⟩</span></span></span><span class="row"><span class="ln">285</span><span class="lc">  D4a <span class="op">:=</span> <span class="kw">fun</span> _ _ <span class="op">=</span><span class="op">&gt;</span> <span class="op">⟨</span><span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="op">⟨</span><span class="tac">rfl</span>, <span class="tac">rfl</span><span class="op">⟩</span>, <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="tac">trivial</span><span class="op">⟩</span></span></span><span class="row"><span class="ln">286</span><span class="lc">  D4b <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="op">⟨</span><span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="op">⟨</span><span class="tac">rfl</span>, <span class="tac">trivial</span>, <span class="kw">fun</span> h <span class="op">=</span><span class="op">&gt;</span> h<span class="op">⟩</span>, <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="tac">trivial</span><span class="op">⟩</span></span></span><span class="row"><span class="ln">287</span><span class="lc">  D4c <span class="op">:=</span> <span class="kw">fun</span> _ _ <span class="op">=</span><span class="op">&gt;</span> <span class="op">⟨</span><span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="op">⟨</span><span class="tac">trivial</span>, <span class="tac">trivial</span>, <span class="tac">rfl</span><span class="op">⟩</span>, <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> <span class="tac">trivial</span><span class="op">⟩</span></span></span><span class="row"><span class="ln">288</span><span class="lc">  D5a <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> Iff.rfl</span></span><span class="row"><span class="ln">289</span><span class="lc">  D5b <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> Iff.rfl</span></span><span class="row"><span class="ln">290</span><span class="lc">  A1 <span class="op">:=</span> <span class="kw">fun</span> _ h <span class="op">=</span><span class="op">&gt;</span> h</span></span><span class="row"><span class="ln">291</span><span class="lc">  A2 <span class="op">:=</span> <span class="kw">fun</span> _ h <span class="op">=</span><span class="op">&gt;</span> h</span></span><span class="row"><span class="ln">292</span><span class="lc">  A4 <span class="op">:=</span> <span class="kw">fun</span> _ _ <span class="op">=</span><span class="op">&gt;</span> Iff.rfl</span></span><span class="row"><span class="ln">293</span><span class="lc">  A5 <span class="op">:=</span> <span class="op">⟨</span><span class="br">(</span><span class="kw">fun</span> c <span class="op">=</span><span class="op">&gt;</span> <span class="kw">match</span> c <span class="kw">with</span> <span class="op">|</span> <span class="br">(</span><span class="br">)</span> <span class="op">=</span><span class="op">&gt;</span> <span class="tac">rfl</span><span class="br">)</span>, <span class="br">(</span><span class="kw">fun</span> _ _ h <span class="op">=</span><span class="op">&gt;</span> False.elim h<span class="br">)</span>, <span class="tac">trivial</span><span class="op">⟩</span></span></span><span class="row"><span class="ln">294</span><span class="lc">  A6 <span class="op">:=</span> <span class="kw">fun</span> _ <span class="op">=</span><span class="op">&gt;</span> Or.inl <span class="tac">rfl</span></span></span><span class="row"><span class="ln">295</span><span class="lc">  A7 <span class="op">:=</span> <span class="kw">fun</span> _ _ <span class="op">=</span><span class="op">&gt;</span> <span class="tac">trivial</span></span></span><span class="row"><span class="ln">296</span><span class="lc">  A8 <span class="op">:=</span> <span class="kw">fun</span> _ _ _ <span class="op">=</span><span class="op">&gt;</span> <span class="tac">trivial</span></span></span><span class="row"><span class="ln">297</span><span class="lc"></span></span><span class="row"><span class="ln">298</span><span class="lc"><span class="doc">/-- Consistency: the definitions and axioms do not imply a contradiction,</span></span></span><span class="row"><span class="ln">299</span><span class="lc"><span class="doc">because the model ℳ satisfies all of them. -/</span></span></span><span class="row"><span class="ln">300</span><span class="lc"><span class="kw">theorem</span> <span class="decl">consistency</span> : <span class="op">¬</span> <span class="br">(</span>ProofOfAWorld <span class="op">→</span> <span class="cst">False</span><span class="br">)</span> <span class="op">:=</span></span></span><span class="row"><span class="ln">301</span><span class="lc">  <span class="kw">fun</span> h <span class="op">=</span><span class="op">&gt;</span> h modelM</span></span><span class="row"><span class="ln">302</span><span class="lc"></span></span><span class="row"><span class="ln">303</span><span class="lc"><span class="doc">/-- In ℳ, the individual s and the world w are numerically distinct... -/</span></span></span><span class="row"><span class="ln">304</span><span class="lc"><span class="kw">theorem</span> <span class="decl">modelM_distinct</span> : modelM.S_ind <span class="op">≠</span> modelM.World <span class="op">:=</span> <span class="kw">by</span></span></span><span class="row"><span class="ln">305</span><span class="lc">  <span class="kw">show</span> Being.s <span class="op">≠</span> Being.w</span></span><span class="row"><span class="ln">306</span><span class="lc">  <span class="tac">intro</span> h</span></span><span class="row"><span class="ln">307</span><span class="lc">  <span class="tac">cases</span> h</span></span><span class="row"><span class="ln">308</span><span class="lc"></span></span><span class="row"><span class="ln">309</span><span class="lc"><span class="doc">/-- ...and yet fundamentally the same being (T8, Corollary 2). -/</span></span></span><span class="row"><span class="ln">310</span><span class="lc"><span class="kw">theorem</span> <span class="decl">modelM_distinct_but_same</span> :</span></span><span class="row"><span class="ln">311</span><span class="lc">    modelM.S_ind <span class="op">≠</span> modelM.World <span class="op">∧</span> modelM.Same modelM.S_ind modelM.World <span class="op">:=</span></span></span><span class="row"><span class="ln">312</span><span class="lc">  <span class="op">⟨</span>modelM_distinct, modelM.T8_cor2 _ _<span class="op">⟩</span></span></span><span class="row"><span class="ln">313</span><span class="lc"></span></span><span class="row"><span class="ln">314</span><span class="lc"><span class="doc">/-- Non-triviality: the definitions and axioms do not force all beings to be</span></span></span><span class="row"><span class="ln">315</span><span class="lc"><span class="doc">numerically one (Rev. 4, whose A5 did, is corrected in Rev. 5). Shown by ℳ,</span></span></span><span class="row"><span class="ln">316</span><span class="lc"><span class="doc">where the individual s and the world w are distinct. -/</span></span></span><span class="row"><span class="ln">317</span><span class="lc"><span class="kw">theorem</span> <span class="decl">not_all_one</span> : <span class="op">¬</span> <span class="br">(</span><span class="op">∀</span> W : ProofOfAWorld, <span class="op">∀</span> x y : W.Ent, x <span class="op">=</span> y<span class="br">)</span> <span class="op">:=</span></span></span><span class="row"><span class="ln">318</span><span class="lc">  <span class="kw">fun</span> h <span class="op">=</span><span class="op">&gt;</span> modelM_distinct <span class="br">(</span>h modelM modelM.S_ind modelM.World<span class="br">)</span></span></span><span class="row"><span class="ln">319</span><span class="lc"></span></span><span class="row"><span class="ln">320</span><span class="lc"><span class="cmt">/-! ## The result: what each statement relies on</span></span></span><span class="row"><span class="ln">321</span><span class="lc"></span></span><span class="row"><span class="ln">322</span><span class="lc"><span class="cmt">Each line below should print</span></span></span><span class="row"><span class="ln">323</span><span class="lc"><span class="cmt">  'NAME' does not depend on any axioms</span></span></span><span class="row"><span class="ln">324</span><span class="lc"><span class="cmt">except <span class="cc">`T6_cor_text_route`</span>, which prints (the order may differ)</span></span></span><span class="row"><span class="ln">325</span><span class="lc"><span class="cmt">  'ProofOfAWorld.T6_cor_text_route' depends on axioms: [propext, Classical.choice, Quot.sound]</span></span></span><span class="row"><span class="ln">326</span><span class="lc"><span class="cmt">If any line lists any other axiom, that proof did not pass. -/</span></span></span><span class="row"><span class="ln">327</span><span class="lc"></span></span><span class="row"><span class="ln">328</span><span class="lc"><span class="cmd">#print</span> axioms ProofOfAWorld.L1</span></span><span class="row"><span class="ln">329</span><span class="lc"><span class="cmd">#print</span> axioms ProofOfAWorld.T1</span></span><span class="row"><span class="ln">330</span><span class="lc"><span class="cmd">#print</span> axioms ProofOfAWorld.T2</span></span><span class="row"><span class="ln">331</span><span class="lc"><span class="cmd">#print</span> axioms ProofOfAWorld.T3</span></span><span class="row"><span class="ln">332</span><span class="lc"><span class="cmd">#print</span> axioms ProofOfAWorld.T3_cor</span></span><span class="row"><span class="ln">333</span><span class="lc"><span class="cmd">#print</span> axioms ProofOfAWorld.T4</span></span><span class="row"><span class="ln">334</span><span class="lc"><span class="cmd">#print</span> axioms ProofOfAWorld.T5</span></span><span class="row"><span class="ln">335</span><span class="lc"><span class="cmd">#print</span> axioms ProofOfAWorld.T5_cor</span></span><span class="row"><span class="ln">336</span><span class="lc"><span class="cmd">#print</span> axioms ProofOfAWorld.T6</span></span><span class="row"><span class="ln">337</span><span class="lc"><span class="cmd">#print</span> axioms ProofOfAWorld.T6_cor_text_route</span></span><span class="row"><span class="ln">338</span><span class="lc"><span class="cmd">#print</span> axioms ProofOfAWorld.T6_cor</span></span><span class="row"><span class="ln">339</span><span class="lc"><span class="cmd">#print</span> axioms ProofOfAWorld.T7</span></span><span class="row"><span class="ln">340</span><span class="lc"><span class="cmd">#print</span> axioms ProofOfAWorld.T7_cor</span></span><span class="row"><span class="ln">341</span><span class="lc"><span class="cmd">#print</span> axioms ProofOfAWorld.T8</span></span><span class="row"><span class="ln">342</span><span class="lc"><span class="cmd">#print</span> axioms ProofOfAWorld.T8_cor1</span></span><span class="row"><span class="ln">343</span><span class="lc"><span class="cmd">#print</span> axioms ProofOfAWorld.T8_cor2</span></span><span class="row"><span class="ln">344</span><span class="lc"><span class="cmd">#print</span> axioms consistency</span></span><span class="row"><span class="ln">345</span><span class="lc"><span class="cmd">#print</span> axioms modelM_distinct_but_same</span></span><span class="row"><span class="ln">346</span><span class="lc"><span class="cmd">#print</span> axioms not_all_one</span></span></code></pre>
+            </div>
+        </div>
+        <p class="code-note">このコードは、検証した版（GitHub の固定版 5aad554）と同じものです。<a href="https://github.com/ryutostudio/ryutostudio.github.io/blob/5aad55494640b17f80da0e935748cc3e3d763a22/ProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">GitHub で見る</a></p>
+        <textarea id="lean-raw" hidden readonly>/-
+  Proof of a World (『世界の証明』, Ryuto Sako) —
+  machine check of the formal model, Rev. 5 (19 November 2026)
+
+  What this file does
+  1. It writes down the symbols, the definitions D1–D5 and the axioms
+     A1, A2, A4–A8 of the formal model (Rev. 5) as a Lean structure
+     `ProofOfAWorld`.
+  2. It proves Lemma L1 and Theorems T1–T8 with their corollaries for EVERY
+     structure that satisfies those definitions and axioms (derivability).
+     The proofs follow the steps of Section IV of the formal model.
+  3. It builds the model ℳ of Section VI (three beings s, t, w; one
+     coordinate k) and proves that it satisfies all 19 formulas
+     (consistency). It also shows that the definitions and axioms do not
+     force all beings to be numerically one (non-triviality).
+  4. At the end, `#print axioms` reports what each result relies on.
+
+  How to read the result
+  * No red error and no warning anywhere → every proof was accepted.
+  * "does not depend on any axioms" → the result follows from the
+    definitions and axioms of the formal model by logic alone; nothing
+    else was assumed.
+  * One result, `T6_cor_text_route` (the route of the text, which uses
+    double-negation elimination), relies on classical logic; Lean then
+    lists its three standard axioms `propext`, `Classical.choice`,
+    `Quot.sound`. This is expected.
+  * If any line lists any other axiom, that proof did not pass.
+
+  Notes on the encoding
+  * Sorts: `Ent` (beings) and `Crd` (coordinates) are two separate types.
+  * The sentential operators 𝐒, F, Truth are functions `Prop → Prop`
+    (`Sop`, `F`, `Truth`).
+  * The schemas A1, A2, A8 and D5a are written as single statements about
+    all propositions, which is slightly stronger than a schema. The proofs
+    use only instances that can be written in the language ℒ
+    (B(a), AbsoluteNothing(a), x = x), and the model ℳ satisfies even the
+    stronger form, so both conclusions hold for the schemas as well.
+  * A3 is a meta-theoretic restriction, not a formula of ℒ, so it is not
+    written here.
+  * `Ext` stands for Ext_原理的 (being in the fundamental exterior of
+    sō-omou).
+  * Defined symbols are kept as symbols together with their defining
+    biconditionals, as in Section VI, where the 19 formulas are checked.
+
+  Lean 4, core library only (no Mathlib).
+  Formal model: https://ryutostudio.github.io/logic-en.html (Rev. 5)
+  Book: https://doi.org/10.5281/zenodo.23607369
+  This Lean file was written by Claude (Anthropic) at the author's request.
+  Its correctness does not rest on trust in the writer: Lean checks it.
+-/
+
+set_option autoImplicit false
+
+/-- The symbols of the formal language ℒ, with the definitions D1–D5 and
+the axioms A1, A2, A4–A8 of Rev. 5. -/
+structure ProofOfAWorld where
+  -- Sorts (types)
+  Ent : Type                   -- beings (entities)
+  Crd : Type                   -- coordinates (locations)
+  -- Constants and function
+  S_ind : Ent                  -- an individual's personal sō-omou
+  World : Ent                  -- the world as a whole
+  c0 : Crd                     -- the single fundamental coordinate
+  Loc : Ent → Crd              -- the coordinate at which a being is located
+  -- Sentential operators
+  Sop : Prop → Prop            -- 𝐒(φ): φ is established as sō-omou
+  F : Prop → Prop              -- F(φ): φ is a convenience within sō-omou
+  Truth : Prop → Prop          -- Truth(φ): φ appears as truth
+  -- One-place predicates on beings
+  S : Ent → Prop               -- x is sō-omou
+  B : Ent → Prop               -- x exists (is real)
+  PE : Ent → Prop              -- x is a fundamental being
+  Concept : Ent → Prop         -- x is a concept
+  M : Ent → Prop               -- x is meaning
+  Ext : Ent → Prop             -- Ext_原理的: x is in the fundamental exterior
+  Gen : Ent → Prop             -- unilateral generation
+  Begin : Ent → Prop
+  End : Ent → Prop
+  AlreadyPresent : Ent → Prop
+  AbsoluteNothing : Ent → Prop
+  Limited : Ent → Prop
+  -- Two-place predicates
+  P : Ent → Ent → Prop         -- x pictures y
+  CoPresent : Ent → Ent → Prop
+  Same : Ent → Ent → Prop      -- fundamentally the same being
+  C : Crd → Crd → Prop         -- continuity
+  Before : Crd → Crd → Prop    -- chronological precedence
+  -- Definitions D1–D5
+  D1  : ∀ x : Ent, S x ↔ Sop (B x)
+  D2a : ∀ x : Ent, Ext x ↔ ¬ Sop (B x)
+  D2b : ∀ x : Ent, Gen x ↔ ∃ a : Ent, P a x ∧ ¬ P x a
+  D2c : ∀ x : Ent, Begin x ↔ ∃ c : Crd, Before c (Loc x)
+  D2d : ∀ x : Ent, End x ↔ ∃ c : Crd, Before (Loc x) c
+  D2e : ∀ x : Ent, AbsoluteNothing x ↔ ¬ B x
+  D3  : ∀ x : Ent, PE x ↔ (S x ∧ ∀ y : Ent, (P x y ↔ P y x))
+  D4a : ∀ x y : Ent, CoPresent x y ↔ (Loc x = c0 ∧ Loc y = c0)
+  D4b : ∀ x : Ent, AlreadyPresent x ↔ (Loc x = c0 ∧ PE x ∧ ¬ Gen x)
+  D4c : ∀ x y : Ent, Same x y ↔ (PE x ∧ PE y ∧ Loc x = Loc y)
+  D5a : ∀ φ : Prop, Truth φ ↔ Sop φ
+  D5b : ∀ x : Ent, M x ↔ B x
+  -- Axioms A1, A2, A4–A8 (A3 is a meta-theoretic restriction)
+  A1 : ∀ φ : Prop, φ → Sop φ
+  A2 : ∀ φ : Prop, F φ → Sop φ
+  A4 : ∀ x y : Ent, P x y ↔ P y x
+  A5 : (∀ c : Crd, c = c0) ∧ (∀ c c' : Crd, Before c c' → c ≠ c') ∧ C c0 c0
+  A6 : (∀ y : Ent, CoPresent S_ind y) → Limited S_ind
+  A7 : ∀ x : Ent, S x → B x
+  A8 : ∀ (φ : Ent → Prop) (x : Ent), Sop (φ x) → S x
+
+namespace ProofOfAWorld
+
+variable (W : ProofOfAWorld)
+
+/-! ## Lemma L1 and Theorems T1–T8 (Section IV) -/
+
+/-- L1. ∀x (Loc(x) = c0). Basis: A5 (first conjunct). -/
+theorem L1 : ∀ x : W.Ent, W.Loc x = W.c0 :=
+  fun x =&gt; W.A5.1 (W.Loc x)
+
+/-- T1. ¬∃x (B(x) ∧ Ext(x)). Basis: A1, D2a. -/
+theorem T1 : ¬ ∃ x : W.Ent, W.B x ∧ W.Ext x :=
+  fun ⟨a, hB, hExt⟩ =&gt;
+    -- Step 4: A1 with φ := B(a) gives 𝐒(B(a))
+    have h4 : W.Sop (W.B a) := W.A1 (W.B a) hB
+    -- Step 5: D2a gives ¬𝐒(B(a))
+    have h5 : ¬ W.Sop (W.B a) := (W.D2a a).mp hExt
+    -- Step 6: contradiction
+    h5 h4
+
+/-- T2. ∀x (B(x) ↔ S(x)). Basis: A1, D1, A7. -/
+theorem T2 : ∀ x : W.Ent, W.B x ↔ W.S x :=
+  fun x =&gt;
+    ⟨fun hB =&gt; (W.D1 x).mpr (W.A1 (W.B x) hB),  -- Steps 1–3
+     fun hS =&gt; W.A7 x hS⟩                        -- Step 4
+
+/-- T3. ∀x (B(x) ↔ PE(x)). Basis: A4, D3, T2. -/
+theorem T3 : ∀ x : W.Ent, W.B x ↔ W.PE x :=
+  fun x =&gt;
+    -- Step 1: A4 gives ∀y (P(x, y) ↔ P(y, x))
+    have h1 : ∀ y : W.Ent, (W.P x y ↔ W.P y x) := fun y =&gt; W.A4 x y
+    -- Step 2: with D3, S(x) ↔ PE(x)
+    have h2 : W.S x ↔ W.PE x :=
+      ⟨fun hS =&gt; (W.D3 x).mpr ⟨hS, h1⟩, fun hPE =&gt; ((W.D3 x).mp hPE).1⟩
+    -- Step 3: T2 and transitivity
+    (W.T2 x).trans h2
+
+/-- Corollary of T3: Limited(S_ind). Basis: L1, D4a, A6. -/
+theorem T3_cor : W.Limited W.S_ind :=
+  W.A6 (fun y =&gt; (W.D4a W.S_ind y).mpr ⟨W.L1 W.S_ind, W.L1 y⟩)
+
+/-- T4. ∀x ¬Gen(x). Basis: A4, D2b. -/
+theorem T4 : ∀ x : W.Ent, ¬ W.Gen x :=
+  fun x =&gt;
+    -- Steps 1–3: by A4, there is no a with P(a, x) ∧ ¬P(x, a)
+    have h3 : ¬ ∃ a : W.Ent, W.P a x ∧ ¬ W.P x a :=
+      fun ⟨a, hPax, hnPxa⟩ =&gt; hnPxa ((W.A4 a x).mp hPax)
+    -- Step 4: contrapositive of D2b
+    fun hGen =&gt; h3 ((W.D2b x).mp hGen)
+
+/-- T5. ∀x (¬Begin(x) ∧ ¬End(x)). Basis: A5, L1, D2c, D2d. -/
+theorem T5 : ∀ x : W.Ent, ¬ W.Begin x ∧ ¬ W.End x := by
+  intro x
+  constructor
+  · intro hBegin
+    -- Step 2: by D2c, Before(c1, Loc(x)) for some coordinate c1
+    match (W.D2c x).mp hBegin with
+    | ⟨c1, hBefore⟩ =&gt;
+      -- Step 3: c1 = c0 (A5, first conjunct) and Loc(x) = c0 (L1),
+      -- so Before(c0, c0)
+      rw [W.A5.1 c1, W.L1 x] at hBefore
+      -- Step 4: A5 (second conjunct) gives c0 ≠ c0, against c0 = c0
+      exact W.A5.2.1 W.c0 W.c0 hBefore rfl
+  · intro hEnd
+    -- Step 5: the same argument with D2d
+    match (W.D2d x).mp hEnd with
+    | ⟨c2, hBefore⟩ =&gt;
+      rw [W.A5.1 c2, W.L1 x] at hBefore
+      exact W.A5.2.1 W.c0 W.c0 hBefore rfl
+
+/-- Corollary of T5: ¬Begin(World) ∧ ¬End(World). -/
+theorem T5_cor : ¬ W.Begin W.World ∧ ¬ W.End W.World :=
+  W.T5 W.World
+
+/-- T6. ¬∃x AbsoluteNothing(x). Basis: A1, A8, A7, D2e. -/
+theorem T6 : ¬ ∃ x : W.Ent, W.AbsoluteNothing x :=
+  fun ⟨a, hAN⟩ =&gt;
+    -- Step 2: A1 with φ := AbsoluteNothing(a)
+    have h2 : W.Sop (W.AbsoluteNothing a) := W.A1 (W.AbsoluteNothing a) hAN
+    -- Step 3: A8 with φ(x) := AbsoluteNothing(x)
+    have h3 : W.S a := W.A8 W.AbsoluteNothing a h2
+    -- Step 4: A7
+    have h4 : W.B a := W.A7 a h3
+    -- Steps 5–6: D2e gives ¬B(a); contradiction
+    (W.D2e a).mp hAN h4
+
+/-- Corollary of T6: ∀x B(x), by the route of the text (Step 8):
+T6, the contrapositive of D2e, and double-negation elimination
+(classical logic). -/
+theorem T6_cor_text_route : ∀ x : W.Ent, W.B x :=
+  fun x =&gt; Classical.byContradiction (fun hnB =&gt; W.T6 ⟨x, (W.D2e x).mpr hnB⟩)
+
+/-- Corollary of T6: ∀x B(x), by the route noted under A8: x = x holds;
+by A1 it holds as sō-omou; by A8 x is sō-omou; by A7 x is real.
+This route needs no classical logic. It is the one used below. -/
+theorem T6_cor : ∀ x : W.Ent, W.B x :=
+  fun x =&gt;
+    have h1 : W.Sop (x = x) := W.A1 (x = x) rfl
+    have h2 : W.S x := W.A8 (fun y =&gt; y = y) x h1
+    W.A7 x h2
+
+/-- T7. ∀x (Concept(x) → AlreadyPresent(x)).
+Basis: corollary of T6, T3, L1, T4, D4b. -/
+theorem T7 : ∀ x : W.Ent, W.Concept x → W.AlreadyPresent x :=
+  fun x _ =&gt; (W.D4b x).mpr ⟨W.L1 x, (W.T3 x).mp (W.T6_cor x), W.T4 x⟩
+
+/-- Corollary of T7: ∀x AlreadyPresent(x)
+(Steps 2–7 do not use the assumption Concept(x)). -/
+theorem T7_cor : ∀ x : W.Ent, W.AlreadyPresent x :=
+  fun x =&gt; (W.D4b x).mpr ⟨W.L1 x, (W.T3 x).mp (W.T6_cor x), W.T4 x⟩
+
+/-- T8. ∀x ((S(x) ↔ B(x)) ∧ (B(x) ↔ PE(x)) ∧ (PE(x) ↔ M(x))).
+Basis: T2, T3, D5b. -/
+theorem T8 : ∀ x : W.Ent, (W.S x ↔ W.B x) ∧ (W.B x ↔ W.PE x) ∧ (W.PE x ↔ W.M x) :=
+  fun x =&gt; ⟨(W.T2 x).symm, W.T3 x, (W.T3 x).symm.trans (W.D5b x).symm⟩
+
+/-- Corollary 1 of T8: ∀x (S(x) ∧ B(x) ∧ PE(x) ∧ M(x)). -/
+theorem T8_cor1 : ∀ x : W.Ent, W.S x ∧ W.B x ∧ W.PE x ∧ W.M x :=
+  fun x =&gt;
+    have hB : W.B x := W.T6_cor x
+    ⟨(W.T2 x).mp hB, hB, (W.T3 x).mp hB, (W.D5b x).mpr hB⟩
+
+/-- Corollary 2 of T8: ∀x∀y Same(x, y)
+(fundamental identity, not numerical identity). -/
+theorem T8_cor2 : ∀ x y : W.Ent, W.Same x y :=
+  fun x y =&gt; (W.D4c x y).mpr ⟨(W.T8_cor1 x).2.2.1, (W.T8_cor1 y).2.2.1, (W.L1 x).trans (W.L1 y).symm⟩
+
+end ProofOfAWorld
+
+/-! ## The model ℳ of Section VI (consistency) -/
+
+/-- The three beings of ℳ: s (an individual's personal sō-omou),
+t (another individual), w (the world as a whole). -/
+inductive Being where
+  | s
+  | t
+  | w
+
+/-- The model ℳ: beings {s, t, w}; one coordinate k (here `()`);
+𝐒, F, Truth interpreted as the identity on truth values. -/
+def modelM : ProofOfAWorld where
+  Ent := Being
+  Crd := Unit
+  S_ind := Being.s
+  World := Being.w
+  c0 := ()
+  Loc := fun _ =&gt; ()
+  Sop := fun φ =&gt; φ
+  F := fun φ =&gt; φ
+  Truth := fun φ =&gt; φ
+  S := fun _ =&gt; True
+  B := fun _ =&gt; True
+  PE := fun _ =&gt; True
+  Concept := fun _ =&gt; True
+  M := fun _ =&gt; True
+  Ext := fun _ =&gt; False
+  Gen := fun _ =&gt; False
+  Begin := fun _ =&gt; False
+  End := fun _ =&gt; False
+  AlreadyPresent := fun _ =&gt; True
+  AbsoluteNothing := fun _ =&gt; False
+  Limited := fun x =&gt; x = Being.s ∨ x = Being.t
+  P := fun _ _ =&gt; True
+  CoPresent := fun _ _ =&gt; True
+  Same := fun _ _ =&gt; True
+  C := fun _ _ =&gt; True
+  Before := fun _ _ =&gt; False
+  -- The 19 formulas hold in ℳ:
+  D1  := fun _ =&gt; Iff.rfl
+  D2a := fun _ =&gt; ⟨fun h =&gt; False.elim h, fun h =&gt; False.elim (h trivial)⟩
+  D2b := fun _ =&gt; ⟨fun h =&gt; False.elim h, fun ⟨_, _, h⟩ =&gt; False.elim (h trivial)⟩
+  D2c := fun _ =&gt; ⟨fun h =&gt; False.elim h, fun ⟨_, h⟩ =&gt; False.elim h⟩
+  D2d := fun _ =&gt; ⟨fun h =&gt; False.elim h, fun ⟨_, h⟩ =&gt; False.elim h⟩
+  D2e := fun _ =&gt; ⟨fun h =&gt; False.elim h, fun h =&gt; False.elim (h trivial)⟩
+  D3  := fun _ =&gt; ⟨fun _ =&gt; ⟨trivial, fun _ =&gt; Iff.rfl⟩, fun _ =&gt; trivial⟩
+  D4a := fun _ _ =&gt; ⟨fun _ =&gt; ⟨rfl, rfl⟩, fun _ =&gt; trivial⟩
+  D4b := fun _ =&gt; ⟨fun _ =&gt; ⟨rfl, trivial, fun h =&gt; h⟩, fun _ =&gt; trivial⟩
+  D4c := fun _ _ =&gt; ⟨fun _ =&gt; ⟨trivial, trivial, rfl⟩, fun _ =&gt; trivial⟩
+  D5a := fun _ =&gt; Iff.rfl
+  D5b := fun _ =&gt; Iff.rfl
+  A1 := fun _ h =&gt; h
+  A2 := fun _ h =&gt; h
+  A4 := fun _ _ =&gt; Iff.rfl
+  A5 := ⟨(fun c =&gt; match c with | () =&gt; rfl), (fun _ _ h =&gt; False.elim h), trivial⟩
+  A6 := fun _ =&gt; Or.inl rfl
+  A7 := fun _ _ =&gt; trivial
+  A8 := fun _ _ _ =&gt; trivial
+
+/-- Consistency: the definitions and axioms do not imply a contradiction,
+because the model ℳ satisfies all of them. -/
+theorem consistency : ¬ (ProofOfAWorld → False) :=
+  fun h =&gt; h modelM
+
+/-- In ℳ, the individual s and the world w are numerically distinct... -/
+theorem modelM_distinct : modelM.S_ind ≠ modelM.World := by
+  show Being.s ≠ Being.w
+  intro h
+  cases h
+
+/-- ...and yet fundamentally the same being (T8, Corollary 2). -/
+theorem modelM_distinct_but_same :
+    modelM.S_ind ≠ modelM.World ∧ modelM.Same modelM.S_ind modelM.World :=
+  ⟨modelM_distinct, modelM.T8_cor2 _ _⟩
+
+/-- Non-triviality: the definitions and axioms do not force all beings to be
+numerically one (Rev. 4, whose A5 did, is corrected in Rev. 5). Shown by ℳ,
+where the individual s and the world w are distinct. -/
+theorem not_all_one : ¬ (∀ W : ProofOfAWorld, ∀ x y : W.Ent, x = y) :=
+  fun h =&gt; modelM_distinct (h modelM modelM.S_ind modelM.World)
+
+/-! ## The result: what each statement relies on
+
+Each line below should print
+  'NAME' does not depend on any axioms
+except `T6_cor_text_route`, which prints (the order may differ)
+  'ProofOfAWorld.T6_cor_text_route' depends on axioms: [propext, Classical.choice, Quot.sound]
+If any line lists any other axiom, that proof did not pass. -/
+
+#print axioms ProofOfAWorld.L1
+#print axioms ProofOfAWorld.T1
+#print axioms ProofOfAWorld.T2
+#print axioms ProofOfAWorld.T3
+#print axioms ProofOfAWorld.T3_cor
+#print axioms ProofOfAWorld.T4
+#print axioms ProofOfAWorld.T5
+#print axioms ProofOfAWorld.T5_cor
+#print axioms ProofOfAWorld.T6
+#print axioms ProofOfAWorld.T6_cor_text_route
+#print axioms ProofOfAWorld.T6_cor
+#print axioms ProofOfAWorld.T7
+#print axioms ProofOfAWorld.T7_cor
+#print axioms ProofOfAWorld.T8
+#print axioms ProofOfAWorld.T8_cor1
+#print axioms ProofOfAWorld.T8_cor2
+#print axioms consistency
+#print axioms modelM_distinct_but_same
+#print axioms not_all_one
+</textarea>
+    </section>
+
+    <section id="ai">
+        <h2>AI の使用</h2>
+        <div class="disclaimer-item">
+            <ul class="model-list" style="margin:0;">
+                    <li>本データの形式化（形式言語・定義・公理・導出・モデル・FAQ）は、著者の指示のもとで Gemini（Google）が作成し、複数の AI に点検させた。2026年11月19日に Claude（Anthropic）が全体を点検し、座標の型（A5）などを修正した。</li>
+                    <li>Lean 4 による機械検証のファイル（ProofOfAWorld_Rev5.lean）は、著者の依頼により Claude（Anthropic）が作成した（2026年11月19日）。その正しさは、作成者への信用ではなく、Lean による検査に基づく。</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p><a href="index.html">[ ← Return to Main Archive / 『世界の証明』日英原典トップページへ戻る ]</a> &nbsp;|&nbsp; <a href="lean-en.html">[ Lean 4 Verification (English) → ]</a></p>
+        <p>&copy; 2022–2026 Ryuto Sako (酒勾龍渡) / Ryuto Studio 研究所. All rights reserved.<br>
+        NDL Authority ID: 032264173 | DOI: 10.5281/zenodo.23607369 | Formal model: 10.5281/zenodo.24368376 | PhilArchive: SAKPOA | Wikidata: Q141911037 | ISBN: 978-4-9912331-0-4</p>
+    </footer>
+</div>
+
+<script>
+(function () {
+    var btn = document.getElementById('copy-lean');
+    var raw = document.getElementById('lean-raw');
+    if (!btn || !raw) return;
+    var label = btn.textContent;
+    btn.addEventListener('click', function () {
+        var done = function () {
+            btn.textContent = btn.getAttribute('data-done');
+            setTimeout(function () { btn.textContent = label; }, 1800);
+        };
+        try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(raw.value).then(done, function () {});
+                return;
+            }
+        } catch (e) {}
+        try {
+            raw.hidden = false; raw.select(); document.execCommand('copy'); raw.hidden = true; done();
+        } catch (e) {}
+    });
+})();
+</script>
+
+</body>
+</html>
