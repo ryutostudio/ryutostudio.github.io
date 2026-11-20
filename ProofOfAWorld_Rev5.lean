@@ -4,8 +4,7 @@
 
   What this file does
   1. It writes down the symbols, the definitions D1–D5 and the axioms
-     A1, A2, A4–A8 of the formal model (Rev. 5) as a Lean structure
-     `ProofOfAWorld`.
+     A1, A2, A4–A8 of the formal model as a Lean structure `ProofOfAWorld`.
   2. It proves Lemma L1 and Theorems T1–T8 with their corollaries for EVERY
      structure that satisfies those definitions and axioms (derivability).
      The proofs follow the steps of Section IV of the formal model.
@@ -43,7 +42,7 @@
     biconditionals, as in Section VI, where the 19 formulas are checked.
 
   Lean 4, core library only (no Mathlib).
-  Formal model: https://ryutostudio.github.io/logic-en.html (Rev. 5)
+  Formal model: https://ryutostudio.github.io/logic-en.html
   Book: https://doi.org/10.5281/zenodo.23607369
   This Lean file was written by Claude (Anthropic) at the author's request.
   Its correctness does not rest on trust in the writer: Lean checks it.
@@ -52,7 +51,7 @@
 set_option autoImplicit false
 
 /-- The symbols of the formal language ℒ, with the definitions D1–D5 and
-the axioms A1, A2, A4–A8 of Rev. 5. -/
+the axioms A1, A2, A4–A8. -/
 structure ProofOfAWorld where
   -- Sorts (types)
   Ent : Type                   -- beings (entities)
@@ -73,16 +72,16 @@ structure ProofOfAWorld where
   Concept : Ent → Prop         -- x is a concept
   M : Ent → Prop               -- x is meaning
   Ext : Ent → Prop             -- Ext_原理的: x is in the fundamental exterior
-  Gen : Ent → Prop             -- unilateral generation
-  Begin : Ent → Prop
-  End : Ent → Prop
-  AlreadyPresent : Ent → Prop
-  AbsoluteNothing : Ent → Prop
-  Limited : Ent → Prop
+  Gen : Ent → Prop             -- x is generated unilaterally
+  Begin : Ent → Prop           -- x has a beginning
+  End : Ent → Prop             -- x has an end
+  AlreadyPresent : Ent → Prop  -- x is already present
+  AbsoluteNothing : Ent → Prop -- x is absolute nothingness
+  Limited : Ent → Prop         -- x is limited
   -- Two-place predicates
   P : Ent → Ent → Prop         -- x pictures y
-  CoPresent : Ent → Ent → Prop
-  Same : Ent → Ent → Prop      -- fundamentally the same being
+  CoPresent : Ent → Ent → Prop -- x and y are co-present
+  Same : Ent → Ent → Prop      -- x and y are fundamentally the same being
   C : Crd → Crd → Prop         -- continuity
   Before : Crd → Crd → Prop    -- chronological precedence
   -- Definitions D1–D5
@@ -312,8 +311,8 @@ theorem modelM_distinct_but_same :
   ⟨modelM_distinct, modelM.T8_cor2 _ _⟩
 
 /-- Non-triviality: the definitions and axioms do not force all beings to be
-numerically one (Rev. 4, whose A5 did, is corrected in Rev. 5). Shown by ℳ,
-where the individual s and the world w are distinct. -/
+numerically one. Shown by ℳ, where the individual s and the world w are
+distinct. -/
 theorem not_all_one : ¬ (∀ W : ProofOfAWorld, ∀ x y : W.Ent, x = y) :=
   fun h => modelM_distinct (h modelM modelM.S_ind modelM.World)
 
