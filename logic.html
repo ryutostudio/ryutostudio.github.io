@@ -578,6 +578,9 @@
             <a href="nl.html">[ Nederlands ]</a>
             <a href="pl.html">[ Polski ]</a>
             <a href="uk.html">[ Українська ]</a>
+            <a href="tr.html">[ Türkçe ]</a>
+            <a href="id.html">[ Bahasa Indonesia ]</a>
+            <a href="vi.html">[ Tiếng Việt ]</a>
             <span class="active-lang">[ 形式論理検証データ (JA) ]</span>
             <a href="logic-en.html">[ Formal Logic (EN) ]</a>
             <a href="lean.html">[ Lean 4 機械検証 (JA) ]</a>
@@ -619,7 +622,7 @@
     <section id="sec-0">
         <h2>0. 本データの目的と位置づけ（参照前の前提条件）</h2>
         <div class="panel-box">
-            <p style="margin-top:0;">本データに掲載する形式論理体系（形式言語 $\mathcal{L}$・定義・公理・定理の導出・モデルによる無矛盾性の証明）は、『世界の証明』の主要な主張を前提（公理）と結論（定理）に分けて形式言語で書き直し、その体系に「論理的飛躍」「定義の混同」「暗黙の前提の密輸」が存在しないことを、①形式言語 $\mathcal{L}$ の型付け（存在ソートと座標ソートの区別、論理式に付く文演算子と公理図式の明示）、②定義（D1〜D5）と公理（A1, A2, A4〜A8）からの定理 T1〜T8 の導出、および③定義と公理のすべてを同時に満たすモデル $\mathcal{M}$ の構成（無矛盾性の証明）によって、客観的に検算・可視化するための<strong>補助的な論理検証データ（仕様書）</strong>である。本文の一つ一つの推論の運び（例えば、第5章 pp.45–46 の議論から p.47 の結論へ）は形式化しておらず、本データの範囲外である。<br>
+            <p style="margin-top:0;">本データに掲載する形式論理体系（形式言語 $\mathcal{L}$・定義・公理・定理の導出・モデルによる無矛盾性の証明）は、『世界の証明』の主要な主張を前提（公理）と結論（定理）に分けて形式言語で書き直し、その体系に「論理的飛躍」「定義の混同」「暗黙の前提の密輸」が存在しないことを、①形式言語 $\mathcal{L}$ の型付け（存在ソートと座標ソートの区別、論理式に付く文演算子と公理図式の明示）、②定義（D1〜D5）と公理（A1, A2, A4〜A8）からの定理 T1〜T8 の導出、および③定義と公理のすべてを同時に満たすモデル $\mathcal{M}$ の構成（無矛盾性の証明）によって、客観的に検算・可視化するための<strong>補助的な論理検証データ（仕様書）</strong>である。本データが形式化したのは主な主張の骨格であり、本文の一つ一つの推論の運び（例えば、第5章 pp.45–46 の議論から p.47 の結論へ）は、本文そのものをご覧いただきたい。<br>
             本データの参照および批評にあたっては、以下の前提と方法論を共有するものとする。</p>
 
             <h3>■ 論考の前提・証明の定義・方法論について<br><span style="font-size:0.8rem; color:var(--dim-color); font-weight:normal;">（日本語完全版の巻末付録 pp.68–69 の同じ題の節と同文）</span></h3>
@@ -661,7 +664,7 @@
                     <li>定義と公理から、定理 T1〜T8 が導かれること（第Ⅳ節）</li>
                     <li>その定義と公理が、互いに矛盾しないこと（第Ⅵ節）</li>
                 </ul>
-                前提（公理）そのものが正しいことを示すものではない。
+                前提（公理）そのものの根拠は、各公理に付けた本文のページと、本書の論証をご覧いただきたい（第0節「証明の二層構造」）。
             </div>
 
             <h3>■ Lean 4 による機械検証</h3>
@@ -671,7 +674,7 @@
                     <li><strong>確かめたこと：</strong>①補題 L1 と定理 T1〜T8・各系が、定義 D1〜D5 と公理 A1, A2, A4〜A8 から導かれること（存在の個数を問わない一般の形で）。②第Ⅵ節のモデル ℳ が、定義と公理の19式をすべて満たすこと（無矛盾性）。③定義と公理が、すべての存在を数として一つにしてしまわないこと（非自明性。ℳ では個人と世界が別の存在である）。</li>
                     <li><strong>結果（2026年11月19日、Lean v4.36.0、Lean Web）：</strong>エラー 0、警告 0、未証明の箇所（sorry）なし。各結果が何に依存するかを Lean に表示させると（#print axioms）、定義と公理のほかには何も前提を用いていない。ただし、T6 の系を本文どおり（二重否定の除去）に導いた版だけは、古典論理の標準の公理（propext, Classical.choice, Quot.sound）を用いる。同じ系は、二重否定を用いない道（A8 の注）でも導いた。</li>
                     <li><strong>書き方の注意：</strong>図式（A1, A2, A8, D5a）は、Lean では「すべての命題について」の1つの式として書いた（図式よりわずかに強い形）。導出に使ったのは言語 ℒ で書ける例だけで、モデル ℳ はこの強い形も満たすので、二つの結論は図式についても成り立つ。A3 は体系の外の制限なので、Lean には書いていない。</li>
-                    <li><strong>範囲：</strong>Lean が確かめるのは、形式体系の内部（導出と無矛盾）までである。式が本書を正しく写しているか、前提（公理）が正しいかは、確かめる範囲の外である。</li>
+                    <li><strong>範囲：</strong>Lean が確かめたのは、形式体系の内部（導出と無矛盾）である。式と本文の対応は各式に付けた【読み方】と本文のページを、前提（公理）の根拠は本書の論証をご覧いただきたい。</li>
                     <li><strong>記録（DOI）：</strong>この形式論理モデル（Rev. 5）と Lean 4 による機械検証は、日本語と英語の文書（PDF）と Lean のファイルとともに、Zenodo に記録として保存した（<a href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368376</a>）。</li>
                     <li style="margin-bottom:0;"><strong>ファイルと確かめ直し方：</strong>ProofOfAWorld_Rev5.lean（<a href="https://github.com/ryutostudio/ryutostudio.github.io/blob/main/ProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">GitHub で見る</a>）。<a href="https://live.lean-lang.org/#url=https%3A%2F%2Fryutostudio.github.io%2FProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">Lean Web で確かめ直す</a>を開くと、Lean の公式のブラウザ版にこのファイルが読み込まれ、だれでも同じ確認をやり直せる。Lean のコードの全文と確かめ直し方は、特設ページ「<a href="lean.html">Lean 4 による機械検証</a>」にまとめた。</li>
                 </ul>
@@ -1472,7 +1475,7 @@ $$(\text{T2}, \text{T3}, \text{D5b}) \vdash \text{T8} \quad / \quad (\text{T6 �
                     <li style="margin-bottom:8px;"><strong>導出可能性：</strong>第Ⅳ節において、補題 L1、定理 T1〜T8 と各系は、上記の定義と公理のみから推論規則によって導出された（$\text{D1–D5}, \text{A1, A2, A4–A8} \vdash \text{T1–T8}$）。</li>
                     <li style="margin-bottom:8px;"><strong>このモデルが示すこと：</strong>個人 $s$・他者 $t$・世界 $w$ は、数としては互いに別の存在でありながら、同一座標点 $k$ 上に同時に存在し、どれも同格の原理的存在であり、原理的には同一（$\text{Same}$）である。存在どうしの関係（$P$, $\text{CoPresent}$, $\text{Same}$）はすべて対称で、上下や主従はない。</li>
                 </ol>
-                <p style="margin:8px 0 0 0;">以上により、本体系は無矛盾であり、T1〜T8 はその定義と公理から導かれる。ただし、これは前提（公理）が正しいことを示すものではない（第0節「証明の二層構造」）。 $\blacksquare$</p>
+                <p style="margin:8px 0 0 0;">以上により、本体系は無矛盾であり、T1〜T8 はその定義と公理から導かれる。前提（公理）そのものの根拠は、本書の論証をご覧いただきたい（第0節「証明の二層構造」）。 $\blacksquare$</p>
             </div>
         </div>
     </section>

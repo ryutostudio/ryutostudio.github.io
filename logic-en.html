@@ -579,6 +579,9 @@
             <a href="nl.html">[ Nederlands ]</a>
             <a href="pl.html">[ Polski ]</a>
             <a href="uk.html">[ Українська ]</a>
+            <a href="tr.html">[ Türkçe ]</a>
+            <a href="id.html">[ Bahasa Indonesia ]</a>
+            <a href="vi.html">[ Tiếng Việt ]</a>
             <a href="logic.html">[ 形式論理検証データ (JA) ]</a>
             <span class="active-lang">[ Formal Logic (EN) ]</span>
             <a href="lean.html">[ Lean 4 機械検証 (JA) ]</a>
@@ -621,7 +624,7 @@
     <section id="sec-0">
         <h2>0. Purpose and Position of This Data (Prerequisites Before Reference)</h2>
         <div class="panel-box">
-            <p style="margin-top:0;">The formal logical system presented on this page (formal language $\mathcal{L}$, definitions, axioms, derivations of theorems, and model-theoretic proof of consistency) is an <strong>auxiliary logical verification specification</strong> designed to objectively verify and visualise—through (1) the typing of the formal language $\mathcal{L}$ (distinguishing the entity sort and the coordinate sort, and specifying sentential operators on formulas and axiom schemas), (2) the derivation of Theorems T1–T8 from Definitions D1–D5 and Axioms A1, A2, A4–A8, and (3) the construction of a model $\mathcal{M}$ simultaneously satisfying all definitions and axioms (proof of consistency)—that the system obtained by restating the main claims of <em>Proof of a World</em> as premises (axioms) and conclusions (theorems) in a formal language contains no “logical leaps”, “conflation of definitions”, or “smuggling in of tacit premises”. The individual steps of reasoning in the main text (for example, in section 5, the step from the discussion on EN p. 20 / JA pp. 45–46 to the conclusion on EN pp. 20–21 / JA p. 47) are not formalised and lie outside the scope of this page.<br>
+            <p style="margin-top:0;">The formal logical system presented on this page (formal language $\mathcal{L}$, definitions, axioms, derivations of theorems, and model-theoretic proof of consistency) is an <strong>auxiliary logical verification specification</strong> designed to objectively verify and visualise—through (1) the typing of the formal language $\mathcal{L}$ (distinguishing the entity sort and the coordinate sort, and specifying sentential operators on formulas and axiom schemas), (2) the derivation of Theorems T1–T8 from Definitions D1–D5 and Axioms A1, A2, A4–A8, and (3) the construction of a model $\mathcal{M}$ simultaneously satisfying all definitions and axioms (proof of consistency)—that the system obtained by restating the main claims of <em>Proof of a World</em> as premises (axioms) and conclusions (theorems) in a formal language contains no “logical leaps”, “conflation of definitions”, or “smuggling in of tacit premises”. This data formalises the skeleton of the main claims; for the individual steps of reasoning in the main text (for example, in section 5, the step from the discussion on EN p. 20 / JA pp. 45–46 to the conclusion on EN pp. 20–21 / JA p. 47), please see the main text itself.<br>
             In referring to or critiquing this data, the following premises and methodology are shared.</p>
 
             <h3>■ On the Premises of the Essay, the Definition of Proof, and Methodology<br><span style="font-size:0.8rem; color:var(--dim-color); font-weight:normal;">(Identical to the section of the same title in the Appendix of the Complete Edition, EN pp. 30–31 / JA pp. 68–69)</span></h3>
@@ -663,7 +666,7 @@
                     <li>Theorems T1–T8 are derived from the definitions and axioms (Section IV).</li>
                     <li>Those definitions and axioms do not contradict one another (Section VI).</li>
                 </ul>
-                It does not show that the premises (axioms) themselves are true.
+                For the grounds of the premises (axioms) themselves, see the page references attached to each axiom and the argument of the book (Section 0, “Two-Layer Structure of Proof”).
             </div>
 
             <h3>■ Machine Verification in Lean 4</h3>
@@ -673,7 +676,7 @@
                     <li><strong>What was checked:</strong> (1) that Lemma L1 and Theorems T1–T8 with their corollaries are derivable from Definitions D1–D5 and Axioms A1, A2, A4–A8, in a general form that holds for any number of beings; (2) that the model ℳ of Section VI satisfies all 19 formulas of the definitions and axioms (consistency); (3) that the definitions and axioms do not force all beings to be numerically one (non-triviality; in ℳ the individual and the world are distinct).</li>
                     <li><strong>Result (19 November 2026, Lean v4.36.0, Lean Web):</strong> no errors, no warnings, and no unproved steps (sorry). Lean’s report of what each result depends on (#print axioms) shows that no result uses any premise beyond the definitions and axioms, except the version of the corollary of T6 derived as in the text (by double-negation elimination), which uses the standard axioms of classical logic (propext, Classical.choice, Quot.sound). The same corollary is also derived by a route that does not use double-negation elimination (the note to A8).</li>
                     <li><strong>Notes on the encoding:</strong> the schemas (A1, A2, A8, D5a) are written in Lean as single statements about all propositions, which is slightly stronger than a schema. The derivations use only instances expressible in the language ℒ, and the model ℳ satisfies even the stronger form, so both conclusions also hold for the schemas. A3, a meta-theoretic restriction, is not written in Lean.</li>
-                    <li><strong>Scope:</strong> Lean checks only what lies inside the formal system (derivability and consistency). Whether the formulas faithfully represent the book, and whether the premises (axioms) are true, lie outside its scope.</li>
+                    <li><strong>Scope:</strong> Lean checked the inside of the formal system (derivability and consistency). For how the formulas correspond to the book, see the [Reading] and page reference given with each formula; for the grounds of the premises (axioms), see the argument of the book.</li>
                     <li><strong>Record (DOI):</strong> this formal model (Rev. 5) and its machine verification in Lean 4 are archived on Zenodo, together with the document in Japanese and in English (PDF) and the Lean file (<a href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368376</a>).</li>
                     <li style="margin-bottom:0;"><strong>File and how to re-run the check:</strong> ProofOfAWorld_Rev5.lean (<a href="https://github.com/ryutostudio/ryutostudio.github.io/blob/main/ProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">view on GitHub</a>). Opening <a href="https://live.lean-lang.org/#url=https%3A%2F%2Fryutostudio.github.io%2FProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">Re-run the check on Lean Web</a> loads this file into the official browser version of Lean, so that anyone can repeat the same check. The full Lean code and how to re-run the check are also on the page “<a href="lean-en.html">Machine Verification in Lean 4</a>”.</li>
                 </ul>
@@ -1476,7 +1479,7 @@ $$(\text{T2}, \text{T3}, \text{D5b}) \vdash \text{T8} \quad / \quad (\text{T6 Co
                     <li style="margin-bottom:8px;"><strong>Derivability:</strong> In Section IV, Lemma L1, Theorems T1–T8, and their corollaries were derived from the above definitions and axioms alone by standard rules of inference ($\text{D1–D5}, \text{A1, A2, A4–A8} \vdash \text{T1–T8}$).</li>
                     <li style="margin-bottom:8px;"><strong>What This Model Shows:</strong> The individual $s$, the other $t$, and the world $w$, while being numerically distinct beings from one another, exist simultaneously at the single coordinate point $k$, are all fundamental beings on an equal footing, and are fundamentally identical ($\text{Same}$). All relations among beings ($P$, $\text{CoPresent}$, $\text{Same}$) are symmetric, with no hierarchy or subordination.</li>
                 </ol>
-                <p style="margin:8px 0 0 0;">From the above, the present system is consistent, and T1–T8 are derived from its definitions and axioms. Note, however, that this does not show that the premises (axioms) themselves are true (see Section 0, “Two-Layer Structure of Proof”). $\blacksquare$</p>
+                <p style="margin:8px 0 0 0;">From the above, the present system is consistent, and T1–T8 are derived from its definitions and axioms. For the grounds of the premises (axioms) themselves, see the argument of the book (see Section 0, “Two-Layer Structure of Proof”). $\blacksquare$</p>
             </div>
         </div>
     </section>

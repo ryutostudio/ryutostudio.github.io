@@ -778,7 +778,7 @@
                     <li><strong>確かめたこと：</strong>①補題 L1 と定理 T1〜T8・各系が、定義 D1〜D5 と公理 A1, A2, A4〜A8 から導かれること（存在の個数を問わない一般の形で）。②第Ⅵ節のモデル ℳ が、定義と公理の19式をすべて満たすこと（無矛盾性）。③定義と公理が、すべての存在を数として一つにしてしまわないこと（非自明性。ℳ では個人と世界が別の存在である）。</li>
                     <li><strong>結果（2026年11月19日、Lean v4.36.0、Lean Web）：</strong>エラー 0、警告 0、未証明の箇所（sorry）なし。各結果が何に依存するかを Lean に表示させると（#print axioms）、定義と公理のほかには何も前提を用いていない。ただし、T6 の系を本文どおり（二重否定の除去）に導いた版だけは、古典論理の標準の公理（propext, Classical.choice, Quot.sound）を用いる。同じ系は、二重否定を用いない道（A8 の注）でも導いた。</li>
                     <li><strong>書き方の注意：</strong>図式（A1, A2, A8, D5a）は、Lean では「すべての命題について」の1つの式として書いた（図式よりわずかに強い形）。導出に使ったのは言語 ℒ で書ける例だけで、モデル ℳ はこの強い形も満たすので、二つの結論は図式についても成り立つ。A3 は体系の外の制限なので、Lean には書いていない。</li>
-                    <li><strong>範囲：</strong>Lean が確かめるのは、形式体系の内部（導出と無矛盾）までである。式が本書を正しく写しているか、前提（公理）が正しいかは、確かめる範囲の外である。</li>
+                    <li><strong>範囲：</strong>Lean が確かめたのは、形式体系の内部（導出と無矛盾）である。式と本文の対応は各式に付けた【読み方】と本文のページを、前提（公理）の根拠は本書の論証をご覧いただきたい。</li>
                     <li><strong>記録（DOI）：</strong>この形式論理モデル（Rev. 5）と Lean 4 による機械検証は、日本語と英語の文書（PDF）と Lean のファイルとともに、Zenodo に記録として保存した（<a href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368376</a>）。</li>
                     <li style="margin-bottom:0;"><strong>ファイルと確かめ直し方：</strong>ProofOfAWorld_Rev5.lean（<a href="https://github.com/ryutostudio/ryutostudio.github.io/blob/main/ProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">GitHub で見る</a>）。<a href="https://live.lean-lang.org/#url=https%3A%2F%2Fryutostudio.github.io%2FProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">Lean Web で確かめ直す</a>を開くと、Lean の公式のブラウザ版にこのファイルが読み込まれ、だれでも同じ確認をやり直せる。</li>
             </ul>
