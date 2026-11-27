@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="8nK3UoaKJhiETYimO3smEt-zoZ0pfOw1oC9rJm6KTUk" />
-    <title>Formal Verification of Internal Consistency and Deductive Structure — Proof of a World / Rev. 5 | 『世界の証明』形式論理検証データ (Ryuto Sako / 酒勾龍渡) | Ryuto Studio</title>
-    <meta name="description" content="Formal reconstruction of the main claims of 'Proof of a World' (『世界の証明』) by Ryuto Sako (酒勾龍渡) as premises and conclusions in a many-sorted first-order language with sentential operators: definitions D1–D5, axioms A1–A8, derivations of L1 and T1–T8, a model M proving consistency, and Logical FAQ (Rev. 5, 2026-11-19).">
+    <title>Formal Verification of Internal Consistency and Deductive Structure — Proof of a World / Rev. 6 | 『世界の証明』形式論理検証データ (Ryuto Sako / 酒勾龍渡) | Ryuto Studio</title>
+    <meta name="description" content="Formal reconstruction of the main claims of 'Proof of a World' (『世界の証明』) by Ryuto Sako (酒勾龍渡) as premises and conclusions in a many-sorted first-order language with sentential operators: definitions D1–D5, axioms A1–A8, derivations of L1 and T1–T8, a model M proving consistency, and Logical FAQ (Rev. 6, 2026-11-28).">
     <meta name="author" content="Ryuto Sako (酒勾龍渡)">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <link rel="canonical" href="https://ryutostudio.github.io/logic-en.html">
@@ -19,7 +19,7 @@
       {
         "@context": "https://schema.org",
         "@type": "ScholarlyArticle",
-        "headline": "Formal Verification of Internal Consistency and Deductive Structure — Proof of a World / Rev. 5 (『世界の証明』形式論理による内部整合性・演繹構造の検証データ)",
+        "headline": "Formal Verification of Internal Consistency and Deductive Structure — Proof of a World / Rev. 6 (『世界の証明』形式論理による内部整合性・演繹構造の検証データ)",
         "author": {
           "@type": "Person",
           "name": "Ryuto Sako",
@@ -42,7 +42,7 @@
         },
         "inLanguage": "en",
         "datePublished": "2026-11-18",
-        "dateModified": "2026-11-19",
+        "dateModified": "2026-11-28",
         "description": "Formal reconstruction of the main claims of 'Proof of a World' as premises (axioms) and conclusions (theorems) in a many-sorted first-order language with entity and coordinate sorts and sentential operators: definitions D1–D5, axioms A1–A8, derivations of L1 and T1–T8, and a model proving consistency. The formalisation was produced by Gemini (Google) and Claude (Anthropic) at the author's direction; the author is not a specialist in formal logic. The English text was translated from the Japanese by Gemini (Google), except for the methodological section taken from the English edition of the book."
       },
       {
@@ -542,15 +542,15 @@
         }
     </style>
 <style>/* neon frames (aurora) */:root{--m:142,230,196;--s:154,208,255;--l:201,182,255;--bx:#111}.id-meta-bar{--bx:#151515}.lang-nav,.id-block,.toc-box,.id-meta-bar,.neon-note{border:1px solid transparent;border-radius:12px;background:linear-gradient(var(--bx),var(--bx)) padding-box,linear-gradient(120deg,rgba(var(--m),.85),rgba(var(--s),.85) 50%,rgba(var(--l),.85)) border-box;box-shadow:-4px 0 14px -5px rgba(var(--m),.45),4px 0 14px -5px rgba(var(--l),.45),0 0 18px rgba(var(--s),.12)}/* data record line */.rec{color:rgb(240,222,184);font-weight:600;text-shadow:0 0 6px rgba(230,200,140,.35)}.rec-link{color:rgb(255,158,203)!important;text-decoration-color:rgba(255,158,203,.6)!important;text-shadow:0 0 3px rgba(255,158,203,.75),0 0 10px rgba(255,158,203,.35)}</style>
-<style>/* link colours: Lean pages = sky, Lean data (DOI, .lean file) = pink */a[href="lean.html"],a[href="lean-en.html"],a[href^="lean.html#"],a[href^="lean-en.html#"]{color:rgb(154,208,255)!important;text-decoration-color:rgba(154,208,255,.55)!important;text-shadow:0 0 3px rgba(154,208,255,.7),0 0 10px rgba(154,208,255,.3)}a[href*="zenodo.24368376"],a[href*="ProofOfAWorld_Rev5.lean"]{color:rgb(255,158,203)!important;text-decoration-color:rgba(255,158,203,.6)!important;text-shadow:0 0 3px rgba(255,158,203,.75),0 0 10px rgba(255,158,203,.35)}</style>
+<style>/* link colours: Lean pages = sky, Lean data (DOI, .lean file) = pink */a[href="lean.html"],a[href="lean-en.html"],a[href^="lean.html#"],a[href^="lean-en.html#"]{color:rgb(154,208,255)!important;text-decoration-color:rgba(154,208,255,.55)!important;text-shadow:0 0 3px rgba(154,208,255,.7),0 0 10px rgba(154,208,255,.3)}a[href*="zenodo.24368376"],a[href*="zenodo.24368375"],a[href*="ProofOfAWorld_Rev5.lean"],a[href*="ProofOfAWorld_Rev6.lean"]{color:rgb(255,158,203)!important;text-decoration-color:rgba(255,158,203,.6)!important;text-shadow:0 0 3px rgba(255,158,203,.75),0 0 10px rgba(255,158,203,.35)}</style>
 <style>/* identifiers: no underlines; phones: value under its label */.id-block a,.id-meta-bar a,.neon-note a{text-decoration:none!important}@media (max-width:640px){.id-row{flex-direction:column;align-items:flex-start;gap:2px}}</style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>Formal Verification of Internal Consistency and Deductive Structure — <em>Proof of a World</em><br><span style="font-size: 0.95rem; color: #b0b0b0; font-weight: normal;">（『世界の証明』形式論理による内部整合性・演繹構造の検証データ / Rev. 5, 19 November 2026）</span></h1>
-        <div class="subtitle">Author: Ryuto Sako (酒勾龍渡) | Auxiliary Formal Logic Verification Data (English Edition / Rev. 5)</div>
+        <h1>Formal Verification of Internal Consistency and Deductive Structure — <em>Proof of a World</em><br><span style="font-size: 0.95rem; color: #b0b0b0; font-weight: normal;">（『世界の証明』形式論理による内部整合性・演繹構造の検証データ / Rev. 6, 28 November 2026）</span></h1>
+        <div class="subtitle">Author: Ryuto Sako (酒勾龍渡) | Auxiliary Formal Logic Verification Data (English Edition / Rev. 6)</div>
 
         <div class="id-meta-bar">
             <div>• Target Work: <em>Proof of a World</em> (『世界の証明』)</div>
@@ -561,7 +561,7 @@
             <div>• ORCID iD: <a href="https://orcid.org/0009-0007-5501-8426" target="_blank" rel="noopener">https://orcid.org/0009-0007-5501-8426</a></div>
             <div>• VIAF: <a href="http://viaf.org/viaf/26165867632464002694" target="_blank" rel="noopener">http://viaf.org/viaf/26165867632464002694</a></div>
             <div>• Wikidata: <a href="https://www.wikidata.org/wiki/Q141911037" target="_blank" rel="noopener">https://www.wikidata.org/wiki/Q141911037</a></div>
-            <div>• <span class="rec">Record of this data (formal model Rev. 5 and its machine verification in Lean 4), Zenodo DOI</span>: <a class="rec-link" href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368376</a></div>
+            <div>• <span class="rec">Record of this data (formal model Rev. 6 and its machine verification in Lean 4), Zenodo DOI</span>: <a class="rec-link" href="https://doi.org/10.5281/zenodo.24368375" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368375</a></div>
         </div>
 
         <div class="lang-nav">
@@ -595,7 +595,7 @@
                 <li>The formalisation in this document (formal language, definitions, axioms, derivations, model, and FAQ) was produced by Gemini (Google) and Claude (Anthropic) at the author’s direction and inspected by multiple AI systems.</li>
                 <li>The English text of this page was translated from the Japanese by Gemini (Google). The section “On the Premises of the Essay, the Definition of Proof, and Methodology” uses the translation in the English edition of the book, which was made with the help of Claude (Anthropic) and checked by the author against the Japanese.</li>
                 <li>The author is not a specialist in mathematical logic. The correspondence with the content of the book is shown through the [Reading] (in plain language) attached to each formula and the page references to the main text.</li>
-                <li>The file for the machine verification in Lean 4 (ProofOfAWorld_Rev5.lean) was written by Claude (Anthropic) at the author’s request (19 November 2026). Its correctness rests not on trust in the writer but on Lean’s check.</li>
+                <li>The file for the machine verification in Lean 4 (ProofOfAWorld_Rev6.lean) was written by Claude (Anthropic) at the author’s request (19 November 2026; revised 28 November 2026). Its correctness rests not on trust in the writer but on Lean’s check.</li>
                 <li>The validity of the formulas rests not on inspection by AI, but on the derivations in Section IV (where every step can be checked by standard rules of inference) and the model in Section VI (which anyone can verify by direct evaluation). Both have also been checked mechanically in Lean 4 (see “Machine Verification in Lean 4” in Section 0).</li>
             </ul>
         </div>
@@ -674,11 +674,12 @@
                 The two points above (the derivations in Section IV and the model in Section VI) have also been checked mechanically with the proof assistant Lean 4.
                 <ul class="model-list" style="margin:6px 0;">
                     <li><strong>What was checked:</strong> (1) that Lemma L1 and Theorems T1–T8 with their corollaries are derivable from Definitions D1–D5 and Axioms A1, A2, A4–A8, in a general form that holds for any number of beings; (2) that the model ℳ of Section VI satisfies all 19 formulas of the definitions and axioms (consistency); (3) that the definitions and axioms do not force all beings to be numerically one (non-triviality; in ℳ the individual and the world are distinct).</li>
-                    <li><strong>Result (19 November 2026, Lean v4.36.0, Lean Web):</strong> no errors, no warnings, and no unproved steps (sorry). Lean’s report of what each result depends on (#print axioms) shows that no result uses any premise beyond the definitions and axioms, except the version of the corollary of T6 derived as in the text (by double-negation elimination), which uses the standard axioms of classical logic (propext, Classical.choice, Quot.sound). The same corollary is also derived by a route that does not use double-negation elimination (the note to A8).</li>
+                    <li><strong>Result (28 November 2026, Lean Web):</strong> no errors, no warnings, and no unproved steps (sorry). Lean’s report of what each result depends on (#print axioms) reads “does not depend on any axioms” for all 18 results: no result uses any premise beyond the definitions and axioms, and none uses even Lean’s standard axioms, on which classical reasoning in Lean rests.</li>
+                    <li><strong>This version (Rev. 6):</strong> the corollary of T6 is derived by a route more faithful to the original, applying the same steps as in T6 (A1, A8, A7) to every being. The classical axioms needed at one point in the previous version are therefore no longer needed. The argument of the original is unchanged.</li>
                     <li><strong>Notes on the encoding:</strong> the schemas (A1, A2, A8, D5a) are written in Lean as single statements about all propositions, which is slightly stronger than a schema. The derivations use only instances expressible in the language ℒ, and the model ℳ satisfies even the stronger form, so both conclusions also hold for the schemas. A3, a meta-theoretic restriction, is not written in Lean.</li>
                     <li><strong>Scope:</strong> Lean checked the inside of the formal system (derivability and consistency). For how the formulas correspond to the book, see the [Reading] and page reference given with each formula; for the grounds of the premises (axioms), see the argument of the book.</li>
-                    <li><strong>Record (DOI):</strong> this formal model (Rev. 5) and its machine verification in Lean 4 are archived on Zenodo, together with the document in Japanese and in English (PDF) and the Lean file (<a href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368376</a>).</li>
-                    <li style="margin-bottom:0;"><strong>File and how to re-run the check:</strong> ProofOfAWorld_Rev5.lean (<a href="https://github.com/ryutostudio/ryutostudio.github.io/blob/main/ProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">view on GitHub</a>). Opening <a href="https://live.lean-lang.org/#url=https%3A%2F%2Fryutostudio.github.io%2FProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">Re-run the check on Lean Web</a> loads this file into the official browser version of Lean, so that anyone can repeat the same check. The full Lean code and how to re-run the check are also on the page “<a href="lean-en.html">Machine Verification in Lean 4</a>”.</li>
+                    <li><strong>Record (DOI):</strong> this formal model (Rev. 6) and its machine verification in Lean 4 are archived on Zenodo, together with the document in Japanese and in English (PDF) and the Lean file (<a href="https://doi.org/10.5281/zenodo.24368375" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368375</a>).</li>
+                    <li style="margin-bottom:0;"><strong>File and how to re-run the check:</strong> ProofOfAWorld_Rev6.lean (<a href="https://github.com/ryutostudio/ryutostudio.github.io/blob/main/ProofOfAWorld_Rev6.lean" target="_blank" rel="noopener">view on GitHub</a>). Opening <a href="https://live.lean-lang.org/#url=https%3A%2F%2Fryutostudio.github.io%2FProofOfAWorld_Rev6.lean" target="_blank" rel="noopener">Re-run the check on Lean Web</a> loads this file into the official browser version of Lean, so that anyone can repeat the same check. The full Lean code and how to re-run the check are also on the page “<a href="lean-en.html">Machine Verification in Lean 4</a>”.</li>
                 </ul>
             </div>
 
@@ -689,7 +690,7 @@
                     <li>The formalisation in this document (formal language, definitions, axioms, derivations, model, and FAQ) was produced by Gemini (Google) and Claude (Anthropic) at the author’s direction and inspected by multiple AI systems.</li>
                 <li>The English text of this page was translated from the Japanese by Gemini (Google). The section “On the Premises of the Essay, the Definition of Proof, and Methodology” uses the translation in the English edition of the book, which was made with the help of Claude (Anthropic) and checked by the author against the Japanese.</li>
                     <li>The author is not a specialist in mathematical logic. The correspondence with the content of the book is shown through the [Reading] (in plain language) attached to each formula and the page references to the main text.</li>
-                    <li>The file for the machine verification in Lean 4 (ProofOfAWorld_Rev5.lean) was written by Claude (Anthropic) at the author’s request (19 November 2026). Its correctness rests not on trust in the writer but on Lean’s check.</li>
+                    <li>The file for the machine verification in Lean 4 (ProofOfAWorld_Rev6.lean) was written by Claude (Anthropic) at the author’s request (19 November 2026; revised 28 November 2026). Its correctness rests not on trust in the writer but on Lean’s check.</li>
                     <li style="margin-bottom:0;">The validity of the formulas rests not on inspection by AI, but on the derivations in Section IV (where every step can be checked by standard rules of inference) and the model in Section VI (which anyone can verify by direct evaluation). Both have also been checked mechanically in Lean 4 (see “Machine Verification in Lean 4” in Section 0).</li>
                 </ul>
             </div>
@@ -1031,7 +1032,7 @@ $$\text{D4c}: \quad \forall x \forall y \, \left(\text{Same}(x, y) \iff (PE(x) \
             <div class="formula-display">
                 <div class="formula-human">A8 (Schema) : &nbsp;∀x &nbsp;( 𝐒(φ(x)) ⇒ S(x) ) &nbsp;&nbsp;(where φ(x) is any formula containing x as a free variable)</div>
                 <div class="formula-reading">[Reading] For any being $x$, if any proposition $\phi(x)$ is posited within sō-omou, then $x$ is established as sō-omou $S(x)$.<br>
-                (* Combined with A1, A8 has a strong consequence. Since something holds of every being $x$ [for instance, $x = x$], by A1 it also holds as sō-omou $\mathbf{S}$, and by A8 $x$ is sō-omou. Consequently, every being in the domain is sō-omou [$\forall x \, S(x)$] and, by A7, is real [$\forall x \, B(x)$]. The thesis of Section 3 of the book, “every being is sō-omou itself”, enters the formal system in the form of these premises.)</div>
+                (* Combined with A1, A8 has a strong consequence. Since something holds of every being $x$ [for instance, $x = x$], by A1 it also holds as sō-omou $\mathbf{S}$, and by A8 $x$ is sō-omou. Consequently, every being in the domain is sō-omou [$\forall x \, S(x)$] and, by A7, is real [$\forall x \, B(x)$]. The thesis of Section 3 of the book, “every being is sō-omou itself”, enters the formal system in the form of these premises. In Section IV, the corollary of T6 [$\forall x \, B(x)$] is derived by this route.)</div>
                 <div class="formula-latex">[LaTeX] $$\text{A8 (Schema)}: \quad \forall x \, (\mathbf{S}(\phi(x)) \implies S(x)) \quad (\phi(x) \text{ is any formula containing } x \text{ as a free variable})$$</div>
             </div>
         </div>
@@ -1040,7 +1041,7 @@ $$\text{D4c}: \quad \forall x \forall y \, \left(\text{Same}(x, y) \iff (PE(x) \
     <!-- IV. THEOREMS -->
     <section id="sec-4">
         <h2>IV. Derivations of Theorems (Lemma L1, Theorems T1–T8)</h2>
-        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">From Definitions D1–D5 and Axioms A1, A2, A4–A8 alone, without relying on natural-language supplementation, each theorem is derived without omission using only standard rules of inference of first-order predicate logic (Modus Ponens MP, introduction and elimination of conjunction, implication, and biconditional, proof by contradiction [reductio ad absurdum], contraposition, double negation elimination, transitivity, universal instantiation and generalisation, existential instantiation, quantifier negation exchange, reflexivity/symmetry/transitivity and substitution of equality, and expansion of definitions). (* The derivations are written out by hand, and every step can be verified directly by the inference rules listed above. They have also been checked mechanically with the proof assistant Lean 4 (see “Machine Verification in Lean 4” in Section 0).)</p>
+        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">From Definitions D1–D5 and Axioms A1, A2, A4–A8 alone, without relying on natural-language supplementation, each theorem is derived without omission using only standard rules of inference of first-order predicate logic (Modus Ponens MP, introduction and elimination of conjunction, implication, and biconditional, proof by contradiction [negation introduction], contraposition, transitivity, universal instantiation and generalisation, existential instantiation, quantifier negation exchange, reflexivity/symmetry/transitivity and substitution of equality, and expansion of definitions). (* The derivations are written out by hand, and every step can be verified directly by the inference rules listed above. No derivation uses a rule peculiar to classical logic, such as double negation elimination or the law of excluded middle. They have also been checked mechanically with the proof assistant Lean 4 (see “Machine Verification in Lean 4” in Section 0).)</p>
 
         <div class="stage-banner">[Lemma]</div>
 
@@ -1144,7 +1145,7 @@ $$\text{D4c}: \quad \forall x \forall y \, \left(\text{Same}(x, y) \iff (PE(x) \
                 <span class="proof-title">[Derivation]</span>
                 <ol class="proof-steps">
                     <li>Take arbitrary beings $x, a$. By universal instantiation of Axiom A4, $P(a, x) \iff P(x, a)$.</li>
-                    <li>Biconditional elimination yields $P(a, x) \implies P(x, a)$. By the definition of implication and De Morgan’s laws, this is equivalent to $\neg (P(a, x) \land \neg P(x, a))$.</li>
+                    <li>Biconditional elimination yields $P(a, x) \implies P(x, a)$. Suppose $P(a, x) \land \neg P(x, a)$; then MP gives $P(x, a)$, which contradicts $\neg P(x, a)$ ($\bot$). Hence, by proof by contradiction (negation introduction), $\neg (P(a, x) \land \neg P(x, a))$.</li>
                     <li>Universally generalising Step 2 over $a$ and applying quantifier negation exchange yields $\neg \exists a \, (P(a, x) \land \neg P(x, a))$.</li>
                     <li>Applying the contrapositive of Definition D2b ($Gen(x) \iff \exists a \, (P(a, x) \land \neg P(x, a))$) to Step 3 and universally generalising over $x$ derives $\vdash \forall x \, (\neg Gen(x))$. $\blacksquare$</li>
                 </ol>
@@ -1183,7 +1184,7 @@ $$\text{D4c}: \quad \forall x \forall y \, \left(\text{Same}(x, y) \iff (PE(x) \
             </div>
             <div class="formula-display">
                 <div class="formula-human">⊢ &nbsp;¬∃x &nbsp;AbsoluteNothing(x) &nbsp;&nbsp;(Corollary: ⊢ ∀x &nbsp;B(x))</div>
-                <div class="formula-reading">[Meaning of Theorem] If we assume that “absolute nothingness ($\text{AbsoluteNothing}(a)$)” holds of some being $a$, then by A1 it also holds (is posited) as sō-omou $\mathbf{S}$, from which A8 and A7 derive $B(a)$, colliding with D2e ($\neg B(a)$). Therefore, there is no being corresponding to absolute nothingness. As a corollary, every being in the domain is real.<br>
+                <div class="formula-reading">[Meaning of Theorem] If we assume that “absolute nothingness ($\text{AbsoluteNothing}(a)$)” holds of some being $a$, then by A1 it also holds (is posited) as sō-omou $\mathbf{S}$, from which A8 and A7 derive $B(a)$, colliding with D2e ($\neg B(a)$). Therefore, there is no being corresponding to absolute nothingness. As a corollary, every being in the domain is real (derived by applying the same A1, A8 and A7 to every being).<br>
                 [Correspondence with the Main Text and Limitations] The main text (EN p. 21 / JA p. 49) states: “there is no longer any need to admit even ‘a beginning’, let alone ‘nothingness’”. Formally, under the strong premises A1 and A8, this takes the form “there is no being corresponding to absolute nothingness” (the strength of this conclusion comes from A1 and A8; see the note to A8). In addition, because the classical first-order logic used by this system presupposes from the outset that the domain is non-empty (that something exists), the state of “nothing existing whatsoever” cannot be expressed in this system in the first place. What T6 shows is up to “no being in the domain is absolute nothingness”.</div>
                 <div class="formula-latex">[LaTeX] $$\vdash \neg \exists x \, \text{AbsoluteNothing}(x) \quad \left(\text{Corollary}: \vdash \forall x \, B(x)\right)$$</div>
             </div>
@@ -1197,7 +1198,7 @@ $$\text{D4c}: \quad \forall x \forall y \, \left(\text{Same}(x, y) \iff (PE(x) \
                     <li>On the other hand, applying Definition D2e to $\text{AbsoluteNothing}(a)$ in Step 1 yields $\neg B(a)$.</li>
                     <li>Combining $B(a)$ from Step 4 and $\neg B(a)$ from Step 5 by conjunction introduction derives the explicit contradiction $B(a) \land \neg B(a)$ ($\bot$).</li>
                     <li>Therefore, by proof by contradiction (negation introduction), $\vdash \neg \exists x \, \text{AbsoluteNothing}(x)$ is derived.</li>
-                    <li><strong>[Derivation of Corollary $\vdash \forall x \, B(x)$]:</strong> For an arbitrary being $x$, T6 gives $\neg \text{AbsoluteNothing}(x)$. By the contrapositive of Definition D2e, $\neg \neg B(x)$, hence $B(x)$. Universal generalisation yields $\vdash \forall x \, B(x)$. $\blacksquare$</li>
+                    <li><strong>[Derivation of Corollary $\vdash \forall x \, B(x)$]:</strong> Take an arbitrary being $x$. By reflexivity of equality, $x = x$. Setting $\phi := (x = x)$ in Axiom Schema A1, MP gives $\mathbf{S}(x = x)$. Taking $\phi(y) := (y = y)$ in Axiom Schema A8, instantiating it to $x$ and applying MP gives $S(x)$. By Axiom A7, $B(x)$. Universal generalisation yields $\vdash \forall x \, B(x)$. This applies the same steps as Steps 2–4 (what is posited holds as sō-omou and is real) to every being, and uses no double-negation elimination. The main text (EN p. 21 / JA p. 49), too, does not derive existence from having set nothingness aside; it starts from “the fact that we and this world already exist”. $\blacksquare$</li>
                 </ol>
             </div>
         </div>
@@ -1324,7 +1325,7 @@ $$(\text{T2}, \text{T3}, \text{D5b}) \vdash \text{T8} \quad / \quad (\text{T6 Co
                         <tr>
                             <td><strong>T6</strong></td>
                             <td><strong>A1, A8, A7, D2e</strong></td>
-                            <td>From the assumption $\text{AbsoluteNothing}(a)$, derives $B(a)$ via A1, A8, and A7, yielding a contradiction ($\bot$) with $\neg B(a)$ from D2e. Corollary: $\forall x \, B(x)$.</td>
+                            <td>From the assumption $\text{AbsoluteNothing}(a)$, derives $B(a)$ via A1, A8, and A7, yielding a contradiction ($\bot$) with $\neg B(a)$ from D2e. Corollary $\forall x \, B(x)$: by applying the same A1, A8 and A7 to $x = x$.</td>
                         </tr>
                         <tr>
                             <td><strong>T7</strong></td>

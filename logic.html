@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="8nK3UoaKJhiETYimO3smEt-zoZ0pfOw1oC9rJm6KTUk" />
-    <title>『世界の証明』形式論理による内部整合性・演繹構造の検証データ | Formal Verification of Internal Consistency and Deductive Structure — Proof of a World / Rev. 5 (Ryuto Sako / 酒勾龍渡) | Ryuto Studio</title>
-    <meta name="description" content="Formal reconstruction of the main claims of 'Proof of a World' (『世界の証明』) by Ryuto Sako (酒勾龍渡) as premises and conclusions in a many-sorted first-order language with sentential operators: definitions D1–D5, axioms A1–A8, derivations of L1 and T1–T8, a model M proving consistency, and Logical FAQ (Rev. 5, 2026-11-19).">
+    <title>『世界の証明』形式論理による内部整合性・演繹構造の検証データ | Formal Verification of Internal Consistency and Deductive Structure — Proof of a World / Rev. 6 (Ryuto Sako / 酒勾龍渡) | Ryuto Studio</title>
+    <meta name="description" content="Formal reconstruction of the main claims of 'Proof of a World' (『世界の証明』) by Ryuto Sako (酒勾龍渡) as premises and conclusions in a many-sorted first-order language with sentential operators: definitions D1–D5, axioms A1–A8, derivations of L1 and T1–T8, a model M proving consistency, and Logical FAQ (Rev. 6, 2026-11-28).">
     <meta name="author" content="Ryuto Sako (酒勾龍渡)">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <link rel="canonical" href="https://ryutostudio.github.io/logic.html">
@@ -19,7 +19,7 @@
       {
         "@context": "https://schema.org",
         "@type": "ScholarlyArticle",
-        "headline": "『世界の証明』形式論理による内部整合性・演繹構造の検証データ (Formal Verification of Internal Consistency and Deductive Structure — Proof of a World / Rev. 5)",
+        "headline": "『世界の証明』形式論理による内部整合性・演繹構造の検証データ (Formal Verification of Internal Consistency and Deductive Structure — Proof of a World / Rev. 6)",
         "author": {
           "@type": "Person",
           "name": "Ryuto Sako",
@@ -41,7 +41,7 @@
           "url": "https://ryutostudio.github.io/"
         },
         "datePublished": "2026-11-18",
-        "dateModified": "2026-11-19",
+        "dateModified": "2026-11-28",
         "description": "Formal reconstruction of the main claims of 'Proof of a World' as premises (axioms) and conclusions (theorems) in a many-sorted first-order language with entity and coordinate sorts and sentential operators: definitions D1–D5, axioms A1–A8, derivations of L1 and T1–T8, and a model proving consistency. The formalisation was produced by Gemini (Google) and Claude (Anthropic) at the author's direction; the author is not a specialist in formal logic."
       },
       {
@@ -541,15 +541,15 @@
         }
     </style>
 <style>/* neon frames (aurora) */:root{--m:142,230,196;--s:154,208,255;--l:201,182,255;--bx:#111}.id-meta-bar{--bx:#151515}.lang-nav,.id-block,.toc-box,.id-meta-bar,.neon-note{border:1px solid transparent;border-radius:12px;background:linear-gradient(var(--bx),var(--bx)) padding-box,linear-gradient(120deg,rgba(var(--m),.85),rgba(var(--s),.85) 50%,rgba(var(--l),.85)) border-box;box-shadow:-4px 0 14px -5px rgba(var(--m),.45),4px 0 14px -5px rgba(var(--l),.45),0 0 18px rgba(var(--s),.12)}/* data record line */.rec{color:rgb(240,222,184);font-weight:600;text-shadow:0 0 6px rgba(230,200,140,.35)}.rec-link{color:rgb(255,158,203)!important;text-decoration-color:rgba(255,158,203,.6)!important;text-shadow:0 0 3px rgba(255,158,203,.75),0 0 10px rgba(255,158,203,.35)}</style>
-<style>/* link colours: Lean pages = sky, Lean data (DOI, .lean file) = pink */a[href="lean.html"],a[href="lean-en.html"],a[href^="lean.html#"],a[href^="lean-en.html#"]{color:rgb(154,208,255)!important;text-decoration-color:rgba(154,208,255,.55)!important;text-shadow:0 0 3px rgba(154,208,255,.7),0 0 10px rgba(154,208,255,.3)}a[href*="zenodo.24368376"],a[href*="ProofOfAWorld_Rev5.lean"]{color:rgb(255,158,203)!important;text-decoration-color:rgba(255,158,203,.6)!important;text-shadow:0 0 3px rgba(255,158,203,.75),0 0 10px rgba(255,158,203,.35)}</style>
+<style>/* link colours: Lean pages = sky, Lean data (DOI, .lean file) = pink */a[href="lean.html"],a[href="lean-en.html"],a[href^="lean.html#"],a[href^="lean-en.html#"]{color:rgb(154,208,255)!important;text-decoration-color:rgba(154,208,255,.55)!important;text-shadow:0 0 3px rgba(154,208,255,.7),0 0 10px rgba(154,208,255,.3)}a[href*="zenodo.24368376"],a[href*="zenodo.24368375"],a[href*="ProofOfAWorld_Rev5.lean"],a[href*="ProofOfAWorld_Rev6.lean"]{color:rgb(255,158,203)!important;text-decoration-color:rgba(255,158,203,.6)!important;text-shadow:0 0 3px rgba(255,158,203,.75),0 0 10px rgba(255,158,203,.35)}</style>
 <style>/* identifiers: no underlines; phones: value under its label */.id-block a,.id-meta-bar a,.neon-note a{text-decoration:none!important}@media (max-width:640px){.id-row{flex-direction:column;align-items:flex-start;gap:2px}}</style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>『世界の証明』形式論理による内部整合性・演繹構造の検証データ<br><span style="font-size: 0.95rem; color: #b0b0b0; font-weight: normal;">（Formal Verification of Internal Consistency and Deductive Structure — <em>Proof of a World</em> / Rev. 5, 2026年11月19日）</span></h1>
-        <div class="subtitle">Author: Ryuto Sako (酒勾龍渡) | Formal Logic Verification Data (補助論理検証仕様書 / Rev. 5)</div>
+        <h1>『世界の証明』形式論理による内部整合性・演繹構造の検証データ<br><span style="font-size: 0.95rem; color: #b0b0b0; font-weight: normal;">（Formal Verification of Internal Consistency and Deductive Structure — <em>Proof of a World</em> / Rev. 6, 2026年11月28日）</span></h1>
+        <div class="subtitle">Author: Ryuto Sako (酒勾龍渡) | Formal Logic Verification Data (補助論理検証仕様書 / Rev. 6)</div>
 
         <div class="id-meta-bar">
             <div>・対象作品：『世界の証明』（Proof of a World）</div>
@@ -560,7 +560,7 @@
             <div>・ORCID iD：<a href="https://orcid.org/0009-0007-5501-8426" target="_blank" rel="noopener">https://orcid.org/0009-0007-5501-8426</a></div>
             <div>・VIAF：<a href="http://viaf.org/viaf/26165867632464002694" target="_blank" rel="noopener">http://viaf.org/viaf/26165867632464002694</a></div>
             <div>・Wikidata：<a href="https://www.wikidata.org/wiki/Q141911037" target="_blank" rel="noopener">https://www.wikidata.org/wiki/Q141911037</a></div>
-            <div>・<span class="rec">本データの記録（形式論理モデル Rev. 5 と Lean 4 による機械検証、Zenodo DOI）</span>：<a class="rec-link" href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368376</a></div>
+            <div>・<span class="rec">本データの記録（形式論理モデル Rev. 6 と Lean 4 による機械検証、Zenodo DOI）</span>：<a class="rec-link" href="https://doi.org/10.5281/zenodo.24368375" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368375</a></div>
         </div>
 
         <div class="lang-nav">
@@ -593,7 +593,7 @@
                 <li>本書『世界の証明』の本文（2022年刊。発行時に国立国会図書館に原典をアーカイブ済み）は、すべて著者が書いたものであり、その論証は2022年の時点で著者自身の言葉によって完成している。本データの形式化は、その論証をもとに行ったものである。</li>
                 <li>本データの形式化（形式言語・定義・公理・導出・モデル・FAQ）は、著者の指示のもとで Gemini（Google）と Claude（Anthropic）が作成し、複数の AI に点検させた。</li>
                 <li>著者は数理論理学の専門家ではない。本書の内容との対応は、各式に付けた【読み方】（日本語）と本文のページで示している。</li>
-                <li>Lean 4 による機械検証のファイル（ProofOfAWorld_Rev5.lean）は、著者の依頼により Claude（Anthropic）が作成した（2026年11月19日）。その正しさは、作成者への信用ではなく、Lean による検査に基づく。</li>
+                <li>Lean 4 による機械検証のファイル（ProofOfAWorld_Rev6.lean）は、著者の依頼により Claude（Anthropic）が作成した（2026年11月19日。11月28日に改訂）。その正しさは、作成者への信用ではなく、Lean による検査に基づく。</li>
                 <li>式の正しさの根拠は、AI による点検ではなく、第Ⅳ節の導出（各段を推論規則で確かめられる）と、第Ⅵ節のモデル（だれでも検算できる）である。この2点は、Lean 4 でも機械的に確かめた（第0節「■ Lean 4 による機械検証」）。</li>
             </ul>
         </div>
@@ -672,11 +672,12 @@
                 上の2点（第Ⅳ節の導出と第Ⅵ節のモデル）は、証明支援系 Lean 4 によっても機械的に確かめた。
                 <ul class="model-list" style="margin:6px 0;">
                     <li><strong>確かめたこと：</strong>①補題 L1 と定理 T1〜T8・各系が、定義 D1〜D5 と公理 A1, A2, A4〜A8 から導かれること（存在の個数を問わない一般の形で）。②第Ⅵ節のモデル ℳ が、定義と公理の19式をすべて満たすこと（無矛盾性）。③定義と公理が、すべての存在を数として一つにしてしまわないこと（非自明性。ℳ では個人と世界が別の存在である）。</li>
-                    <li><strong>結果（2026年11月19日、Lean v4.36.0、Lean Web）：</strong>エラー 0、警告 0、未証明の箇所（sorry）なし。各結果が何に依存するかを Lean に表示させると（#print axioms）、定義と公理のほかには何も前提を用いていない。ただし、T6 の系を本文どおり（二重否定の除去）に導いた版だけは、古典論理の標準の公理（propext, Classical.choice, Quot.sound）を用いる。同じ系は、二重否定を用いない道（A8 の注）でも導いた。</li>
+                    <li><strong>結果（2026年11月28日、Lean Web）：</strong>エラー 0、警告 0、未証明の箇所（sorry）なし。各結果が何に依存するかを Lean に表示させると（#print axioms）、18件すべてが「does not depend on any axioms」と出る。どの結果も、定義と公理のほかには何も前提を用いず、Lean の標準の公理（古典論理の推論はこれらに拠る）も一つも用いない。</li>
+                    <li><strong>本版（Rev. 6）：</strong>T6 の系は、原典により忠実な道（T6 と同じ A1・A8・A7 の働きを、任意の存在に当てはめる道）で導いた。これにより、旧版で一か所だけ必要だった古典論理の公理は不要になった。原典の論証は変えていない。</li>
                     <li><strong>書き方の注意：</strong>図式（A1, A2, A8, D5a）は、Lean では「すべての命題について」の1つの式として書いた（図式よりわずかに強い形）。導出に使ったのは言語 ℒ で書ける例だけで、モデル ℳ はこの強い形も満たすので、二つの結論は図式についても成り立つ。A3 は体系の外の制限なので、Lean には書いていない。</li>
                     <li><strong>範囲：</strong>Lean が確かめたのは、形式体系の内部（導出と無矛盾）である。式と本文の対応は各式に付けた【読み方】と本文のページを、前提（公理）の根拠は本書の論証をご覧いただきたい。</li>
-                    <li><strong>記録（DOI）：</strong>この形式論理モデル（Rev. 5）と Lean 4 による機械検証は、日本語と英語の文書（PDF）と Lean のファイルとともに、Zenodo に記録として保存した（<a href="https://doi.org/10.5281/zenodo.24368376" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368376</a>）。</li>
-                    <li style="margin-bottom:0;"><strong>ファイルと確かめ直し方：</strong>ProofOfAWorld_Rev5.lean（<a href="https://github.com/ryutostudio/ryutostudio.github.io/blob/main/ProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">GitHub で見る</a>）。<a href="https://live.lean-lang.org/#url=https%3A%2F%2Fryutostudio.github.io%2FProofOfAWorld_Rev5.lean" target="_blank" rel="noopener">Lean Web で確かめ直す</a>を開くと、Lean の公式のブラウザ版にこのファイルが読み込まれ、だれでも同じ確認をやり直せる。Lean のコードの全文と確かめ直し方は、特設ページ「<a href="lean.html">Lean 4 による機械検証</a>」にまとめた。</li>
+                    <li><strong>記録（DOI）：</strong>この形式論理モデル（Rev. 6）と Lean 4 による機械検証は、日本語と英語の文書（PDF）と Lean のファイルとともに、Zenodo に記録として保存した（<a href="https://doi.org/10.5281/zenodo.24368375" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24368375</a>）。</li>
+                    <li style="margin-bottom:0;"><strong>ファイルと確かめ直し方：</strong>ProofOfAWorld_Rev6.lean（<a href="https://github.com/ryutostudio/ryutostudio.github.io/blob/main/ProofOfAWorld_Rev6.lean" target="_blank" rel="noopener">GitHub で見る</a>）。<a href="https://live.lean-lang.org/#url=https%3A%2F%2Fryutostudio.github.io%2FProofOfAWorld_Rev6.lean" target="_blank" rel="noopener">Lean Web で確かめ直す</a>を開くと、Lean の公式のブラウザ版にこのファイルが読み込まれ、だれでも同じ確認をやり直せる。Lean のコードの全文と確かめ直し方は、特設ページ「<a href="lean.html">Lean 4 による機械検証</a>」にまとめた。</li>
                 </ul>
             </div>
 
@@ -686,7 +687,7 @@
                     <li>本書『世界の証明』の本文（2022年刊。発行時に国立国会図書館に原典をアーカイブ済み）は、すべて著者が書いたものであり、その論証は2022年の時点で著者自身の言葉によって完成している。本データの形式化は、その論証をもとに行ったものである。</li>
                     <li>本データの形式化（形式言語・定義・公理・導出・モデル・FAQ）は、著者の指示のもとで Gemini（Google）と Claude（Anthropic）が作成し、複数の AI に点検させた。</li>
                     <li>著者は数理論理学の専門家ではない。本書の内容との対応は、各式に付けた【読み方】（日本語）と本文のページで示している。</li>
-                    <li>Lean 4 による機械検証のファイル（ProofOfAWorld_Rev5.lean）は、著者の依頼により Claude（Anthropic）が作成した（2026年11月19日）。その正しさは、作成者への信用ではなく、Lean による検査に基づく。</li>
+                    <li>Lean 4 による機械検証のファイル（ProofOfAWorld_Rev6.lean）は、著者の依頼により Claude（Anthropic）が作成した（2026年11月19日。11月28日に改訂）。その正しさは、作成者への信用ではなく、Lean による検査に基づく。</li>
                     <li style="margin-bottom:0;">式の正しさの根拠は、AI による点検ではなく、第Ⅳ節の導出（各段を推論規則で確かめられる）と、第Ⅵ節のモデル（だれでも検算できる）である。この2点は、Lean 4 でも機械的に確かめた（第0節「■ Lean 4 による機械検証」）。</li>
                 </ul>
             </div>
@@ -1027,7 +1028,7 @@ $$\text{D4c}: \quad \forall x \forall y \, \left(\text{Same}(x, y) \iff (PE(x) \
             <div class="formula-display">
                 <div class="formula-human">A8（図式） : &nbsp;∀x &nbsp;( 𝐒(φ(x)) ⇒ S(x) ) &nbsp;&nbsp;（φ(x) は x を自由変数として含む任意の論理式）</div>
                 <div class="formula-reading">【読み方】存在 $x$ について、いかなる命題 $\phi(x)$ であれ観念の内部で措定されたならば、$x$ は観念 $S(x)$ として成立する。<br>
-                （※ A8 は A1 と合わせると強い帰結を持つ。どの存在 $x$ についても何かが成り立つので（例えば $x = x$）、A1 によりそれは観念 $\mathbf{S}$ としても成り立ち、A8 により $x$ は観念である。したがって、領域のすべての存在は観念であり（$\forall x \, S(x)$）、A7 により実在する（$\forall x \, B(x)$）。本書第3章の「あらゆる存在は観念そのものである」は、この前提の形で体系に入っている。）</div>
+                （※ A8 は A1 と合わせると強い帰結を持つ。どの存在 $x$ についても何かが成り立つので（例えば $x = x$）、A1 によりそれは観念 $\mathbf{S}$ としても成り立ち、A8 により $x$ は観念である。したがって、領域のすべての存在は観念であり（$\forall x \, S(x)$）、A7 により実在する（$\forall x \, B(x)$）。本書第3章の「あらゆる存在は観念そのものである」は、この前提の形で体系に入っている。第Ⅳ節では、T6 の系（$\forall x \, B(x)$）をこの道で導く。）</div>
                 <div class="formula-latex">[LaTeX] $$\text{A8（図式）}: \quad \forall x \, (\mathbf{S}(\phi(x)) \implies S(x)) \quad (\phi(x) \text{ は } x \text{ を自由変数として含む任意の論理式})$$</div>
             </div>
         </div>
@@ -1036,7 +1037,7 @@ $$\text{D4c}: \quad \forall x \forall y \, \left(\text{Same}(x, y) \iff (PE(x) \
     <!-- IV. THEOREMS -->
     <section id="sec-4">
         <h2>Ⅳ. 定理の導出（Derivations: 補題 L1、定理 T1〜T8）</h2>
-        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">定義 D1〜D5 と公理 A1, A2, A4〜A8 のみから、自然言語の補足に依存せず、一階述語論理の標準的な推論規則（モーダスポネンス MP、連言・含意・双条件の導入と除去、背理法、対偶、二重否定の除去、推移律、全称例化・全称化、存在例化、量化子の否定交換、等号の反射・対称・推移と代入、定義の展開）のみで、各定理を省略なく導出する。（※導出は手で書いたもので、各段は上の推論規則で確かめられる。この導出は、証明支援系 Lean 4 によっても機械的に確かめた（第0節「■ Lean 4 による機械検証」）。）</p>
+        <p style="font-size:0.86rem; color:var(--dim-color); margin-bottom:16px;">定義 D1〜D5 と公理 A1, A2, A4〜A8 のみから、自然言語の補足に依存せず、一階述語論理の標準的な推論規則（モーダスポネンス MP、連言・含意・双条件の導入と除去、背理法（否定の導入）、対偶、推移律、全称例化・全称化、存在例化、量化子の否定交換、等号の反射・対称・推移と代入、定義の展開）のみで、各定理を省略なく導出する。（※導出は手で書いたもので、各段は上の推論規則で確かめられる。二重否定の除去や排中律のような、古典論理に特有の規則は、どの導出にも用いない。この導出は、証明支援系 Lean 4 によっても機械的に確かめた（第0節「■ Lean 4 による機械検証」）。）</p>
 
         <div class="stage-banner">【補題】</div>
 
@@ -1140,7 +1141,7 @@ $$\text{D4c}: \quad \forall x \forall y \, \left(\text{Same}(x, y) \iff (PE(x) \
                 <span class="proof-title">【導出】</span>
                 <ol class="proof-steps">
                     <li>任意の存在 $x, a$ をとる。公理 A4 の全称例化より、$P(a, x) \iff P(x, a)$。</li>
-                    <li>双条件除去により $P(a, x) \implies P(x, a)$ を得る。含意の定義およびド・モルガンの法則により、これは $\neg (P(a, x) \land \neg P(x, a))$ と同値である。</li>
+                    <li>双条件除去により $P(a, x) \implies P(x, a)$ を得る。ここで $P(a, x) \land \neg P(x, a)$ と仮定すると、MP により $P(x, a)$ を得て、$\neg P(x, a)$ と矛盾する（$\bot$）。よって背理法（否定導入）により $\neg (P(a, x) \land \neg P(x, a))$ を得る。</li>
                     <li>ステップ2を $a$ について全称化し、量化子の否定交換則を適用すると、$\neg \exists a \, (P(a, x) \land \neg P(x, a))$ を得る。</li>
                     <li>定義 D2b（$Gen(x) \iff \exists a \, (P(a, x) \land \neg P(x, a))$）の対偶をステップ3に適用し $x$ について全称化すると、$\vdash \forall x \, (\neg Gen(x))$ が導出された。 $\blacksquare$</li>
                 </ol>
@@ -1179,7 +1180,7 @@ $$\text{D4c}: \quad \forall x \forall y \, \left(\text{Same}(x, y) \iff (PE(x) \
             </div>
             <div class="formula-display">
                 <div class="formula-human">⊢ &nbsp;¬∃x &nbsp;AbsoluteNothing(x) &nbsp;&nbsp;（系：⊢ ∀x &nbsp;B(x)）</div>
-                <div class="formula-reading">【定理の意味】ある存在 $a$ について「絶対的無（$\text{AbsoluteNothing}(a)$）」が成り立つと仮定すると、A1 によりそれは観念 $\mathbf{S}$ としても成り立ち（措定され）、A8・A7 により $B(a)$ が導かれて、D2e（$\neg B(a)$）と衝突する。したがって、絶対的無にあたる存在はない。系として、領域のすべての存在は実在する。<br>
+                <div class="formula-reading">【定理の意味】ある存在 $a$ について「絶対的無（$\text{AbsoluteNothing}(a)$）」が成り立つと仮定すると、A1 によりそれは観念 $\mathbf{S}$ としても成り立ち（措定され）、A8・A7 により $B(a)$ が導かれて、D2e（$\neg B(a)$）と衝突する。したがって、絶対的無にあたる存在はない。系として、領域のすべての存在は実在する（同じ A1・A8・A7 の働きを、任意の存在に当てはめて導く）。<br>
                 【本文との対応と限界】本文 p.49 は「もはや『無』はおろか、『始まり』さえ認める必要性はない」と述べる。形式の上では、強い前提 A1・A8 のもとで「絶対的無にあたる存在はない」という形になる（この結論の強さは A1・A8 によるもので、A8 の注を参照）。また本体系が用いる古典一階論理は、領域が空でないこと（何かが存在すること）を最初から前提にしているため、「何も存在しない」という状態そのものは、この体系ではもともと表せない。T6 が示すのは「領域のどの存在も絶対的無ではない」ことまでである。</div>
                 <div class="formula-latex">[LaTeX] $$\vdash \neg \exists x \, \text{AbsoluteNothing}(x) \quad \left(\text{系}: \vdash \forall x \, B(x)\right)$$</div>
             </div>
@@ -1193,7 +1194,7 @@ $$\text{D4c}: \quad \forall x \forall y \, \left(\text{Same}(x, y) \iff (PE(x) \
                     <li>一方、ステップ1の $\text{AbsoluteNothing}(a)$ に定義 D2e を適用すると、$\neg B(a)$ を得る。</li>
                     <li>ステップ4の $B(a)$ とステップ5の $\neg B(a)$ を連言導入で結合すると、明示的矛盾 $B(a) \land \neg B(a)$（$\bot$）が導出される。</li>
                     <li>よって背理法（否定導入）により、$\vdash \neg \exists x \, \text{AbsoluteNothing}(x)$ が導出された。</li>
-                    <li><strong>【系 $\vdash \forall x \, B(x)$ の導出】：</strong>任意の存在 $x$ について、T6 より $\neg \text{AbsoluteNothing}(x)$。定義 D2e の対偶により $\neg \neg B(x)$、すなわち $B(x)$。全称化により $\vdash \forall x \, B(x)$。 $\blacksquare$</li>
+                    <li><strong>【系 $\vdash \forall x \, B(x)$ の導出】：</strong>任意の存在 $x$ をとる。等号の反射律により $x = x$。公理図式 A1 において $\phi := (x = x)$ と置くと、MP により $\mathbf{S}(x = x)$ を得る。公理図式 A8 において $\phi(y) := (y = y)$ とし、$x$ に例化して MP を適用すると $S(x)$ を得る。公理 A7 により $B(x)$ を得る。全称化により $\vdash \forall x \, B(x)$。これはステップ2〜4と同じ働き（措定されたものは観念として成り立ち、実在する）を任意の存在に当てはめたもので、二重否定の除去は用いない。本文 p.49 も、無を退けたことから存在を導くのではなく、「私達やこの世界がすでに存在しているという事実」から出発している。 $\blacksquare$</li>
                 </ol>
             </div>
         </div>
@@ -1320,7 +1321,7 @@ $$(\text{T2}, \text{T3}, \text{D5b}) \vdash \text{T8} \quad / \quad (\text{T6 �
                         <tr>
                             <td><strong>T6</strong></td>
                             <td><strong>A1, A8, A7, D2e</strong></td>
-                            <td>仮定 $\text{AbsoluteNothing}(a)$ から A1・A8・A7 により $B(a)$ を導き、D2e から得られる $\neg B(a)$ との矛盾（$\bot$）を導出。系として $\forall x \, B(x)$。</td>
+                            <td>仮定 $\text{AbsoluteNothing}(a)$ から A1・A8・A7 により $B(a)$ を導き、D2e から得られる $\neg B(a)$ との矛盾（$\bot$）を導出。系 $\forall x \, B(x)$ は、同じ A1・A8・A7 を $x = x$ に当てはめて導く。</td>
                         </tr>
                         <tr>
                             <td><strong>T7</strong></td>
