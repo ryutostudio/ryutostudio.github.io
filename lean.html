@@ -799,6 +799,7 @@
             <ul class="model-list" style="margin:0;">
                     <li>エラー（赤）も警告もなければ、すべての証明が受け入れられたということ。</li>
                     <li>「does not depend on any axioms」は、その結果が形式論理モデルの定義と公理から論理だけで導かれ、ほかに何も仮定していないということ。</li>
+                    <li>このファイルは何も読み込まない（import なし。Lean のコアだけで、Mathlib も使わない）。仮定は、ファイルの中の structure ProofOfAWorld に書いた19の式（定義12・公理7）だけで、axiom の宣言も、未証明の印（sorry）もない。</li>
                     <li>18 件すべてに「does not depend on any axioms」と出る。Lean の標準の公理（propext, Classical.choice, Quot.sound）も、どの結果にも出ない。</li>
                     <li>公理が表示された行があれば、その証明は合格していない。</li>
             </ul>

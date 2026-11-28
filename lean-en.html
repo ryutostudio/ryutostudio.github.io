@@ -799,6 +799,7 @@
             <ul class="model-list" style="margin:0;">
                     <li>No red error and no warning anywhere → every proof was accepted.</li>
                     <li>“does not depend on any axioms” → the result follows from the definitions and axioms of the formal model by logic alone; nothing else was assumed.</li>
+                    <li>The file imports nothing (Lean core only, no Mathlib). Its only assumptions are the 19 formulas (12 definitions, 7 axioms) in the structure ProofOfAWorld inside the file; there are no axiom declarations and no sorry (unfinished proof).</li>
                     <li>All 18 lines read “does not depend on any axioms”. Lean’s standard axioms (propext, Classical.choice, Quot.sound) do not appear for any result.</li>
                     <li>If any line lists an axiom, that proof did not pass.</li>
             </ul>
