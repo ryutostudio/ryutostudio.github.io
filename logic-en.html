@@ -1180,7 +1180,7 @@ $$\text{D4c}: \quad \forall x \forall y \, \left(\text{Same}(x, y) \iff (PE(x) \
         <div class="logic-card" id="thm-t6">
             <div class="logic-card-header">
                 <span class="logic-id">T6 (Negation of Absolute Nothingness — Section 6)</span>
-                <span class="logic-ref">Basis: Combination of Axiom Schemas A1, A8, Axiom A7, and Definition D2e (Proof by Contradiction)</span>
+                <span class="logic-ref">Basis: Combination of Axiom Schemas A1, A8, Axiom A7, and Definition D2e (Proof by Contradiction) (Corollary: Axiom Schemas A1, A8 and Axiom A7)</span>
             </div>
             <div class="formula-display">
                 <div class="formula-human">⊢ &nbsp;¬∃x &nbsp;AbsoluteNothing(x) &nbsp;&nbsp;(Corollary: ⊢ ∀x &nbsp;B(x))</div>
@@ -1268,7 +1268,8 @@ $$\left(\text{Corollary 1}: \vdash \forall x \, (S(x) \land B(x) \land PE(x) \la
                 <div class="chain-line">( A5 ) &nbsp;⊢&nbsp; L1</div>
                 <div class="chain-line">( A1, D2a ) &nbsp;⊢&nbsp; T1 &nbsp;&nbsp;／&nbsp;&nbsp; ( A1, D1, A7 ) &nbsp;⊢&nbsp; T2</div>
                 <div class="chain-line">( T2, A4, D3 ) &nbsp;⊢&nbsp; T3 &nbsp;&nbsp;／&nbsp;&nbsp; ( L1, D4a, A6 ) &nbsp;⊢&nbsp; Limited(S<sub>ind</sub>) &nbsp;&nbsp;／&nbsp;&nbsp; ( A4, D2b ) &nbsp;⊢&nbsp; T4</div>
-                <div class="chain-line">( A5, L1, D2c, D2d ) &nbsp;⊢&nbsp; T5 &nbsp;&nbsp;／&nbsp;&nbsp; ( A1, A8, A7, D2e ) &nbsp;⊢&nbsp; T6, T6 Cor. &nbsp;&nbsp;／&nbsp;&nbsp; ( T6 Cor., T3, L1, T4, D4b ) &nbsp;⊢&nbsp; T7</div>
+                <div class="chain-line">( A5, L1, D2c, D2d ) &nbsp;⊢&nbsp; T5 &nbsp;&nbsp;／&nbsp;&nbsp; ( A1, A8, A7, D2e ) &nbsp;⊢&nbsp; T6</div>
+                <div class="chain-line">( A1, A8, A7 ) &nbsp;⊢&nbsp; T6 Cor. &nbsp;&nbsp;／&nbsp;&nbsp; ( T6 Cor., T3, L1, T4, D4b ) &nbsp;⊢&nbsp; T7</div>
                 <div class="chain-line">( T2, T3, D5b ) &nbsp;⊢&nbsp; T8 &nbsp;&nbsp;／&nbsp;&nbsp; ( T6 Cor., T8 ) &nbsp;⊢&nbsp; T8 Cor. 1 &nbsp;&nbsp;／&nbsp;&nbsp; ( T8 Cor. 1, L1, D4c ) &nbsp;⊢&nbsp; T8 Cor. 2</div>
                 <div style="font-size:0.8rem; color:var(--dim-color); margin-top:8px;">(A2, D5a, and $C(c_0, c_0)$ in A5 are not used in the derivation of any theorem.)</div>
                 <div class="formula-latex" style="margin-top:10px;">
@@ -1276,7 +1277,8 @@ $$\left(\text{Corollary 1}: \vdash \forall x \, (S(x) \land B(x) \land PE(x) \la
 $$(\text{A5}) \vdash \text{L1}$$
 $$(\text{A1}, \text{D2a}) \vdash \text{T1} \quad / \quad (\text{A1}, \text{D1}, \text{A7}) \vdash \text{T2}$$
 $$(\text{T2}, \text{A4}, \text{D3}) \vdash \text{T3} \quad / \quad (\text{L1}, \text{D4a}, \text{A6}) \vdash \text{Limited}(S_{\text{ind}}) \quad / \quad (\text{A4}, \text{D2b}) \vdash \text{T4}$$
-$$(\text{A5}, \text{L1}, \text{D2c}, \text{D2d}) \vdash \text{T5} \quad / \quad (\text{A1}, \text{A8}, \text{A7}, \text{D2e}) \vdash \text{T6}, \text{T6 Cor.} \quad / \quad (\text{T6 Cor.}, \text{T3}, \text{L1}, \text{T4}, \text{D4b}) \vdash \text{T7}$$
+$$(\text{A5}, \text{L1}, \text{D2c}, \text{D2d}) \vdash \text{T5} \quad / \quad (\text{A1}, \text{A8}, \text{A7}, \text{D2e}) \vdash \text{T6}$$
+$$(\text{A1}, \text{A8}, \text{A7}) \vdash \text{T6 Cor.} \quad / \quad (\text{T6 Cor.}, \text{T3}, \text{L1}, \text{T4}, \text{D4b}) \vdash \text{T7}$$
 $$(\text{T2}, \text{T3}, \text{D5b}) \vdash \text{T8} \quad / \quad (\text{T6 Cor.}, \text{T8}) \vdash \text{T8 Cor. 1} \quad / \quad (\text{T8 Cor. 1}, \text{L1}, \text{D4c}) \vdash \text{T8 Cor. 2}$$
                 </div>
             </div>
@@ -1324,7 +1326,7 @@ $$(\text{T2}, \text{T3}, \text{D5b}) \vdash \text{T8} \quad / \quad (\text{T6 Co
                         </tr>
                         <tr>
                             <td><strong>T6</strong></td>
-                            <td><strong>A1, A8, A7, D2e</strong></td>
+                            <td><strong>A1, A8, A7, D2e</strong><br>(Corollary: A1, A8, A7)</td>
                             <td>From the assumption $\text{AbsoluteNothing}(a)$, derives $B(a)$ via A1, A8, and A7, yielding a contradiction ($\bot$) with $\neg B(a)$ from D2e. Corollary $\forall x \, B(x)$: by applying the same A1, A8 and A7 to $x = x$.</td>
                         </tr>
                         <tr>

@@ -1176,7 +1176,7 @@ $$\text{D4c}: \quad \forall x \forall y \, \left(\text{Same}(x, y) \iff (PE(x) \
         <div class="logic-card" id="thm-t6">
             <div class="logic-card-header">
                 <span class="logic-id">T6（絶対的無の否定 — 第6章）</span>
-                <span class="logic-ref">成立根拠：公理図式 A1・A8、公理 A7、定義 D2e の組み合わせ（背理法）</span>
+                <span class="logic-ref">成立根拠：公理図式 A1・A8、公理 A7、定義 D2e の組み合わせ（背理法）（系は公理図式 A1・A8 と公理 A7）</span>
             </div>
             <div class="formula-display">
                 <div class="formula-human">⊢ &nbsp;¬∃x &nbsp;AbsoluteNothing(x) &nbsp;&nbsp;（系：⊢ ∀x &nbsp;B(x)）</div>
@@ -1264,7 +1264,8 @@ $$\left(\text{系1}: \vdash \forall x \, (S(x) \land B(x) \land PE(x) \land M(x)
                 <div class="chain-line">( A5 ) &nbsp;⊢&nbsp; L1</div>
                 <div class="chain-line">( A1, D2a ) &nbsp;⊢&nbsp; T1 &nbsp;&nbsp;／&nbsp;&nbsp; ( A1, D1, A7 ) &nbsp;⊢&nbsp; T2</div>
                 <div class="chain-line">( T2, A4, D3 ) &nbsp;⊢&nbsp; T3 &nbsp;&nbsp;／&nbsp;&nbsp; ( L1, D4a, A6 ) &nbsp;⊢&nbsp; Limited(S<sub>ind</sub>) &nbsp;&nbsp;／&nbsp;&nbsp; ( A4, D2b ) &nbsp;⊢&nbsp; T4</div>
-                <div class="chain-line">( A5, L1, D2c, D2d ) &nbsp;⊢&nbsp; T5 &nbsp;&nbsp;／&nbsp;&nbsp; ( A1, A8, A7, D2e ) &nbsp;⊢&nbsp; T6, T6 系 &nbsp;&nbsp;／&nbsp;&nbsp; ( T6 系, T3, L1, T4, D4b ) &nbsp;⊢&nbsp; T7</div>
+                <div class="chain-line">( A5, L1, D2c, D2d ) &nbsp;⊢&nbsp; T5 &nbsp;&nbsp;／&nbsp;&nbsp; ( A1, A8, A7, D2e ) &nbsp;⊢&nbsp; T6</div>
+                <div class="chain-line">( A1, A8, A7 ) &nbsp;⊢&nbsp; T6 系 &nbsp;&nbsp;／&nbsp;&nbsp; ( T6 系, T3, L1, T4, D4b ) &nbsp;⊢&nbsp; T7</div>
                 <div class="chain-line">( T2, T3, D5b ) &nbsp;⊢&nbsp; T8 &nbsp;&nbsp;／&nbsp;&nbsp; ( T6 系, T8 ) &nbsp;⊢&nbsp; T8 系1 &nbsp;&nbsp;／&nbsp;&nbsp; ( T8 系1, L1, D4c ) &nbsp;⊢&nbsp; T8 系2</div>
                 <div style="font-size:0.8rem; color:var(--dim-color); margin-top:8px;">（A2・D5a・A5 の $C(c_0, c_0)$ は、どの定理の導出にも使われない。）</div>
                 <div class="formula-latex" style="margin-top:10px;">
@@ -1272,7 +1273,8 @@ $$\left(\text{系1}: \vdash \forall x \, (S(x) \land B(x) \land PE(x) \land M(x)
 $$(\text{A5}) \vdash \text{L1}$$
 $$(\text{A1}, \text{D2a}) \vdash \text{T1} \quad / \quad (\text{A1}, \text{D1}, \text{A7}) \vdash \text{T2}$$
 $$(\text{T2}, \text{A4}, \text{D3}) \vdash \text{T3} \quad / \quad (\text{L1}, \text{D4a}, \text{A6}) \vdash \text{Limited}(S_{\text{ind}}) \quad / \quad (\text{A4}, \text{D2b}) \vdash \text{T4}$$
-$$(\text{A5}, \text{L1}, \text{D2c}, \text{D2d}) \vdash \text{T5} \quad / \quad (\text{A1}, \text{A8}, \text{A7}, \text{D2e}) \vdash \text{T6}, \text{T6 系} \quad / \quad (\text{T6 系}, \text{T3}, \text{L1}, \text{T4}, \text{D4b}) \vdash \text{T7}$$
+$$(\text{A5}, \text{L1}, \text{D2c}, \text{D2d}) \vdash \text{T5} \quad / \quad (\text{A1}, \text{A8}, \text{A7}, \text{D2e}) \vdash \text{T6}$$
+$$(\text{A1}, \text{A8}, \text{A7}) \vdash \text{T6 系} \quad / \quad (\text{T6 系}, \text{T3}, \text{L1}, \text{T4}, \text{D4b}) \vdash \text{T7}$$
 $$(\text{T2}, \text{T3}, \text{D5b}) \vdash \text{T8} \quad / \quad (\text{T6 系}, \text{T8}) \vdash \text{T8 系1} \quad / \quad (\text{T8 系1}, \text{L1}, \text{D4c}) \vdash \text{T8 系2}$$
                 </div>
             </div>
@@ -1320,7 +1322,7 @@ $$(\text{T2}, \text{T3}, \text{D5b}) \vdash \text{T8} \quad / \quad (\text{T6 �
                         </tr>
                         <tr>
                             <td><strong>T6</strong></td>
-                            <td><strong>A1, A8, A7, D2e</strong></td>
+                            <td><strong>A1, A8, A7, D2e</strong><br>（系は A1, A8, A7）</td>
                             <td>仮定 $\text{AbsoluteNothing}(a)$ から A1・A8・A7 により $B(a)$ を導き、D2e から得られる $\neg B(a)$ との矛盾（$\bot$）を導出。系 $\forall x \, B(x)$ は、同じ A1・A8・A7 を $x = x$ に当てはめて導く。</td>
                         </tr>
                         <tr>
